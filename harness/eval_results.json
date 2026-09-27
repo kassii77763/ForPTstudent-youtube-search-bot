@@ -1,0 +1,165 @@
+{
+  "executedAt": "2026-09-26T21:48:55.273Z",
+  "totalScore": 400,
+  "maxScore": 400,
+  "allPass": true,
+  "stages": [
+    {
+      "stage": 1,
+      "name": "Stage 1: MVP & 堅牢性ハーネス",
+      "score": 100,
+      "maxScore": 100,
+      "pass": true,
+      "tests": [
+        {
+          "name": "YouTube VideoID抽出正規表現",
+          "pass": true,
+          "points": 20
+        },
+        {
+          "name": "YouTube公式サムネイルURL自動導出",
+          "pass": true,
+          "points": 20
+        },
+        {
+          "name": "タイムスタンプ文字列の秒数換算ロジック",
+          "pass": true,
+          "points": 20
+        },
+        {
+          "name": "スペース区切りAND検索の一致判定",
+          "pass": true,
+          "points": 20
+        },
+        {
+          "name": "0件ヒット時の安全テキストフォールバック",
+          "pass": true,
+          "points": 20
+        }
+      ],
+      "defects": []
+    },
+    {
+      "stage": 2,
+      "name": "Stage 2: 豊富機能 & リッチFlex UIハーネス",
+      "score": 100,
+      "maxScore": 100,
+      "pass": true,
+      "tests": [
+        {
+          "name": "Flex Carousel ルート構造スキーマ",
+          "pass": true,
+          "points": 20
+        },
+        {
+          "name": "Heroサムネイル (16:9 cover HTTPS) 構造",
+          "pass": true,
+          "points": 20
+        },
+        {
+          "name": "タイトル2行制限・自動折り返し (maxLines:2, wrap:true)",
+          "pass": true,
+          "points": 20
+        },
+        {
+          "name": "FooterボタンのPrimaryスタイルと秒数付きURIアクション",
+          "pass": true,
+          "points": 20
+        },
+        {
+          "name": "通知用 altText の適切な件数表示",
+          "pass": true,
+          "points": 20
+        }
+      ],
+      "defects": []
+    },
+    {
+      "stage": 3,
+      "name": "Stage 3: グラフ拡張 & マルチエージェント段階ルーティングハーネス",
+      "score": 100,
+      "maxScore": 100,
+      "pass": true,
+      "tests": [
+        {
+          "name": "複数YouTuber段階ルーティング（1人なら即表示、複数人なら選択）",
+          "pass": true,
+          "points": 25
+        },
+        {
+          "name": "軽量Postbackスキーマ設計（LINE 300文字制限遵守）",
+          "pass": true,
+          "points": 25
+        },
+        {
+          "name": "複数科目カテゴリ（解剖学・運動学・生理学）のメタデータグラフ統合",
+          "pass": true,
+          "points": 25
+        },
+        {
+          "name": "グッドハート耐性（不正文字・空入力・境界値の堅牢性）",
+          "pass": true,
+          "points": 25
+        }
+      ],
+      "defects": []
+    },
+    {
+      "stage": 4,
+      "name": "Stage 4: スマート塩梅 & 関連性厳格監査ハーネス",
+      "score": 100,
+      "maxScore": 100,
+      "pass": true,
+      "tests": [
+        {
+          "name": "ひらがな「ねつ」の正規化 ➔ 発熱/体温調節の提案",
+          "pass": true,
+          "points": 20
+        },
+        {
+          "name": "無関係ワード混入の完全排除（ねつに大腿四頭筋が出ない）",
+          "pass": true,
+          "points": 20
+        },
+        {
+          "name": "口語「ふともも/太腿」から「大腿四頭筋」への正確な誘導",
+          "pass": true,
+          "points": 20
+        },
+        {
+          "name": "動画ID整合性保証（タイトルとサムネイルの不一致ゼロ）",
+          "pass": true,
+          "points": 20
+        },
+        {
+          "name": "Anti-Annoyance (80文字以内・質問責めゼロの快適性)",
+          "pass": true,
+          "points": 20
+        }
+      ],
+      "defects": []
+    }
+  ],
+  "summary": {
+    "stage1": {
+      "name": "Stage 1: MVP & 堅牢性ハーネス",
+      "score": 100,
+      "pass": true
+    },
+    "stage2": {
+      "name": "Stage 2: 豊富機能 & リッチFlex UIハーネス",
+      "score": 100,
+      "pass": true
+    },
+    "stage3": {
+      "name": "Stage 3: グラフ拡張 & マルチエージェント段階ルーティングハーネス",
+      "score": 100,
+      "pass": true
+    },
+    "stage4": {
+      "name": "Stage 4: スマート塩梅 & 関連性厳格監査ハーネス",
+      "score": 100,
+      "pass": true
+    }
+  }
+}

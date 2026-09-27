@@ -1,0 +1,12 @@
+# 認証情報・環境変数
+*.env
+*.env.*
+.clasp.json
+
+# 一時ファイル・スクラッチ
+scratch/
+.system_generated/
+*.log
+
+# 依存パッケージ
+node_modules/
