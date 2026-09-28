@@ -239,7 +239,7 @@ function doPost(e) {
       // 「リセット」「全表示に戻す」
       if (['リセット', '全表示に戻す', '初期化'].includes(userText)) {
         const ss = SpreadsheetApp.getActiveSpreadsheet();
-        setUserPreference(ss, userId, 'ALL');
+        setUserPreferenceList(ss, userId, []);
         replyTextToLine(replyToken, "✅ 優先設定をリセットしました！\n今後は全チャンネル（すべての解説者＋Web解説）から横断検索します😊");
         continue;
       }
@@ -261,36 +261,39 @@ function doPost(e) {
   return ContentService.createTextOutput("OK");
 }
 
-// ユーザー優先チャンネルの取得（スプレッドシート管理）
+// ユーザー優先チャンネルの取得（スプレッドシート管理・カンマ区切り複数対応）
 function getUserPreference(ss, userId) {
-  if (!userId || userId === 'unknown') return 'ALL';
+  if (!userId || userId === 'unknown') return [];
   try {
     let prefSheet = ss.getSheetByName('ユーザー設定');
     if (!prefSheet) {
       prefSheet = ss.insertSheet('ユーザー設定');
       prefSheet.appendRow(['ユーザーID', '優先チャンネル', '更新日時']);
-      return 'ALL';
+      return [];
     }
     const data = prefSheet.getDataRange().getValues();
     for (let i = 1; i < data.length; i++) {
       if (String(data[i][0]).trim() === String(userId).trim()) {
-        return String(data[i][1]).trim() || 'ALL';
+        const val = String(data[i][1]).trim();
+        if (!val || val === 'ALL') return [];
+        return val.split(',').map(s => s.trim()).filter(s => s.length > 0);
       }
     }
   } catch (e) {
     console.error("設定取得エラー:", e);
   }
-  return 'ALL';
+  return [];
 }
 
-// ユーザー優先チャンネルの更新
-function setUserPreference(ss, userId, targetChannel) {
+// ユーザー優先チャンネルの更新（配列保存）
+function setUserPreferenceList(ss, userId, channelList) {
   try {
     let prefSheet = ss.getSheetByName('ユーザー設定');
     if (!prefSheet) {
       prefSheet = ss.insertSheet('ユーザー設定');
       prefSheet.appendRow(['ユーザーID', '優先チャンネル', '更新日時']);
     }
+    const val = channelList.length === 0 ? 'ALL' : channelList.join(',');
     const data = prefSheet.getDataRange().getValues();
     let foundRow = -1;
     for (let i = 1; i < data.length; i++) {
@@ -300,86 +303,24 @@ function setUserPreference(ss, userId, targetChannel) {
       }
     }
     if (foundRow > 0) {
-      prefSheet.getRange(foundRow, 2, 1, 2).setValues([[targetChannel, new Date()]]);
+      prefSheet.getRange(foundRow, 2, 1, 2).setValues([[val, new Date()]]);
     } else {
-      prefSheet.appendRow([userId, targetChannel, new Date()]);
+      prefSheet.appendRow([userId, val, new Date()]);
     }
   } catch (e) {
     console.error("設定保存エラー:", e);
   }
 }
 
-// 設定変更メニュー（Flex Message）の送信
+// 設定変更メニュー（Flex Message：トグル式複数選択）の送信
 function sendSettingsMenu(replyToken, userId) {
   const ss = SpreadsheetApp.getActiveSpreadsheet();
-  const current = getUserPreference(ss, userId);
-
-  const channels = [
-    { label: '🌟 全チャンネル（おすすめ）', value: 'ALL', desc: 'すべての動画・Web解説からバランスよく検索' },
-    { label: '👨‍🏫 ゴロー先生のみ', value: 'ゴロー先生', desc: 'イラスト図解・解剖生理学の基礎固め' },
-    { label: '🎓 西島ゼミのみ', value: '西島ゼミ', desc: 'PT/OT国試過去問・網羅的講義' },
-    { label: '🔬 カラダ研究所のみ', value: 'カラダ研究所', desc: '運動器・3Dバイオメカニクス' },
-    { label: '📖 かずひろ先生【Web解説】のみ', value: 'かずひろ先生', desc: '徹底的解剖学の体系的テキスト・図解' },
-    { label: '🐊 鰐部ゼミナールのみ', value: '鰐部ゼミナール', desc: '国家試験対策の重要ポイント整理' }
-  ];
-
-  const buttons = channels.map(ch => {
-    const isSelected = (current === ch.value);
-    return {
-      type: 'box',
-      layout: 'vertical',
-      spacing: 'xs',
-      margin: 'md',
-      contents: [
-        {
-          type: 'button',
-          style: isSelected ? 'primary' : 'secondary',
-          color: isSelected ? '#2563eb' : '#f3f4f6',
-          height: 'sm',
-          action: {
-            type: 'postback',
-            label: isSelected ? `✔ ${ch.label}` : ch.label,
-            data: `action=setChannel&value=${ch.value}`
-          }
-        },
-        {
-          type: 'text',
-          text: ch.desc,
-          size: 'xxs',
-          color: '#6b7280',
-          align: 'center'
-        }
-      ]
-    };
-  });
-
-  const flex = {
-    type: 'flex',
-    altText: '優先解説者の設定',
-    contents: {
-      type: 'bubble',
-      size: 'mega',
-      header: {
-        type: 'box',
-        layout: 'vertical',
-        backgroundColor: '#f8fafc',
-        contents: [
-          { type: 'text', text: '⚙️ 優先解説者・検索フィルター', weight: 'bold', size: 'md', color: '#1e293b' },
-          { type: 'text', text: '検索時に優先表示したいチャンネルを選んでね', size: 'xs', color: '#64748b' }
-        ]
-      },
-      body: {
-        type: 'box',
-        layout: 'vertical',
-        contents: buttons
-      }
-    }
-  };
-
+  const selectedList = getUserPreference(ss, userId); // 例: ['ゴロー先生', '西島ゼミ']、空なら全選択
+  const flex = buildSettingsFlex(selectedList);
   sendLineReply(replyToken, [flex]);
 }
 
-// Postback処理
+// Postback処理（複数選択トグル）
 function handlePostback(replyToken, userId, dataString) {
   const params = {};
   dataString.split('&').forEach(pair => {
@@ -387,21 +328,148 @@ function handlePostback(replyToken, userId, dataString) {
     if (parts.length === 2) params[parts[0]] = decodeURIComponent(parts[1]);
   });
 
-  if (params.action === 'setChannel') {
+  if (params.action === 'toggleChannel') {
     const ss = SpreadsheetApp.getActiveSpreadsheet();
-    setUserPreference(ss, userId, params.value);
-    
-    const labelMap = {
-      'ALL': '全チャンネル（すべての解説者＋Web）',
-      'ゴロー先生': 'ゴロー先生のみ',
-      '西島ゼミ': '西島ゼミのみ',
-      'カラダ研究所': 'カラダ研究所のみ',
-      'かずひろ先生': 'かずひろ先生【徹底的解剖学 Web解説】のみ',
-      '鰐部ゼミナール': '鰐部ゼミナールのみ'
-    };
-    const chosen = labelMap[params.value] || params.value;
-    replyTextToLine(replyToken, `✅ 優先解説者を「${chosen}」に設定しました！\n今後の検索ではこの設定が優先されます😊\n（いつでも「設定」と送信すれば変更できます）`);
+    let selectedList = getUserPreference(ss, userId);
+    const target = params.value;
+
+    if (target === 'ALL') {
+      // 全選択にリセット
+      setUserPreferenceList(ss, userId, []);
+      replyTextToLine(replyToken, "✅ すべての解説者（全チャンネル＋Web）を表示するように設定しました！😊");
+      return;
+    }
+
+    // もしこれまで全選択だった場合、対象以外を全員ONにするのではなく、対象のみONにするかトグルするか
+    if (selectedList.length === 0) {
+      // 「全選択」状態から1人をタップしたら、その人だけONにする直感的仕様
+      selectedList = [target];
+    } else {
+      // すでに個別選択中の場合：トグル（あれば外す、なければ加える）
+      if (selectedList.includes(target)) {
+        selectedList = selectedList.filter(c => c !== target);
+      } else {
+        selectedList.push(target);
+      }
+    }
+
+    setUserPreferenceList(ss, userId, selectedList);
+
+    // 更新後の設定メニューを再表示（続けて何人もタップできるようにする）
+    const updatedFlex = buildSettingsFlex(selectedList);
+    const summaryText = selectedList.length === 0 
+      ? "✅ すべての選択を解除したため、「全チャンネル表示」にリセットしました！🌟"
+      : `✅ 現在の優先対象:【${selectedList.join('、')}】\n続けて他の解説者をタップして追加・除外できます👇`;
+
+    sendLineReply(replyToken, [
+      { type: 'text', text: summaryText },
+      updatedFlex
+    ]);
   }
+}
+
+// 設定メニューのFlexオブジェクト生成（共通関数）
+function buildSettingsFlex(selectedList) {
+  const allChannels = [
+    { name: 'ゴロー先生', label: '👨‍🏫 ゴロー先生', desc: 'イラスト図解・解剖生理学の基礎' },
+    { name: '西島ゼミ', label: '🎓 西島ゼミ', desc: 'PT/OT国試過去問・網羅的講義' },
+    { name: 'カラダ研究所', label: '🔬 カラダ研究所', desc: '運動器・3Dバイオメカニクス' },
+    { name: 'かずひろ先生', label: '📖 かずひろ先生【Web解説】', desc: '徹底的解剖学の体系的テキスト・図解' },
+    { name: '鰐部ゼミナール', label: '🐊 鰐部ゼミナール', desc: '国家試験対策の重要ポイント整理' },
+    { name: 'ネコかん', label: '🐱 ネコかん', desc: '看護・生理学スライドまとめ' }
+  ];
+
+  const isAll = (selectedList.length === 0);
+
+  // 全チャンネル一括ボタン
+  const allBtn = {
+    type: 'box',
+    layout: 'vertical',
+    margin: 'sm',
+    contents: [
+      {
+        type: 'button',
+        style: isAll ? 'primary' : 'secondary',
+        color: isAll ? '#2563eb' : '#f1f5f9',
+        height: 'sm',
+        action: {
+          type: 'postback',
+          label: isAll ? '✔ 🌟 全て表示（全員ON）' : '🌟 全て表示（リセット）',
+          data: 'action=toggleChannel&value=ALL'
+        }
+      }
+    ]
+  };
+
+  // 各チャンネルのトグルボタン
+  const channelBoxes = allChannels.map(ch => {
+    const isChecked = isAll || selectedList.includes(ch.name);
+    return {
+      type: 'box',
+      layout: 'horizontal',
+      spacing: 'sm',
+      margin: 'sm',
+      paddingAll: 'sm',
+      backgroundColor: isChecked ? '#eff6ff' : '#f8fafc',
+      cornerRadius: 'md',
+      contents: [
+        {
+          type: 'text',
+          text: isChecked ? '✅' : '⬜',
+          size: 'md',
+          align: 'center',
+          gravity: 'center',
+          flex: 1
+        },
+        {
+          type: 'box',
+          layout: 'vertical',
+          flex: 6,
+          contents: [
+            { type: 'text', text: ch.label, weight: 'bold', size: 'xs', color: isChecked ? '#1e40af' : '#475569' },
+            { type: 'text', text: ch.desc, size: 'xxs', color: '#94a3b8' }
+          ]
+        },
+        {
+          type: 'button',
+          style: isChecked ? 'primary' : 'secondary',
+          color: isChecked ? '#3b82f6' : '#e2e8f0',
+          height: 'sm',
+          flex: 3,
+          action: {
+            type: 'postback',
+            label: isChecked ? 'ON' : 'OFF',
+            data: `action=toggleChannel&value=${ch.name}`
+          }
+        }
+      ]
+    };
+  });
+
+  return {
+    type: 'flex',
+    altText: '優先解説者の設定（複数選択可能）',
+    contents: {
+      type: 'bubble',
+      size: 'mega',
+      header: {
+        type: 'box',
+        layout: 'vertical',
+        backgroundColor: '#f8fafc',
+        paddingAll: 'md',
+        contents: [
+          { type: 'text', text: '⚙️ 優先解説者・マイフィルター', weight: 'bold', size: 'md', color: '#1e293b' },
+          { type: 'text', text: 'タップで何人でも自由にON/OFFできます👇', size: 'xs', color: '#64748b', margin: 'xs' }
+        ]
+      },
+      body: {
+        type: 'box',
+        layout: 'vertical',
+        paddingAll: 'md',
+        contents: [allBtn, ...channelBoxes]
+      }
+    }
+  };
 }
 
 // 使い方・検索ガイド（Flex Message）
@@ -525,7 +593,7 @@ function handleSearch(replyToken, query, userId, userName) {
 }
 
 // 検索ロジック（F列チャンネル名対応 & ユーザー優先設定対応）
-function executeSearch(data, query, prefChannel) {
+function executeSearch(data, query, prefChannels) {
   let targetAuthor = null;
   let cleanQuery = query;
   
@@ -538,9 +606,16 @@ function executeSearch(data, query, prefChannel) {
     }
   }
 
-  // クエリ指定がない場合、ユーザーの設定値を適用
-  if (!targetAuthor && prefChannel && prefChannel !== 'ALL') {
-    targetAuthor = prefChannel;
+  // クエリ指定がない場合、ユーザーの複数設定（配列）を適用
+  let allowedAuthors = null;
+  if (targetAuthor) {
+    allowedAuthors = [targetAuthor];
+  } else if (prefChannels) {
+    if (Array.isArray(prefChannels) && prefChannels.length > 0) {
+      allowedAuthors = prefChannels;
+    } else if (typeof prefChannels === 'string' && prefChannels !== 'ALL' && prefChannels.length > 0) {
+      allowedAuthors = [prefChannels];
+    }
   }
 
   const keywords = cleanQuery.replace(/　/g, ' ').trim().split(/\s+/).filter(k => k.length > 0);
@@ -558,7 +633,7 @@ function executeSearch(data, query, prefChannel) {
     if (!url || !url.startsWith('http')) continue;
     if (searchStatus === 'OFF') continue; // 過去問・メンバー限定等を除外
     
-    if (targetAuthor && author !== targetAuthor) continue;
+    if (allowedAuthors && !allowedAuthors.includes(author)) continue;
     
     const searchTarget = (title + " " + timestamps + " " + tags + " " + category).toLowerCase();
     const isMatch = keywords.every(k => searchTarget.includes(k.toLowerCase()));
