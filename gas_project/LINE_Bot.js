@@ -97,7 +97,7 @@ function doGet(e) {
       cleanQuery: cleanQ,
       jevTerm: jevTerm,
       matchCount: matches.length,
-      sampleHits: matches.slice(0, 5)
+      sampleHits: matches.slice(0, 8)
     }, null, 2)).setMimeType(ContentService.MimeType.JSON);
   }
 
@@ -186,7 +186,7 @@ function doPost(e) {
     let onCount = 0;
     const updates = [];
 
-    // 過去問・メンバー限定判定正規表現
+    // 過去問・メンバー限定・一問一答・暗記スピードチェック等の演習動画除外判定正規表現
     const offPatterns = [
       /第\s*\d+\s*回/i,
       /午後問/i,
@@ -200,7 +200,18 @@ function doPost(e) {
       /メンバー限定/i,
       /メンバーシップ/i,
       /会員限定/i,
-      /限定公開/i
+      /限定公開/i,
+      /スピードチェック/i,
+      /一問一答/i,
+      /フラッシュ暗記/i,
+      /聞き流し/i,
+      /暗記/i,
+      /クイズ/i,
+      /出版のお知らせ/i,
+      /お疲れ様でした/i,
+      /心構え/i,
+      /お知らせ/i,
+      /企画/i
     ];
 
     for (let i = 1; i < data.length; i++) {
@@ -629,8 +640,8 @@ function handleSearch(replyToken, query, userId, userName) {
     const logLabel = jevExpandedQuery ? `Jev判定ヒット(${jevExpandedQuery})` : '直接ヒット';
     logSearchActivity(ss, userId, userName, query, matches.length, logLabel);
     
-    // カルーセルメッセージの構築
-    const flexMessage = buildFlexCarousel(matches.slice(0, 5), jevExpandedQuery || query);
+    // カルーセルメッセージの構築（最大8件表示）
+    const flexMessage = buildFlexCarousel(matches.slice(0, 8), jevExpandedQuery || query);
     sendLineReply(replyToken, [flexMessage]);
     return;
   }
@@ -736,6 +747,10 @@ function executeSearch(data, query, prefChannels) {
     
     if (!url || !url.startsWith('http')) continue;
     if (searchStatus === 'OFF') continue; // 過去問・メンバー限定等を除外
+    
+    // 一問一答・暗記・スピードチェック・聞き流し・クイズ・お知らせ等をリアルタイムでも確実に除外
+    const isExerciseOrNotice = /(?:スピードチェック|一問一答|フラッシュ暗記|聞き流し|暗記|クイズ|お疲れ様でした|心構え|お知らせ|企画|第\s*\d+\s*回|過去問|午後問|午前問|問\s*\d+|模試)/i.test(title);
+    if (isExerciseOrNotice) continue;
     
     if (allowedAuthors && !allowedAuthors.includes(author)) continue;
     

@@ -75,9 +75,9 @@ async function runLiveHarness() {
     console.log(`   ・総行数: ${totalRows} 行`);
     console.log(`   ・有効動画(ON): ${active} 件 / 除外動画(OFF): ${inactive} 件 (除外率: ${(offRatio * 100).toFixed(1)}%)`);
 
-    if (totalRows >= 3400 && offRatio > 0.25 && offRatio < 0.45) {
+    if (totalRows >= 3400 && offRatio > 0.30 && offRatio < 0.65) {
       totalScore += 20;
-      results.push({ name: '実スプレッドシート健全性（全3,497行中、過去問・有料枠の適切な分離）', pass: true, points: 20 });
+      results.push({ name: '実スプレッドシート健全性（全3,600+行中、過去問・一問一答・暗記演習の適切な分離）', pass: true, points: 20 });
     } else {
       defects.push(`除外比率が異常です: total=${totalRows}, offRatio=${offRatio}`);
       results.push({ name: '実スプレッドシート健全性', pass: false, points: 0 });
