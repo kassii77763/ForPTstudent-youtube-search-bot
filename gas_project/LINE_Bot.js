@@ -644,8 +644,8 @@ function executeSearch(data, query, prefChannels) {
       let playUrl = url;
 
       if (isWebArticle) {
-        // かずひろ先生のWebサイト用公式解剖学バナー画像 (200 OK実在確認済み)
-        thumbUrl = 'https://www.anatomy.tokyo/wp-content/uploads/2025/03/4a82b4381eabc73dff8b878c669db5c6-768x432.png';
+        // かずひろ先生の徹底的解剖学・図解イラスト公式画像 (200 OK実在確認済み)
+        thumbUrl = 'https://www.anatomy.tokyo/wp-content/uploads/2024/07/takusannozu2.jpg';
         playUrl = encodeURI(url);
       } else {
         const videoId = extractVideoId(url);
@@ -654,8 +654,15 @@ function executeSearch(data, query, prefChannels) {
         thumbUrl = `https://img.youtube.com/vi/${videoId}/mqdefault.jpg`;
       }
       
+      // HTML特殊文字（&#8211;や&amp;等）を整形
+      const cleanTitle = title.replace(/&#8211;/g, '–')
+                              .replace(/&#8212;/g, '—')
+                              .replace(/&amp;/g, '&')
+                              .replace(/&lt;/g, '<')
+                              .replace(/&gt;/g, '>');
+
       results.push({
-        title: title,
+        title: cleanTitle,
         url: playUrl,
         author: author,
         category: category,
