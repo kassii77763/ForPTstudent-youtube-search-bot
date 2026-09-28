@@ -768,7 +768,8 @@ function handleSearch(replyToken, query, userId, userName) {
 }
 
 // 検索ロジック（F列チャンネル名対応 & ユーザー優先設定対応）
-function executeSearch(data, query, prefChannels) {
+function executeSearch(data, query, prefChannels, ss) {
+  const spreadsheet = ss || SpreadsheetApp.getActiveSpreadsheet();
   let targetAuthor = null;
   let cleanQuery = query;
   
@@ -801,6 +802,8 @@ function executeSearch(data, query, prefChannels) {
   }
 
   const keywords = cleanQuery.replace(/　/g, ' ').trim().split(/\s+/).filter(k => k.length > 0);
+  // 同義語展開をループの前に1度だけ事前解決（未定義エラー防止 ＆ 実行速度を大幅改善）
+  const keywordVariantsList = keywords.map(k => getSynonymVariants(k, spreadsheet));
   const results = [];
   
   for (let i = 1; i < data.length; i++) {
@@ -822,9 +825,8 @@ function executeSearch(data, query, prefChannels) {
     if (allowedAuthors && !allowedAuthors.includes(author)) continue;
     
     const searchTarget = (title + " " + timestamps + " " + tags + " " + category).toLowerCase();
-    // 医学用語・解剖学の同義語・表記揺れ（スプレッドシート辞書 ＋ 組み込み辞書）を自動展開してマッチング
-    const isMatch = keywords.every(k => {
-      const variants = getSynonymVariants(k, ss);
+    // 医学用語・解剖学の同義語・表記揺れ（事前計算済みバリアントで超高速判定）
+    const isMatch = keywordVariantsList.every(variants => {
       return variants.some(v => searchTarget.includes(v.toLowerCase()));
     });
     
@@ -839,7 +841,7 @@ function executeSearch(data, query, prefChannels) {
         playUrl = encodeURI(url);
       } else {
         const videoId = extractVideoId(url);
-        const targetSeconds = findBestTimestamp(timestamps, keywords[0], ss);
+        const targetSeconds = findBestTimestamp(timestamps, keywords[0], spreadsheet);
         playUrl = targetSeconds > 0 ? `${url}&t=${targetSeconds}s` : url;
         thumbUrl = `https://img.youtube.com/vi/${videoId}/mqdefault.jpg`;
       }
