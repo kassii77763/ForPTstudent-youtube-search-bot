@@ -58,13 +58,33 @@ function doGet(e) {
     const sheet = ss.getSheets()[0];
     const data = sheet.getDataRange().getValues();
     
+    // クエリ内の明示的チャンネル指定を抽出
+    let explicitAuthor = null;
+    let cleanQ = q;
+    const authorPatterns = [
+      { author: 'カラダ研究所', regex: /(?:カラダ研究所|ガラダ研究所|からだ研究所|体研究所)/i },
+      { author: 'ゴロー先生', regex: /(?:ゴロー先生|ゴロー|ごろう先生|ごろう)/i },
+      { author: '西島ゼミ', regex: /(?:西島ゼミ|西島先生|西島)/i },
+      { author: 'かずひろ先生', regex: /(?:かずひろ先生|かずひろ|徹底的解剖学)/i },
+      { author: 'ネコかん', regex: /(?:ネコかん|ねこかん|猫缶|ネコ缶)/i },
+      { author: '鰐部ゼミナール', regex: /(?:鰐部ゼミナール|わにべ|鰐部)/i }
+    ];
+    for (const ap of authorPatterns) {
+      if (ap.regex.test(q)) {
+        explicitAuthor = ap.author;
+        cleanQ = q.replace(ap.regex, '').trim();
+        break;
+      }
+    }
+    
     let matches = executeSearch(data, q);
     let jevTerm = null;
     if (matches.length === 0) {
       try {
-        jevTerm = queryWithJev(q);
-        if (jevTerm && jevTerm !== q) {
-          matches = executeSearch(data, jevTerm);
+        jevTerm = queryWithJev(cleanQ || q);
+        if (jevTerm && jevTerm !== (cleanQ || q)) {
+          const retryQuery = explicitAuthor ? `${jevTerm} ${explicitAuthor}` : jevTerm;
+          matches = executeSearch(data, retryQuery, explicitAuthor ? [explicitAuthor] : null);
         }
       } catch (err) {
         // ignore
@@ -73,6 +93,8 @@ function doGet(e) {
     
     return ContentService.createTextOutput(JSON.stringify({
       query: q,
+      explicitAuthor: explicitAuthor,
+      cleanQuery: cleanQ,
       jevTerm: jevTerm,
       matchCount: matches.length,
       sampleHits: matches.slice(0, 5)
@@ -544,6 +566,25 @@ function handleSearch(replyToken, query, userId, userName) {
     return;
   }
 
+  // クエリ内の明示的な解説者指定を抽出（例: 「歩行周期 カラダ研究所」-> targetAuthor: カラダ研究所, cleanQuery: 歩行周期）
+  let explicitAuthor = null;
+  let cleanQuery = query;
+  const authorPatterns = [
+    { author: 'カラダ研究所', regex: /(?:カラダ研究所|ガラダ研究所|からだ研究所|体研究所)/i },
+    { author: 'ゴロー先生', regex: /(?:ゴロー先生|ゴロー|ごろう先生|ごろう)/i },
+    { author: '西島ゼミ', regex: /(?:西島ゼミ|西島先生|西島)/i },
+    { author: 'かずひろ先生', regex: /(?:かずひろ先生|かずひろ|徹底的解剖学)/i },
+    { author: 'ネコかん', regex: /(?:ネコかん|ねこかん|猫缶|ネコ缶)/i },
+    { author: '鰐部ゼミナール', regex: /(?:鰐部ゼミナール|わにべ|鰐部)/i }
+  ];
+  for (const ap of authorPatterns) {
+    if (ap.regex.test(query)) {
+      explicitAuthor = ap.author;
+      cleanQuery = query.replace(ap.regex, '').trim();
+      break;
+    }
+  }
+
   const ss = SpreadsheetApp.getActiveSpreadsheet();
   const videoSheet = ss.getSheets()[0]; // 1枚目の動画リスト
   const data = videoSheet.getDataRange().getValues();
@@ -556,12 +597,31 @@ function handleSearch(replyToken, query, userId, userName) {
   let jevExpandedQuery = null;
   if (matches.length === 0) {
     try {
-      jevExpandedQuery = queryWithJev(query);
-      if (jevExpandedQuery && jevExpandedQuery !== query) {
-        matches = executeSearch(data, jevExpandedQuery, prefChannel);
+      jevExpandedQuery = queryWithJev(cleanQuery || query);
+      if (jevExpandedQuery && jevExpandedQuery !== (cleanQuery || query)) {
+        // 明示指定された解説者がある場合は、Jevの展開語にもその解説者制約を必ず継承
+        const retryQuery = explicitAuthor ? `${jevExpandedQuery} ${explicitAuthor}` : jevExpandedQuery;
+        const retryPref = explicitAuthor ? [explicitAuthor] : prefChannel;
+        matches = executeSearch(data, retryQuery, retryPref);
       }
     } catch (e) {
       console.error("Jev呼び出し例外:", e);
+    }
+  }
+
+  // 3. まだヒットせず、かつ解説者が明示指定されている場合、クエリの部分一致・基底語で再検索（同チャンネル内を徹底探索）
+  if (matches.length === 0 && explicitAuthor && cleanQuery.length >= 2) {
+    // 例: 「歩行周期」-> 「歩行」
+    const subTerms = [cleanQuery.slice(0, 2), cleanQuery.slice(-2)];
+    for (const sub of subTerms) {
+      if (sub && sub !== cleanQuery && sub.length >= 2) {
+        const subMatches = executeSearch(data, `${sub} ${explicitAuthor}`, [explicitAuthor]);
+        if (subMatches.length > 0) {
+          matches = subMatches;
+          jevExpandedQuery = `${sub}（関連）`;
+          break;
+        }
+      }
     }
   }
   
@@ -575,12 +635,49 @@ function handleSearch(replyToken, query, userId, userName) {
     return;
   }
   
-  // 3. 0件ヒット時：親テーマサジェスト ＆ 検索足跡ログ
+  // 4. 0件ヒット時：親テーマサジェスト ＆ 検索足跡ログ
+  // 解説者指定がある場合は、他チャンネルの動画を混入させず「〇〇先生のチャンネルには見つかりませんでした」と正確に案内
   let suggestions = [];
   try {
-    suggestions = getOrLearnSuggestions(ss, query, data, userId, userName);
+    suggestions = getOrLearnSuggestions(ss, cleanQuery || query, data, userId, userName);
   } catch (err) {
     console.error("サジェスト取得エラー:", err);
+  }
+
+  if (explicitAuthor) {
+    logSearchActivity(ss, userId, userName, query, 0, `未ヒット(${explicitAuthor}限定)`);
+    const fallbackText = `「${cleanQuery}」に一致する動画は【${explicitAuthor}】には見つかりませんでした😢\n\n💡 全チャンネル横断で探すか、関連テーマで検索してみてください：`;
+    
+    // 全チャンネルでの再検索QuickReply & サジェスト
+    const qrItems = [
+      {
+        type: 'action',
+        action: {
+          type: 'message',
+          label: `🌐 全チャンネルで探す`,
+          text: cleanQuery
+        }
+      }
+    ];
+    if (suggestions && suggestions.length > 0) {
+      suggestions.slice(0, 4).forEach(s => {
+        qrItems.push({
+          type: 'action',
+          action: {
+            type: 'message',
+            label: s.length > 18 ? s.slice(0, 16) + '..' : s,
+            text: `${s} ${explicitAuthor}`
+          }
+        });
+      });
+    }
+
+    sendLineReply(replyToken, [{
+      type: 'text',
+      text: fallbackText,
+      quickReply: { items: qrItems }
+    }]);
+    return;
   }
 
   if (suggestions && suggestions.length > 0) {
@@ -597,11 +694,18 @@ function executeSearch(data, query, prefChannels) {
   let targetAuthor = null;
   let cleanQuery = query;
   
-  const knownAuthors = ['ゴロー先生', '西島ゼミ', 'カラダ研究所', 'かずひろ先生', 'ネコかん', '鰐部ゼミナール'];
-  for (const author of knownAuthors) {
-    if (query.includes(author)) {
-      targetAuthor = author;
-      cleanQuery = query.replace(author, '').trim();
+  const authorPatterns = [
+    { author: 'カラダ研究所', regex: /(?:カラダ研究所|ガラダ研究所|からだ研究所|体研究所)/i },
+    { author: 'ゴロー先生', regex: /(?:ゴロー先生|ゴロー|ごろう先生|ごろう)/i },
+    { author: '西島ゼミ', regex: /(?:西島ゼミ|西島先生|西島)/i },
+    { author: 'かずひろ先生', regex: /(?:かずひろ先生|かずひろ|徹底的解剖学)/i },
+    { author: 'ネコかん', regex: /(?:ネコかん|ねこかん|猫缶|ネコ缶)/i },
+    { author: '鰐部ゼミナール', regex: /(?:鰐部ゼミナール|わにべ|鰐部)/i }
+  ];
+  for (const ap of authorPatterns) {
+    if (ap.regex.test(query)) {
+      targetAuthor = ap.author;
+      cleanQuery = query.replace(ap.regex, '').trim();
       break;
     }
   }
@@ -874,7 +978,10 @@ const INSTANT_PARENT_THEMES = {
   'ckc': ['関節', '下肢', '骨格系'],
   'okc': ['関節', '上肢', '骨格系'],
   'バイオメカニクス': ['関節', '下肢', '骨格系'],
-  '運動連鎖': ['関節', '下肢', '骨格系']
+  '運動連鎖': ['関節', '下肢', '骨格系'],
+  '歩行周期': ['歩行', '下肢', '運動学'],
+  '立脚期': ['歩行', '歩行周期', '下肢'],
+  '遊脚期': ['歩行', '歩行周期', '下肢']
 };
 
 function getOrLearnSuggestions(ss, query, data, userId, userName) {
@@ -992,7 +1099,8 @@ function queryWithJev(query) {
           cranial_nerves: '脳神経、動眼神経、三叉神経、顔面神経、迷走神経',
           circulatory_system: '心臓、心電図、血液循環、弁、刺激伝導系、不整脈',
           respiratory_system: '呼吸、肺、換気、外呼吸、内呼吸、スパイロ',
-          kinematics_chain: 'CKC、OKC、運動連鎖、バイオメカニクス、歩行分析、関節モーメント',
+          gait_analysis: '歩行、歩行周期、立脚期、遊脚期、歩行分析、二足歩行',
+          kinematics_chain: 'CKC、OKC、運動連鎖、バイオメカニクス、関節モーメント',
           digestive_system: '胃、腸、肝臓、胆嚢、膵臓、消化吸収',
           other: 'その他の特定の医学・解剖学用語'
         }
@@ -1026,6 +1134,7 @@ function queryWithJev(query) {
           cranial_nerves: '脳神経',
           circulatory_system: '心臓',
           respiratory_system: '呼吸',
+          gait_analysis: '歩行',
           kinematics_chain: '関節',
           digestive_system: '消化器'
         };
