@@ -229,6 +229,20 @@ function doPost(e) {
         sendSettingsMenu(replyToken, userId);
         continue;
       }
+
+      // 「使い方」「ヘルプ」
+      if (['使い方', 'ヘルプ', '検索のコツ', 'ガイド'].includes(userText)) {
+        sendHelpGuide(replyToken);
+        continue;
+      }
+
+      // 「リセット」「全表示に戻す」
+      if (['リセット', '全表示に戻す', '初期化'].includes(userText)) {
+        const ss = SpreadsheetApp.getActiveSpreadsheet();
+        setUserPreference(ss, userId, 'ALL');
+        replyTextToLine(replyToken, "✅ 優先設定をリセットしました！\n今後は全チャンネル（すべての解説者＋Web解説）から横断検索します😊");
+        continue;
+      }
       
       // LINE公式ローディングアニメーションを開始（入力中...）
       startLoadingAnimation(userId);
@@ -390,6 +404,27 @@ function handlePostback(replyToken, userId, dataString) {
   }
 }
 
+// 使い方・検索ガイド（Flex Message）
+function sendHelpGuide(replyToken) {
+  const guideText = [
+    "💡【解剖生理・運動学 動画＆Web検索Botの使い方】",
+    "",
+    "1️⃣ 日常語・口語で検索OK！",
+    "「ふともも」「膝伸ばし」「肩が痛い」などの普段の言葉でも、AIが自動で医学用語（大腿四頭筋など）を判定して動画を探します。",
+    "",
+    "2️⃣ 2語以上の絞り込み（スペース区切り）",
+    "「歩行 股関節」「心臓 弁」「脳神経 運動」のようにスペースで区切ると、より絞り込んだ動画やWeb解説が見つかります。",
+    "",
+    "3️⃣ ピンポイント秒数再生",
+    "ゴロー先生などの動画は、探したいトピックの解説秒数から直接YouTube再生できます。",
+    "",
+    "4️⃣ 優先解説者・マイフィルター",
+    "下のメニューの「⚙️ 優先設定」から、ゴロー先生や西島ゼミなど、見たい解説者だけに固定することも可能です！"
+  ].join("\n");
+
+  replyTextToLine(replyToken, guideText);
+}
+
 function startLoadingAnimation(userId) {
   if (!userId || userId === 'unknown') return;
   const token = PropertiesService.getScriptProperties().getProperty('LINE_ACCESS_TOKEN');
@@ -534,8 +569,8 @@ function executeSearch(data, query, prefChannel) {
       let playUrl = url;
 
       if (isWebArticle) {
-        // かずひろ先生のWebサイト用公式アイコン画像
-        thumbUrl = 'https://www.anatomy.tokyo/wp-content/uploads/2021/04/cropped-cropped-site-icon-1.png';
+        // かずひろ先生のWebサイト用公式解剖学バナー画像 (200 OK実在確認済み)
+        thumbUrl = 'https://www.anatomy.tokyo/wp-content/uploads/2025/03/4a82b4381eabc73dff8b878c669db5c6-768x432.png';
       } else {
         const videoId = extractVideoId(url);
         const targetSeconds = findBestTimestamp(timestamps, keywords[0]);
