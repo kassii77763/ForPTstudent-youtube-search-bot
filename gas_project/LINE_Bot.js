@@ -91,13 +91,19 @@ function doGet(e) {
       }
     }
     
+    const interleaved = interleaveByChannel(matches, 8).map(m => {
+      return Object.assign({}, m, {
+        displayTitle: cleanDisplayTitle(m.title)
+      });
+    });
+
     return ContentService.createTextOutput(JSON.stringify({
       query: q,
       explicitAuthor: explicitAuthor,
       cleanQuery: cleanQ,
       jevTerm: jevTerm,
       matchCount: matches.length,
-      sampleHits: matches.slice(0, 8)
+      sampleHits: interleaved
     }, null, 2)).setMimeType(ContentService.MimeType.JSON);
   }
 
@@ -827,12 +833,71 @@ const CHANNEL_STYLES = {
   '鰐部ゼミナール': { color: '#0284c7', label: '🐊 鰐部ゼミナール' }
 };
 
-// カルーセルメッセージ生成
+// タイトル冒頭の定型プレフィックスをトリムして核心単語を前面に出す（改善案1）
+function cleanDisplayTitle(title) {
+  if (!title) return '';
+  let clean = title;
+  // 【解剖生理学（呼吸器系）】などの長大なプレフィックスを除去
+  clean = clean.replace(/^【(?:解剖生理学|徹底的解剖学|解剖学|生理学|運動学|PTOT|国試対策|専門基礎).*?】\s*/i, '');
+  clean = clean.replace(/^\[.*?\]\s*/, '');
+  // 末尾の定型タグ（：リメイクver.など）をトリム
+  clean = clean.replace(/[:：]\s*(?:リメイクver|完全攻略|決定版|無料公開).*?$/i, '');
+  // 全角スペースや重複スペースを整理
+  clean = clean.replace(/[\s　]+/g, ' ').trim();
+  return clean || title;
+}
+
+// チャンネル交互配分（Round-Robin / 多様性インターリーブ）（改善案2）
+function interleaveByChannel(items, maxCount) {
+  if (!items || items.length <= 1) return items || [];
+  const limit = maxCount || 8;
+  
+  // チャンネルごとにバケット分け
+  const groups = {};
+  const channelOrder = [];
+  items.forEach(item => {
+    const ch = item.author || 'その他';
+    if (!groups[ch]) {
+      groups[ch] = [];
+      channelOrder.push(ch);
+    }
+    groups[ch].push(item);
+  });
+
+  const interleaved = [];
+  let added = true;
+  let round = 0;
+
+  while (interleaved.length < limit && added) {
+    added = false;
+    for (let c = 0; c < channelOrder.length; c++) {
+      const ch = channelOrder[c];
+      if (groups[ch] && groups[ch].length > round) {
+        interleaved.push(groups[ch][round]);
+        added = true;
+        if (interleaved.length >= limit) break;
+      }
+    }
+    round++;
+  }
+  return interleaved;
+}
+
+// カルーセルメッセージ生成（改善案1〜3統合版）
 function buildFlexCarousel(items, query) {
-  const bubbles = items.map(item => {
+  // チャンネル交互配分を適用して特定チャンネルの画面独占を排除
+  const displayItems = interleaveByChannel(items, 8);
+
+  const bubbles = displayItems.map(item => {
     const style = CHANNEL_STYLES[item.author] || { color: '#4b5563', label: item.author };
     const isWebArticle = item.url.includes('anatomy.tokyo') || !item.url.includes('youtube.com');
     const actionLabel = isWebArticle ? '解説を読む ↗' : '再生する ▷';
+    
+    // 改善案1: スマホカード用最適化タイトル
+    const displayTitle = cleanDisplayTitle(item.title);
+    
+    // 改善案3: 所要時間/メディアバッジ
+    const badgeText = isWebArticle ? '📖 Web 3分' : (item.url.includes('&t=') ? '⏱️ 直行' : '⏱️ 動画');
     
     return {
       type: 'bubble',
@@ -850,6 +915,13 @@ function buildFlexCarousel(items, query) {
             color: style.color,
             weight: 'bold',
             flex: 1
+          },
+          {
+            type: 'text',
+            text: badgeText,
+            size: 'xxs',
+            color: '#6b7280',
+            align: 'end'
           }
         ]
       },
@@ -869,7 +941,7 @@ function buildFlexCarousel(items, query) {
         contents: [
           {
             type: 'text',
-            text: item.title,
+            text: displayTitle,
             weight: 'bold',
             size: 'xs',
             wrap: true,
