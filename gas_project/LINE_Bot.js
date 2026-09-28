@@ -15,6 +15,26 @@ function doGet(e) {
     PropertiesService.getScriptProperties().setProperty('TYPESAFE_API_KEY', e.parameter.setTypesafeKey);
     return ContentService.createTextOutput("✅ TYPESAFE_API_KEY をスクリプトプロパティに設定しました: " + e.parameter.setTypesafeKey.slice(0, 8) + "...");
   }
+  if (e && e.parameter && e.parameter.action === 'inspectUserPreferences') {
+    const ss = SpreadsheetApp.getActiveSpreadsheet();
+    const sheet = ss.getSheetByName('ユーザー設定');
+    if (!sheet) {
+      return ContentService.createTextOutput(JSON.stringify({ found: false })).setMimeType(ContentService.MimeType.JSON);
+    }
+    const data = sheet.getDataRange().getValues();
+    return ContentService.createTextOutput(JSON.stringify({ found: true, rows: data }, null, 2)).setMimeType(ContentService.MimeType.JSON);
+  }
+  if (e && e.parameter && e.parameter.action === 'resetUserPreferences') {
+    const ss = SpreadsheetApp.getActiveSpreadsheet();
+    const sheet = ss.getSheetByName('ユーザー設定');
+    if (sheet) {
+      const lastRow = sheet.getLastRow();
+      if (lastRow > 1) {
+        sheet.getRange(2, 1, lastRow - 1, 3).clearContent();
+      }
+    }
+    return ContentService.createTextOutput(JSON.stringify({ status: 'reset_completed' })).setMimeType(ContentService.MimeType.JSON);
+  }
   if (e && e.parameter && e.parameter.action === 'audit') {
     const ss = SpreadsheetApp.getActiveSpreadsheet();
     const sheet = ss.getSheets()[0];
@@ -641,14 +661,34 @@ function handleSearch(replyToken, query, userId, userName) {
       }
     }
   }
+
+  // 3.5 【UX重要改善】ユーザーのマイ設定（絞り込み）が原因で0件になった場合、
+  // 学生を「見つかりませんでした」と突き放さず、全チャンネルから自動探索して届ける
+  let prefFallbackNote = null;
+  if (matches.length === 0 && !explicitAuthor && prefChannel && prefChannel.length > 0) {
+    const allMatches = executeSearch(data, query, null);
+    if (allMatches.length > 0) {
+      matches = allMatches;
+      prefFallbackNote = `【${prefChannel.join('・')}】には動画がなかったため、全チャンネルからお届けします😊`;
+    }
+  }
   
   if (matches.length > 0) {
-    const logLabel = jevExpandedQuery ? `Jev判定ヒット(${jevExpandedQuery})` : '直接ヒット';
+    const logLabel = jevExpandedQuery ? `Jev判定ヒット(${jevExpandedQuery})` : (prefFallbackNote ? '優先設定外全ヒット' : '直接ヒット');
     logSearchActivity(ss, userId, userName, query, matches.length, logLabel);
     
     // カルーセルメッセージの構築（最大8件表示）
     const flexMessage = buildFlexCarousel(matches.slice(0, 8), jevExpandedQuery || query);
-    sendLineReply(replyToken, [flexMessage]);
+    
+    // 全チャンネル自動補完があった場合はテキスト注記を添えて送信
+    if (prefFallbackNote) {
+      sendLineReply(replyToken, [
+        { type: 'text', text: `💡「${query}」の解説：\n${prefFallbackNote}` },
+        flexMessage
+      ]);
+    } else {
+      sendLineReply(replyToken, [flexMessage]);
+    }
     return;
   }
   
