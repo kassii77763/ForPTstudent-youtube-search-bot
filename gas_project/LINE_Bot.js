@@ -646,6 +646,7 @@ function executeSearch(data, query, prefChannels) {
       if (isWebArticle) {
         // かずひろ先生のWebサイト用公式解剖学バナー画像 (200 OK実在確認済み)
         thumbUrl = 'https://www.anatomy.tokyo/wp-content/uploads/2025/03/4a82b4381eabc73dff8b878c669db5c6-768x432.png';
+        playUrl = encodeURI(url);
       } else {
         const videoId = extractVideoId(url);
         const targetSeconds = findBestTimestamp(timestamps, keywords[0]);
@@ -934,18 +935,25 @@ function sendLineReply(replyToken, messages) {
   const token = PropertiesService.getScriptProperties().getProperty('LINE_ACCESS_TOKEN');
   if (!token) return;
   const url = 'https://api.line.me/v2/bot/message/reply';
-  UrlFetchApp.fetch(url, {
-    method: 'post',
-    headers: {
-      'Content-Type': 'application/json',
-      'Authorization': 'Bearer ' + token
-    },
-    payload: JSON.stringify({
-      replyToken: replyToken,
-      messages: messages
-    }),
-    muteHttpExceptions: true
-  });
+  try {
+    const res = UrlFetchApp.fetch(url, {
+      method: 'post',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + token
+      },
+      payload: JSON.stringify({
+        replyToken: replyToken,
+        messages: messages
+      }),
+      muteHttpExceptions: true
+    });
+    if (res.getResponseCode() !== 200) {
+      console.error("LINE返信エラー:", res.getResponseCode(), res.getContentText());
+    }
+  } catch (err) {
+    console.error("sendLineReply例外:", err);
+  }
 }
 
 function replyTextToLine(replyToken, text) {
