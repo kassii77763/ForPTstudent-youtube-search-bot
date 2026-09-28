@@ -35,6 +35,27 @@ function doGet(e) {
     }
     return ContentService.createTextOutput(JSON.stringify({ status: 'reset_completed' })).setMimeType(ContentService.MimeType.JSON);
   }
+  if (e && e.parameter && e.parameter.action === 'setupWeeklyTriggers') {
+    try {
+      const res = setupWeeklyLearningTriggers();
+      return ContentService.createTextOutput(JSON.stringify(res, null, 2)).setMimeType(ContentService.MimeType.JSON);
+    } catch (err) {
+      return ContentService.createTextOutput(JSON.stringify({ 
+        status: 'trigger_setup_notice', 
+        message: 'スプレッドシート上部のメニュー「🤖 Bot管理」→「⏰ 週2回AI自動学習トリガーを設定」をクリックするか、エディタから setupWeeklyLearningTriggers を実行してください。',
+        error: err.message
+      }, null, 2)).setMimeType(ContentService.MimeType.JSON);
+    }
+  }
+  if (e && e.parameter && e.parameter.action === 'runLearningBatch') {
+    const res = runBiweeklySynonymLearning();
+    return ContentService.createTextOutput(JSON.stringify(res, null, 2)).setMimeType(ContentService.MimeType.JSON);
+  }
+  if (e && e.parameter && e.parameter.action === 'inspectSynonymDict') {
+    const ss = SpreadsheetApp.getActiveSpreadsheet();
+    const groups = loadSynonymGroupsFromSheet(ss);
+    return ContentService.createTextOutput(JSON.stringify({ groupCount: groups.length, groups: groups }, null, 2)).setMimeType(ContentService.MimeType.JSON);
+  }
   if (e && e.parameter && e.parameter.action === 'audit') {
     const ss = SpreadsheetApp.getActiveSpreadsheet();
     const sheet = ss.getSheets()[0];
@@ -97,14 +118,14 @@ function doGet(e) {
       }
     }
     
-    let matches = executeSearch(data, q);
+    let matches = executeSearch(data, q, explicitAuthor ? [explicitAuthor] : null, ss);
     let jevTerm = null;
     if (matches.length === 0) {
       try {
         jevTerm = queryWithJev(cleanQ || q);
         if (jevTerm && jevTerm !== (cleanQ || q)) {
           const retryQuery = explicitAuthor ? `${jevTerm} ${explicitAuthor}` : jevTerm;
-          matches = executeSearch(data, retryQuery, explicitAuthor ? [explicitAuthor] : null);
+          matches = executeSearch(data, retryQuery, explicitAuthor ? [explicitAuthor] : null, ss);
         }
       } catch (err) {
         // ignore
@@ -626,9 +647,9 @@ function handleSearch(replyToken, query, userId, userName) {
   const videoSheet = ss.getSheets()[0]; // 1枚目の動画リスト
   const data = videoSheet.getDataRange().getValues();
   
-  // 2. 検索実行（ユーザー好みの優先チャンネルを適用）
+  // 2. 検索実行（ユーザー好みの優先チャンネルを適用 & スプレッドシート動的辞書連携）
   const prefChannel = getUserPreference(ss, userId);
-  let matches = executeSearch(data, query, prefChannel);
+  let matches = executeSearch(data, query, prefChannel, ss);
   
   // もし直接ヒットしなかった場合、Jev（TypeSafe AI System One）で意味推論・専門用語判定を実施
   let jevExpandedQuery = null;
@@ -639,7 +660,7 @@ function handleSearch(replyToken, query, userId, userName) {
         // 明示指定された解説者がある場合は、Jevの展開語にもその解説者制約を必ず継承
         const retryQuery = explicitAuthor ? `${jevExpandedQuery} ${explicitAuthor}` : jevExpandedQuery;
         const retryPref = explicitAuthor ? [explicitAuthor] : prefChannel;
-        matches = executeSearch(data, retryQuery, retryPref);
+        matches = executeSearch(data, retryQuery, retryPref, ss);
       }
     } catch (e) {
       console.error("Jev呼び出し例外:", e);
@@ -652,7 +673,7 @@ function handleSearch(replyToken, query, userId, userName) {
     const subTerms = [cleanQuery.slice(0, 2), cleanQuery.slice(-2)];
     for (const sub of subTerms) {
       if (sub && sub !== cleanQuery && sub.length >= 2) {
-        const subMatches = executeSearch(data, `${sub} ${explicitAuthor}`, [explicitAuthor]);
+        const subMatches = executeSearch(data, `${sub} ${explicitAuthor}`, [explicitAuthor], ss);
         if (subMatches.length > 0) {
           matches = subMatches;
           jevExpandedQuery = `${sub}（関連）`;
@@ -666,7 +687,7 @@ function handleSearch(replyToken, query, userId, userName) {
   // 学生を「見つかりませんでした」と突き放さず、全チャンネルから自動探索して届ける
   let prefFallbackNote = null;
   if (matches.length === 0 && !explicitAuthor && prefChannel && prefChannel.length > 0) {
-    const allMatches = executeSearch(data, query, null);
+    const allMatches = executeSearch(data, query, null, ss);
     if (allMatches.length > 0) {
       matches = allMatches;
       prefFallbackNote = `【${prefChannel.join('・')}】には動画がなかったため、全チャンネルからお届けします😊`;
@@ -801,9 +822,9 @@ function executeSearch(data, query, prefChannels) {
     if (allowedAuthors && !allowedAuthors.includes(author)) continue;
     
     const searchTarget = (title + " " + timestamps + " " + tags + " " + category).toLowerCase();
-    // 医学用語・解剖学の同義語・表記揺れ（脊椎⇄脊柱など）を自動展開してマッチング
+    // 医学用語・解剖学の同義語・表記揺れ（スプレッドシート辞書 ＋ 組み込み辞書）を自動展開してマッチング
     const isMatch = keywords.every(k => {
-      const variants = getSynonymVariants(k);
+      const variants = getSynonymVariants(k, ss);
       return variants.some(v => searchTarget.includes(v.toLowerCase()));
     });
     
@@ -818,7 +839,7 @@ function executeSearch(data, query, prefChannels) {
         playUrl = encodeURI(url);
       } else {
         const videoId = extractVideoId(url);
-        const targetSeconds = findBestTimestamp(timestamps, keywords[0]);
+        const targetSeconds = findBestTimestamp(timestamps, keywords[0], ss);
         playUrl = targetSeconds > 0 ? `${url}&t=${targetSeconds}s` : url;
         thumbUrl = `https://img.youtube.com/vi/${videoId}/mqdefault.jpg`;
       }
@@ -842,7 +863,7 @@ function executeSearch(data, query, prefChannels) {
   return results;
 }
 
-// 医療系・解剖生理学の同義語・同系統概念グループ（脊椎⇄脊柱等の表記揺れを相互吸収）
+// 医療系・解剖生理学の基本同義語（フォールバック用）
 const MEDICAL_SYNONYM_GROUPS = [
   ['脊椎', '脊柱', '椎骨', 'せきつい', 'せきちゅう'],
   ['大腿四頭筋', '太もも', 'ふともも', '前もも', '大腿直筋'],
@@ -859,11 +880,52 @@ const MEDICAL_SYNONYM_GROUPS = [
   ['心電図', '刺激伝導系', '不整脈', '心筋']
 ];
 
-function getSynonymVariants(word) {
+// スプレッドシートの「表記揺れ・同義語辞書」シートから動的に読み込み（キャッシュ付き）
+function loadSynonymGroupsFromSheet(ss) {
+  if (!ss) return MEDICAL_SYNONYM_GROUPS;
+  
+  const cache = CacheService.getScriptCache();
+  const cached = cache.get('CUSTOM_SYNONYM_GROUPS');
+  if (cached) {
+    try {
+      return JSON.parse(cached);
+    } catch (e) {}
+  }
+
+  let sheet = ss.getSheetByName('表記揺れ・同義語辞書');
+  if (!sheet) {
+    sheet = ss.insertSheet('表記揺れ・同義語辞書');
+    sheet.getRange(1, 1, 1, 4).setValues([['代表語・検索語', '同義語・表記揺れ（カンマ区切り）', '登録元', '更新日時']]);
+    const initialRows = MEDICAL_SYNONYM_GROUPS.map(g => [g[0], g.slice(1).join(', '), 'システム初期登録', new Date()]);
+    sheet.getRange(2, 1, initialRows.length, 4).setValues(initialRows);
+  }
+
+  const data = sheet.getDataRange().getValues();
+  const groups = MEDICAL_SYNONYM_GROUPS.map(g => [...g]);
+  
+  for (let i = 1; i < data.length; i++) {
+    const mainWord = String(data[i][0] || '').trim();
+    const synText = String(data[i][1] || '').trim();
+    if (mainWord && synText) {
+      const syns = synText.split(/[,、]/).map(s => s.trim()).filter(s => s.length > 0);
+      groups.push([mainWord, ...syns]);
+    }
+  }
+
+  try {
+    cache.put('CUSTOM_SYNONYM_GROUPS', JSON.stringify(groups), 21600); // 6時間キャッシュ
+  } catch (e) {}
+
+  return groups;
+}
+
+function getSynonymVariants(word, ss) {
   if (!word) return [];
   const norm = String(word).toLowerCase().trim();
-  for (let i = 0; i < MEDICAL_SYNONYM_GROUPS.length; i++) {
-    const group = MEDICAL_SYNONYM_GROUPS[i];
+  const groups = loadSynonymGroupsFromSheet(ss || SpreadsheetApp.getActiveSpreadsheet());
+  
+  for (let i = 0; i < groups.length; i++) {
+    const group = groups[i];
     if (group.some(term => term.toLowerCase() === norm)) {
       return group;
     }
@@ -876,9 +938,9 @@ function extractVideoId(url) {
   return m ? m[1] : '';
 }
 
-function findBestTimestamp(timestampsText, keyword) {
+function findBestTimestamp(timestampsText, keyword, ss) {
   if (!timestampsText || !keyword) return 0;
-  const variants = getSynonymVariants(keyword);
+  const variants = getSynonymVariants(keyword, ss);
   const lines = timestampsText.split('\n');
   for (let i = 0; i < lines.length; i++) {
     const line = lines[i];
@@ -895,6 +957,151 @@ function findBestTimestamp(timestampsText, keyword) {
     }
   }
   return 0;
+}
+
+// ==========================================
+// 週2回（火曜・金曜 深夜3時）のAI自己学習バッチ
+// 学生の0件ヒットログをGeminiが自律分析し、スプレッドシート辞書へ自動追記
+// ==========================================
+function runBiweeklySynonymLearning() {
+  const ss = SpreadsheetApp.getActiveSpreadsheet();
+  const logSheet = ss.getSheetByName('AI学習辞書・検索ログ');
+  if (!logSheet) return { status: 'no_log_sheet' };
+
+  const logData = logSheet.getDataRange().getValues();
+  const zeroHitQueries = [];
+  const handledRows = [];
+  for (let i = 1; i < logData.length; i++) {
+    const q = String(logData[i][3] || '').trim();
+    const hitCount = Number(logData[i][4] || 0);
+    const memo = String(logData[i][5] || '');
+    
+    if (hitCount === 0 && q.length >= 2 && !memo.includes('AI同義語登録済')) {
+      if (!zeroHitQueries.includes(q)) {
+        zeroHitQueries.push(q);
+      }
+      handledRows.push(i + 1);
+    }
+  }
+
+  if (zeroHitQueries.length === 0) {
+    return { status: 'no_new_zero_hit_queries' };
+  }
+
+  const geminiApiKey = PropertiesService.getScriptProperties().getProperty('GEMINI_API_KEY');
+  if (!geminiApiKey) return { status: 'no_gemini_key' };
+
+  const videoSheet = ss.getSheets()[0];
+  const videoData = videoSheet.getDataRange().getValues();
+  const allTitles = videoData.slice(1).map(r => String(r[0] || '')).join(' ');
+
+  let dictSheet = ss.getSheetByName('表記揺れ・同義語辞書');
+  if (!dictSheet) {
+    loadSynonymGroupsFromSheet(ss);
+    dictSheet = ss.getSheetByName('表記揺れ・同義語辞書');
+  }
+
+  const dictData = dictSheet.getDataRange().getValues();
+  const existingWords = new Set();
+  for (let i = 1; i < dictData.length; i++) {
+    existingWords.add(String(dictData[i][0]).toLowerCase());
+    String(dictData[i][1]).split(/[,、]/).forEach(w => existingWords.add(w.trim().toLowerCase()));
+  }
+
+  const newlyAdded = [];
+  const targets = zeroHitQueries.filter(q => !existingWords.has(q.toLowerCase())).slice(0, 10);
+
+  for (let i = 0; i < targets.length; i++) {
+    const query = targets[i];
+    const prompt = `あなたは医療系国家試験（解剖学・生理学・運動学）の指導講師です。
+学生が「${query}」と検索しましたがヒットしませんでした。
+この日常語・略称・俗称（例: 「背骨」「ふくらはぎ」「首の骨」「五十肩」「すね」など）に合致する、
+標準的な解剖学・医学用語（例: 「脊柱」「下腿三頭筋」「頸椎」「肩関節周囲炎」「前脛骨筋」など）を1つ〜2つ挙げてください。
+回答フォーマットは標準用語のみをカンマ区切りで出力してください。解説や前置きは不要です。`;
+
+    try {
+      const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${geminiApiKey}`;
+      const res = UrlFetchApp.fetch(apiUrl, {
+        method: 'post',
+        contentType: 'application/json',
+        payload: JSON.stringify({ contents: [{ parts: [{ text: prompt }] }] }),
+        muteHttpExceptions: true
+      });
+      const json = JSON.parse(res.getContentText());
+      if (json.candidates && json.candidates[0]?.content?.parts?.[0]?.text) {
+        const canonical = json.candidates[0].content.parts[0].text.trim().split(/[,、\n]/).map(s => s.trim())[0];
+        if (canonical && allTitles.includes(canonical)) {
+          dictSheet.appendRow([canonical, query, 'AI週次自動学習', new Date()]);
+          newlyAdded.push({ canonical, query });
+          CacheService.getScriptCache().remove('CUSTOM_SYNONYM_GROUPS');
+        }
+      }
+    } catch (err) {
+      console.error("AI学習エラー:", err);
+    }
+  }
+
+  handledRows.forEach(rowIdx => {
+    logSheet.getRange(rowIdx, 6).setValue('AI同義語登録済');
+  });
+
+  return { status: 'learning_completed', newlyAddedCount: newlyAdded.length, newlyAdded };
+}
+
+// 週2回（火曜日・金曜日の深夜3時）のGASトリガーを自動登録
+function setupWeeklyLearningTriggers() {
+  const triggers = ScriptApp.getProjectTriggers();
+  triggers.forEach(t => {
+    if (t.getHandlerFunction() === 'runBiweeklySynonymLearning') {
+      ScriptApp.deleteTrigger(t);
+    }
+  });
+
+  // 火曜 深夜3:00〜4:00
+  ScriptApp.newTrigger('runBiweeklySynonymLearning')
+    .timeBased()
+    .onWeekDay(ScriptApp.WeekDay.TUESDAY)
+    .atHour(3)
+    .create();
+
+  // 金曜 深夜3:00〜4:00
+  ScriptApp.newTrigger('runBiweeklySynonymLearning')
+    .timeBased()
+    .onWeekDay(ScriptApp.WeekDay.FRIDAY)
+    .atHour(3)
+    .create();
+
+  try {
+    SpreadsheetApp.getActiveSpreadsheet().toast('週2回（火・金 深夜3時）のAI自動学習トリガーを設定しました！', '設定完了');
+  } catch (e) {}
+
+  return { status: 'triggers_configured', schedule: '毎週火曜日・金曜日の午前3:00' };
+}
+
+// スプレッドシート起動時にメニューを追加
+function onOpen() {
+  try {
+    const ui = SpreadsheetApp.getUi();
+    ui.createMenu('🤖 Bot管理')
+      .addItem('⏰ 週2回（火・金）AI自動学習トリガーを設定', 'setupWeeklyLearningTriggers')
+      .addItem('▶️ 今すぐAI自動学習を実行', 'manualRunLearning')
+      .addItem('🔄 表記揺れ辞書のキャッシュを更新', 'clearSynonymCache')
+      .addToUi();
+  } catch (e) {}
+}
+
+function manualRunLearning() {
+  const res = runBiweeklySynonymLearning();
+  try {
+    SpreadsheetApp.getActiveSpreadsheet().toast(`AI学習完了: 新規登録 ${res.newlyAddedCount || 0} 件`, '成功');
+  } catch (e) {}
+}
+
+function clearSynonymCache() {
+  CacheService.getScriptCache().remove('CUSTOM_SYNONYM_GROUPS');
+  try {
+    SpreadsheetApp.getActiveSpreadsheet().toast('表記揺れ辞書のキャッシュを更新しました！シートの追記が即座に反映されます。', '更新完了');
+  } catch (e) {}
 }
 
 // チャンネルごとのテーマカラー・アイコン設定（鰐部ゼミナール & かずひろ先生Web解説対応）
