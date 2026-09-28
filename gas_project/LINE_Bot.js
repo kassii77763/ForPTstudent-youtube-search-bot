@@ -981,7 +981,11 @@ const INSTANT_PARENT_THEMES = {
   '運動連鎖': ['関節', '下肢', '骨格系'],
   '歩行周期': ['歩行', '下肢', '運動学'],
   '立脚期': ['歩行', '歩行周期', '下肢'],
-  '遊脚期': ['歩行', '歩行周期', '下肢']
+  '遊脚期': ['歩行', '歩行周期', '下肢'],
+  '体液': ['浸透圧', '浮腫', '脱水'],
+  '体液区分': ['体液', '細胞内液', '細胞外液'],
+  '酸塩基': ['酸塩基平衡', 'アシドーシス', 'アルカローシス'],
+  'ph': ['酸塩基平衡', '体液']
 };
 
 function getOrLearnSuggestions(ss, query, data, userId, userName) {
@@ -1102,6 +1106,8 @@ function queryWithJev(query) {
           gait_analysis: '歩行、歩行周期、立脚期、遊脚期、歩行分析、二足歩行',
           kinematics_chain: 'CKC、OKC、運動連鎖、バイオメカニクス、関節モーメント',
           digestive_system: '胃、腸、肝臓、胆嚢、膵臓、消化吸収',
+          body_fluid: '体液、浸透圧、浮腫、むくみ、脱水、血漿、膠質浸透圧',
+          acid_base: '酸塩基、酸塩基平衡、pH、アシドーシス、アルカローシス、緩衝系',
           other: 'その他の特定の医学・解剖学用語'
         }
       }
@@ -1136,7 +1142,9 @@ function queryWithJev(query) {
           respiratory_system: '呼吸',
           gait_analysis: '歩行',
           kinematics_chain: '関節',
-          digestive_system: '消化器'
+          digestive_system: '消化器',
+          body_fluid: '体液',
+          acid_base: '酸塩基平衡'
         };
         return termMap[choice] || null;
       }
