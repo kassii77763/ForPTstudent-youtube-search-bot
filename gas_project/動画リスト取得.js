@@ -10,7 +10,6 @@ const TARGET_CHANNELS = [
   { name: '鰐部ゼミナール', channelId: 'UCBBMabhOIoRNR5toM-sxXhg', category: 'PT/OT国試・運動学' },
   { name: '西島ゼミ', channelId: 'UCJDpTB_eQRmePzpA6eoT_CQ', category: 'PT/OT国試・解剖運動学' },
   { name: 'カラダ研究所', channelId: 'UCHQw8yGouhHGLUdLz-scUjQ', category: '3D解剖・バイオメカニクス' },
-  { name: 'かずひろ先生', channelId: 'UCIAinqVpjxBwrGI1zk4S3jw', category: '解剖学・講義' },
   { name: 'ネコかん', channelId: 'UCaiJBZYZiJElxd0E9l-VEKw', category: '看護・生理学' }
 ];
 
