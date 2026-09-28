@@ -801,7 +801,11 @@ function executeSearch(data, query, prefChannels) {
     if (allowedAuthors && !allowedAuthors.includes(author)) continue;
     
     const searchTarget = (title + " " + timestamps + " " + tags + " " + category).toLowerCase();
-    const isMatch = keywords.every(k => searchTarget.includes(k.toLowerCase()));
+    // 医学用語・解剖学の同義語・表記揺れ（脊椎⇄脊柱など）を自動展開してマッチング
+    const isMatch = keywords.every(k => {
+      const variants = getSynonymVariants(k);
+      return variants.some(v => searchTarget.includes(v.toLowerCase()));
+    });
     
     if (isMatch) {
       const isWebArticle = url.includes('anatomy.tokyo') || !url.includes('youtube.com');
@@ -838,6 +842,35 @@ function executeSearch(data, query, prefChannels) {
   return results;
 }
 
+// 医療系・解剖生理学の同義語・同系統概念グループ（脊椎⇄脊柱等の表記揺れを相互吸収）
+const MEDICAL_SYNONYM_GROUPS = [
+  ['脊椎', '脊柱', '椎骨', 'せきつい', 'せきちゅう'],
+  ['大腿四頭筋', '太もも', 'ふともも', '前もも', '大腿直筋'],
+  ['ハムストリングス', 'ハムストリング', '裏もも', '大腿二頭筋', '半腱様筋', '半膜様筋'],
+  ['腱板', '回旋筋腱板', 'ローテーターカフ', '棘上筋', '棘下筋', '小円筋', '肩甲下筋'],
+  ['骨盤', '仙腸関節', '寛骨', '仙骨'],
+  ['大脳基底核', '線条体', '尾状核', '被殻', '淡蒼球'],
+  ['自律神経', '交感神経', '副交感神経'],
+  ['脳神経', '脳幹', '脳神経系'],
+  ['歩行', '歩行周期', '立脚期', '遊脚期', '歩行分析'],
+  ['運動連鎖', 'バイオメカニクス', 'キネマティクス', 'ckc', 'okc'],
+  ['体液', '体液区分', '浸透圧', '膠質浸透圧', '脱水', '浮腫'],
+  ['酸塩基平衡', '酸塩基', 'アシドーシス', 'アルカローシス', 'ph'],
+  ['心電図', '刺激伝導系', '不整脈', '心筋']
+];
+
+function getSynonymVariants(word) {
+  if (!word) return [];
+  const norm = String(word).toLowerCase().trim();
+  for (let i = 0; i < MEDICAL_SYNONYM_GROUPS.length; i++) {
+    const group = MEDICAL_SYNONYM_GROUPS[i];
+    if (group.some(term => term.toLowerCase() === norm)) {
+      return group;
+    }
+  }
+  return [word];
+}
+
 function extractVideoId(url) {
   const m = url.match(/(?:v=|youtu\.be\/)([\w-]{11})/);
   return m ? m[1] : '';
@@ -845,10 +878,12 @@ function extractVideoId(url) {
 
 function findBestTimestamp(timestampsText, keyword) {
   if (!timestampsText || !keyword) return 0;
+  const variants = getSynonymVariants(keyword);
   const lines = timestampsText.split('\n');
   for (let i = 0; i < lines.length; i++) {
     const line = lines[i];
-    if (line.toLowerCase().includes(keyword.toLowerCase())) {
+    const lineLower = line.toLowerCase();
+    if (variants.some(v => lineLower.includes(v.toLowerCase()))) {
       const timeMatch = line.match(/(\d{1,2}):(\d{2})(?::(\d{2}))?/);
       if (timeMatch) {
         if (timeMatch[3]) {
@@ -1096,6 +1131,8 @@ const INSTANT_PARENT_THEMES = {
   '猫背': ['脊柱', '骨盤'],
   '後弯': ['脊柱'],
   '脊柱後弯': ['脊柱'],
+  '脊椎': ['脊柱', '体幹', '骨格系'],
+  '脊柱': ['脊椎', '体幹', '骨格系'],
   '熱': ['体温調節', '発熱'],
   'ねつ': ['体温調節', '発熱'],
   '太もも': ['大腿四頭筋', '下肢'],
