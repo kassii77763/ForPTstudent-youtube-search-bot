@@ -10,3 +10,20 @@ scratch/
 
 # 依存パッケージ
 node_modules/
+
+# Antigravity IDE 内部状態・キャッシュ
+conversation_summaries.db*
+agyhub_summaries_proto.pb
+antigravity_state.pbtxt
+installation_id
+conversations/
+crashes/
+brain/
+annotations/
+cards/
+builtin/
+archive/
+output/
+thumbnails/
+thumbs/
+test-video/

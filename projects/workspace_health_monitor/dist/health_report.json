@@ -1,0 +1,5496 @@
+{
+  "timestamp": "2026-10-08T06:19:51.738Z",
+  "score": 100,
+  "grade": "S",
+  "summary": "極めて健全です。境界規律・カプセル化・ハーネス蓄積ともに完璧に保たれています。",
+  "metrics": {
+    "rootBoundary": {
+      "score": 25,
+      "max": 25,
+      "violations": [],
+      "status": "PASS"
+    },
+    "capsuleIntegrity": {
+      "score": 25,
+      "max": 25,
+      "violations": [],
+      "toolsChecked": 2,
+      "status": "PASS"
+    },
+    "scratchHygiene": {
+      "score": 20,
+      "max": 20,
+      "filesCount": 0,
+      "totalBytes": 0,
+      "status": "PASS"
+    },
+    "metaHarness": {
+      "score": 15,
+      "max": 15,
+      "traceCount": 3,
+      "lessonsCount": 3,
+      "status": "PASS"
+    },
+    "storageCleanliness": {
+      "score": 15,
+      "max": 15,
+      "archiveSizeMB": 111.9,
+      "status": "PASS"
+    }
+  },
+  "directoryTree": [
+    {
+      "name": "gas_project",
+      "path": "gas_project",
+      "isDir": true,
+      "sizeBytes": 1084303,
+      "itemCount": 2,
+      "status": "healthy",
+      "note": "GASミニツール本番 (2 ツール完全カプセル化)",
+      "children": [
+        {
+          "name": "minitool_001_unreplied_emails",
+          "path": "gas_project/minitool_001_unreplied_emails",
+          "isDir": true,
+          "sizeBytes": 557347,
+          "itemCount": 10,
+          "status": "healthy",
+          "note": "",
+          "children": [
+            {
+              "name": "appsscript.json",
+              "path": "gas_project/minitool_001_unreplied_emails/appsscript.json",
+              "isDir": false,
+              "sizeBytes": 426,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "article.md",
+              "path": "gas_project/minitool_001_unreplied_emails/article.md",
+              "isDir": false,
+              "sizeBytes": 13323,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "Code.js",
+              "path": "gas_project/minitool_001_unreplied_emails/Code.js",
+              "isDir": false,
+              "sizeBytes": 16798,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "images",
+              "path": "gas_project/minitool_001_unreplied_emails/images",
+              "isDir": true,
+              "sizeBytes": 0,
+              "itemCount": 3,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "logs",
+              "path": "gas_project/minitool_001_unreplied_emails/logs",
+              "isDir": true,
+              "sizeBytes": 0,
+              "itemCount": 1,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "Post_To_X.bat",
+              "path": "gas_project/minitool_001_unreplied_emails/Post_To_X.bat",
+              "isDir": false,
+              "sizeBytes": 397,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "README.md",
+              "path": "gas_project/minitool_001_unreplied_emails/README.md",
+              "isDir": false,
+              "sizeBytes": 2895,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "thumbnail.jpg",
+              "path": "gas_project/minitool_001_unreplied_emails/thumbnail.jpg",
+              "isDir": false,
+              "sizeBytes": 521269,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "videos",
+              "path": "gas_project/minitool_001_unreplied_emails/videos",
+              "isDir": true,
+              "sizeBytes": 0,
+              "itemCount": 17,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "x_post.md",
+              "path": "gas_project/minitool_001_unreplied_emails/x_post.md",
+              "isDir": false,
+              "sizeBytes": 2239,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            }
+          ]
+        },
+        {
+          "name": "minitool_002_sheets_to_calendar",
+          "path": "gas_project/minitool_002_sheets_to_calendar",
+          "isDir": true,
+          "sizeBytes": 526956,
+          "itemCount": 9,
+          "status": "healthy",
+          "note": "",
+          "children": [
+            {
+              "name": "appsscript.json",
+              "path": "gas_project/minitool_002_sheets_to_calendar/appsscript.json",
+              "isDir": false,
+              "sizeBytes": 445,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "article.md",
+              "path": "gas_project/minitool_002_sheets_to_calendar/article.md",
+              "isDir": false,
+              "sizeBytes": 20096,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "Code.js",
+              "path": "gas_project/minitool_002_sheets_to_calendar/Code.js",
+              "isDir": false,
+              "sizeBytes": 16570,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "logs",
+              "path": "gas_project/minitool_002_sheets_to_calendar/logs",
+              "isDir": true,
+              "sizeBytes": 0,
+              "itemCount": 1,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "Post_To_X.bat",
+              "path": "gas_project/minitool_002_sheets_to_calendar/Post_To_X.bat",
+              "isDir": false,
+              "sizeBytes": 1040,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "README.md",
+              "path": "gas_project/minitool_002_sheets_to_calendar/README.md",
+              "isDir": false,
+              "sizeBytes": 1328,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "thumbnail.jpg",
+              "path": "gas_project/minitool_002_sheets_to_calendar/thumbnail.jpg",
+              "isDir": false,
+              "sizeBytes": 485341,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "videos",
+              "path": "gas_project/minitool_002_sheets_to_calendar/videos",
+              "isDir": true,
+              "sizeBytes": 0,
+              "itemCount": 1,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "x_post.md",
+              "path": "gas_project/minitool_002_sheets_to_calendar/x_post.md",
+              "isDir": false,
+              "sizeBytes": 2136,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "projects",
+      "path": "projects",
+      "isDir": true,
+      "sizeBytes": 700300,
+      "itemCount": 7,
+      "status": "healthy",
+      "note": "",
+      "children": [
+        {
+          "name": "moodle_sync",
+          "path": "projects/moodle_sync",
+          "isDir": true,
+          "sizeBytes": 9214,
+          "itemCount": 2,
+          "status": "healthy",
+          "note": "",
+          "children": [
+            {
+              "name": "Moodleレジュメ最新同期.bat",
+              "path": "projects/moodle_sync/Moodleレジュメ最新同期.bat",
+              "isDir": false,
+              "sizeBytes": 497,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "sync_moodle.py",
+              "path": "projects/moodle_sync/sync_moodle.py",
+              "isDir": false,
+              "sizeBytes": 8717,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            }
+          ]
+        },
+        {
+          "name": "notebooklm_enhancer",
+          "path": "projects/notebooklm_enhancer",
+          "isDir": true,
+          "sizeBytes": 13985,
+          "itemCount": 9,
+          "status": "healthy",
+          "note": "",
+          "children": [
+            {
+              "name": "content.js",
+              "path": "projects/notebooklm_enhancer/content.js",
+              "isDir": false,
+              "sizeBytes": 1136,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "core",
+              "path": "projects/notebooklm_enhancer/core",
+              "isDir": true,
+              "sizeBytes": 0,
+              "itemCount": 3,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "features",
+              "path": "projects/notebooklm_enhancer/features",
+              "isDir": true,
+              "sizeBytes": 0,
+              "itemCount": 3,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "icons",
+              "path": "projects/notebooklm_enhancer/icons",
+              "isDir": true,
+              "sizeBytes": 0,
+              "itemCount": 3,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "manifest.json",
+              "path": "projects/notebooklm_enhancer/manifest.json",
+              "isDir": false,
+              "sizeBytes": 1115,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "popup.html",
+              "path": "projects/notebooklm_enhancer/popup.html",
+              "isDir": false,
+              "sizeBytes": 6192,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "popup.js",
+              "path": "projects/notebooklm_enhancer/popup.js",
+              "isDir": false,
+              "sizeBytes": 3589,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "README.md",
+              "path": "projects/notebooklm_enhancer/README.md",
+              "isDir": false,
+              "sizeBytes": 1953,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "styles",
+              "path": "projects/notebooklm_enhancer/styles",
+              "isDir": true,
+              "sizeBytes": 0,
+              "itemCount": 1,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            }
+          ]
+        },
+        {
+          "name": "pt_anatomy_quiz",
+          "path": "projects/pt_anatomy_quiz",
+          "isDir": true,
+          "sizeBytes": 0,
+          "itemCount": 4,
+          "status": "healthy",
+          "note": "",
+          "children": [
+            {
+              "name": "data",
+              "path": "projects/pt_anatomy_quiz/data",
+              "isDir": true,
+              "sizeBytes": 0,
+              "itemCount": 2,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "docs",
+              "path": "projects/pt_anatomy_quiz/docs",
+              "isDir": true,
+              "sizeBytes": 0,
+              "itemCount": 1,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "harness",
+              "path": "projects/pt_anatomy_quiz/harness",
+              "isDir": true,
+              "sizeBytes": 0,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "src",
+              "path": "projects/pt_anatomy_quiz/src",
+              "isDir": true,
+              "sizeBytes": 0,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            }
+          ]
+        },
+        {
+          "name": "pt_knowledge_visual_library",
+          "path": "projects/pt_knowledge_visual_library",
+          "isDir": true,
+          "sizeBytes": 8027,
+          "itemCount": 14,
+          "status": "healthy",
+          "note": "",
+          "children": [
+            {
+              "name": "cards",
+              "path": "projects/pt_knowledge_visual_library/cards",
+              "isDir": true,
+              "sizeBytes": 0,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "colab",
+              "path": "projects/pt_knowledge_visual_library/colab",
+              "isDir": true,
+              "sizeBytes": 0,
+              "itemCount": 3,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "data",
+              "path": "projects/pt_knowledge_visual_library/data",
+              "isDir": true,
+              "sizeBytes": 0,
+              "itemCount": 2,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "docs",
+              "path": "projects/pt_knowledge_visual_library/docs",
+              "isDir": true,
+              "sizeBytes": 0,
+              "itemCount": 1,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "harness",
+              "path": "projects/pt_knowledge_visual_library/harness",
+              "isDir": true,
+              "sizeBytes": 0,
+              "itemCount": 8,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "README.md",
+              "path": "projects/pt_knowledge_visual_library/README.md",
+              "isDir": false,
+              "sizeBytes": 4654,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "schema",
+              "path": "projects/pt_knowledge_visual_library/schema",
+              "isDir": true,
+              "sizeBytes": 0,
+              "itemCount": 1,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "scratch",
+              "path": "projects/pt_knowledge_visual_library/scratch",
+              "isDir": true,
+              "sizeBytes": 0,
+              "itemCount": 1,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "scripts",
+              "path": "projects/pt_knowledge_visual_library/scripts",
+              "isDir": true,
+              "sizeBytes": 0,
+              "itemCount": 3,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "SPEC.md",
+              "path": "projects/pt_knowledge_visual_library/SPEC.md",
+              "isDir": false,
+              "sizeBytes": 3373,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "src",
+              "path": "projects/pt_knowledge_visual_library/src",
+              "isDir": true,
+              "sizeBytes": 0,
+              "itemCount": 2,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "tests",
+              "path": "projects/pt_knowledge_visual_library/tests",
+              "isDir": true,
+              "sizeBytes": 0,
+              "itemCount": 2,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "thumbnails",
+              "path": "projects/pt_knowledge_visual_library/thumbnails",
+              "isDir": true,
+              "sizeBytes": 0,
+              "itemCount": 128,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "thumbs",
+              "path": "projects/pt_knowledge_visual_library/thumbs",
+              "isDir": true,
+              "sizeBytes": 0,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            }
+          ]
+        },
+        {
+          "name": "pt_quiz_temp",
+          "path": "projects/pt_quiz_temp",
+          "isDir": true,
+          "sizeBytes": 462582,
+          "itemCount": 4,
+          "status": "healthy",
+          "note": "",
+          "children": [
+            {
+              "name": "adl.html",
+              "path": "projects/pt_quiz_temp/adl.html",
+              "isDir": false,
+              "sizeBytes": 181675,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "evaluation.html",
+              "path": "projects/pt_quiz_temp/evaluation.html",
+              "isDir": false,
+              "sizeBytes": 261846,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "index.html",
+              "path": "projects/pt_quiz_temp/index.html",
+              "isDir": false,
+              "sizeBytes": 17825,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "README.md",
+              "path": "projects/pt_quiz_temp/README.md",
+              "isDir": false,
+              "sizeBytes": 1236,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            }
+          ]
+        },
+        {
+          "name": "workspace_health_monitor",
+          "path": "projects/workspace_health_monitor",
+          "isDir": true,
+          "sizeBytes": 47190,
+          "itemCount": 7,
+          "status": "healthy",
+          "note": "",
+          "children": [
+            {
+              "name": "dist",
+              "path": "projects/workspace_health_monitor/dist",
+              "isDir": true,
+              "sizeBytes": 0,
+              "itemCount": 2,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "generate_dashboard.js",
+              "path": "projects/workspace_health_monitor/generate_dashboard.js",
+              "isDir": false,
+              "sizeBytes": 31270,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "harness",
+              "path": "projects/workspace_health_monitor/harness",
+              "isDir": true,
+              "sizeBytes": 0,
+              "itemCount": 1,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "logs",
+              "path": "projects/workspace_health_monitor/logs",
+              "isDir": true,
+              "sizeBytes": 0,
+              "itemCount": 1,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "monitor.js",
+              "path": "projects/workspace_health_monitor/monitor.js",
+              "isDir": false,
+              "sizeBytes": 12882,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "README.md",
+              "path": "projects/workspace_health_monitor/README.md",
+              "isDir": false,
+              "sizeBytes": 2480,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "run_health_check.bat",
+              "path": "projects/workspace_health_monitor/run_health_check.bat",
+              "isDir": false,
+              "sizeBytes": 558,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            }
+          ]
+        },
+        {
+          "name": "youtube_visual_library",
+          "path": "projects/youtube_visual_library",
+          "isDir": true,
+          "sizeBytes": 159302,
+          "itemCount": 8,
+          "status": "healthy",
+          "note": "",
+          "children": [
+            {
+              "name": "cards",
+              "path": "projects/youtube_visual_library/cards",
+              "isDir": true,
+              "sizeBytes": 0,
+              "itemCount": 92,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "data",
+              "path": "projects/youtube_visual_library/data",
+              "isDir": true,
+              "sizeBytes": 0,
+              "itemCount": 2,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "harness",
+              "path": "projects/youtube_visual_library/harness",
+              "isDir": true,
+              "sizeBytes": 0,
+              "itemCount": 1,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "index.html",
+              "path": "projects/youtube_visual_library/index.html",
+              "isDir": false,
+              "sizeBytes": 155468,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "schema",
+              "path": "projects/youtube_visual_library/schema",
+              "isDir": true,
+              "sizeBytes": 0,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "SPEC.md",
+              "path": "projects/youtube_visual_library/SPEC.md",
+              "isDir": false,
+              "sizeBytes": 3834,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "tests",
+              "path": "projects/youtube_visual_library/tests",
+              "isDir": true,
+              "sizeBytes": 0,
+              "itemCount": 1,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "thumbs",
+              "path": "projects/youtube_visual_library/thumbs",
+              "isDir": true,
+              "sizeBytes": 0,
+              "itemCount": 92,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "harness",
+      "path": "harness",
+      "isDir": true,
+      "sizeBytes": 128021,
+      "itemCount": 18,
+      "status": "healthy",
+      "note": "16基準評価＆メタ集約エンジン",
+      "children": [
+        {
+          "name": "evaluator_instagram_carousel.js",
+          "path": "harness/evaluator_instagram_carousel.js",
+          "isDir": false,
+          "sizeBytes": 7315,
+          "itemCount": 0,
+          "status": "healthy",
+          "note": "",
+          "children": []
+        },
+        {
+          "name": "evaluator_stage1.js",
+          "path": "harness/evaluator_stage1.js",
+          "isDir": false,
+          "sizeBytes": 5562,
+          "itemCount": 0,
+          "status": "healthy",
+          "note": "",
+          "children": []
+        },
+        {
+          "name": "evaluator_stage2.js",
+          "path": "harness/evaluator_stage2.js",
+          "isDir": false,
+          "sizeBytes": 6477,
+          "itemCount": 0,
+          "status": "healthy",
+          "note": "",
+          "children": []
+        },
+        {
+          "name": "evaluator_stage3.js",
+          "path": "harness/evaluator_stage3.js",
+          "isDir": false,
+          "sizeBytes": 5923,
+          "itemCount": 0,
+          "status": "healthy",
+          "note": "",
+          "children": []
+        },
+        {
+          "name": "evaluator_stage4.js",
+          "path": "harness/evaluator_stage4.js",
+          "isDir": false,
+          "sizeBytes": 9435,
+          "itemCount": 0,
+          "status": "healthy",
+          "note": "",
+          "children": []
+        },
+        {
+          "name": "evaluator_stage5.js",
+          "path": "harness/evaluator_stage5.js",
+          "isDir": false,
+          "sizeBytes": 13387,
+          "itemCount": 0,
+          "status": "healthy",
+          "note": "",
+          "children": []
+        },
+        {
+          "name": "evaluator_video_hyperframes.js",
+          "path": "harness/evaluator_video_hyperframes.js",
+          "isDir": false,
+          "sizeBytes": 11036,
+          "itemCount": 0,
+          "status": "healthy",
+          "note": "",
+          "children": []
+        },
+        {
+          "name": "eval_results.json",
+          "path": "harness/eval_results.json",
+          "isDir": false,
+          "sizeBytes": 4478,
+          "itemCount": 0,
+          "status": "healthy",
+          "note": "",
+          "children": []
+        },
+        {
+          "name": "gas_minitool",
+          "path": "harness/gas_minitool",
+          "isDir": true,
+          "sizeBytes": 14537,
+          "itemCount": 2,
+          "status": "healthy",
+          "note": "",
+          "children": [
+            {
+              "name": "evaluator_gas_minitool.js",
+              "path": "harness/gas_minitool/evaluator_gas_minitool.js",
+              "isDir": false,
+              "sizeBytes": 12379,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "gas_sync.py",
+              "path": "harness/gas_minitool/gas_sync.py",
+              "isDir": false,
+              "sizeBytes": 2158,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            }
+          ]
+        },
+        {
+          "name": "global_rules",
+          "path": "harness/global_rules",
+          "isDir": true,
+          "sizeBytes": 3130,
+          "itemCount": 1,
+          "status": "healthy",
+          "note": "",
+          "children": [
+            {
+              "name": "check_architecture_guard.js",
+              "path": "harness/global_rules/check_architecture_guard.js",
+              "isDir": false,
+              "sizeBytes": 3130,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            }
+          ]
+        },
+        {
+          "name": "jev_dev_pipeline.js",
+          "path": "harness/jev_dev_pipeline.js",
+          "isDir": false,
+          "sizeBytes": 5839,
+          "itemCount": 0,
+          "status": "healthy",
+          "note": "",
+          "children": []
+        },
+        {
+          "name": "live_evaluator_stage5.js",
+          "path": "harness/live_evaluator_stage5.js",
+          "isDir": false,
+          "sizeBytes": 13956,
+          "itemCount": 0,
+          "status": "healthy",
+          "note": "",
+          "children": []
+        },
+        {
+          "name": "meta_harness_collector.js",
+          "path": "harness/meta_harness_collector.js",
+          "isDir": false,
+          "sizeBytes": 2896,
+          "itemCount": 0,
+          "status": "healthy",
+          "note": "",
+          "children": []
+        },
+        {
+          "name": "meta_knowledge.json",
+          "path": "harness/meta_knowledge.json",
+          "isDir": false,
+          "sizeBytes": 2225,
+          "itemCount": 0,
+          "status": "healthy",
+          "note": "",
+          "children": []
+        },
+        {
+          "name": "run_all_evals.js",
+          "path": "harness/run_all_evals.js",
+          "isDir": false,
+          "sizeBytes": 1338,
+          "itemCount": 0,
+          "status": "healthy",
+          "note": "",
+          "children": []
+        },
+        {
+          "name": "test_carousel_audit.js",
+          "path": "harness/test_carousel_audit.js",
+          "isDir": false,
+          "sizeBytes": 2307,
+          "itemCount": 0,
+          "status": "healthy",
+          "note": "",
+          "children": []
+        },
+        {
+          "name": "test_jev_cycle.js",
+          "path": "harness/test_jev_cycle.js",
+          "isDir": false,
+          "sizeBytes": 3998,
+          "itemCount": 0,
+          "status": "healthy",
+          "note": "",
+          "children": []
+        },
+        {
+          "name": "ux_evaluator_stage6.js",
+          "path": "harness/ux_evaluator_stage6.js",
+          "isDir": false,
+          "sizeBytes": 14182,
+          "itemCount": 0,
+          "status": "healthy",
+          "note": "",
+          "children": []
+        }
+      ]
+    },
+    {
+      "name": "docs",
+      "path": "docs",
+      "isDir": true,
+      "sizeBytes": 79931,
+      "itemCount": 4,
+      "status": "healthy",
+      "note": "",
+      "children": [
+        {
+          "name": "index.html",
+          "path": "docs/index.html",
+          "isDir": false,
+          "sizeBytes": 43763,
+          "itemCount": 0,
+          "status": "healthy",
+          "note": "",
+          "children": []
+        },
+        {
+          "name": "PT学生向け解剖生理学_全10回マスター講座.md",
+          "path": "docs/PT学生向け解剖生理学_全10回マスター講座.md",
+          "isDir": false,
+          "sizeBytes": 13598,
+          "itemCount": 0,
+          "status": "healthy",
+          "note": "",
+          "children": []
+        },
+        {
+          "name": "YouTube文字起こし_日本語訳.txt",
+          "path": "docs/YouTube文字起こし_日本語訳.txt",
+          "isDir": false,
+          "sizeBytes": 5937,
+          "itemCount": 0,
+          "status": "healthy",
+          "note": "",
+          "children": []
+        },
+        {
+          "name": "YouTube文字起こし結果_英語原本.txt",
+          "path": "docs/YouTube文字起こし結果_英語原本.txt",
+          "isDir": false,
+          "sizeBytes": 16633,
+          "itemCount": 0,
+          "status": "healthy",
+          "note": "",
+          "children": []
+        }
+      ]
+    },
+    {
+      "name": "scratch",
+      "path": "scratch",
+      "isDir": true,
+      "sizeBytes": 0,
+      "itemCount": 0,
+      "status": "healthy",
+      "note": "",
+      "children": []
+    },
+    {
+      "name": "archive",
+      "path": "archive",
+      "isDir": true,
+      "sizeBytes": 65518371,
+      "itemCount": 5,
+      "status": "archived",
+      "note": "過去アセット完全隔離 (111.9 MB)",
+      "children": [
+        {
+          "name": "experiments",
+          "path": "archive/experiments",
+          "isDir": true,
+          "sizeBytes": 2971534,
+          "itemCount": 45,
+          "status": "healthy",
+          "note": "",
+          "children": [
+            {
+              "name": "add_research_knowledge.js",
+              "path": "archive/experiments/add_research_knowledge.js",
+              "isDir": false,
+              "sizeBytes": 4149,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "check_other_tabs.py",
+              "path": "archive/experiments/check_other_tabs.py",
+              "isDir": false,
+              "sizeBytes": 892,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "check_playlists.py",
+              "path": "archive/experiments/check_playlists.py",
+              "isDir": false,
+              "sizeBytes": 1615,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "check_top.mjs",
+              "path": "archive/experiments/check_top.mjs",
+              "isDir": false,
+              "sizeBytes": 1069,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "check_top_images.py",
+              "path": "archive/experiments/check_top_images.py",
+              "isDir": false,
+              "sizeBytes": 470,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "debug_editor.png",
+              "path": "archive/experiments/debug_editor.png",
+              "isDir": false,
+              "sizeBytes": 100721,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "debug_post.mjs",
+              "path": "archive/experiments/debug_post.mjs",
+              "isDir": false,
+              "sizeBytes": 1564,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "extract_playlist_vids.py",
+              "path": "archive/experiments/extract_playlist_vids.py",
+              "isDir": false,
+              "sizeBytes": 2315,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "find_channel_ids.js",
+              "path": "archive/experiments/find_channel_ids.js",
+              "isDir": false,
+              "sizeBytes": 935,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "find_valid_image.py",
+              "path": "archive/experiments/find_valid_image.py",
+              "isDir": false,
+              "sizeBytes": 1023,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "inspect_article_imgs.py",
+              "path": "archive/experiments/inspect_article_imgs.py",
+              "isDir": false,
+              "sizeBytes": 581,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "inspect_colab_mcp.py",
+              "path": "archive/experiments/inspect_colab_mcp.py",
+              "isDir": false,
+              "sizeBytes": 426,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "inspect_continuation.py",
+              "path": "archive/experiments/inspect_continuation.py",
+              "isDir": false,
+              "sizeBytes": 1116,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "inspect_feed.py",
+              "path": "archive/experiments/inspect_feed.py",
+              "isDir": false,
+              "sizeBytes": 713,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "inspect_kazuhiro.py",
+              "path": "archive/experiments/inspect_kazuhiro.py",
+              "isDir": false,
+              "sizeBytes": 1204,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "inspect_links.py",
+              "path": "archive/experiments/inspect_links.py",
+              "isDir": false,
+              "sizeBytes": 486,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "inspect_mokuji.py",
+              "path": "archive/experiments/inspect_mokuji.py",
+              "isDir": false,
+              "sizeBytes": 809,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "inspect_page.js",
+              "path": "archive/experiments/inspect_page.js",
+              "isDir": false,
+              "sizeBytes": 734,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "inspect_shorts_playlists.py",
+              "path": "archive/experiments/inspect_shorts_playlists.py",
+              "isDir": false,
+              "sizeBytes": 940,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "inspect_systematic.py",
+              "path": "archive/experiments/inspect_systematic.py",
+              "isDir": false,
+              "sizeBytes": 556,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "inspect_titles.py",
+              "path": "archive/experiments/inspect_titles.py",
+              "isDir": false,
+              "sizeBytes": 319,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "insta_sample_001.png",
+              "path": "archive/experiments/insta_sample_001.png",
+              "isDir": false,
+              "sizeBytes": 1131567,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "note_login.js",
+              "path": "archive/experiments/note_login.js",
+              "isDir": false,
+              "sizeBytes": 3839,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "note_top_check.png",
+              "path": "archive/experiments/note_top_check.png",
+              "isDir": false,
+              "sizeBytes": 456435,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "sample_page.html",
+              "path": "archive/experiments/sample_page.html",
+              "isDir": false,
+              "sizeBytes": 1217846,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "scrape_test.js",
+              "path": "archive/experiments/scrape_test.js",
+              "isDir": false,
+              "sizeBytes": 4179,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "statistics_quiz.html",
+              "path": "archive/experiments/statistics_quiz.html",
+              "isDir": false,
+              "sizeBytes": 17169,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "test_anatomy_imgs.py",
+              "path": "archive/experiments/test_anatomy_imgs.py",
+              "isDir": false,
+              "sizeBytes": 570,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "test_article_images.py",
+              "path": "archive/experiments/test_article_images.py",
+              "isDir": false,
+              "sizeBytes": 772,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "test_ch_timestamps.py",
+              "path": "archive/experiments/test_ch_timestamps.py",
+              "isDir": false,
+              "sizeBytes": 2271,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "test_context.py",
+              "path": "archive/experiments/test_context.py",
+              "isDir": false,
+              "sizeBytes": 328,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "test_cont_req.py",
+              "path": "archive/experiments/test_cont_req.py",
+              "isDir": false,
+              "sizeBytes": 1765,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "test_cont_req2.py",
+              "path": "archive/experiments/test_cont_req2.py",
+              "isDir": false,
+              "sizeBytes": 2593,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "test_line_uri.py",
+              "path": "archive/experiments/test_line_uri.py",
+              "isDir": false,
+              "sizeBytes": 897,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "test_liver_query.py",
+              "path": "archive/experiments/test_liver_query.py",
+              "isDir": false,
+              "sizeBytes": 938,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "test_lockup.py",
+              "path": "archive/experiments/test_lockup.py",
+              "isDir": false,
+              "sizeBytes": 148,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "test_lockup_success.py",
+              "path": "archive/experiments/test_lockup_success.py",
+              "isDir": false,
+              "sizeBytes": 1366,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "test_lockup_title.py",
+              "path": "archive/experiments/test_lockup_title.py",
+              "isDir": false,
+              "sizeBytes": 153,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "test_lockup_title2.py",
+              "path": "archive/experiments/test_lockup_title2.py",
+              "isDir": false,
+              "sizeBytes": 153,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "test_metadata_deep.py",
+              "path": "archive/experiments/test_metadata_deep.py",
+              "isDir": false,
+              "sizeBytes": 1892,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "test_note_draft.md",
+              "path": "archive/experiments/test_note_draft.md",
+              "isDir": false,
+              "sizeBytes": 311,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "test_parse.py",
+              "path": "archive/experiments/test_parse.py",
+              "isDir": false,
+              "sizeBytes": 1224,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "test_regex.py",
+              "path": "archive/experiments/test_regex.py",
+              "isDir": false,
+              "sizeBytes": 413,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "test_wp_api.py",
+              "path": "archive/experiments/test_wp_api.py",
+              "isDir": false,
+              "sizeBytes": 1098,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "test_wp_categories.py",
+              "path": "archive/experiments/test_wp_categories.py",
+              "isDir": false,
+              "sizeBytes": 970,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            }
+          ]
+        },
+        {
+          "name": "gas_project_legacy_20261008",
+          "path": "archive/gas_project_legacy_20261008",
+          "isDir": true,
+          "sizeBytes": 0,
+          "itemCount": 3,
+          "status": "healthy",
+          "note": "",
+          "children": [
+            {
+              "name": "unreplied_emails",
+              "path": "archive/gas_project_legacy_20261008/unreplied_emails",
+              "isDir": true,
+              "sizeBytes": 0,
+              "itemCount": 4,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "unreplied_emails_dev",
+              "path": "archive/gas_project_legacy_20261008/unreplied_emails_dev",
+              "isDir": true,
+              "sizeBytes": 0,
+              "itemCount": 2,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "youtube_line_bot_legacy",
+              "path": "archive/gas_project_legacy_20261008/youtube_line_bot_legacy",
+              "isDir": true,
+              "sizeBytes": 0,
+              "itemCount": 6,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            }
+          ]
+        },
+        {
+          "name": "root_legacy_20261008",
+          "path": "archive/root_legacy_20261008",
+          "isDir": true,
+          "sizeBytes": 17536987,
+          "itemCount": 42,
+          "status": "healthy",
+          "note": "",
+          "children": [
+            {
+              "name": "add_relationship_slide.gs",
+              "path": "archive/root_legacy_20261008/add_relationship_slide.gs",
+              "isDir": false,
+              "sizeBytes": 5613,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "add_subitem_relation.js",
+              "path": "archive/root_legacy_20261008/add_subitem_relation.js",
+              "isDir": false,
+              "sizeBytes": 835,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "architecture_refactor_report.html",
+              "path": "archive/root_legacy_20261008/architecture_refactor_report.html",
+              "isDir": false,
+              "sizeBytes": 12428,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "architect_dojo_test.html",
+              "path": "archive/root_legacy_20261008/architect_dojo_test.html",
+              "isDir": false,
+              "sizeBytes": 22713,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "audit_dashboard.html",
+              "path": "archive/root_legacy_20261008/audit_dashboard.html",
+              "isDir": false,
+              "sizeBytes": 403,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "cleanup_notion_files.js",
+              "path": "archive/root_legacy_20261008/cleanup_notion_files.js",
+              "isDir": false,
+              "sizeBytes": 1315,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "colab_instagram_batch_generator.ipynb",
+              "path": "archive/root_legacy_20261008/colab_instagram_batch_generator.ipynb",
+              "isDir": false,
+              "sizeBytes": 6119,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "colab_starter_template.ipynb",
+              "path": "archive/root_legacy_20261008/colab_starter_template.ipynb",
+              "isDir": false,
+              "sizeBytes": 5811,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "dashboard.html",
+              "path": "archive/root_legacy_20261008/dashboard.html",
+              "isDir": false,
+              "sizeBytes": 68140,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "evolution_roadmap.html",
+              "path": "archive/root_legacy_20261008/evolution_roadmap.html",
+              "isDir": false,
+              "sizeBytes": 12011,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "execute_refactor.js",
+              "path": "archive/root_legacy_20261008/execute_refactor.js",
+              "isDir": false,
+              "sizeBytes": 4152,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "file_structure_manifest.json",
+              "path": "archive/root_legacy_20261008/file_structure_manifest.json",
+              "isDir": false,
+              "sizeBytes": 250061,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "file_visualizer_dashboard.html",
+              "path": "archive/root_legacy_20261008/file_visualizer_dashboard.html",
+              "isDir": false,
+              "sizeBytes": 111541,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "find_nekocan_id.py",
+              "path": "archive/root_legacy_20261008/find_nekocan_id.py",
+              "isDir": false,
+              "sizeBytes": 603,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "fix_subitems_notion.js",
+              "path": "archive/root_legacy_20261008/fix_subitems_notion.js",
+              "isDir": false,
+              "sizeBytes": 3454,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "generate_carousel_gluteus.py",
+              "path": "archive/root_legacy_20261008/generate_carousel_gluteus.py",
+              "isDir": false,
+              "sizeBytes": 10973,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "generate_pt_curriculum_slides.py",
+              "path": "archive/root_legacy_20261008/generate_pt_curriculum_slides.py",
+              "isDir": false,
+              "sizeBytes": 10653,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "graph_engineering_guide.html",
+              "path": "archive/root_legacy_20261008/graph_engineering_guide.html",
+              "isDir": false,
+              "sizeBytes": 18560,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "graph_engineering_practice.html",
+              "path": "archive/root_legacy_20261008/graph_engineering_practice.html",
+              "isDir": false,
+              "sizeBytes": 26067,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "graph_mechanics_faq.html",
+              "path": "archive/root_legacy_20261008/graph_mechanics_faq.html",
+              "isDir": false,
+              "sizeBytes": 14566,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "harness_graph_architecture.html",
+              "path": "archive/root_legacy_20261008/harness_graph_architecture.html",
+              "isDir": false,
+              "sizeBytes": 15348,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "harness_reuse_architecture.html",
+              "path": "archive/root_legacy_20261008/harness_reuse_architecture.html",
+              "isDir": false,
+              "sizeBytes": 12141,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "index.html",
+              "path": "archive/root_legacy_20261008/index.html",
+              "isDir": false,
+              "sizeBytes": 17169,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "kashima_concept_encyclopedia.html",
+              "path": "archive/root_legacy_20261008/kashima_concept_encyclopedia.html",
+              "isDir": false,
+              "sizeBytes": 22953,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "kashima_interactive_encyclopedia.html",
+              "path": "archive/root_legacy_20261008/kashima_interactive_encyclopedia.html",
+              "isDir": false,
+              "sizeBytes": 59963,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "kashima_master_guide.html",
+              "path": "archive/root_legacy_20261008/kashima_master_guide.html",
+              "isDir": false,
+              "sizeBytes": 18443,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "migrate_subitems.js",
+              "path": "archive/root_legacy_20261008/migrate_subitems.js",
+              "isDir": false,
+              "sizeBytes": 9209,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "presentation_download.pptx",
+              "path": "archive/root_legacy_20261008/presentation_download.pptx",
+              "isDir": false,
+              "sizeBytes": 2892838,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "presentation_edited.pptx",
+              "path": "archive/root_legacy_20261008/presentation_edited.pptx",
+              "isDir": false,
+              "sizeBytes": 6463781,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "preview_auto_wrap_360.png",
+              "path": "archive/root_legacy_20261008/preview_auto_wrap_360.png",
+              "isDir": false,
+              "sizeBytes": 110597,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "preview_natural_breaks.png",
+              "path": "archive/root_legacy_20261008/preview_natural_breaks.png",
+              "isDir": false,
+              "sizeBytes": 108560,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "pt_library.html",
+              "path": "archive/root_legacy_20261008/pt_library.html",
+              "isDir": false,
+              "sizeBytes": 238586,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "regression_test_explained.html",
+              "path": "archive/root_legacy_20261008/regression_test_explained.html",
+              "isDir": false,
+              "sizeBytes": 10974,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "setup_notion_blocks.js",
+              "path": "archive/root_legacy_20261008/setup_notion_blocks.js",
+              "isDir": false,
+              "sizeBytes": 3102,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "slide9_final_preview.png",
+              "path": "archive/root_legacy_20261008/slide9_final_preview.png",
+              "isDir": false,
+              "sizeBytes": 108560,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "slide9_preview.png",
+              "path": "archive/root_legacy_20261008/slide9_preview.png",
+              "isDir": false,
+              "sizeBytes": 108162,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "slide9_preview2.png",
+              "path": "archive/root_legacy_20261008/slide9_preview2.png",
+              "isDir": false,
+              "sizeBytes": 107394,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "sync_clean_structure.js",
+              "path": "archive/root_legacy_20261008/sync_clean_structure.js",
+              "isDir": false,
+              "sizeBytes": 8284,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "sync_notion_files.js",
+              "path": "archive/root_legacy_20261008/sync_notion_files.js",
+              "isDir": false,
+              "sizeBytes": 7919,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "sync_subitems_notion.js",
+              "path": "archive/root_legacy_20261008/sync_subitems_notion.js",
+              "isDir": false,
+              "sizeBytes": 7736,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "youtube_visual_library.html",
+              "path": "archive/root_legacy_20261008/youtube_visual_library.html",
+              "isDir": false,
+              "sizeBytes": 155468,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "学校生活の実情について_追加スライド反映済.pptx",
+              "path": "archive/root_legacy_20261008/学校生活の実情について_追加スライド反映済.pptx",
+              "isDir": false,
+              "sizeBytes": 6463782,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            }
+          ]
+        },
+        {
+          "name": "scrapers",
+          "path": "archive/scrapers",
+          "isDir": true,
+          "sizeBytes": 548582,
+          "itemCount": 31,
+          "status": "healthy",
+          "note": "",
+          "children": [
+            {
+              "name": "accumulate_nekocan.py",
+              "path": "archive/scrapers/accumulate_nekocan.py",
+              "isDir": false,
+              "sizeBytes": 2538,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "bulk_harvester.py",
+              "path": "archive/scrapers/bulk_harvester.py",
+              "isDir": false,
+              "sizeBytes": 4492,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "check_nekocan_count.py",
+              "path": "archive/scrapers/check_nekocan_count.py",
+              "isDir": false,
+              "sizeBytes": 675,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "check_null_nekocan.py",
+              "path": "archive/scrapers/check_null_nekocan.py",
+              "isDir": false,
+              "sizeBytes": 2218,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "clean_kazuhiro.py",
+              "path": "archive/scrapers/clean_kazuhiro.py",
+              "isDir": false,
+              "sizeBytes": 689,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "deep_crawler.py",
+              "path": "archive/scrapers/deep_crawler.py",
+              "isDir": false,
+              "sizeBytes": 4322,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "filter_kazuhiro.py",
+              "path": "archive/scrapers/filter_kazuhiro.py",
+              "isDir": false,
+              "sizeBytes": 902,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "find_karada.js",
+              "path": "archive/scrapers/find_karada.js",
+              "isDir": false,
+              "sizeBytes": 458,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "find_karada_handle.py",
+              "path": "archive/scrapers/find_karada_handle.py",
+              "isDir": false,
+              "sizeBytes": 356,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "fix_nekocan.py",
+              "path": "archive/scrapers/fix_nekocan.py",
+              "isDir": false,
+              "sizeBytes": 2991,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "harvest_all_nekocan.py",
+              "path": "archive/scrapers/harvest_all_nekocan.py",
+              "isDir": false,
+              "sizeBytes": 4951,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "harvest_all_nekocan_full.py",
+              "path": "archive/scrapers/harvest_all_nekocan_full.py",
+              "isDir": false,
+              "sizeBytes": 4802,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "harvest_curated_kazuhiro.py",
+              "path": "archive/scrapers/harvest_curated_kazuhiro.py",
+              "isDir": false,
+              "sizeBytes": 3150,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "harvest_karada.py",
+              "path": "archive/scrapers/harvest_karada.py",
+              "isDir": false,
+              "sizeBytes": 3770,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "harvest_kazuhiro_web.py",
+              "path": "archive/scrapers/harvest_kazuhiro_web.py",
+              "isDir": false,
+              "sizeBytes": 3703,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "harvest_systematic.py",
+              "path": "archive/scrapers/harvest_systematic.py",
+              "isDir": false,
+              "sizeBytes": 1999,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "import_all_nekocan_120.py",
+              "path": "archive/scrapers/import_all_nekocan_120.py",
+              "isDir": false,
+              "sizeBytes": 4360,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "import_kazuhiro_articles.py",
+              "path": "archive/scrapers/import_kazuhiro_articles.py",
+              "isDir": false,
+              "sizeBytes": 1396,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "import_kazuhiro_web.js",
+              "path": "archive/scrapers/import_kazuhiro_web.js",
+              "isDir": false,
+              "sizeBytes": 2769,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "kazuhiro_articles.json",
+              "path": "archive/scrapers/kazuhiro_articles.json",
+              "isDir": false,
+              "sizeBytes": 245378,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "kazuhiro_curated_articles.json",
+              "path": "archive/scrapers/kazuhiro_curated_articles.json",
+              "isDir": false,
+              "sizeBytes": 56141,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "kazuhiro_final_articles.json",
+              "path": "archive/scrapers/kazuhiro_final_articles.json",
+              "isDir": false,
+              "sizeBytes": 106123,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "kazuhiro_systematic_articles.json",
+              "path": "archive/scrapers/kazuhiro_systematic_articles.json",
+              "isDir": false,
+              "sizeBytes": 53307,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "merge_kazuhiro.py",
+              "path": "archive/scrapers/merge_kazuhiro.py",
+              "isDir": false,
+              "sizeBytes": 1309,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "nekocan_all_videos.json",
+              "path": "archive/scrapers/nekocan_all_videos.json",
+              "isDir": false,
+              "sizeBytes": 10788,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "nekocan_candidate_ids.json",
+              "path": "archive/scrapers/nekocan_candidate_ids.json",
+              "isDir": false,
+              "sizeBytes": 9566,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "nekocan_full_116.json",
+              "path": "archive/scrapers/nekocan_full_116.json",
+              "isDir": false,
+              "sizeBytes": 12422,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "push_nekocan_batch.py",
+              "path": "archive/scrapers/push_nekocan_batch.py",
+              "isDir": false,
+              "sizeBytes": 1322,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "run_filter.py",
+              "path": "archive/scrapers/run_filter.py",
+              "isDir": false,
+              "sizeBytes": 423,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "test_nekocan_rss.py",
+              "path": "archive/scrapers/test_nekocan_rss.py",
+              "isDir": false,
+              "sizeBytes": 499,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "test_nekocan_search.py",
+              "path": "archive/scrapers/test_nekocan_search.py",
+              "isDir": false,
+              "sizeBytes": 763,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            }
+          ]
+        },
+        {
+          "name": "scratch_legacy_20261008",
+          "path": "archive/scratch_legacy_20261008",
+          "isDir": true,
+          "sizeBytes": 44461268,
+          "itemCount": 306,
+          "status": "healthy",
+          "note": "",
+          "children": [
+            {
+              "name": "09-26_上肢ROM測定法と肩内外旋の実技解説.md",
+              "path": "archive/scratch_legacy_20261008/09-26_上肢ROM測定法と肩内外旋の実技解説.md",
+              "isDir": false,
+              "sizeBytes": 58640,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "actual_list_sheet.png",
+              "path": "archive/scratch_legacy_20261008/actual_list_sheet.png",
+              "isDir": false,
+              "sizeBytes": 62532,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "after_images_inserted.png",
+              "path": "archive/scratch_legacy_20261008/after_images_inserted.png",
+              "isDir": false,
+              "sizeBytes": 157576,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "analyze_exceptions.py",
+              "path": "archive/scratch_legacy_20261008/analyze_exceptions.py",
+              "isDir": false,
+              "sizeBytes": 1378,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "analyze_structure.py",
+              "path": "archive/scratch_legacy_20261008/analyze_structure.py",
+              "isDir": false,
+              "sizeBytes": 1543,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "approach2_cell_complete.png",
+              "path": "archive/scratch_legacy_20261008/approach2_cell_complete.png",
+              "isDir": false,
+              "sizeBytes": 205203,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "approach2_cell_streaming.png",
+              "path": "archive/scratch_legacy_20261008/approach2_cell_streaming.png",
+              "isDir": false,
+              "sizeBytes": 397662,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "approach2_menu_open.png",
+              "path": "archive/scratch_legacy_20261008/approach2_menu_open.png",
+              "isDir": false,
+              "sizeBytes": 427606,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "approach2_v2_complete.png",
+              "path": "archive/scratch_legacy_20261008/approach2_v2_complete.png",
+              "isDir": false,
+              "sizeBytes": 419534,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "approach2_v2_menu.png",
+              "path": "archive/scratch_legacy_20261008/approach2_v2_menu.png",
+              "isDir": false,
+              "sizeBytes": 444972,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "approach2_v2_streaming.png",
+              "path": "archive/scratch_legacy_20261008/approach2_v2_streaming.png",
+              "isDir": false,
+              "sizeBytes": 407461,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "audit_frames",
+              "path": "archive/scratch_legacy_20261008/audit_frames",
+              "isDir": true,
+              "sizeBytes": 0,
+              "itemCount": 19,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "autonomous_graph_harness.py",
+              "path": "archive/scratch_legacy_20261008/autonomous_graph_harness.py",
+              "isDir": false,
+              "sizeBytes": 12776,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "auto_login_note.js",
+              "path": "archive/scratch_legacy_20261008/auto_login_note.js",
+              "isDir": false,
+              "sizeBytes": 2210,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "auto_post_cdp.js",
+              "path": "archive/scratch_legacy_20261008/auto_post_cdp.js",
+              "isDir": false,
+              "sizeBytes": 2774,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "bank_sheet1.csv",
+              "path": "archive/scratch_legacy_20261008/bank_sheet1.csv",
+              "isDir": false,
+              "sizeBytes": 1234,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "banner_video_frame.png",
+              "path": "archive/scratch_legacy_20261008/banner_video_frame.png",
+              "isDir": false,
+              "sizeBytes": 495578,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "banner_video_frame2.png",
+              "path": "archive/scratch_legacy_20261008/banner_video_frame2.png",
+              "isDir": false,
+              "sizeBytes": 234549,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "banner_video_frame_v2.png",
+              "path": "archive/scratch_legacy_20261008/banner_video_frame_v2.png",
+              "isDir": false,
+              "sizeBytes": 465059,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "batch_rename_quizzes.py",
+              "path": "archive/scratch_legacy_20261008/batch_rename_quizzes.py",
+              "isDir": false,
+              "sizeBytes": 3896,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "blur_applied_preview.png",
+              "path": "archive/scratch_legacy_20261008/blur_applied_preview.png",
+              "isDir": false,
+              "sizeBytes": 610579,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "blur_test_box.png",
+              "path": "archive/scratch_legacy_20261008/blur_test_box.png",
+              "isDir": false,
+              "sizeBytes": 634930,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "build_eval_quiz_notebook.py",
+              "path": "archive/scratch_legacy_20261008/build_eval_quiz_notebook.py",
+              "isDir": false,
+              "sizeBytes": 2304,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "build_new_slide.py",
+              "path": "archive/scratch_legacy_20261008/build_new_slide.py",
+              "isDir": false,
+              "sizeBytes": 3821,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "calendar_frames",
+              "path": "archive/scratch_legacy_20261008/calendar_frames",
+              "isDir": true,
+              "sizeBytes": 0,
+              "itemCount": 70,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "calendar_real_frames",
+              "path": "archive/scratch_legacy_20261008/calendar_real_frames",
+              "isDir": true,
+              "sizeBytes": 0,
+              "itemCount": 98,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "capture_full.js",
+              "path": "archive/scratch_legacy_20261008/capture_full.js",
+              "isDir": false,
+              "sizeBytes": 965,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "capture_section.js",
+              "path": "archive/scratch_legacy_20261008/capture_section.js",
+              "isDir": false,
+              "sizeBytes": 735,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "catalog_resources.py",
+              "path": "archive/scratch_legacy_20261008/catalog_resources.py",
+              "isDir": false,
+              "sizeBytes": 3164,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "check_active_sheet.js",
+              "path": "archive/scratch_legacy_20261008/check_active_sheet.js",
+              "isDir": false,
+              "sizeBytes": 1052,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "check_autumn_courses.py",
+              "path": "archive/scratch_legacy_20261008/check_autumn_courses.py",
+              "isDir": false,
+              "sizeBytes": 1111,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "check_btn.js",
+              "path": "archive/scratch_legacy_20261008/check_btn.js",
+              "isDir": false,
+              "sizeBytes": 242,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "check_direct_files.py",
+              "path": "archive/scratch_legacy_20261008/check_direct_files.py",
+              "isDir": false,
+              "sizeBytes": 432,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "check_f_140.png",
+              "path": "archive/scratch_legacy_20261008/check_f_140.png",
+              "isDir": false,
+              "sizeBytes": 391014,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "check_f_150.png",
+              "path": "archive/scratch_legacy_20261008/check_f_150.png",
+              "isDir": false,
+              "sizeBytes": 393200,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "check_f_160.png",
+              "path": "archive/scratch_legacy_20261008/check_f_160.png",
+              "isDir": false,
+              "sizeBytes": 393200,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "check_f_170.png",
+              "path": "archive/scratch_legacy_20261008/check_f_170.png",
+              "isDir": false,
+              "sizeBytes": 398404,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "check_f_180.png",
+              "path": "archive/scratch_legacy_20261008/check_f_180.png",
+              "isDir": false,
+              "sizeBytes": 407461,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "check_f_190.png",
+              "path": "archive/scratch_legacy_20261008/check_f_190.png",
+              "isDir": false,
+              "sizeBytes": 408052,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "check_f_250.png",
+              "path": "archive/scratch_legacy_20261008/check_f_250.png",
+              "isDir": false,
+              "sizeBytes": 205203,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "check_f_350.png",
+              "path": "archive/scratch_legacy_20261008/check_f_350.png",
+              "isDir": false,
+              "sizeBytes": 208093,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "check_f_450.png",
+              "path": "archive/scratch_legacy_20261008/check_f_450.png",
+              "isDir": false,
+              "sizeBytes": 395040,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "check_f_50.png",
+              "path": "archive/scratch_legacy_20261008/check_f_50.png",
+              "isDir": false,
+              "sizeBytes": 432247,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "check_f_550.png",
+              "path": "archive/scratch_legacy_20261008/check_f_550.png",
+              "isDir": false,
+              "sizeBytes": 375903,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "check_f_650.png",
+              "path": "archive/scratch_legacy_20261008/check_f_650.png",
+              "isDir": false,
+              "sizeBytes": 528764,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "check_header_menu.js",
+              "path": "archive/scratch_legacy_20261008/check_header_menu.js",
+              "isDir": false,
+              "sizeBytes": 1038,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "check_images_view.js",
+              "path": "archive/scratch_legacy_20261008/check_images_view.js",
+              "isDir": false,
+              "sizeBytes": 523,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "check_menu_drop_115.png",
+              "path": "archive/scratch_legacy_20261008/check_menu_drop_115.png",
+              "isDir": false,
+              "sizeBytes": 444954,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "check_menu_drop_120.png",
+              "path": "archive/scratch_legacy_20261008/check_menu_drop_120.png",
+              "isDir": false,
+              "sizeBytes": 445039,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "check_menu_drop_125.png",
+              "path": "archive/scratch_legacy_20261008/check_menu_drop_125.png",
+              "isDir": false,
+              "sizeBytes": 445078,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "check_menu_drop_130.png",
+              "path": "archive/scratch_legacy_20261008/check_menu_drop_130.png",
+              "isDir": false,
+              "sizeBytes": 434121,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "check_menu_drop_135.png",
+              "path": "archive/scratch_legacy_20261008/check_menu_drop_135.png",
+              "isDir": false,
+              "sizeBytes": 435876,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "check_menu_drop_140.png",
+              "path": "archive/scratch_legacy_20261008/check_menu_drop_140.png",
+              "isDir": false,
+              "sizeBytes": 391014,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "check_menu_items.js",
+              "path": "archive/scratch_legacy_20261008/check_menu_items.js",
+              "isDir": false,
+              "sizeBytes": 905,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "check_note.js",
+              "path": "archive/scratch_legacy_20261008/check_note.js",
+              "isDir": false,
+              "sizeBytes": 1751,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "check_plus_btn.js",
+              "path": "archive/scratch_legacy_20261008/check_plus_btn.js",
+              "isDir": false,
+              "sizeBytes": 1130,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "check_plus_menu.js",
+              "path": "archive/scratch_legacy_20261008/check_plus_menu.js",
+              "isDir": false,
+              "sizeBytes": 1259,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "check_plus_menu_shot.js",
+              "path": "archive/scratch_legacy_20261008/check_plus_menu_shot.js",
+              "isDir": false,
+              "sizeBytes": 850,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "check_popup.js",
+              "path": "archive/scratch_legacy_20261008/check_popup.js",
+              "isDir": false,
+              "sizeBytes": 899,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "check_psy_course.py",
+              "path": "archive/scratch_legacy_20261008/check_psy_course.py",
+              "isDir": false,
+              "sizeBytes": 1355,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "check_q3_q14.py",
+              "path": "archive/scratch_legacy_20261008/check_q3_q14.py",
+              "isDir": false,
+              "sizeBytes": 425,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "check_q_counts.py",
+              "path": "archive/scratch_legacy_20261008/check_q_counts.py",
+              "isDir": false,
+              "sizeBytes": 422,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "check_real_menu.js",
+              "path": "archive/scratch_legacy_20261008/check_real_menu.js",
+              "isDir": false,
+              "sizeBytes": 1335,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "check_transition_23.0.png",
+              "path": "archive/scratch_legacy_20261008/check_transition_23.0.png",
+              "isDir": false,
+              "sizeBytes": 466577,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "check_transition_23.5.png",
+              "path": "archive/scratch_legacy_20261008/check_transition_23.5.png",
+              "isDir": false,
+              "sizeBytes": 467530,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "check_transition_24.0.png",
+              "path": "archive/scratch_legacy_20261008/check_transition_24.0.png",
+              "isDir": false,
+              "sizeBytes": 467231,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "check_transition_24.5.png",
+              "path": "archive/scratch_legacy_20261008/check_transition_24.5.png",
+              "isDir": false,
+              "sizeBytes": 467197,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "check_transition_25.0.png",
+              "path": "archive/scratch_legacy_20261008/check_transition_25.0.png",
+              "isDir": false,
+              "sizeBytes": 468246,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "check_transition_25.5.png",
+              "path": "archive/scratch_legacy_20261008/check_transition_25.5.png",
+              "isDir": false,
+              "sizeBytes": 496723,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "check_transition_26.0.png",
+              "path": "archive/scratch_legacy_20261008/check_transition_26.0.png",
+              "isDir": false,
+              "sizeBytes": 541486,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "check_transition_26.5.png",
+              "path": "archive/scratch_legacy_20261008/check_transition_26.5.png",
+              "isDir": false,
+              "sizeBytes": 539209,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "check_transition_27.0.png",
+              "path": "archive/scratch_legacy_20261008/check_transition_27.0.png",
+              "isDir": false,
+              "sizeBytes": 548914,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "compare_files.py",
+              "path": "archive/scratch_legacy_20261008/compare_files.py",
+              "isDir": false,
+              "sizeBytes": 1264,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "concat_videos.py",
+              "path": "archive/scratch_legacy_20261008/concat_videos.py",
+              "isDir": false,
+              "sizeBytes": 1256,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "confirm_crop.js",
+              "path": "archive/scratch_legacy_20261008/confirm_crop.js",
+              "isDir": false,
+              "sizeBytes": 1271,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "copy_to_new_nb.py",
+              "path": "archive/scratch_legacy_20261008/copy_to_new_nb.py",
+              "isDir": false,
+              "sizeBytes": 2377,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "create_desktop_shortcut.ps1",
+              "path": "archive/scratch_legacy_20261008/create_desktop_shortcut.ps1",
+              "isDir": false,
+              "sizeBytes": 605,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "create_notion_page_002.py",
+              "path": "archive/scratch_legacy_20261008/create_notion_page_002.py",
+              "isDir": false,
+              "sizeBytes": 19018,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "create_quiz_notebook.py",
+              "path": "archive/scratch_legacy_20261008/create_quiz_notebook.py",
+              "isDir": false,
+              "sizeBytes": 2776,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "create_real_spreadsheet.py",
+              "path": "archive/scratch_legacy_20261008/create_real_spreadsheet.py",
+              "isDir": false,
+              "sizeBytes": 2380,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "create_template_dirs.py",
+              "path": "archive/scratch_legacy_20261008/create_template_dirs.py",
+              "isDir": false,
+              "sizeBytes": 7815,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "current_note_status.png",
+              "path": "archive/scratch_legacy_20261008/current_note_status.png",
+              "isDir": false,
+              "sizeBytes": 153946,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "debug_login.js",
+              "path": "archive/scratch_legacy_20261008/debug_login.js",
+              "isDir": false,
+              "sizeBytes": 1333,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "demo_sheets_to_calendar.html",
+              "path": "archive/scratch_legacy_20261008/demo_sheets_to_calendar.html",
+              "isDir": false,
+              "sizeBytes": 9582,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "download_test_pdf.py",
+              "path": "archive/scratch_legacy_20261008/download_test_pdf.py",
+              "isDir": false,
+              "sizeBytes": 2464,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "download_timetable.py",
+              "path": "archive/scratch_legacy_20261008/download_timetable.py",
+              "isDir": false,
+              "sizeBytes": 1256,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "do_upload_eyecatch.js",
+              "path": "archive/scratch_legacy_20261008/do_upload_eyecatch.js",
+              "isDir": false,
+              "sizeBytes": 1849,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "drive_files.json",
+              "path": "archive/scratch_legacy_20261008/drive_files.json",
+              "isDir": false,
+              "sizeBytes": 26729,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "drive_structure_analysis.json",
+              "path": "archive/scratch_legacy_20261008/drive_structure_analysis.json",
+              "isDir": false,
+              "sizeBytes": 25725,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "dump_full_page2.py",
+              "path": "archive/scratch_legacy_20261008/dump_full_page2.py",
+              "isDir": false,
+              "sizeBytes": 1194,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "dump_page_tree.py",
+              "path": "archive/scratch_legacy_20261008/dump_page_tree.py",
+              "isDir": false,
+              "sizeBytes": 1872,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "editor_current_state.png",
+              "path": "archive/scratch_legacy_20261008/editor_current_state.png",
+              "isDir": false,
+              "sizeBytes": 84459,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "editor_debug.png",
+              "path": "archive/scratch_legacy_20261008/editor_debug.png",
+              "isDir": false,
+              "sizeBytes": 100721,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "editor_dump.html",
+              "path": "archive/scratch_legacy_20261008/editor_dump.html",
+              "isDir": false,
+              "sizeBytes": 1526643,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "editor_empty_line.png",
+              "path": "archive/scratch_legacy_20261008/editor_empty_line.png",
+              "isDir": false,
+              "sizeBytes": 84080,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "editor_images_view.png",
+              "path": "archive/scratch_legacy_20261008/editor_images_view.png",
+              "isDir": false,
+              "sizeBytes": 75054,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "editor_images_view2.png",
+              "path": "archive/scratch_legacy_20261008/editor_images_view2.png",
+              "isDir": false,
+              "sizeBytes": 80441,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "editor_reinsert_check.png",
+              "path": "archive/scratch_legacy_20261008/editor_reinsert_check.png",
+              "isDir": false,
+              "sizeBytes": 153824,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "editor_top_view.png",
+              "path": "archive/scratch_legacy_20261008/editor_top_view.png",
+              "isDir": false,
+              "sizeBytes": 153820,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "encode_calendar_media.py",
+              "path": "archive/scratch_legacy_20261008/encode_calendar_media.py",
+              "isDir": false,
+              "sizeBytes": 1860,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "ensure_note_content.js",
+              "path": "archive/scratch_legacy_20261008/ensure_note_content.js",
+              "isDir": false,
+              "sizeBytes": 3255,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "execute_reorganization.py",
+              "path": "archive/scratch_legacy_20261008/execute_reorganization.py",
+              "isDir": false,
+              "sizeBytes": 14997,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "fetch_top_blocks.py",
+              "path": "archive/scratch_legacy_20261008/fetch_top_blocks.py",
+              "isDir": false,
+              "sizeBytes": 1569,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "final_save.js",
+              "path": "archive/scratch_legacy_20261008/final_save.js",
+              "isDir": false,
+              "sizeBytes": 514,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "find_courses.py",
+              "path": "archive/scratch_legacy_20261008/find_courses.py",
+              "isDir": false,
+              "sizeBytes": 1691,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "find_uncovered_topics.py",
+              "path": "archive/scratch_legacy_20261008/find_uncovered_topics.py",
+              "isDir": false,
+              "sizeBytes": 1117,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "full_scan_00s.png",
+              "path": "archive/scratch_legacy_20261008/full_scan_00s.png",
+              "isDir": false,
+              "sizeBytes": 120204,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "full_scan_02s.png",
+              "path": "archive/scratch_legacy_20261008/full_scan_02s.png",
+              "isDir": false,
+              "sizeBytes": 534554,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "full_scan_04s.png",
+              "path": "archive/scratch_legacy_20261008/full_scan_04s.png",
+              "isDir": false,
+              "sizeBytes": 534723,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "full_scan_06s.png",
+              "path": "archive/scratch_legacy_20261008/full_scan_06s.png",
+              "isDir": false,
+              "sizeBytes": 532231,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "full_scan_08s.png",
+              "path": "archive/scratch_legacy_20261008/full_scan_08s.png",
+              "isDir": false,
+              "sizeBytes": 506997,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "full_scan_10s.png",
+              "path": "archive/scratch_legacy_20261008/full_scan_10s.png",
+              "isDir": false,
+              "sizeBytes": 309137,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "full_scan_12s.png",
+              "path": "archive/scratch_legacy_20261008/full_scan_12s.png",
+              "isDir": false,
+              "sizeBytes": 287468,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "full_scan_14s.png",
+              "path": "archive/scratch_legacy_20261008/full_scan_14s.png",
+              "isDir": false,
+              "sizeBytes": 309475,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "full_scan_16s.png",
+              "path": "archive/scratch_legacy_20261008/full_scan_16s.png",
+              "isDir": false,
+              "sizeBytes": 318806,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "full_scan_18s.png",
+              "path": "archive/scratch_legacy_20261008/full_scan_18s.png",
+              "isDir": false,
+              "sizeBytes": 340797,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "full_scan_20s.png",
+              "path": "archive/scratch_legacy_20261008/full_scan_20s.png",
+              "isDir": false,
+              "sizeBytes": 479087,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "full_scan_22s.png",
+              "path": "archive/scratch_legacy_20261008/full_scan_22s.png",
+              "isDir": false,
+              "sizeBytes": 478569,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "full_scan_24s.png",
+              "path": "archive/scratch_legacy_20261008/full_scan_24s.png",
+              "isDir": false,
+              "sizeBytes": 467231,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "full_scan_26s.png",
+              "path": "archive/scratch_legacy_20261008/full_scan_26s.png",
+              "isDir": false,
+              "sizeBytes": 541486,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "full_scan_28s.png",
+              "path": "archive/scratch_legacy_20261008/full_scan_28s.png",
+              "isDir": false,
+              "sizeBytes": 548020,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "full_scan_30s.png",
+              "path": "archive/scratch_legacy_20261008/full_scan_30s.png",
+              "isDir": false,
+              "sizeBytes": 546511,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "full_scan_32s.png",
+              "path": "archive/scratch_legacy_20261008/full_scan_32s.png",
+              "isDir": false,
+              "sizeBytes": 546597,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "gas_project",
+              "path": "archive/scratch_legacy_20261008/gas_project",
+              "isDir": true,
+              "sizeBytes": 0,
+              "itemCount": 1,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "generate_5_quiz_videos.py",
+              "path": "archive/scratch_legacy_20261008/generate_5_quiz_videos.py",
+              "isDir": false,
+              "sizeBytes": 12966,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "generate_final_presentation.py",
+              "path": "archive/scratch_legacy_20261008/generate_final_presentation.py",
+              "isDir": false,
+              "sizeBytes": 4318,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "generate_icons.py",
+              "path": "archive/scratch_legacy_20261008/generate_icons.py",
+              "isDir": false,
+              "sizeBytes": 1050,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "generate_quiz_videos.py",
+              "path": "archive/scratch_legacy_20261008/generate_quiz_videos.py",
+              "isDir": false,
+              "sizeBytes": 10381,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "generate_supp_quiz.py",
+              "path": "archive/scratch_legacy_20261008/generate_supp_quiz.py",
+              "isDir": false,
+              "sizeBytes": 2583,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "get_list_gid.js",
+              "path": "archive/scratch_legacy_20261008/get_list_gid.js",
+              "isDir": false,
+              "sizeBytes": 657,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "graph_audit",
+              "path": "archive/scratch_legacy_20261008/graph_audit",
+              "isDir": true,
+              "sizeBytes": 0,
+              "itemCount": 23,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "header_menu.png",
+              "path": "archive/scratch_legacy_20261008/header_menu.png",
+              "isDir": false,
+              "sizeBytes": 96708,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "headful_login.js",
+              "path": "archive/scratch_legacy_20261008/headful_login.js",
+              "isDir": false,
+              "sizeBytes": 2507,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "headless_reauth.py",
+              "path": "archive/scratch_legacy_20261008/headless_reauth.py",
+              "isDir": false,
+              "sizeBytes": 1069,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "insert_body_images.js",
+              "path": "archive/scratch_legacy_20261008/insert_body_images.js",
+              "isDir": false,
+              "sizeBytes": 4027,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "inspect_cases_db.py",
+              "path": "archive/scratch_legacy_20261008/inspect_cases_db.py",
+              "isDir": false,
+              "sizeBytes": 1421,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "inspect_csrf.py",
+              "path": "archive/scratch_legacy_20261008/inspect_csrf.py",
+              "isDir": false,
+              "sizeBytes": 461,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "inspect_note_editor.js",
+              "path": "archive/scratch_legacy_20261008/inspect_note_editor.js",
+              "isDir": false,
+              "sizeBytes": 1070,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "inspect_ocr_notebook.py",
+              "path": "archive/scratch_legacy_20261008/inspect_ocr_notebook.py",
+              "isDir": false,
+              "sizeBytes": 664,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "inspect_page_blocks.py",
+              "path": "archive/scratch_legacy_20261008/inspect_page_blocks.py",
+              "isDir": false,
+              "sizeBytes": 1303,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "inspect_sheet_tabs.js",
+              "path": "archive/scratch_legacy_20261008/inspect_sheet_tabs.js",
+              "isDir": false,
+              "sizeBytes": 799,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "inspect_slide9.ps1",
+              "path": "archive/scratch_legacy_20261008/inspect_slide9.ps1",
+              "isDir": false,
+              "sizeBytes": 1315,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "inspect_tab_children.py",
+              "path": "archive/scratch_legacy_20261008/inspect_tab_children.py",
+              "isDir": false,
+              "sizeBytes": 1035,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "inventory_drive.py",
+              "path": "archive/scratch_legacy_20261008/inventory_drive.py",
+              "isDir": false,
+              "sizeBytes": 728,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "kinesiology_checks",
+              "path": "archive/scratch_legacy_20261008/kinesiology_checks",
+              "isDir": true,
+              "sizeBytes": 0,
+              "itemCount": 19,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "kinesiology_sources",
+              "path": "archive/scratch_legacy_20261008/kinesiology_sources",
+              "isDir": true,
+              "sizeBytes": 0,
+              "itemCount": 3,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "launch_login_window.js",
+              "path": "archive/scratch_legacy_20261008/launch_login_window.js",
+              "isDir": false,
+              "sizeBytes": 2820,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "list_notebooks.py",
+              "path": "archive/scratch_legacy_20261008/list_notebooks.py",
+              "isDir": false,
+              "sizeBytes": 373,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "list_tabs.js",
+              "path": "archive/scratch_legacy_20261008/list_tabs.js",
+              "isDir": false,
+              "sizeBytes": 438,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "list_yesterday_artifacts.py",
+              "path": "archive/scratch_legacy_20261008/list_yesterday_artifacts.py",
+              "isDir": false,
+              "sizeBytes": 874,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "login_after.png",
+              "path": "archive/scratch_legacy_20261008/login_after.png",
+              "isDir": false,
+              "sizeBytes": 106937,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "login_before.png",
+              "path": "archive/scratch_legacy_20261008/login_before.png",
+              "isDir": false,
+              "sizeBytes": 100721,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "login_filled.png",
+              "path": "archive/scratch_legacy_20261008/login_filled.png",
+              "isDir": false,
+              "sizeBytes": 102665,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "make_eyecatch.py",
+              "path": "archive/scratch_legacy_20261008/make_eyecatch.py",
+              "isDir": false,
+              "sizeBytes": 2357,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "make_shortcut.ps1",
+              "path": "archive/scratch_legacy_20261008/make_shortcut.ps1",
+              "isDir": false,
+              "sizeBytes": 324,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "match_quizzes.py",
+              "path": "archive/scratch_legacy_20261008/match_quizzes.py",
+              "isDir": false,
+              "sizeBytes": 1432,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "minitool_002_gif_url.txt",
+              "path": "archive/scratch_legacy_20261008/minitool_002_gif_url.txt",
+              "isDir": false,
+              "sizeBytes": 35,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "minitool_002_thumb_url.txt",
+              "path": "archive/scratch_legacy_20261008/minitool_002_thumb_url.txt",
+              "isDir": false,
+              "sizeBytes": 35,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "moodle_resources.json",
+              "path": "archive/scratch_legacy_20261008/moodle_resources.json",
+              "isDir": false,
+              "sizeBytes": 119231,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "new_eval_quiz.md",
+              "path": "archive/scratch_legacy_20261008/new_eval_quiz.md",
+              "isDir": false,
+              "sizeBytes": 13359,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "notebook_resp.html",
+              "path": "archive/scratch_legacy_20261008/notebook_resp.html",
+              "isDir": false,
+              "sizeBytes": 482458,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "note_image_section.png",
+              "path": "archive/scratch_legacy_20261008/note_image_section.png",
+              "isDir": false,
+              "sizeBytes": 58657,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "note_scroll1.png",
+              "path": "archive/scratch_legacy_20261008/note_scroll1.png",
+              "isDir": false,
+              "sizeBytes": 60752,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "note_scroll2.png",
+              "path": "archive/scratch_legacy_20261008/note_scroll2.png",
+              "isDir": false,
+              "sizeBytes": 85236,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "note_top.png",
+              "path": "archive/scratch_legacy_20261008/note_top.png",
+              "isDir": false,
+              "sizeBytes": 153946,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "paste_body_images.js",
+              "path": "archive/scratch_legacy_20261008/paste_body_images.js",
+              "isDir": false,
+              "sizeBytes": 2890,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "perf_01_blank.png",
+              "path": "archive/scratch_legacy_20261008/perf_01_blank.png",
+              "isDir": false,
+              "sizeBytes": 440950,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "perf_02_dropdown.png",
+              "path": "archive/scratch_legacy_20261008/perf_02_dropdown.png",
+              "isDir": false,
+              "sizeBytes": 436192,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "perf_03_streaming.png",
+              "path": "archive/scratch_legacy_20261008/perf_03_streaming.png",
+              "isDir": false,
+              "sizeBytes": 401682,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "perf_04_complete.png",
+              "path": "archive/scratch_legacy_20261008/perf_04_complete.png",
+              "isDir": false,
+              "sizeBytes": 185075,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "perf_check_150.png",
+              "path": "archive/scratch_legacy_20261008/perf_check_150.png",
+              "isDir": false,
+              "sizeBytes": 436192,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "perf_check_200.png",
+              "path": "archive/scratch_legacy_20261008/perf_check_200.png",
+              "isDir": false,
+              "sizeBytes": 401775,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "perf_check_250.png",
+              "path": "archive/scratch_legacy_20261008/perf_check_250.png",
+              "isDir": false,
+              "sizeBytes": 199293,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "perf_check_300.png",
+              "path": "archive/scratch_legacy_20261008/perf_check_300.png",
+              "isDir": false,
+              "sizeBytes": 186510,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "perf_check_400.png",
+              "path": "archive/scratch_legacy_20261008/perf_check_400.png",
+              "isDir": false,
+              "sizeBytes": 200601,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "perf_check_500.png",
+              "path": "archive/scratch_legacy_20261008/perf_check_500.png",
+              "isDir": false,
+              "sizeBytes": 406061,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "plus_menu.png",
+              "path": "archive/scratch_legacy_20261008/plus_menu.png",
+              "isDir": false,
+              "sizeBytes": 100223,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "plus_menu_open.png",
+              "path": "archive/scratch_legacy_20261008/plus_menu_open.png",
+              "isDir": false,
+              "sizeBytes": 75672,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "post_to_x.js",
+              "path": "archive/scratch_legacy_20261008/post_to_x.js",
+              "isDir": false,
+              "sizeBytes": 3646,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "print_table.py",
+              "path": "archive/scratch_legacy_20261008/print_table.py",
+              "isDir": false,
+              "sizeBytes": 1173,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "process_plaud_lecture.py",
+              "path": "archive/scratch_legacy_20261008/process_plaud_lecture.py",
+              "isDir": false,
+              "sizeBytes": 1830,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "proof_middle.png",
+              "path": "archive/scratch_legacy_20261008/proof_middle.png",
+              "isDir": false,
+              "sizeBytes": 160090,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "proof_top.png",
+              "path": "archive/scratch_legacy_20261008/proof_top.png",
+              "isDir": false,
+              "sizeBytes": 44758,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "quiz_upper_limb.md",
+              "path": "archive/scratch_legacy_20261008/quiz_upper_limb.md",
+              "isDir": false,
+              "sizeBytes": 9978,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "q_1.md",
+              "path": "archive/scratch_legacy_20261008/q_1.md",
+              "isDir": false,
+              "sizeBytes": 9194,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "q_10.md",
+              "path": "archive/scratch_legacy_20261008/q_10.md",
+              "isDir": false,
+              "sizeBytes": 8191,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "q_11.md",
+              "path": "archive/scratch_legacy_20261008/q_11.md",
+              "isDir": false,
+              "sizeBytes": 9076,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "q_12.md",
+              "path": "archive/scratch_legacy_20261008/q_12.md",
+              "isDir": false,
+              "sizeBytes": 9057,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "q_13.md",
+              "path": "archive/scratch_legacy_20261008/q_13.md",
+              "isDir": false,
+              "sizeBytes": 10383,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "q_14.md",
+              "path": "archive/scratch_legacy_20261008/q_14.md",
+              "isDir": false,
+              "sizeBytes": 9978,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "q_2.md",
+              "path": "archive/scratch_legacy_20261008/q_2.md",
+              "isDir": false,
+              "sizeBytes": 8989,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "q_3.md",
+              "path": "archive/scratch_legacy_20261008/q_3.md",
+              "isDir": false,
+              "sizeBytes": 9550,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "q_4.md",
+              "path": "archive/scratch_legacy_20261008/q_4.md",
+              "isDir": false,
+              "sizeBytes": 7776,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "q_5.md",
+              "path": "archive/scratch_legacy_20261008/q_5.md",
+              "isDir": false,
+              "sizeBytes": 7221,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "q_6.md",
+              "path": "archive/scratch_legacy_20261008/q_6.md",
+              "isDir": false,
+              "sizeBytes": 8517,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "q_7.md",
+              "path": "archive/scratch_legacy_20261008/q_7.md",
+              "isDir": false,
+              "sizeBytes": 9963,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "q_8.md",
+              "path": "archive/scratch_legacy_20261008/q_8.md",
+              "isDir": false,
+              "sizeBytes": 8607,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "q_9.md",
+              "path": "archive/scratch_legacy_20261008/q_9.md",
+              "isDir": false,
+              "sizeBytes": 8708,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "read_syllabus_pdf.py",
+              "path": "archive/scratch_legacy_20261008/read_syllabus_pdf.py",
+              "isDir": false,
+              "sizeBytes": 838,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "real_current_note.png",
+              "path": "archive/scratch_legacy_20261008/real_current_note.png",
+              "isDir": false,
+              "sizeBytes": 153824,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "real_ss_check.png",
+              "path": "archive/scratch_legacy_20261008/real_ss_check.png",
+              "isDir": false,
+              "sizeBytes": 77249,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "rebuild_notion_page.py",
+              "path": "archive/scratch_legacy_20261008/rebuild_notion_page.py",
+              "isDir": false,
+              "sizeBytes": 19783,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "rebuild_notion_real_002.py",
+              "path": "archive/scratch_legacy_20261008/rebuild_notion_real_002.py",
+              "isDir": false,
+              "sizeBytes": 17844,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "record_20s_demo.js",
+              "path": "archive/scratch_legacy_20261008/record_20s_demo.js",
+              "isDir": false,
+              "sizeBytes": 3113,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "record_20s_demo_v2.js",
+              "path": "archive/scratch_legacy_20261008/record_20s_demo_v2.js",
+              "isDir": false,
+              "sizeBytes": 2814,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "record_approach2_demo.js",
+              "path": "archive/scratch_legacy_20261008/record_approach2_demo.js",
+              "isDir": false,
+              "sizeBytes": 12924,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "record_calendar_demo.js",
+              "path": "archive/scratch_legacy_20261008/record_calendar_demo.js",
+              "isDir": false,
+              "sizeBytes": 4270,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "record_calendar_real_clean.js",
+              "path": "archive/scratch_legacy_20261008/record_calendar_real_clean.js",
+              "isDir": false,
+              "sizeBytes": 18308,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "record_calendar_real_spreadsheet.js",
+              "path": "archive/scratch_legacy_20261008/record_calendar_real_spreadsheet.js",
+              "isDir": false,
+              "sizeBytes": 17969,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "record_dynamic_extraction.js",
+              "path": "archive/scratch_legacy_20261008/record_dynamic_extraction.js",
+              "isDir": false,
+              "sizeBytes": 5777,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "record_fixed_step4.js",
+              "path": "archive/scratch_legacy_20261008/record_fixed_step4.js",
+              "isDir": false,
+              "sizeBytes": 12737,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "record_foolproof_privacy.js",
+              "path": "archive/scratch_legacy_20261008/record_foolproof_privacy.js",
+              "isDir": false,
+              "sizeBytes": 13676,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "record_graph_pipeline.js",
+              "path": "archive/scratch_legacy_20261008/record_graph_pipeline.js",
+              "isDir": false,
+              "sizeBytes": 13568,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "record_perfect_demo.js",
+              "path": "archive/scratch_legacy_20261008/record_perfect_demo.js",
+              "isDir": false,
+              "sizeBytes": 13100,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "record_precision_demo.js",
+              "path": "archive/scratch_legacy_20261008/record_precision_demo.js",
+              "isDir": false,
+              "sizeBytes": 11488,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "record_spreadsheet.js",
+              "path": "archive/scratch_legacy_20261008/record_spreadsheet.js",
+              "isDir": false,
+              "sizeBytes": 3504,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "reinsert_eyecatch.js",
+              "path": "archive/scratch_legacy_20261008/reinsert_eyecatch.js",
+              "isDir": false,
+              "sizeBytes": 2633,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "render_approach2_god.py",
+              "path": "archive/scratch_legacy_20261008/render_approach2_god.py",
+              "isDir": false,
+              "sizeBytes": 3701,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "render_banner_video.py",
+              "path": "archive/scratch_legacy_20261008/render_banner_video.py",
+              "isDir": false,
+              "sizeBytes": 3111,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "render_dynamic_complete.py",
+              "path": "archive/scratch_legacy_20261008/render_dynamic_complete.py",
+              "isDir": false,
+              "sizeBytes": 4438,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "render_privacy_blur.py",
+              "path": "archive/scratch_legacy_20261008/render_privacy_blur.py",
+              "isDir": false,
+              "sizeBytes": 4208,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "reorganization_log.json",
+              "path": "archive/scratch_legacy_20261008/reorganization_log.json",
+              "isDir": false,
+              "sizeBytes": 159776,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "reorganize_quizzes.py",
+              "path": "archive/scratch_legacy_20261008/reorganize_quizzes.py",
+              "isDir": false,
+              "sizeBytes": 3816,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "resolved_files.json",
+              "path": "archive/scratch_legacy_20261008/resolved_files.json",
+              "isDir": false,
+              "sizeBytes": 156159,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "resolve_files.py",
+              "path": "archive/scratch_legacy_20261008/resolve_files.py",
+              "isDir": false,
+              "sizeBytes": 2924,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "run_remaining_generation.py",
+              "path": "archive/scratch_legacy_20261008/run_remaining_generation.py",
+              "isDir": false,
+              "sizeBytes": 4099,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "sample_thumbnail.jpeg",
+              "path": "archive/scratch_legacy_20261008/sample_thumbnail.jpeg",
+              "isDir": false,
+              "sizeBytes": 522535,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "sanitize_sheet.py",
+              "path": "archive/scratch_legacy_20261008/sanitize_sheet.py",
+              "isDir": false,
+              "sizeBytes": 2954,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "scan_pdfs.py",
+              "path": "archive/scratch_legacy_20261008/scan_pdfs.py",
+              "isDir": false,
+              "sizeBytes": 1429,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "scene_step1.png",
+              "path": "archive/scratch_legacy_20261008/scene_step1.png",
+              "isDir": false,
+              "sizeBytes": 548794,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "scene_step2.png",
+              "path": "archive/scratch_legacy_20261008/scene_step2.png",
+              "isDir": false,
+              "sizeBytes": 564454,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "scene_step3.png",
+              "path": "archive/scratch_legacy_20261008/scene_step3.png",
+              "isDir": false,
+              "sizeBytes": 533697,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "scene_step4.png",
+              "path": "archive/scratch_legacy_20261008/scene_step4.png",
+              "isDir": false,
+              "sizeBytes": 566965,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "school_life.pdf",
+              "path": "archive/scratch_legacy_20261008/school_life.pdf",
+              "isDir": false,
+              "sizeBytes": 334157,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "setup_kinesiology_notebook.py",
+              "path": "archive/scratch_legacy_20261008/setup_kinesiology_notebook.py",
+              "isDir": false,
+              "sizeBytes": 4430,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "sheet_sample.html",
+              "path": "archive/scratch_legacy_20261008/sheet_sample.html",
+              "isDir": false,
+              "sizeBytes": 100340,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "step4_check_22s.png",
+              "path": "archive/scratch_legacy_20261008/step4_check_22s.png",
+              "isDir": false,
+              "sizeBytes": 491896,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "step4_check_24s.png",
+              "path": "archive/scratch_legacy_20261008/step4_check_24s.png",
+              "isDir": false,
+              "sizeBytes": 493868,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "step4_check_26s.png",
+              "path": "archive/scratch_legacy_20261008/step4_check_26s.png",
+              "isDir": false,
+              "sizeBytes": 636471,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "step4_check_28s.png",
+              "path": "archive/scratch_legacy_20261008/step4_check_28s.png",
+              "isDir": false,
+              "sizeBytes": 639771,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "step4_check_30s.png",
+              "path": "archive/scratch_legacy_20261008/step4_check_30s.png",
+              "isDir": false,
+              "sizeBytes": 640150,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "step4_final_verified.png",
+              "path": "archive/scratch_legacy_20261008/step4_final_verified.png",
+              "isDir": false,
+              "sizeBytes": 548020,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "step4_fixed_24s.png",
+              "path": "archive/scratch_legacy_20261008/step4_fixed_24s.png",
+              "isDir": false,
+              "sizeBytes": 429254,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "step4_fixed_26s.png",
+              "path": "archive/scratch_legacy_20261008/step4_fixed_26s.png",
+              "isDir": false,
+              "sizeBytes": 439065,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "step4_fixed_28s.png",
+              "path": "archive/scratch_legacy_20261008/step4_fixed_28s.png",
+              "isDir": false,
+              "sizeBytes": 458427,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "step4_fixed_30s.png",
+              "path": "archive/scratch_legacy_20261008/step4_fixed_30s.png",
+              "isDir": false,
+              "sizeBytes": 457646,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "summarize_ocr_content.py",
+              "path": "archive/scratch_legacy_20261008/summarize_ocr_content.py",
+              "isDir": false,
+              "sizeBytes": 1556,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "supp_quiz.md",
+              "path": "archive/scratch_legacy_20261008/supp_quiz.md",
+              "isDir": false,
+              "sizeBytes": 9400,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "sync_moodle_to_drive.py",
+              "path": "archive/scratch_legacy_20261008/sync_moodle_to_drive.py",
+              "isDir": false,
+              "sizeBytes": 5280,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "sync_to_notion.py",
+              "path": "archive/scratch_legacy_20261008/sync_to_notion.py",
+              "isDir": false,
+              "sizeBytes": 7409,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "table_sec_00.png",
+              "path": "archive/scratch_legacy_20261008/table_sec_00.png",
+              "isDir": false,
+              "sizeBytes": 1356,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "table_sec_01.png",
+              "path": "archive/scratch_legacy_20261008/table_sec_01.png",
+              "isDir": false,
+              "sizeBytes": 62186,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "table_sec_02.png",
+              "path": "archive/scratch_legacy_20261008/table_sec_02.png",
+              "isDir": false,
+              "sizeBytes": 76634,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "table_sec_03.png",
+              "path": "archive/scratch_legacy_20261008/table_sec_03.png",
+              "isDir": false,
+              "sizeBytes": 76632,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "table_sec_04.png",
+              "path": "archive/scratch_legacy_20261008/table_sec_04.png",
+              "isDir": false,
+              "sizeBytes": 76741,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "table_sec_05.png",
+              "path": "archive/scratch_legacy_20261008/table_sec_05.png",
+              "isDir": false,
+              "sizeBytes": 76736,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "table_sec_06.png",
+              "path": "archive/scratch_legacy_20261008/table_sec_06.png",
+              "isDir": false,
+              "sizeBytes": 77340,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "table_sec_07.png",
+              "path": "archive/scratch_legacy_20261008/table_sec_07.png",
+              "isDir": false,
+              "sizeBytes": 121505,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "table_sec_08.png",
+              "path": "archive/scratch_legacy_20261008/table_sec_08.png",
+              "isDir": false,
+              "sizeBytes": 124043,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "table_sec_09.png",
+              "path": "archive/scratch_legacy_20261008/table_sec_09.png",
+              "isDir": false,
+              "sizeBytes": 125096,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "table_sec_10.png",
+              "path": "archive/scratch_legacy_20261008/table_sec_10.png",
+              "isDir": false,
+              "sizeBytes": 30476,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "table_sec_11.png",
+              "path": "archive/scratch_legacy_20261008/table_sec_11.png",
+              "isDir": false,
+              "sizeBytes": 25305,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "table_sec_12.png",
+              "path": "archive/scratch_legacy_20261008/table_sec_12.png",
+              "isDir": false,
+              "sizeBytes": 25082,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "table_sec_13.png",
+              "path": "archive/scratch_legacy_20261008/table_sec_13.png",
+              "isDir": false,
+              "sizeBytes": 25441,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "table_sec_14.png",
+              "path": "archive/scratch_legacy_20261008/table_sec_14.png",
+              "isDir": false,
+              "sizeBytes": 25298,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "table_sec_15.png",
+              "path": "archive/scratch_legacy_20261008/table_sec_15.png",
+              "isDir": false,
+              "sizeBytes": 25414,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "table_sec_16.png",
+              "path": "archive/scratch_legacy_20261008/table_sec_16.png",
+              "isDir": false,
+              "sizeBytes": 25152,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "table_sec_17.png",
+              "path": "archive/scratch_legacy_20261008/table_sec_17.png",
+              "isDir": false,
+              "sizeBytes": 25062,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "table_sec_18.png",
+              "path": "archive/scratch_legacy_20261008/table_sec_18.png",
+              "isDir": false,
+              "sizeBytes": 34083,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "table_sec_19.png",
+              "path": "archive/scratch_legacy_20261008/table_sec_19.png",
+              "isDir": false,
+              "sizeBytes": 64703,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "table_sec_20.png",
+              "path": "archive/scratch_legacy_20261008/table_sec_20.png",
+              "isDir": false,
+              "sizeBytes": 81603,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "table_sec_21.png",
+              "path": "archive/scratch_legacy_20261008/table_sec_21.png",
+              "isDir": false,
+              "sizeBytes": 80614,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "table_sec_22.png",
+              "path": "archive/scratch_legacy_20261008/table_sec_22.png",
+              "isDir": false,
+              "sizeBytes": 80981,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "table_sec_23.png",
+              "path": "archive/scratch_legacy_20261008/table_sec_23.png",
+              "isDir": false,
+              "sizeBytes": 80631,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "table_sec_24.png",
+              "path": "archive/scratch_legacy_20261008/table_sec_24.png",
+              "isDir": false,
+              "sizeBytes": 80752,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "table_sec_25.png",
+              "path": "archive/scratch_legacy_20261008/table_sec_25.png",
+              "isDir": false,
+              "sizeBytes": 80703,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "table_sec_26.png",
+              "path": "archive/scratch_legacy_20261008/table_sec_26.png",
+              "isDir": false,
+              "sizeBytes": 80774,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "table_sec_27.png",
+              "path": "archive/scratch_legacy_20261008/table_sec_27.png",
+              "isDir": false,
+              "sizeBytes": 78493,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "table_sec_28.png",
+              "path": "archive/scratch_legacy_20261008/table_sec_28.png",
+              "isDir": false,
+              "sizeBytes": 78298,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "table_sec_29.png",
+              "path": "archive/scratch_legacy_20261008/table_sec_29.png",
+              "isDir": false,
+              "sizeBytes": 78071,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "table_sec_30.png",
+              "path": "archive/scratch_legacy_20261008/table_sec_30.png",
+              "isDir": false,
+              "sizeBytes": 78048,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "table_sec_31.png",
+              "path": "archive/scratch_legacy_20261008/table_sec_31.png",
+              "isDir": false,
+              "sizeBytes": 79885,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "table_sec_32.png",
+              "path": "archive/scratch_legacy_20261008/table_sec_32.png",
+              "isDir": false,
+              "sizeBytes": 78341,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "table_sec_33.png",
+              "path": "archive/scratch_legacy_20261008/table_sec_33.png",
+              "isDir": false,
+              "sizeBytes": 77831,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "test-video",
+              "path": "archive/scratch_legacy_20261008/test-video",
+              "isDir": true,
+              "sizeBytes": 0,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "test_editor.js",
+              "path": "archive/scratch_legacy_20261008/test_editor.js",
+              "isDir": false,
+              "sizeBytes": 995,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "test_edit_slide.py",
+              "path": "archive/scratch_legacy_20261008/test_edit_slide.py",
+              "isDir": false,
+              "sizeBytes": 1387,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "test_failures",
+              "path": "archive/scratch_legacy_20261008/test_failures",
+              "isDir": true,
+              "sizeBytes": 0,
+              "itemCount": 4,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "test_focus.js",
+              "path": "archive/scratch_legacy_20261008/test_focus.js",
+              "isDir": false,
+              "sizeBytes": 1516,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "update_notion_real_gif.py",
+              "path": "archive/scratch_legacy_20261008/update_notion_real_gif.py",
+              "isDir": false,
+              "sizeBytes": 2195,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "upload_eyecatch.js",
+              "path": "archive/scratch_legacy_20261008/upload_eyecatch.js",
+              "isDir": false,
+              "sizeBytes": 2354,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "upload_gif.py",
+              "path": "archive/scratch_legacy_20261008/upload_gif.py",
+              "isDir": false,
+              "sizeBytes": 1052,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "upload_inline_images.js",
+              "path": "archive/scratch_legacy_20261008/upload_inline_images.js",
+              "isDir": false,
+              "sizeBytes": 4664,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "upload_minitool_002_gif.py",
+              "path": "archive/scratch_legacy_20261008/upload_minitool_002_gif.py",
+              "isDir": false,
+              "sizeBytes": 1054,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "upload_minitool_002_thumb.py",
+              "path": "archive/scratch_legacy_20261008/upload_minitool_002_thumb.py",
+              "isDir": false,
+              "sizeBytes": 1516,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "upload_thumbnail.py",
+              "path": "archive/scratch_legacy_20261008/upload_thumbnail.py",
+              "isDir": false,
+              "sizeBytes": 1078,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "verified_privacy_blur_frame.png",
+              "path": "archive/scratch_legacy_20261008/verified_privacy_blur_frame.png",
+              "isDir": false,
+              "sizeBytes": 479087,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "verify_00_header.png",
+              "path": "archive/scratch_legacy_20261008/verify_00_header.png",
+              "isDir": false,
+              "sizeBytes": 153977,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "verify_01_dashboard.png",
+              "path": "archive/scratch_legacy_20261008/verify_01_dashboard.png",
+              "isDir": false,
+              "sizeBytes": 127975,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "verify_02_results.png",
+              "path": "archive/scratch_legacy_20261008/verify_02_results.png",
+              "isDir": false,
+              "sizeBytes": 132513,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "verify_all_images.js",
+              "path": "archive/scratch_legacy_20261008/verify_all_images.js",
+              "isDir": false,
+              "sizeBytes": 1495,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "verify_quizzes.py",
+              "path": "archive/scratch_legacy_20261008/verify_quizzes.py",
+              "isDir": false,
+              "sizeBytes": 1874,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "very_top.png",
+              "path": "archive/scratch_legacy_20261008/very_top.png",
+              "isDir": false,
+              "sizeBytes": 153946,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "【前期】問題バンク.csv",
+              "path": "archive/scratch_legacy_20261008/【前期】問題バンク.csv",
+              "isDir": false,
+              "sizeBytes": 183,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "【後期】問題バンク.csv",
+              "path": "archive/scratch_legacy_20261008/【後期】問題バンク.csv",
+              "isDir": false,
+              "sizeBytes": 80353,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "【通年】問題バンク.csv",
+              "path": "archive/scratch_legacy_20261008/【通年】問題バンク.csv",
+              "isDir": false,
+              "sizeBytes": 9776,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "logAnalysis": [
+    {
+      "toolId": "minitool_001_unreplied_emails",
+      "category": "GAS MiniTool",
+      "path": "gas_project/minitool_001_unreplied_emails/logs/trace.md",
+      "sizeKB": 1,
+      "lines": 20,
+      "updatedAt": "2026-10-08T05:56:07.733Z",
+      "isComplete": true,
+      "status": "optimal",
+      "note": "軽量（3段階形式で圧縮保存済み）"
+    },
+    {
+      "toolId": "minitool_002_sheets_to_calendar",
+      "category": "GAS MiniTool",
+      "path": "gas_project/minitool_002_sheets_to_calendar/logs/trace.md",
+      "sizeKB": 1.3,
+      "lines": 20,
+      "updatedAt": "2026-10-08T05:56:20.906Z",
+      "isComplete": true,
+      "status": "optimal",
+      "note": "軽量（3段階形式で圧縮保存済み）"
+    },
+    {
+      "toolId": "workspace_health_monitor",
+      "category": "Projects",
+      "path": "projects/workspace_health_monitor/logs/trace.md",
+      "sizeKB": 1.9,
+      "lines": 22,
+      "updatedAt": "2026-10-08T06:06:03.542Z",
+      "isComplete": true,
+      "status": "optimal",
+      "note": "軽量（3段階形式で圧縮保存済み）"
+    }
+  ],
+  "patrol": {
+    "schedule": "Daily (GitHub Actions 0:00 UTC) & On-Demand (.bat)",
+    "lastCheck": "2026-10-08T06:19:51.738Z",
+    "status": "ACTIVE",
+    "monitoredFoldersCount": 6
+  },
+  "recommendations": []
+}
