@@ -1,24 +1,24 @@
 {
-  "updatedAt": "2026-10-08T06:08:47.839Z",
+  "updatedAt": "2026-10-11T22:41:59.307Z",
   "totalToolsCount": 3,
   "knowledgeBase": [
     {
       "toolId": "minitool_001_unreplied_emails",
       "harnessVersion": "harness_v1.0",
       "lessonsRaw": "1. 失敗: 自動トリガーを設定するツールでは、ユーザーが手動で解除する手段（uninstall関数）を忘れがちになる。\n2. 解決: ScriptApp.deleteTrigger を含む uninstallTool() を標準実装とし、ハーネスでも必須検証項目とした。\n3. 教訓: すべてのGASツールは「使い始める機能」と同等に「安全にやめる機能（uninstall）」を第一級市民として扱わなければならない。",
-      "timestamp": "2026-10-08T06:08:47.838Z"
+      "timestamp": "2026-10-11T22:41:59.303Z"
     },
     {
       "toolId": "minitool_002_sheets_to_calendar",
       "harnessVersion": "harness_v1.4",
       "lessonsRaw": "1. 失敗: AIが手軽さを優先して自作HTMLモックでデモを撮影し、タブが上にあるあり得ない画面を合格と自己判定した。\n2. 解決: 自作モックを永久禁止とし、Google公式DOM幾何判定（下部タブ等）をパスする本物実機UIでのみ撮影を許可した。\n3. 教訓: 成果物の合否判定はAIの感想や自己評価に任せず、外部の客観的検証スクリプト（ハーネス）による機械判定でのみ確定させなければならない。",
-      "timestamp": "2026-10-08T06:08:47.839Z"
+      "timestamp": "2026-10-11T22:41:59.304Z"
     },
     {
       "toolId": "workspace_health_monitor",
       "harnessVersion": "harness_v1.0",
       "lessonsRaw": "- **「監視ツール自身が自己欺瞞を持たないこと」**: 監視・ヘルスチェックを行うシステムは、自身のパースエラーや思い込みによる誤診を排するため、データ構造のテストハーネスを備えて客観判定されなければならない。\n- **「ローカル即時可視化とGitHub Pages配備の両立」**: 成果物は単一のスタンドアロン静的HTML（Zero External JS Dependencies）としてビルドされるべきであり、PCローカルでもWeb公開環境でも同等に美しく閲覧できるように設計する必要がある。",
-      "timestamp": "2026-10-08T06:08:47.839Z"
+      "timestamp": "2026-10-11T22:41:59.307Z"
     }
   ]
 }

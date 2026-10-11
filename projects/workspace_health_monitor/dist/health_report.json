@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-10-11T14:08:44.442Z",
+  "timestamp": "2026-10-11T22:41:59.449Z",
   "score": 100,
   "grade": "S",
   "summary": "極めて健全です。境界規律・カプセル化・ハーネス蓄積ともに完璧に保たれています。",
@@ -27,8 +27,8 @@
     "metaHarness": {
       "score": 15,
       "max": 15,
-      "traceCount": 4,
-      "lessonsCount": 4,
+      "traceCount": 3,
+      "lessonsCount": 3,
       "status": "PASS"
     },
     "storageCleanliness": {
@@ -451,7 +451,7 @@
       "name": "projects",
       "path": "projects",
       "isDir": true,
-      "sizeBytes": 841887,
+      "sizeBytes": 847001,
       "itemCount": 7,
       "status": "healthy",
       "note": "",
@@ -845,7 +845,7 @@
           "name": "workspace_health_monitor",
           "path": "projects/workspace_health_monitor",
           "isDir": true,
-          "sizeBytes": 188777,
+          "sizeBytes": 193891,
           "itemCount": 10,
           "status": "healthy",
           "note": "",
@@ -874,7 +874,7 @@
               "name": "generate_dashboard.js",
               "path": "projects/workspace_health_monitor/generate_dashboard.js",
               "isDir": false,
-              "sizeBytes": 131643,
+              "sizeBytes": 135886,
               "itemCount": 0,
               "status": "healthy",
               "note": "",
@@ -904,7 +904,7 @@
               "name": "monitor.js",
               "path": "projects/workspace_health_monitor/monitor.js",
               "isDir": false,
-              "sizeBytes": 45272,
+              "sizeBytes": 46143,
               "itemCount": 0,
               "status": "healthy",
               "note": "",
@@ -1049,8 +1049,8 @@
       "name": "harness",
       "path": "harness",
       "isDir": true,
-      "sizeBytes": 139996,
-      "itemCount": 20,
+      "sizeBytes": 145497,
+      "itemCount": 21,
       "status": "healthy",
       "note": "16基準評価＆メタ集約エンジン",
       "children": [
@@ -1230,7 +1230,7 @@
           "name": "meta_knowledge.json",
           "path": "harness/meta_knowledge.json",
           "isDir": false,
-          "sizeBytes": 3037,
+          "sizeBytes": 2225,
           "itemCount": 0,
           "status": "healthy",
           "note": "",
@@ -1328,6 +1328,16 @@
           "children": []
         },
         {
+          "name": "test_meta_harness.js",
+          "path": "harness/test_meta_harness.js",
+          "isDir": false,
+          "sizeBytes": 6313,
+          "itemCount": 0,
+          "status": "healthy",
+          "note": "",
+          "children": []
+        },
+        {
           "name": "ux_evaluator_stage6.js",
           "path": "harness/ux_evaluator_stage6.js",
           "isDir": false,
@@ -1343,7 +1353,7 @@
       "name": "docs",
       "path": "docs",
       "isDir": true,
-      "sizeBytes": 399253,
+      "sizeBytes": 405657,
       "itemCount": 6,
       "status": "healthy",
       "note": "",
@@ -1423,7 +1433,7 @@
           "name": "index.html",
           "path": "docs/index.html",
           "isDir": false,
-          "sizeBytes": 172488,
+          "sizeBytes": 178892,
           "itemCount": 0,
           "status": "healthy",
           "note": "",
@@ -5855,7 +5865,7 @@
   ],
   "patrol": {
     "schedule": "Daily (GitHub Actions 0:00 UTC) & On-Demand (.bat)",
-    "lastCheck": "2026-10-11T14:08:44.442Z",
+    "lastCheck": "2026-10-11T22:41:59.449Z",
     "status": "ACTIVE",
     "monitoredFoldersCount": 6
   },
@@ -6605,8 +6615,36 @@
   "metaHarnessTopology": {
     "title": "🧠 メタハーネス自己進化＆動的生成アーキテクチャ",
     "status": "ACTIVE",
-    "lessonsCount": 4,
+    "lessonsCount": 3,
     "rubricsCount": 6,
+    "liveExecution": {
+      "collectorLastRun": "2026-10-11T22:41:59.308Z",
+      "collectedTools": [
+        "minitool_001_unreplied_emails",
+        "minitool_002_sheets_to_calendar",
+        "workspace_health_monitor"
+      ],
+      "testSuiteStatus": "PASS",
+      "passedChecks": "4 / 4 項目適合 (harness/test_meta_harness.js 完備)",
+      "synthesisCapability": "ACTIVE (次世代ハーネス動的合成可能)",
+      "injectedRulesSample": [
+        {
+          "rule": "uninstallTool_verification",
+          "from": "minitool_001_unreplied_emails",
+          "type": "AST構文・トリガー解除検査"
+        },
+        {
+          "rule": "anti_mock_optical_scan",
+          "from": "minitool_002_sheets_to_calendar",
+          "type": "Google公式実機DOM幾何光学判定"
+        },
+        {
+          "rule": "self_test_integrity_gate",
+          "from": "workspace_health_monitor",
+          "type": "自己欺瞞排除テスト完備検査"
+        }
+      ]
+    },
     "nodes": {
       "field": {
         "id": "field",
@@ -6681,19 +6719,19 @@
         "title": "🗄️ 構造化ナレッジDB (Knowledge Base)",
         "badge": "WISDOM DB",
         "file": "harness/meta_knowledge.json",
-        "desc": "蓄積された恒久知恵 (4 件)",
+        "desc": "蓄積された恒久知恵 (3 件)",
         "details": [
           {
             "label": "DBファイル実体",
-            "val": "harness/meta_knowledge.json (3037 bytes)"
+            "val": "harness/meta_knowledge.json (2225 bytes)"
           },
           {
             "label": "蓄積教訓数",
-            "val": "4 件の恒久教訓を構造化保存"
+            "val": "3 件の恒久教訓を構造化保存"
           },
           {
             "label": "最新教訓",
-            "val": "3. 教訓: コードテスト（Code Grader）だけでなく、定性的・文脈的なアウトプットを客観判定する「1〜5点の採点基準表（Rubric）」を必須配備し、失敗から自動更新しなければならない。"
+            "val": "- **「監視ツール自身が自己欺瞞を持たないこと」**: 監視・ヘルスチェックを行うシステムは、自身のパースエラーや思い込みによる誤診を排するため、データ構造の"
           }
         ]
       },

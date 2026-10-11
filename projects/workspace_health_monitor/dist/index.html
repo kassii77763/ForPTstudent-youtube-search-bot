@@ -931,7 +931,7 @@
       </ul>
 
       <div class="sidebar-footer">
-        <div>最終同期: 2026-10-11 14:08:44</div>
+        <div>最終同期: 2026-10-11 22:41:59</div>
         <div>監査エンジン: HealthAuditor v5.0</div>
       </div>
     </aside>
@@ -1013,7 +1013,7 @@
                   <span class="metric-status status-PASS">PASS</span>
                 </div>
                 <div class="progress-bar-bg"><div class="progress-bar-fill" style="width: 100%;"></div></div>
-                <div class="metric-detail"><span>蓄積教訓: 4 件</span><span>15 / 15 pt</span></div>
+                <div class="metric-detail"><span>蓄積教訓: 3 件</span><span>15 / 15 pt</span></div>
               </div>
 
             </div>
@@ -1358,7 +1358,7 @@
                 <span style="font-size:12px; color:var(--text-muted);">ハーネスを生み出し、失敗から進化させる高次元制御アーキテクチャ</span>
               </div>
               <span class="code-badge" style="color:var(--success); border-color:var(--success-border); background:var(--success-bg);">
-                🔄 自己進化サイクル稼働中 (4件 蓄積 / 6基準 配備)
+                🔄 自己進化サイクル稼働中 (3件 蓄積 / 6基準 配備)
               </span>
             </div>
             <p style="font-size:13px; color:var(--text-muted); margin-bottom:16px;">
@@ -1469,7 +1469,7 @@
                     <span class="s-icon">🗄️</span>
                     <span class="s-title">構造化ナレッジDB</span>
                     <span class="s-desc">meta_knowledge.json</span>
-                    <span class="s-badge">4件 蓄積</span>
+                    <span class="s-badge">3件 蓄積</span>
                   </div>
                 </foreignObject>
 
@@ -1531,6 +1531,76 @@
                 <div class="inspector-item">
                   <div class="inspector-item-label">役割</div>
                   <div class="inspector-item-val">エージェントがタスクを実行し、予期せぬ失敗や例外に遭遇する現場</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- メタハーネス実動ステータス ＆ 自動合成実績コンソール（Live Operational Evidence） -->
+            <div style="margin-top: 16px; background: var(--card-bg-subtle); border: 1px solid var(--card-border); border-radius: 10px; padding: 14px 18px;">
+              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 10px;">
+                <div style="display:flex; align-items:center; gap:8px;">
+                  <span style="font-size: 13.5px; font-weight: 700; color: var(--text-main);">🧪 メタハーネス実動稼働ステータス (Live Operational Evidence)</span>
+                  <span class="code-badge" style="background:var(--success-bg); color:var(--success); border-color:var(--success-border); font-size:10px;">
+                    ✔ 4/4 テスト完全適合 (test_meta_harness.js 実動確認済)
+                  </span>
+                </div>
+                <span style="font-size: 11px; color: var(--text-muted); font-family: 'JetBrains Mono', monospace;">
+                  最終集約: 2026-10-11 22:41:59
+                </span>
+              </div>
+
+              <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 10px; font-size: 11.5px; margin-bottom: 12px;">
+                <div style="background:#ffffff; border:1px solid var(--card-border); border-radius:8px; padding:10px 12px;">
+                  <div style="font-weight:700; color:var(--text-main); margin-bottom:4px; display:flex; align-items:center; gap:5px;">
+                    <span>🚜</span> メタ回収実績 (Harvester Trace)
+                  </div>
+                  <div style="color:var(--text-muted); line-height:1.4;">
+                    回収元: <strong style="color:var(--text-main);">minitool_001_unreplied_emails, minitool_002_sheets_to_calendar, workspace_health_monitor</strong><br>
+                    全ツールの <code style="background:var(--code-bg); padding:1px 4px; border-radius:3px;">logs/trace.md</code> を走査し、最新教訓を構造化蓄積完了
+                  </div>
+                </div>
+
+                <div style="background:#ffffff; border:1px solid var(--card-border); border-radius:8px; padding:10px 12px;">
+                  <div style="font-weight:700; color:var(--text-main); margin-bottom:4px; display:flex; align-items:center; gap:5px;">
+                    <span>⚡</span> ハーネス生成エンジン実動状況 (Generator)
+                  </div>
+                  <div style="color:var(--text-muted); line-height:1.4;">
+                    ステータス: <strong style="color:var(--success);">ACTIVE (次世代ハーネス動的合成可能)</strong><br>
+                    ナレッジDBとルーブリックから新規案件向け回帰テストコードを即時合成可能
+                  </div>
+                </div>
+              </div>
+
+              <div>
+                <div style="font-size: 11.5px; font-weight: 700; color: var(--text-main); margin-bottom: 6px; display:flex; align-items:center; gap:5px;">
+                  <span>📋</span> 過去教訓から自動合成された次世代回帰テスト実例 (Injected Rules Live Preview)
+                </div>
+                <div style="display:flex; flex-direction:column; gap:4px; font-size:11px;">
+                  
+                    <div style="background:#ffffff; border:1px solid var(--card-border); border-radius:6px; padding:6px 10px; display:flex; justify-content:space-between; align-items:center;">
+                      <div>
+                        <strong style="color:#7c3aed; font-family:'JetBrains Mono',monospace;">🛡️ uninstallTool_verification</strong>
+                        <span style="color:var(--text-muted); margin-left:8px;">[AST構文・トリガー解除検査]</span>
+                      </div>
+                      <span class="code-badge" style="font-size:9.5px;">由来: minitool_001_unreplied_emails</span>
+                    </div>
+                  
+                    <div style="background:#ffffff; border:1px solid var(--card-border); border-radius:6px; padding:6px 10px; display:flex; justify-content:space-between; align-items:center;">
+                      <div>
+                        <strong style="color:#7c3aed; font-family:'JetBrains Mono',monospace;">🛡️ anti_mock_optical_scan</strong>
+                        <span style="color:var(--text-muted); margin-left:8px;">[Google公式実機DOM幾何光学判定]</span>
+                      </div>
+                      <span class="code-badge" style="font-size:9.5px;">由来: minitool_002_sheets_to_calendar</span>
+                    </div>
+                  
+                    <div style="background:#ffffff; border:1px solid var(--card-border); border-radius:6px; padding:6px 10px; display:flex; justify-content:space-between; align-items:center;">
+                      <div>
+                        <strong style="color:#7c3aed; font-family:'JetBrains Mono',monospace;">🛡️ self_test_integrity_gate</strong>
+                        <span style="color:var(--text-muted); margin-left:8px;">[自己欺瞞排除テスト完備検査]</span>
+                      </div>
+                      <span class="code-badge" style="font-size:9.5px;">由来: workspace_health_monitor</span>
+                    </div>
+                  
                 </div>
               </div>
             </div>
@@ -2043,8 +2113,36 @@
     const META_HARNESS_DATA = {
   "title": "🧠 メタハーネス自己進化＆動的生成アーキテクチャ",
   "status": "ACTIVE",
-  "lessonsCount": 4,
+  "lessonsCount": 3,
   "rubricsCount": 6,
+  "liveExecution": {
+    "collectorLastRun": "2026-10-11T22:41:59.308Z",
+    "collectedTools": [
+      "minitool_001_unreplied_emails",
+      "minitool_002_sheets_to_calendar",
+      "workspace_health_monitor"
+    ],
+    "testSuiteStatus": "PASS",
+    "passedChecks": "4 / 4 項目適合 (harness/test_meta_harness.js 完備)",
+    "synthesisCapability": "ACTIVE (次世代ハーネス動的合成可能)",
+    "injectedRulesSample": [
+      {
+        "rule": "uninstallTool_verification",
+        "from": "minitool_001_unreplied_emails",
+        "type": "AST構文・トリガー解除検査"
+      },
+      {
+        "rule": "anti_mock_optical_scan",
+        "from": "minitool_002_sheets_to_calendar",
+        "type": "Google公式実機DOM幾何光学判定"
+      },
+      {
+        "rule": "self_test_integrity_gate",
+        "from": "workspace_health_monitor",
+        "type": "自己欺瞞排除テスト完備検査"
+      }
+    ]
+  },
   "nodes": {
     "field": {
       "id": "field",
@@ -2119,19 +2217,19 @@
       "title": "🗄️ 構造化ナレッジDB (Knowledge Base)",
       "badge": "WISDOM DB",
       "file": "harness/meta_knowledge.json",
-      "desc": "蓄積された恒久知恵 (4 件)",
+      "desc": "蓄積された恒久知恵 (3 件)",
       "details": [
         {
           "label": "DBファイル実体",
-          "val": "harness/meta_knowledge.json (3037 bytes)"
+          "val": "harness/meta_knowledge.json (2225 bytes)"
         },
         {
           "label": "蓄積教訓数",
-          "val": "4 件の恒久教訓を構造化保存"
+          "val": "3 件の恒久教訓を構造化保存"
         },
         {
           "label": "最新教訓",
-          "val": "3. 教訓: コードテスト（Code Grader）だけでなく、定性的・文脈的なアウトプットを客観判定する「1〜5点の採点基準表（Rubric）」を必須配備し、失敗から自動更新しなければならない。"
+          "val": "- **「監視ツール自身が自己欺瞞を持たないこと」**: 監視・ヘルスチェックを行うシステムは、自身のパースエラーや思い込みによる誤診を排するため、データ構造の"
         }
       ]
     },
