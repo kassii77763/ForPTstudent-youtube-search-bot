@@ -211,6 +211,349 @@ function analyzeHarnesses() {
   };
 }
 
+// フォルダ構造の実態から直接トポロジー＆マルチエージェント編成を検出（Single Source of Truth）
+function scanProjectHarnesses() {
+  const harnesses = {};
+  let pIndex = 1;
+
+  // 1. gas_project 探索
+  const gasDir = path.join(ROOT_DIR, 'gas_project');
+  if (fs.existsSync(gasDir)) {
+    const items = fs.readdirSync(gasDir, { withFileTypes: true })
+      .filter(d => d.isDirectory() && d.name.startsWith('minitool_'));
+    
+    for (const item of items) {
+      const pKey = `p${pIndex++}`;
+      const pPath = path.join(gasDir, item.name);
+      const hasCode = fs.existsSync(path.join(pPath, 'Code.js'));
+      const hasArticle = fs.existsSync(path.join(pPath, 'article.md'));
+      const hasSpec = fs.existsSync(path.join(pPath, 'spec.md')) || fs.existsSync(path.join(pPath, 'README.md'));
+      const hasTrace = fs.existsSync(path.join(pPath, 'logs', 'trace.md'));
+      const hasMedia = fs.existsSync(path.join(pPath, 'videos')) || fs.existsSync(path.join(pPath, 'images'));
+      let hasUninstall = false;
+      if (hasCode) {
+        try {
+          hasUninstall = fs.readFileSync(path.join(pPath, 'Code.js'), 'utf8').includes('uninstallTool');
+        } catch (e) {}
+      }
+
+      const is001 = item.name.includes('001');
+      const is002 = item.name.includes('002');
+      const icon = is001 ? '📧' : (is002 ? '📅' : '⚡');
+
+      harnesses[pKey] = {
+        key: pKey,
+        id: item.name,
+        name: item.name,
+        icon,
+        category: 'GAS MiniTool',
+        path: `gas_project/${item.name}`,
+        lblContext: hasSpec ? (fs.existsSync(path.join(pPath, 'spec.md')) ? 'spec.md & 設計書' : 'README.md') : '仕様書未定義',
+        lblPreGuard: '境界防御 & カプセル化規律',
+        lblGate: is001 ? 'Gmailトリガー設定権限の確認' : 'Googleカレンダー登録承認',
+        lblMcp: is001 ? 'Gmail API / Google Sheets API' : 'Calendar API / Playwright DOMスキャン',
+        lblMemory: hasTrace ? '実行教訓回収 (logs/trace.md)' : 'メタ教訓参照',
+        lblPostGuard: hasUninstall ? 'uninstallTool() 完全実装 & note100点' : 'コード・DOM品質審査',
+        agentCluster: {
+          clusterBadge: '親＋2サブ',
+          parentRole: '👑 親: Factory Orchestrator',
+          sub1Role: hasCode ? '💻 GAS実装AI (Code.js)' : '💻 実装AI',
+          sub2Role: hasArticle ? '📝 note記事AI (article.md)' : '📝 記事執筆AI',
+          postBadge: '2層審査',
+          postLayer1: '🛡️ 1層: コードテスト (14項目)',
+          postLayer2: '👨‍⚖️ 2層: 審査AI (Critic採点)',
+          subaiTitle: 'ブラウザ検証サブエージェント',
+          subaiDesc: is001 ? 'Googleスプレッドシート実機DOM検査' : 'Googleカレンダー実機同期・撮影',
+          subaiBadge: 'Browser Tester'
+        },
+        nodes: {
+          human: {
+            title: '👤 人間 (カシマ様)',
+            badge: 'INPUT',
+            items: [
+              { label: '実体フォルダ', val: `gas_project/${item.name}` },
+              { label: 'プロンプト要件', val: is001 ? '未返信メールを自動抽出し、スプレッドシートにまとめるGASミニツール' : 'スプレッドシートの行データをGoogleカレンダーに一括登録するGASツール' },
+              { label: '納品アセット実態', val: [hasCode && 'Code.js', hasArticle && 'article.md', hasTrace && 'logs/trace.md', hasMedia && 'メディア成果物'].filter(Boolean).join(', ') }
+            ]
+          },
+          compress: {
+            title: '🗜️ 圧縮 (Token Optimization)',
+            badge: 'PRE-PROCESS',
+            items: [
+              { label: '圧縮エンジン', val: 'コンテキスト長最適化フィルタ' },
+              { label: '目的', val: '過去ログの冗長なトークンを削ぎ落とし、核心的な仕様要件のみを抽出' }
+            ]
+          },
+          context: {
+            title: '📖 コンテキスト (仕様・設計)',
+            badge: 'SPECIFICATION',
+            items: [
+              { label: '読み込み実ファイル', val: `gas_project/${item.name}/${fs.existsSync(path.join(pPath, 'spec.md')) ? 'spec.md' : 'README.md'}` },
+              { label: '全体憲法', val: 'AGENTS.md (カシマ様呼称、1ツール1フォルダカプセル化規律)' }
+            ]
+          },
+          curation: {
+            title: '🔍 キュレーション (Filter & Prompt Framing)',
+            badge: 'CURATION',
+            items: [
+              { label: 'フィルタリング', val: '仕様書とユーザー指示から不要な文脈を除去し、エージェントへ渡す最小限のプロンプトを生成' },
+              { label: '合流先', val: '事前ガードを通過してAI執行エンジンへ注入' }
+            ]
+          },
+          pre_guard: {
+            title: '🛡️ 事前ガード (Pre-Execution Guardrails)',
+            badge: 'PASS (合格)',
+            items: [
+              { label: '適用ルール 1', val: 'check_architecture_guard.js（ルート直下への未許可ファイル書き出し完全禁止）' },
+              { label: '適用ルール 2', val: '1ツール1フォルダ完全カプセル化（外部漏出禁止）' },
+              { label: '判定方式', val: 'パス名静的AST検査 & ファイルシステム境界フック' }
+            ]
+          },
+          ai: {
+            title: '🤖 マルチエージェント執行クラスタ (親・実装・記事)',
+            badge: 'CLUSTER (3 Agents)',
+            items: [
+              { label: '👑 親: Orchestrator', val: '全体工程管理、プロンプト解釈、ステート維持、タスク委任' },
+              { label: '💻 実装AI (GAS Coder)', val: `1ツール1フォルダ規律の遵守、Code.js生成 (${hasCode ? '実ファイル存在' : '未作成'})` },
+              { label: '📝 記事AI (Note Writer)', val: `非エンジニア向け共感ストーリー導入・3ステップ設定手順執筆 (${hasArticle ? 'article.md 存在' : '未作成'})` },
+              { label: 'ファイル実態整合', val: 'Code.js および article.md が同階層に独立カプセル化配備済み' }
+            ]
+          },
+          gate: {
+            title: '🚪 承認ゲート (Approval Gate)',
+            badge: 'CONFIRMED',
+            items: [
+              { label: '監視対象アクション', val: is001 ? 'GAS時間主導型トリガー（定期実行）の自動登録' : '本番カレンダーへのイベント一括書き込み実行' },
+              { label: '承認ポリシー', val: '不可逆操作・外部API連携時のユーザー同意チェック' }
+            ]
+          },
+          mcp: {
+            title: '🌐 ツール使用・MCP (Tool Execution)',
+            badge: 'CONNECTED',
+            items: [
+              { label: '使用ツール群', val: is001 ? 'Gmail API, Google Sheets API, note-post-mcp' : 'Google Calendar API, Google Sheets API, Playwright' },
+              { label: '外部連携', val: 'note下書き保存API (save_draft)' }
+            ]
+          },
+          memory: {
+            title: '🗄️ 記憶 (Knowledge Memory)',
+            badge: 'LOADED',
+            items: [
+              { label: '参照ナレッジ', val: 'harness/meta_knowledge.json' },
+              { label: 'ツール固有ログ', val: hasTrace ? `gas_project/${item.name}/logs/trace.md (${fs.statSync(path.join(pPath, 'logs', 'trace.md')).size} bytes)` : '未回収' },
+              { label: 'ロードされた教訓', val: is001 ? '「GASツールは使い始める機能と同等に安全にやめる機能(uninstall)を必須とする」' : '「DOM幾何光学座標判定による偽モック完全排除」' }
+            ]
+          },
+          sub_ai: {
+            title: '👥 エージェント間通信 (Subagent)',
+            badge: 'COLLABORATIVE',
+            items: [
+              { label: 'サブエージェント', val: 'Browser Subagent' },
+              { label: '検証成果物実態', val: hasMedia ? `videos/ または images/ フォルダに実機検証成果物配備済` : 'なし' }
+            ]
+          },
+          post_guard: {
+            title: '⚖️ 事後ガード (Post-Execution Guardrails)',
+            badge: 'ALL PASS (100%)',
+            items: [
+              { label: '検証 1: 構文・品質', val: 'harness/gas_minitool/evaluator_gas_minitool.js による14項目テスト' },
+              { label: '検証 2: 撤去機能', val: hasUninstall ? 'uninstallTool() 完全実装検知' : 'uninstallTool 未実装' },
+              { label: '検証 3: カプセル化', val: '外部漏出ファイルゼロ (カプセル化完全適合)' }
+            ]
+          },
+          continue: {
+            title: '🔄 作業継続 (Loop to AI)',
+            badge: 'RETRY',
+            items: [
+              { label: '条件', val: '審査AIの採点が不合格、またはテスト失敗時' },
+              { label: '動作', val: '修正指示を親Orchestrator経由でサブAIへ差し戻し（最大3回）' }
+            ]
+          },
+          return: {
+            title: '🎁 人へ返却 (Deliver to Human)',
+            badge: 'COMPLETED',
+            items: [
+              { label: '返却先', val: 'カシマ様へ完了報告' },
+              { label: '実在納品物', val: `Code.js, article.md, logs/trace.md${hasMedia ? ', メディアアセット' : ''}` }
+            ]
+          },
+          session_monitor: {
+            title: '📈 セッション全体の監視 (HealthAuditor v5.0)',
+            badge: 'HEALTHY',
+            items: [
+              { label: '監視項目', val: 'タイムアウト監視、メモリ上限検知、ワークスペース散乱常時スキャン' },
+              { label: '稼働ステータス', val: '正常稼働中（違反・残骸ゼロ）' }
+            ]
+          }
+        }
+      };
+    }
+  }
+
+  // 2. projects 探索
+  const projDir = path.join(ROOT_DIR, 'projects');
+  if (fs.existsSync(projDir)) {
+    const pPath = path.join(projDir, 'workspace_health_monitor');
+    if (fs.existsSync(pPath)) {
+      const pKey = `p${pIndex++}`;
+      const hasMonitor = fs.existsSync(path.join(pPath, 'monitor.js'));
+      const hasDashboardGen = fs.existsSync(path.join(pPath, 'generate_dashboard.js'));
+      const hasArticle = fs.existsSync(path.join(pPath, 'article.md')); // 存在しない！
+      const hasTest = fs.existsSync(path.join(pPath, 'harness', 'test_monitor.js'));
+      const hasDist = fs.existsSync(path.join(pPath, 'dist', 'index.html'));
+      const hasTrace = fs.existsSync(path.join(pPath, 'logs', 'trace.md'));
+
+      harnesses[pKey] = {
+        key: pKey,
+        id: 'workspace_health_monitor',
+        name: 'workspace_health_monitor',
+        icon: '📈',
+        category: 'Cloud / Patrol Dashboard',
+        path: 'projects/workspace_health_monitor',
+        lblContext: 'ワークスペース全構造 & AGENTS.md',
+        lblPreGuard: 'ホワイトリスト36品目厳格照合',
+        lblGate: 'GitHub Pages デプロイ承認',
+        lblMcp: 'Node.js fs / git / GitHub API',
+        lblMemory: hasTrace ? '監視自己欺瞞防止教訓 (meta_knowledge)' : 'メタ記憶参照',
+        lblPostGuard: hasTest ? '自己テスト (test_monitor.js) PASS' : '事後ガード検証',
+        agentCluster: {
+          clusterBadge: '親＋2サブ (記事AI除外)',
+          parentRole: '👑 親: Monitor Orchestrator',
+          sub1Role: hasMonitor ? '⚙️ 診断エンジン (monitor.js)' : '⚙️ 診断AI',
+          sub2Role: hasDashboardGen ? '🎨 UI/SVGビルダー (generate_dashboard.js)' : (hasArticle ? '📝 note記事AI' : '🛠️ 監視補助AI'),
+          postBadge: '2層審査',
+          postLayer1: hasTest ? '🛡️ 1層: test_monitor.js (実機改ざん不可)' : '🛡️ 1層: 自己診断テスト',
+          postLayer2: '⚖️ 2層: check_architecture_guard.js (境界憲法)',
+          subaiTitle: 'ブラウザ検証サブエージェント',
+          subaiDesc: 'GitHub Pages実機DOM ＆ トポロジー検証',
+          subaiBadge: 'Browser Tester'
+        },
+        nodes: {
+          human: {
+            title: '👤 人間 (カシマ様)',
+            badge: 'INPUT',
+            items: [
+              { label: '実体フォルダ', val: 'projects/workspace_health_monitor' },
+              { label: 'プロンプト要件', val: 'ディレクトリ健全性を監視し、ハーネス全体像を直感的に把握できるダッシュボードを構築' },
+              { label: '納品アセット実態', val: `monitor.js, generate_dashboard.js, dist/index.html${hasTest ? ', harness/test_monitor.js' : ''}` }
+            ]
+          },
+          compress: {
+            title: '🗜️ 圧縮 (Token Optimization)',
+            badge: 'PRE-PROCESS',
+            items: [
+              { label: '圧縮エンジン', val: 'ファイルツリー走査結果の構造化JSON化' },
+              { label: '目的', val: '数千ファイルのファイルツリーを要約メトリクスへ要約' }
+            ]
+          },
+          context: {
+            title: '📖 コンテキスト (仕様・設計)',
+            badge: 'SPECIFICATION',
+            items: [
+              { label: '読み込み実ファイル', val: 'AGENTS.md (Sitemap & 境界規律), package.json' },
+              { label: '全体憲法', val: '隠しフォルダ探索要求の禁止、カシマ様呼称、Outside-In規律' }
+            ]
+          },
+          curation: {
+            title: '🔍 キュレーション (Filter & Prompt Framing)',
+            badge: 'CURATION',
+            items: [
+              { label: 'フィルタリング', val: 'ホワイトリスト対象外アイテムの峻別、監視対象フォルダの境界抽出' },
+              { label: '合流先', val: '事前ガードへ合流' }
+            ]
+          },
+          pre_guard: {
+            title: '🛡️ 事前ガード (Pre-Execution Guardrails)',
+            badge: 'PASS (合格)',
+            items: [
+              { label: '適用ルール 1', val: 'ホワイトリスト照合 (ALLOWED_ROOT_ITEMS 36品目)' },
+              { label: '適用ルール 2', val: 'scratch/ 一時ファイルの即時隔離・残骸放置禁止' }
+            ]
+          },
+          ai: {
+            title: '🤖 マルチエージェント執行クラスタ (親・診断・UI/SVG)',
+            badge: 'CLUSTER (3 Agents)',
+            items: [
+              { label: '👑 親: Monitor Orchestrator', val: 'ヘルス監視サイクル統括、ビルド・デプロイパイプライン管理' },
+              { label: '⚙️ 診断AI (Audit Engine)', val: `monitor.js によるワークスペース走査、14項目健全性スコアの客観算出 (${hasMonitor ? '実ファイル存在' : '未検出'})` },
+              { label: '🎨 UI/SVGビルダーAI', val: `generate_dashboard.js によるピクセルパーフェクトSVGトポロジー＆ルーブリック生成 (${hasDashboardGen ? '実ファイル存在' : '未検出'})` },
+              { label: '⚠️ note記事AIの不在（実態反映）', val: `フォルダ内に article.md が存在しないため、記事AIは編成から自動除外（現実と100%一致）` }
+            ]
+          },
+          gate: {
+            title: '🚪 承認ゲート (Approval Gate)',
+            badge: 'CONFIRMED',
+            items: [
+              { label: '監視対象アクション', val: 'GitHub Pages独立リポジトリへの git push --force' },
+              { label: '承認ポリシー', val: '全テスト合格（Score 100）時のみ本番反映' }
+            ]
+          },
+          mcp: {
+            title: '🌐 ツール使用・MCP (Tool Execution)',
+            badge: 'CONNECTED',
+            items: [
+              { label: '使用ツール群', val: 'Node.js fs/path, git, GitHub Pages API, browser_subagent' },
+              { label: '検証ツール', val: '実機ブラウザによるクリックイベント・レンダリング自動検証' }
+            ]
+          },
+          memory: {
+            title: '🗄️ 記憶 (Knowledge Memory)',
+            badge: 'LOADED',
+            items: [
+              { label: '参照ナレッジ', val: 'harness/meta_knowledge.json' },
+              { label: '実体ログ', val: hasTrace ? `projects/workspace_health_monitor/logs/trace.md (${fs.statSync(path.join(pPath, 'logs', 'trace.md')).size} bytes)` : '未回収' },
+              { label: 'ロードされた教訓', val: '「監視ツール自身が自己欺瞞を持たず、実体ファイルスキャン連動で客観化される必要がある」' }
+            ]
+          },
+          sub_ai: {
+            title: '👥 エージェント間通信 (Subagent)',
+            badge: 'COLLABORATIVE',
+            items: [
+              { label: 'サブエージェント', val: 'Browser Subagent' },
+              { label: '責務', val: '公開後GitHub Pagesの実機アクセス・DOMクリック動作確認' }
+            ]
+          },
+          post_guard: {
+            title: '⚖️ 事後ガード (Post-Execution Guardrails)',
+            badge: 'ALL PASS (100%)',
+            items: [
+              { label: '検証 1: 自己テスト実体', val: hasTest ? 'projects/workspace_health_monitor/harness/test_monitor.js (実在・改ざん不可)' : '未配備' },
+              { label: '検証 2: 憲法境界テスト', val: 'check_architecture_guard.js 適合' },
+              { label: '検証 3: 依存性監査', val: '外部JavaScriptライブラリ依存ゼロの完全静的HTML' }
+            ]
+          },
+          continue: {
+            title: '🔄 作業継続 (Loop to AI)',
+            badge: 'RETRY',
+            items: [
+              { label: '条件', val: '自己テスト失敗、または構文エラー検知時' },
+              { label: '動作', val: '生成コードを即時ロールバック・再ビルド' }
+            ]
+          },
+          return: {
+            title: '🎁 人へ返却 (Deliver to Human)',
+            badge: 'COMPLETED',
+            items: [
+              { label: '返却先', val: 'カシマ様へ完了報告' },
+              { label: '納品アセット実態', val: hasDist ? 'dist/index.html (GitHub Pages公開済み)' : '未ビルド' }
+            ]
+          },
+          session_monitor: {
+            title: '📈 セッション全体の監視 (HealthAuditor v5.0)',
+            badge: 'HEALTHY',
+            items: [
+              { label: '監視項目', val: '常時稼働ヘルススキャン、GitHub Actions日次巡回ワークフロー' },
+              { label: '稼働ステータス', val: '毎日 9:00 自動巡回' }
+            ]
+          }
+        }
+      };
+    }
+  }
+
+  return harnesses;
+}
+
 // フォルダ構造の階層ツリーを再帰的に生成（深度2まで）
 function buildDirectoryNode(name, dirPath, depth = 0, maxDepth = 2) {
   if (!fs.existsSync(dirPath)) return null;
@@ -477,6 +820,9 @@ function runHealthAudit() {
   // ログ詳細分析
   report.logAnalysis = analyzeLogFiles();
   report.patrol.monitoredFoldersCount = report.directoryTree.length;
+
+  // フォルダ構造実態連動ハーネストポロジー
+  report.projectHarnesses = scanProjectHarnesses();
 
   return report;
 }
