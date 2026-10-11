@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-10-11T06:16:00.614Z",
+  "timestamp": "2026-10-11T06:32:33.403Z",
   "score": 100,
   "grade": "S",
   "summary": "極めて健全です。境界規律・カプセル化・ハーネス蓄積ともに完璧に保たれています。",
@@ -451,7 +451,7 @@
       "name": "projects",
       "path": "projects",
       "isDir": true,
-      "sizeBytes": 743746,
+      "sizeBytes": 733416,
       "itemCount": 7,
       "status": "healthy",
       "note": "",
@@ -845,7 +845,7 @@
           "name": "workspace_health_monitor",
           "path": "projects/workspace_health_monitor",
           "isDir": true,
-          "sizeBytes": 90636,
+          "sizeBytes": 80306,
           "itemCount": 10,
           "status": "healthy",
           "note": "",
@@ -874,7 +874,7 @@
               "name": "generate_dashboard.js",
               "path": "projects/workspace_health_monitor/generate_dashboard.js",
               "isDir": false,
-              "sizeBytes": 59784,
+              "sizeBytes": 49454,
               "itemCount": 0,
               "status": "healthy",
               "note": "",
@@ -1049,8 +1049,8 @@
       "name": "harness",
       "path": "harness",
       "isDir": true,
-      "sizeBytes": 128021,
-      "itemCount": 18,
+      "sizeBytes": 133055,
+      "itemCount": 19,
       "status": "healthy",
       "note": "16基準評価＆メタ集約エンジン",
       "children": [
@@ -1217,6 +1217,16 @@
           "children": []
         },
         {
+          "name": "meta_harness_generator.js",
+          "path": "harness/meta_harness_generator.js",
+          "isDir": false,
+          "sizeBytes": 5034,
+          "itemCount": 0,
+          "status": "healthy",
+          "note": "",
+          "children": []
+        },
+        {
           "name": "meta_knowledge.json",
           "path": "harness/meta_knowledge.json",
           "isDir": false,
@@ -1272,7 +1282,7 @@
       "name": "docs",
       "path": "docs",
       "isDir": true,
-      "sizeBytes": 314805,
+      "sizeBytes": 285734,
       "itemCount": 6,
       "status": "healthy",
       "note": "",
@@ -1352,7 +1362,7 @@
           "name": "index.html",
           "path": "docs/index.html",
           "isDir": false,
-          "sizeBytes": 88040,
+          "sizeBytes": 58969,
           "itemCount": 0,
           "status": "healthy",
           "note": "",
@@ -5784,7 +5794,7 @@
   ],
   "patrol": {
     "schedule": "Daily (GitHub Actions 0:00 UTC) & On-Demand (.bat)",
-    "lastCheck": "2026-10-11T06:16:00.614Z",
+    "lastCheck": "2026-10-11T06:32:33.403Z",
     "status": "ACTIVE",
     "monitoredFoldersCount": 6
   },

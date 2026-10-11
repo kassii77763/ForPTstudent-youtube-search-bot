@@ -6,42 +6,66 @@
   <title>Workspace Management Console | カシマ様 ワークスペース総合管理</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg-dark: #080c14;
-      --sidebar-bg: #0d131f;
-      --card-bg: rgba(18, 26, 43, 0.85);
-      --card-border: rgba(255, 255, 255, 0.08);
-      --text: #f3f4f6;
-      --text-muted: #94a3b8;
-      --accent: #0ea5e9;
-      --accent-glow: rgba(14, 165, 233, 0.25);
-      --success: #10b981;
-      --warning: #f59e0b;
-      --danger: #ef4444;
-      --grade-color: #10b981;
-    }
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body {
-      background: var(--bg-dark);
-      color: var(--text);
-      font-family: 'Inter', -apple-system, sans-serif;
-      min-height: 100vh;
-      display: flex;
+      /* Natural Warm Beige Palette */
+      --bg-base: #f8f6f0;           /* 全体背景：柔らかなナチュラルアイボリー */
+      --bg-sidebar: #efebe2;        /* サイドバー：わずかに深みのあるペーパーベージュ */
+      --card-bg: #ffffff;           /* カード背景：清潔なホワイト */
+      --card-bg-subtle: #fcfbf8;    /* サブカード：ごく淡いベージュ */
+      --card-border: #e3ded4;       /* 境界線：繊細なストーンベージュ */
+      --card-border-hover: #cfc7ba;
+      
+      --text-main: #2b2823;         /* 主テキスト：温かみのあるダークチャコール */
+      --text-muted: #6e675d;        /* 補助テキスト：上品なウォームグレー */
+      --text-dim: #999185;          /* 補足テキスト：淡いウォームグレー */
+      
+      --accent: #8b5e34;            /* アクセント：深みのあるチェスナットベージュ */
+      --accent-light: #f5ede4;      /* アクセント背景 */
+      --accent-border: #d4bc9f;
+      
+      --success: #2e7d32;           /* 合格・正常：落ち着いたフォレストグリーン */
+      --success-bg: #edf7ee;
+      --success-border: #c8e6c9;
+      
+      --warning: #b45309;           /* 警告：アンバー */
+      --warning-bg: #fffbeb;
+      --warning-border: #fde68a;
+      
+      --danger: #c53030;            /* 危険・違反：クラシッククリムゾン */
+      --danger-bg: #fef2f2;
+      --danger-border: #fecaca;
+      
+      --code-bg: #ebe7dd;           /* コードバッジ背景 */
+      --shadow-sm: 0 1px 3px rgba(45, 35, 25, 0.04), 0 1px 2px rgba(45, 35, 25, 0.02);
+      --shadow-md: 0 4px 12px rgba(45, 35, 25, 0.06), 0 1px 3px rgba(45, 35, 25, 0.03);
+      --grade-color: #2e7d32;
     }
 
-    /* Layout: Sidebar + Main */
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg-base);
+      color: var(--text-main);
+      font-family: 'Inter', 'Noto Sans JP', -apple-system, sans-serif;
+      min-height: 100vh;
+      display: flex;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Layout */
     .app-layout {
       display: flex;
       width: 100%;
       min-height: 100vh;
     }
+
+    /* Sidebar */
     .sidebar {
-      width: 260px;
-      background: var(--sidebar-bg);
+      width: 270px;
+      background: var(--bg-sidebar);
       border-right: 1px solid var(--card-border);
-      padding: 24px 16px;
+      padding: 28px 18px;
       display: flex;
       flex-direction: column;
       position: sticky;
@@ -54,25 +78,29 @@
       align-items: center;
       gap: 12px;
       margin-bottom: 32px;
-      padding: 0 8px;
+      padding: 0 6px;
     }
     .sidebar-brand-icon {
-      font-size: 24px;
-      background: rgba(14, 165, 233, 0.15);
+      font-size: 22px;
+      background: var(--card-bg);
       padding: 8px;
-      border-radius: 10px;
-      border: 1px solid rgba(14, 165, 233, 0.3);
+      border-radius: 12px;
+      border: 1px solid var(--card-border);
+      box-shadow: var(--shadow-sm);
     }
     .sidebar-brand-title {
       font-size: 15px;
       font-weight: 800;
-      letter-spacing: -0.02em;
+      letter-spacing: -0.01em;
       line-height: 1.2;
+      color: var(--text-main);
     }
     .sidebar-brand-sub {
       font-size: 11px;
       color: var(--text-muted);
+      margin-top: 2px;
     }
+
     .nav-list {
       list-style: none;
       display: flex;
@@ -84,7 +112,7 @@
       width: 100%;
       text-align: left;
       background: transparent;
-      border: none;
+      border: 1px solid transparent;
       color: var(--text-muted);
       padding: 12px 14px;
       font-size: 13px;
@@ -98,17 +126,19 @@
       font-family: inherit;
     }
     .nav-btn:hover {
-      color: var(--text);
-      background: rgba(255, 255, 255, 0.04);
+      color: var(--text-main);
+      background: rgba(255, 255, 255, 0.6);
+      border-color: var(--card-border);
     }
     .nav-btn.active {
-      background: rgba(14, 165, 233, 0.12);
+      background: var(--card-bg);
       color: var(--accent);
-      border: 1px solid rgba(14, 165, 233, 0.3);
+      border: 1px solid var(--accent-border);
+      box-shadow: var(--shadow-sm);
     }
     .sidebar-footer {
       border-top: 1px solid var(--card-border);
-      padding-top: 16px;
+      padding-top: 18px;
       font-size: 11px;
       color: var(--text-muted);
       display: flex;
@@ -119,68 +149,62 @@
     /* Main Area */
     .main-content {
       flex: 1;
-      padding: 32px 36px;
+      padding: 32px 40px;
+      max-width: 1440px;
       overflow-y: auto;
-      max-width: 1200px;
     }
     .top-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
       margin-bottom: 28px;
-      padding-bottom: 20px;
+      padding-bottom: 18px;
       border-bottom: 1px solid var(--card-border);
-      flex-wrap: wrap;
-      gap: 16px;
     }
-    .header-title h1 {
+    .header-title-box h1 {
       font-size: 24px;
       font-weight: 800;
       letter-spacing: -0.02em;
+      color: var(--text-main);
     }
-    .header-title p {
+    .header-title-box p {
       font-size: 13px;
       color: var(--text-muted);
-      margin-top: 2px;
+      margin-top: 4px;
     }
-    .badge-live {
+    .header-badges {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+    .badge {
       display: inline-flex;
       align-items: center;
-      gap: 8px;
-      background: rgba(16, 185, 129, 0.12);
-      color: var(--success);
+      gap: 6px;
       padding: 6px 14px;
       border-radius: 999px;
       font-size: 12px;
-      font-weight: 700;
-      border: 1px solid rgba(16, 185, 129, 0.25);
+      font-weight: 600;
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      color: var(--text-main);
+      box-shadow: var(--shadow-sm);
     }
-    .badge-pulse {
-      width: 8px;
-      height: 8px;
+    .badge-dot {
+      width: 7px;
+      height: 7px;
       border-radius: 50%;
       background: var(--success);
-      box-shadow: 0 0 10px var(--success);
-      animation: pulse 2s infinite;
-    }
-    @keyframes pulse {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50% { opacity: 0.3; transform: scale(0.8); }
     }
 
-    /* Views (Panels) */
-    .view-panel { display: none; }
-    .view-panel.active { display: block; }
-
-    /* Common Card */
+    /* Card Component */
     .card {
       background: var(--card-bg);
       border: 1px solid var(--card-border);
-      border-radius: 16px;
+      border-radius: 14px;
       padding: 24px;
-      backdrop-filter: blur(16px);
-      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
       margin-bottom: 24px;
+      box-shadow: var(--shadow-sm);
     }
     .section-title {
       font-size: 17px;
@@ -188,18 +212,29 @@
       margin-bottom: 16px;
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 8px;
+      color: var(--text-main);
     }
 
-    /* Overview: Hero Grid */
+    /* Tab Panels */
+    .view-panel {
+      display: none;
+    }
+    .view-panel.active {
+      display: block;
+      animation: fadeIn 0.25s ease-out;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(3px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Score Radial Layout */
     .hero-grid {
       display: grid;
-      grid-template-columns: 320px 1fr;
+      grid-template-columns: 340px 1fr;
       gap: 24px;
       margin-bottom: 24px;
-    }
-    @media (max-width: 960px) {
-      .hero-grid { grid-template-columns: 1fr; }
     }
     .score-card {
       display: flex;
@@ -207,34 +242,34 @@
       align-items: center;
       justify-content: center;
       text-align: center;
+      padding: 32px 24px;
     }
-    .gauge-wrapper {
+    .circle-wrap {
       position: relative;
       width: 170px;
       height: 170px;
-      margin-bottom: 14px;
+      margin-bottom: 16px;
     }
-    .gauge-svg {
-      transform: rotate(-90deg);
+    .circle-wrap svg {
       width: 170px;
       height: 170px;
+      transform: rotate(-90deg);
     }
-    .gauge-bg {
+    .circle-bg {
       fill: none;
-      stroke: rgba(255, 255, 255, 0.06);
-      stroke-width: 14;
+      stroke: var(--card-bg-subtle);
+      stroke-width: 12;
     }
-    .gauge-fill {
+    .circle-progress {
       fill: none;
       stroke: var(--grade-color);
-      stroke-width: 14;
+      stroke-width: 12;
       stroke-linecap: round;
       stroke-dasharray: 439.822971502571;
       stroke-dashoffset: 0;
-      filter: drop-shadow(0 0 10px var(--grade-color));
-      transition: stroke-dashoffset 1.5s ease;
+      transition: stroke-dashoffset 1s ease;
     }
-    .gauge-center {
+    .circle-content {
       position: absolute;
       top: 50%;
       left: 50%;
@@ -243,126 +278,116 @@
       flex-direction: column;
       align-items: center;
     }
-    .gauge-score {
+    .score-number {
       font-size: 46px;
       font-weight: 800;
       font-family: 'JetBrains Mono', monospace;
       line-height: 1;
+      color: var(--text-main);
     }
-    .gauge-max { font-size: 12px; color: var(--text-muted); }
-    .grade-badge {
-      font-size: 14px;
-      font-weight: 800;
-      padding: 4px 14px;
-      border-radius: 6px;
-      background: rgba(255, 255, 255, 0.06);
+    .score-grade {
+      font-size: 13px;
+      font-weight: 700;
       color: var(--grade-color);
-      border: 1px solid var(--grade-color);
-      letter-spacing: 0.05em;
+      margin-top: 4px;
     }
 
-    /* Metric Rows */
-    .metrics-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 16px;
-    }
-    .metric-row {
-      padding: 16px;
-      border-radius: 12px;
-      background: rgba(255, 255, 255, 0.02);
-      border: 1px solid rgba(255, 255, 255, 0.05);
+    /* Metrics Grid */
+    .metrics-col {
       display: flex;
       flex-direction: column;
-      gap: 8px;
+      gap: 14px;
+      justify-content: center;
+    }
+    .metric-row {
+      background: var(--card-bg-subtle);
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
+      padding: 14px 18px;
     }
     .metric-header {
       display: flex;
       justify-content: space-between;
-      align-items: center;
       font-size: 13px;
       font-weight: 600;
+      margin-bottom: 8px;
     }
     .metric-status {
       font-size: 11px;
       font-weight: 700;
       padding: 2px 8px;
       border-radius: 4px;
-      font-family: 'JetBrains Mono', monospace;
     }
-    .status-PASS { background: rgba(16, 185, 129, 0.15); color: var(--success); border: 1px solid rgba(16, 185, 129, 0.3); }
+    .status-PASS { background: var(--success-bg); color: var(--success); border: 1px solid var(--success-border); }
+    .status-WARN { background: var(--warning-bg); color: var(--warning); border: 1px solid var(--warning-border); }
     .progress-bar-bg {
+      width: 100%;
       height: 6px;
-      background: rgba(255, 255, 255, 0.06);
+      background: #e5ded4;
       border-radius: 3px;
       overflow: hidden;
+      margin-bottom: 6px;
     }
     .progress-bar-fill {
       height: 100%;
+      background: var(--success);
       border-radius: 3px;
-      background: var(--grade-color);
     }
     .metric-detail {
-      font-size: 12px;
+      font-size: 11px;
       color: var(--text-muted);
       display: flex;
       justify-content: space-between;
     }
 
-    /* Projects View */
+    /* Projects Grid */
     .projects-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
       gap: 20px;
     }
     .project-card {
-      background: rgba(255, 255, 255, 0.02);
-      border: 1px solid rgba(255, 255, 255, 0.06);
-      border-radius: 14px;
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
       padding: 20px;
       display: flex;
       flex-direction: column;
-      gap: 12px;
-      transition: transform 0.2s ease, border-color 0.2s ease;
+      gap: 14px;
+      transition: all 0.2s ease;
+      box-shadow: var(--shadow-sm);
     }
     .project-card:hover {
-      transform: translateY(-2px);
-      border-color: rgba(14, 165, 233, 0.3);
+      border-color: var(--accent-border);
+      box-shadow: var(--shadow-md);
     }
     .project-header {
       display: flex;
       justify-content: space-between;
       align-items: flex-start;
-      gap: 10px;
     }
     .project-title {
       font-size: 15px;
       font-weight: 700;
-      font-family: 'JetBrains Mono', monospace;
-      color: #fff;
+      color: var(--text-main);
     }
     .project-category {
       font-size: 11px;
-      color: var(--accent);
-      background: rgba(14, 165, 233, 0.1);
-      padding: 2px 8px;
-      border-radius: 4px;
-      display: inline-block;
-      margin-top: 4px;
+      color: var(--text-muted);
+      margin-top: 2px;
     }
     .badge-status {
       font-size: 11px;
       font-weight: 700;
       padding: 3px 8px;
-      border-radius: 4px;
-      font-family: 'JetBrains Mono', monospace;
+      border-radius: 6px;
     }
-    .badge-status.COMPLETED { background: rgba(16, 185, 129, 0.15); color: var(--success); border: 1px solid rgba(16, 185, 129, 0.3); }
-    .badge-status.IN_PROGRESS { background: rgba(245, 158, 11, 0.15); color: var(--warning); border: 1px solid rgba(245, 158, 11, 0.3); }
+    .badge-status.COMPLETED { background: var(--success-bg); color: var(--success); border: 1px solid var(--success-border); }
+    .badge-status.IN_PROGRESS { background: var(--accent-light); color: var(--accent); border: 1px solid var(--accent-border); }
     .project-desc {
       font-size: 12px;
       color: var(--text-muted);
-      line-height: 1.5;
+      line-height: 1.4;
     }
     .project-badges {
       display: flex;
@@ -371,298 +396,177 @@
     }
     .mini-badge {
       font-size: 10px;
-      padding: 2px 6px;
+      padding: 2px 7px;
       border-radius: 4px;
-      background: rgba(255, 255, 255, 0.05);
-      color: #cbd5e1;
+      background: var(--card-bg-subtle);
+      border: 1px solid var(--card-border);
+      color: var(--text-muted);
     }
-    .mini-badge.ok { color: var(--success); border: 1px solid rgba(16, 185, 129, 0.3); }
+    .mini-badge.ok {
+      background: var(--success-bg);
+      color: var(--success);
+      border-color: var(--success-border);
+      font-weight: 600;
+    }
 
-    /* 3-Tier Zoom Architecture: Castle Macro -> Conveyor Micro -> Detail */
-    .drilldown-container {
+    /* ============================================================== */
+    /* VIEW 3: HARNESS CONSOLE (CASE C: META-GENERATIVE ARCHITECTURE) */
+    /* ============================================================== */
+    .harness-matrix-container {
       display: flex;
       flex-direction: column;
       gap: 24px;
-      margin-bottom: 32px;
     }
-
-    /* Pattern 1: Castle Multi-Layer Defense (Macro View) */
-    .castle-box {
-      background: radial-gradient(circle at 50% 50%, rgba(14, 165, 233, 0.05) 0%, rgba(0, 0, 0, 0.4) 100%);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: 18px;
-      padding: 24px;
+    
+    /* Project Selector Tabs */
+    .p-tabs {
       display: flex;
-      flex-direction: column;
-      gap: 14px;
-    }
-    .castle-layers-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 12px;
-    }
-    .castle-layer-card {
-      background: rgba(255, 255, 255, 0.02);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: 12px;
-      padding: 16px;
-      cursor: pointer;
-      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-      position: relative;
-    }
-    .castle-layer-card:hover, .castle-layer-card.active-layer {
-      transform: translateY(-3px);
-      box-shadow: 0 6px 24px rgba(14, 165, 233, 0.2);
-    }
-    .castle-layer-card.active-layer {
-      border-color: var(--accent);
-      background: rgba(14, 165, 233, 0.1);
-    }
-    .castle-layer-card.layer-1 { border-left: 4px solid var(--accent); }
-    .castle-layer-card.layer-2 { border-left: 4px solid var(--success); }
-    .castle-layer-card.layer-3 { border-left: 4px solid #f59e0b; }
-    .castle-layer-card.layer-4 { border-left: 4px solid #818cf8; }
-
-    .layer-badge {
-      font-size: 10px;
-      font-weight: 800;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-      color: var(--text-muted);
-    }
-    .layer-title {
-      font-size: 14px;
-      font-weight: 700;
-      color: #fff;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-    .layer-desc {
-      font-size: 11px;
-      color: var(--text-muted);
-      line-height: 1.4;
-    }
-
-    /* Pattern 2: Conveyor Belt Micro Line (Factory Flow) */
-    .conveyor-box {
-      background: rgba(10, 15, 26, 0.7);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: 16px;
-      padding: 24px 20px;
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-      overflow-x: auto;
-    }
-    .conveyor-line {
-      display: flex;
-      align-items: center;
       gap: 8px;
-      min-width: 820px;
-      padding: 10px 4px;
+      border-bottom: 1px solid var(--card-border);
+      padding-bottom: 12px;
+      margin-bottom: 18px;
     }
-    .conveyor-station {
-      flex: 1;
-      background: rgba(255, 255, 255, 0.03);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: 10px;
-      padding: 14px 12px;
-      cursor: pointer;
-      transition: all 0.2s ease;
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-    }
-    .conveyor-station:hover, .conveyor-station.active-station {
-      background: rgba(14, 165, 233, 0.12);
-      border-color: var(--accent);
-      transform: scale(1.02);
-    }
-    .station-num {
-      font-size: 10px;
-      font-weight: 700;
-      color: var(--accent);
-      font-family: 'JetBrains Mono', monospace;
-    }
-    .station-name {
-      font-size: 13px;
-      font-weight: 700;
-      color: #fff;
-    }
-    .station-sub {
-      font-size: 11px;
+    .p-tab-btn {
+      padding: 8px 16px;
+      border-radius: 8px;
+      border: 1px solid var(--card-border);
+      background: var(--card-bg-subtle);
       color: var(--text-muted);
-    }
-    .conveyor-arrow {
-      color: rgba(255, 255, 255, 0.3);
-      font-weight: bold;
-      font-size: 16px;
-      flex-shrink: 0;
-    }
-
-    /* Level 3: Inspector Deep Detail */
-    .inspector-detail-box {
-      background: rgba(14, 165, 233, 0.04);
-      border: 1px solid rgba(14, 165, 233, 0.25);
-      border-radius: 14px;
-      padding: 20px;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      animation: fadeIn 0.3s ease;
-    }
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(4px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    .detail-heading {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-      padding-bottom: 10px;
-    }
-    .detail-heading h4 {
-      font-size: 15px;
-      font-weight: 700;
-      color: #fff;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-    .detail-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 14px;
       font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      font-family: inherit;
+      transition: all 0.2s;
     }
-    .detail-item-title {
+    .p-tab-btn:hover {
+      background: #ffffff;
+      color: var(--text-main);
+    }
+    .p-tab-btn.active {
+      background: var(--accent);
+      color: #ffffff;
+      border-color: var(--accent);
+      box-shadow: var(--shadow-sm);
+    }
+
+    /* Table Styles */
+    .eval-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+      margin-top: 10px;
+    }
+    .eval-table th {
+      text-align: left;
+      padding: 10px 14px;
+      background: var(--card-bg-subtle);
       color: var(--text-muted);
       font-weight: 600;
-      margin-bottom: 4px;
-    }
-    .detail-item-val {
-      color: #e2e8f0;
-      line-height: 1.5;
-    }
-
-    /* Harness Center Cards */
-    .harness-card {
-      background: rgba(255, 255, 255, 0.02);
-      border: 1px solid rgba(255, 255, 255, 0.06);
-      border-radius: 12px;
-      padding: 18px;
-      margin-bottom: 14px;
-    }
-    .harness-card-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 8px;
-    }
-    .harness-name {
-      font-size: 14px;
-      font-weight: 700;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-    .harness-desc {
+      border-bottom: 1px solid var(--card-border);
       font-size: 12px;
-      color: var(--text-muted);
-      margin-bottom: 10px;
     }
-    .harness-criteria-list {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
+    .eval-table td {
+      padding: 12px 14px;
+      border-bottom: 1px solid var(--card-border);
+      vertical-align: middle;
     }
-
-    /* Tables & Tree */
-    .tree-card {
-      background: rgba(255, 255, 255, 0.02);
-      border: 1px solid rgba(255, 255, 255, 0.06);
-      border-radius: 12px;
-      overflow: hidden;
-      margin-bottom: 12px;
+    .eval-table tr:hover {
+      background: rgba(245, 237, 228, 0.4);
     }
-    .tree-header {
-      padding: 14px 18px;
-      background: rgba(255, 255, 255, 0.03);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      cursor: pointer;
-    }
-    .tree-body {
-      padding: 16px 20px;
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-      background: rgba(0, 0, 0, 0.15);
-    }
-    .tree-item {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-size: 13px;
-      font-family: 'JetBrains Mono', monospace;
-      padding: 4px 8px;
-      border-radius: 6px;
-    }
-    .tree-item:hover { background: rgba(255, 255, 255, 0.03); }
-
-    .code-badge {
-      font-family: 'JetBrains Mono', monospace;
-      background: rgba(255, 255, 255, 0.08);
+    .eval-category-badge {
+      display: inline-block;
+      font-size: 10px;
+      font-weight: 700;
       padding: 2px 6px;
       border-radius: 4px;
-      color: #38bdf8;
-      font-size: 12px;
     }
-    .lesson-item {
+    .cat-invariant { background: #ede8df; color: #5a5246; }
+    .cat-capability { background: #e0f2fe; color: #0369a1; }
+    .cat-regression { background: #fef3c7; color: #b45309; }
+
+    /* Lesson Card Grid */
+    .lessons-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+      gap: 16px;
+      margin-top: 12px;
+    }
+    .lesson-card {
+      background: var(--card-bg-subtle);
+      border: 1px solid var(--card-border);
+      border-radius: 10px;
       padding: 16px;
-      border-radius: 12px;
-      background: rgba(255, 255, 255, 0.02);
-      border-left: 3px solid var(--accent);
-      margin-bottom: 12px;
+    }
+    .lesson-tool {
       font-size: 13px;
+      font-weight: 700;
+      color: var(--text-main);
+      margin-bottom: 8px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
-    .lesson-item h4 {
-      font-size: 14px;
-      font-weight: 600;
-      color: var(--text);
-      margin-bottom: 6px;
-    }
-    .lesson-item pre {
-      white-space: pre-wrap;
-      font-family: 'Inter', sans-serif;
+    .lesson-body {
+      font-size: 12px;
       color: var(--text-muted);
       line-height: 1.5;
+      white-space: pre-line;
+      background: #ffffff;
+      padding: 12px;
+      border-radius: 8px;
+      border: 1px solid var(--card-border);
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    /* Live Generator Simulator */
+    .generator-box {
+      background: var(--card-bg-subtle);
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
+      padding: 20px;
+    }
+    .code-preview {
+      background: #2b2823;
+      color: #f7f5f0;
+      padding: 16px;
+      border-radius: 8px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      line-height: 1.5;
+      overflow-x: auto;
+      max-height: 280px;
+      margin-top: 12px;
+    }
+
+    /* Code & Utility */
+    .code-badge {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      background: var(--code-bg);
+      color: var(--text-main);
+      padding: 2px 7px;
+      border-radius: 4px;
+      border: 1px solid var(--card-border);
     }
   </style>
 </head>
 <body>
   <div class="app-layout">
     
-    <!-- 左側固定サイドバー -->
+    <!-- Sidebar -->
     <aside class="sidebar">
       <div class="sidebar-brand">
         <div class="sidebar-brand-icon">🛡️</div>
         <div>
-          <div class="sidebar-brand-title">WORKSPACE<br>CONSOLE</div>
-          <div class="sidebar-brand-sub">カシマ様 統括ダッシュボード</div>
+          <div class="sidebar-brand-title">Workspace Console</div>
+          <div class="sidebar-brand-sub">カシマ様 ワークスペース総合管理</div>
         </div>
       </div>
 
       <ul class="nav-list">
         <li>
           <button class="nav-btn active" onclick="switchView('view-overview')">
-            <span>🏠</span> 総合概要 (Overview)
+            <span>🏠</span> 総合ヘルス概要
           </button>
         </li>
         <li>
@@ -672,45 +576,47 @@
         </li>
         <li>
           <button class="nav-btn" onclick="switchView('view-harness')">
-            <span>🛡️</span> ハーネス監視室 (Harness)
+            <span>🛡️</span> 評価ハーネス管理 (事例C)
           </button>
         </li>
         <li>
           <button class="nav-btn" onclick="switchView('view-tree')">
-            <span>🌲</span> ディレクトリ構造 (Tree)
+            <span>🌲</span> ディレクトリ構造
           </button>
         </li>
         <li>
           <button class="nav-btn" onclick="switchView('view-logs')">
-            <span>📜</span> ログ＆教訓分析 (Logs)
+            <span>📜</span> ログ＆教訓アーカイブ
           </button>
         </li>
         <li>
           <button class="nav-btn" onclick="switchView('view-automation')">
-            <span>⏰</span> 定期徘徊・CI/CD
+            <span>⏰</span> 定期巡回・CI/CD
           </button>
         </li>
       </ul>
 
       <div class="sidebar-footer">
-        <div>監査日時: <span class="code-badge">2026-10-11</span></div>
-        <div>GitHub Pages: <span style="color: var(--success);">ACTIVE</span></div>
+        <div>最終同期: 2026-10-11 06:32:33</div>
+        <div>監査エンジン: HealthAuditor v4.0</div>
       </div>
     </aside>
 
-    <!-- メインコンテンツ -->
+    <!-- Main Content -->
     <main class="main-content">
-      
       <div class="top-header">
-        <div class="header-title">
+        <div class="header-title-box">
           <h1 id="page-title">🏠 ワークスペース総合ヘルス概要</h1>
           <p id="page-sub">境界防御・ディレクトリ健全性・全プロジェクト状況のリアルタイム監視</p>
         </div>
-        <div>
-          <span class="badge-live">
-            <span class="badge-pulse"></span>
-            PATROL ENGINE ACTIVE
-          </span>
+        <div class="header-badges">
+          <div class="badge">
+            <span class="badge-dot"></span>
+            <span>監査ステータス: 完全統制 (100点)</span>
+          </div>
+          <div class="badge">
+            <span>プロジェクト数: 9 件</span>
+          </div>
         </div>
       </div>
 
@@ -719,52 +625,52 @@
       <!-- ============================================== -->
       <div id="view-overview" class="view-panel active">
         <div class="hero-grid">
-          <!-- スコア -->
+          <!-- スコアカード -->
           <div class="card score-card">
-            <div class="gauge-wrapper">
-              <svg class="gauge-svg" viewBox="0 0 160 160">
-                <circle class="gauge-bg" cx="80" cy="80" r="70"></circle>
-                <circle class="gauge-fill" cx="80" cy="80" r="70"></circle>
+            <div class="circle-wrap">
+              <svg class="gauge-svg">
+                <circle class="circle-bg" cx="85" cy="85" r="70"></circle>
+                <circle class="circle-progress" cx="85" cy="85" r="70"></circle>
               </svg>
-              <div class="gauge-center">
-                <span class="gauge-score">100</span>
-                <span class="gauge-max">/ 100</span>
+              <div class="circle-content">
+                <span class="score-number">100</span>
+                <span class="score-grade">GRADE S</span>
               </div>
             </div>
-            <div class="grade-badge">GRADE S</div>
-            <p style="margin-top: 14px; font-size: 13px; color: var(--text-muted);">極めて健全です。境界規律・カプセル化・ハーネス蓄積ともに完璧に保たれています。</p>
+            <h3 style="font-size: 16px; font-weight: 700; margin-bottom: 4px;">総合ディレクトリ衛生スコア</h3>
+            <p style="font-size: 12px; color: var(--text-muted);">散乱・一時残骸・境界違反ゼロ</p>
           </div>
 
-          <!-- メトリクスカード -->
-          <div class="card">
-            <h3 class="section-title">📊 5大健全性メトリクス詳細</h3>
-            <div class="metrics-grid">
+          <!-- メトリクス詳細 -->
+          <div class="card" style="padding: 24px;">
+            <h3 class="section-title">📊 4大評価メトリクス適合状況</h3>
+            <div class="metrics-col">
               
               <div class="metric-row">
                 <div class="metric-header">
-                  <span>ルート境界防御</span>
+                  <span>ルート直下ディレクトリ衛生度</span>
                   <span class="metric-status status-PASS">PASS</span>
                 </div>
                 <div class="progress-bar-bg"><div class="progress-bar-fill" style="width: 100%;"></div></div>
-                <div class="metric-detail"><span>未許可ファイル: 0 件</span><span>25 / 25 pt</span></div>
+                <div class="metric-detail"><span>違反ファイル: 0 件</span><span>25 / 25 pt</span></div>
               </div>
 
               <div class="metric-row">
                 <div class="metric-header">
-                  <span>成果物カプセル化</span>
+                  <span>一時スクラッチ完全隔離</span>
                   <span class="metric-status status-PASS">PASS</span>
                 </div>
                 <div class="progress-bar-bg"><div class="progress-bar-fill" style="width: 100%;"></div></div>
-                <div class="metric-detail"><span>検査ツール数: 2</span><span>25 / 25 pt</span></div>
+                <div class="metric-detail"><span>残骸ファイル: 0 件</span><span>20 / 20 pt</span></div>
               </div>
 
               <div class="metric-row">
                 <div class="metric-header">
-                  <span>スクラッチ一時衛生度</span>
+                  <span>プロジェクト完全カプセル化</span>
                   <span class="metric-status status-PASS">PASS</span>
                 </div>
                 <div class="progress-bar-bg"><div class="progress-bar-fill" style="width: 100%;"></div></div>
-                <div class="metric-detail"><span>放置残骸: 0 件</span><span>20 / 20 pt</span></div>
+                <div class="metric-detail"><span>違反件数: 0 件</span><span>25 / 25 pt</span></div>
               </div>
 
               <div class="metric-row">
@@ -780,9 +686,8 @@
           </div>
         </div>
 
-        <!-- 状態バナー -->
-        <div class="card" style="background: rgba(16, 185, 129, 0.05); border: 1px solid rgba(16, 185, 129, 0.25);">
-          <h3 style="font-size: 16px; font-weight: 700; color: var(--success); margin-bottom: 4px;">🎉 全項目パーフェクト（Zero Defect）</h3>
+        <div class="card" style="background: var(--success-bg); border: 1px solid var(--success-border);">
+          <h3 style="font-size: 15px; font-weight: 700; color: var(--success); margin-bottom: 4px;">🎉 全項目パーフェクト（Zero Defect）</h3>
           <p style="font-size: 13px; color: var(--text-muted);">
             ディレクトリ散乱、一時ファイル放置、カプセル化違反は一切ありません。現在 9 件のプロジェクトと 3 つのシステムガードが完全統制されています。
           </p>
@@ -797,7 +702,7 @@
           <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
             <div>
               <h3 class="section-title" style="margin-bottom: 4px;">🚀 全プロジェクト進捗・完成度トラッカー</h3>
-              <p style="font-size: 13px; color: var(--text-muted);">GASミニツール量産および各アプリケーションの成果物構成・進捗を客観判定しています。</p>
+              <p style="font-size: 13px; color: var(--text-muted);">各ツールの成果物構成・進捗を客観判定しています。</p>
             </div>
             <span class="code-badge">進行中＆完了: 9 件</span>
           </div>
@@ -814,7 +719,6 @@
               </div>
               <p class="project-desc">未返信メール自動検知＆通知ツール</p>
               
-              <!-- 進捗バー -->
               <div>
                 <div style="display: flex; justify-content: space-between; font-size: 11px; margin-bottom: 4px;">
                   <span style="color: var(--text-muted);">完成度・成果物適合率</span>
@@ -825,7 +729,6 @@
                 </div>
               </div>
 
-              <!-- 成果物バッジ -->
               <div class="project-badges">
                 <span class="mini-badge ok">✔ コード実装</span>
                 <span class="mini-badge ok">✔ 仕様書・記事</span>
@@ -849,7 +752,6 @@
               </div>
               <p class="project-desc">スプレッドシート ➡️ Googleカレンダー自動同期</p>
               
-              <!-- 進捗バー -->
               <div>
                 <div style="display: flex; justify-content: space-between; font-size: 11px; margin-bottom: 4px;">
                   <span style="color: var(--text-muted);">完成度・成果物適合率</span>
@@ -860,7 +762,6 @@
                 </div>
               </div>
 
-              <!-- 成果物バッジ -->
               <div class="project-badges">
                 <span class="mini-badge ok">✔ コード実装</span>
                 <span class="mini-badge ok">✔ 仕様書・記事</span>
@@ -884,7 +785,6 @@
               </div>
               <p class="project-desc">外部システム連携・自動同期</p>
               
-              <!-- 進捗バー -->
               <div>
                 <div style="display: flex; justify-content: space-between; font-size: 11px; margin-bottom: 4px;">
                   <span style="color: var(--text-muted);">完成度・成果物適合率</span>
@@ -895,7 +795,6 @@
                 </div>
               </div>
 
-              <!-- 成果物バッジ -->
               <div class="project-badges">
                 <span class="mini-badge ok">✔ コード実装</span>
                 <span class="mini-badge ">ドキュメント</span>
@@ -919,7 +818,6 @@
               </div>
               <p class="project-desc">NotebookLM 拡張ツール（UI機能強化・プロンプト統合）</p>
               
-              <!-- 進捗バー -->
               <div>
                 <div style="display: flex; justify-content: space-between; font-size: 11px; margin-bottom: 4px;">
                   <span style="color: var(--text-muted);">完成度・成果物適合率</span>
@@ -930,7 +828,6 @@
                 </div>
               </div>
 
-              <!-- 成果物バッジ -->
               <div class="project-badges">
                 <span class="mini-badge ok">✔ コード実装</span>
                 <span class="mini-badge ok">✔ 仕様書・記事</span>
@@ -954,7 +851,6 @@
               </div>
               <p class="project-desc">理学療法学生向けナレッジベース＆学習クイズエンジン</p>
               
-              <!-- 進捗バー -->
               <div>
                 <div style="display: flex; justify-content: space-between; font-size: 11px; margin-bottom: 4px;">
                   <span style="color: var(--text-muted);">完成度・成果物適合率</span>
@@ -965,7 +861,6 @@
                 </div>
               </div>
 
-              <!-- 成果物バッジ -->
               <div class="project-badges">
                 <span class="mini-badge ok">✔ コード実装</span>
                 <span class="mini-badge ">ドキュメント</span>
@@ -989,7 +884,6 @@
               </div>
               <p class="project-desc">理学療法学生向けナレッジベース＆学習クイズエンジン</p>
               
-              <!-- 進捗バー -->
               <div>
                 <div style="display: flex; justify-content: space-between; font-size: 11px; margin-bottom: 4px;">
                   <span style="color: var(--text-muted);">完成度・成果物適合率</span>
@@ -1000,7 +894,6 @@
                 </div>
               </div>
 
-              <!-- 成果物バッジ -->
               <div class="project-badges">
                 <span class="mini-badge ok">✔ コード実装</span>
                 <span class="mini-badge ok">✔ 仕様書・記事</span>
@@ -1024,7 +917,6 @@
               </div>
               <p class="project-desc">理学療法学生向けナレッジベース＆学習クイズエンジン</p>
               
-              <!-- 進捗バー -->
               <div>
                 <div style="display: flex; justify-content: space-between; font-size: 11px; margin-bottom: 4px;">
                   <span style="color: var(--text-muted);">完成度・成果物適合率</span>
@@ -1035,7 +927,6 @@
                 </div>
               </div>
 
-              <!-- 成果物バッジ -->
               <div class="project-badges">
                 <span class="mini-badge ok">✔ コード実装</span>
                 <span class="mini-badge ok">✔ 仕様書・記事</span>
@@ -1059,7 +950,6 @@
               </div>
               <p class="project-desc">ディレクトリ健全性・2階層ハーネス・プロジェクト監視ダッシュボード (GitHub Pages配備済)</p>
               
-              <!-- 進捗バー -->
               <div>
                 <div style="display: flex; justify-content: space-between; font-size: 11px; margin-bottom: 4px;">
                   <span style="color: var(--text-muted);">完成度・成果物適合率</span>
@@ -1070,7 +960,6 @@
                 </div>
               </div>
 
-              <!-- 成果物バッジ -->
               <div class="project-badges">
                 <span class="mini-badge ok">✔ コード実装</span>
                 <span class="mini-badge ok">✔ 仕様書・記事</span>
@@ -1094,7 +983,6 @@
               </div>
               <p class="project-desc">外部システム連携・自動同期</p>
               
-              <!-- 進捗バー -->
               <div>
                 <div style="display: flex; justify-content: space-between; font-size: 11px; margin-bottom: 4px;">
                   <span style="color: var(--text-muted);">完成度・成果物適合率</span>
@@ -1105,7 +993,6 @@
                 </div>
               </div>
 
-              <!-- 成果物バッジ -->
               <div class="project-badges">
                 <span class="mini-badge ok">✔ コード実装</span>
                 <span class="mini-badge ok">✔ 仕様書・記事</span>
@@ -1124,555 +1011,199 @@
       </div>
 
       <!-- ============================================== -->
-      <!-- VIEW 3: ハーネス監視室 (Harness Control) -->
+      <!-- VIEW 3: 評価ハーネス管理センター (事例C: メタ自動生成型) -->
       <!-- ============================================== -->
       <div id="view-harness" class="view-panel">
-        <div class="card">
-          <h3 class="section-title">🛡️ ハーネス統制トポロジー（2Dノード間フロー図）</h3>
-          <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 24px;">
-            AIの生成行動がどのように2つの防壁を通過し、失敗がどうメタハーネスへ循環学習されるかを視覚化したアーキテクチャ回路です。各ノードをクリックすると詳細が展開されます。
-          </p>
-
-          <!-- 3階層ズームイン防衛アーキテクチャ (Castle Macro -> Conveyor Micro -> Inspector Deep) -->
-          <div class="drilldown-container">
-            
-            <!-- LEVEL 1: 城郭・多重防衛マップ (マクロ全体像) -->
-            <div class="castle-box">
-              <div style="display:flex; justify-content:space-between; align-items:center;">
-                <h4 style="font-size:15px; font-weight:700; color:#fff;">🏰 LEVEL 1: 城郭・多重防衛マップ（マクロ全体像）</h4>
-                <span style="font-size:11px; color:var(--text-muted);">各レイヤーをクリックして検査ラインを展開 ▼</span>
+        <div class="harness-matrix-container">
+          
+          <!-- ブロック1: メタナレッジ（注入元DB） -->
+          <div class="card">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+              <div>
+                <h3 class="section-title" style="margin-bottom: 4px;">🧠 メタナレッジ蓄積DB（失敗教訓＆回帰防止ルール注入元）</h3>
+                <p style="font-size: 13px; color: var(--text-muted);">
+                  各ツールの開発過程で発生した「失敗・解決・恒久教訓」を集約したDBです。新規プロジェクト立ち上げ時にここから自動テストが抽出されます。
+                </p>
               </div>
+              <span class="code-badge">蓄積ナレッジ: 3 件</span>
+            </div>
 
-              <div class="castle-layers-grid">
-                
-                <div class="castle-layer-card layer-1 active-layer" id="cl-guard" onclick="selectCastleLayer('guard')">
-                  <span class="layer-badge">第1防壁 / 憲法</span>
-                  <div class="layer-title">🛡️ 外郭 城壁</div>
-                  <p class="layer-desc">未許可ファイル・散乱を外で弾く物理境界ガード</p>
-                  <span class="mini-badge ok" style="margin-top:auto;">● 違反 0件 (100% 健全)</span>
+            <div class="lessons-grid">
+              <div class="lesson-card">
+                <div class="lesson-tool">
+                  <span>minitool_001_unreplied_emails</span>
+                  <span class="code-badge" style="color:var(--success);">ルール抽出済</span>
                 </div>
-
-                <div class="castle-layer-card layer-2" id="cl-harness" onclick="selectCastleLayer('harness')">
-                  <span class="layer-badge">第2防壁 / 個別法</span>
-                  <div class="layer-title">⚖️ 内郭 関所</div>
-                  <p class="layer-desc">偽モック・手抜きコードを弾く16基準品質検査</p>
-                  <span class="mini-badge ok" style="margin-top:auto;">● 16/16 全PASS (2ツール)</span>
+                <div class="lesson-body">1. 失敗: 自動トリガー設定で uninstall 関数を忘れがちになる。
+2. 解決: uninstallTool() を標準実装しハーネスで必須化。
+3. 教訓: すべてのGASツールは安全に解除できる機能を第一級市民とする。</div>
+                <div style="margin-top: 8px; font-size: 11px; color: var(--accent); font-weight: 600;">
+                  ➔ 自動注入ルール: <span class="code-badge">uninstallTool_verification</span>
                 </div>
+              </div>
 
-                <div class="castle-layer-card layer-3" id="cl-deploy" onclick="selectCastleLayer('deploy')">
-                  <span class="layer-badge">最終ゴール / 本丸</span>
-                  <div class="layer-title">👑 本丸 完成品</div>
-                  <p class="layer-desc">note記事・デモ動画・GitHub Pages本番配備</p>
-                  <span class="mini-badge ok" style="margin-top:auto;">● 納品配備完了</span>
+              <div class="lesson-card">
+                <div class="lesson-tool">
+                  <span>minitool_002_sheets_to_calendar</span>
+                  <span class="code-badge" style="color:var(--success);">ルール抽出済</span>
                 </div>
-
-                <div class="castle-layer-card layer-4" id="cl-meta" onclick="selectCastleLayer('meta')">
-                  <span class="layer-badge">自己進化 / 地下壕</span>
-                  <div class="layer-title">🧠 地下 学習壕</div>
-                  <p class="layer-desc">弾かれた失敗を回収し次代の城壁を強化する知恵DB</p>
-                  <span class="mini-badge ok" style="margin-top:auto;">● 3教訓蓄積済み</span>
+                <div class="lesson-body">1. 失敗: 自作HTMLモックで上部タブの不自然な画面を合格判定。
+2. 解決: Google公式DOM座標幾何判定で本物実機UIのみ許可。
+3. 教訓: 合否判定はAIの主観を排し外部スクリプトの機械判定のみとする。</div>
+                <div style="margin-top: 8px; font-size: 11px; color: var(--accent); font-weight: 600;">
+                  ➔ 自動注入ルール: <span class="code-badge">anti_mock_optical_scan</span>
                 </div>
-
-              </div>
-            </div>
-
-            <!-- LEVEL 2: ベルトコンベア・工場検査ライン (工程詳細) -->
-            <div class="conveyor-box">
-              <div style="display:flex; justify-content:space-between; align-items:center;">
-                <h4 id="conveyor-title" style="font-size:15px; font-weight:700; color:var(--accent);">
-                  🏭 LEVEL 2: 【外郭 城壁】境界防御ライン（ベルトコンベア検査工程）
-                </h4>
-                <span style="font-size:11px; color:var(--text-muted);">検査ステーションをクリックして詳細ルールを表示 ▼</span>
               </div>
 
-              <div class="conveyor-line" id="conveyor-line-content">
-                <!-- 動的に生成される検査ステーション -->
+              <div class="lesson-card">
+                <div class="lesson-tool">
+                  <span>workspace_health_monitor</span>
+                  <span class="code-badge" style="color:var(--success);">ルール抽出済</span>
+                </div>
+                <div class="lesson-body">1. 失敗: パースエラーや思い込みによる誤診。
+2. 解決: 監視ツール自身の自己テスト（test_monitor.js）を構築。
+3. 教訓: 監視ツール自身がテストハーネスで守られ、外部依存ゼロの静的HTMLとする。</div>
+                <div style="margin-top: 8px; font-size: 11px; color: var(--accent); font-weight: 600;">
+                  ➔ 自動注入ルール: <span class="code-badge">self_test_integrity_gate</span>
+                </div>
               </div>
             </div>
-
-            <!-- LEVEL 3: インスペクター詳細（ナノコード＆ルール） -->
-            <div class="inspector-detail-box" id="inspector-detail-box">
-              <div class="detail-heading">
-                <h4 id="inspector-title">🔍 LEVEL 3: 検査ステーション詳細</h4>
-                <span class="code-badge" id="inspector-status" style="color:var(--success);">PASS</span>
-              </div>
-              <div class="detail-grid" id="inspector-grid">
-                <!-- 動的に挿入される詳細情報 -->
-              </div>
-            </div>
-
           </div>
 
-          <h4 style="font-size: 15px; font-weight: 700; color: var(--accent); margin-bottom: 12px;">【階層1】システム全体ガードレール (憲法レベル)</h4>
-          
-          <div class="harness-card">
-            <div class="harness-card-header">
-              <div class="harness-name"><span>⚡</span> <span>アーキテクチャ境界ガードレール (Architecture Guard)</span></div>
-              <span class="metric-status status-PASS">100% PASS</span>
-            </div>
-            <div class="harness-desc">未許可アイテム・カプセル化違反を検知し、散乱を機械的に即時遮断</div>
-            <div style="font-size: 11px; color: var(--text-muted); display: flex; gap: 16px;">
-              <span>種別: 憲法 (全体統制)</span>
-              <span>監視対象: <span class="code-badge">ワークスペースルート & 全プロジェクト境界</span></span>
-            </div>
-          </div>
-          
-          <div class="harness-card">
-            <div class="harness-card-header">
-              <div class="harness-name"><span>⚡</span> <span>メタハーネス自己進化エンジン (Meta-Harness Collector)</span></div>
-              <span class="metric-status status-PASS">3 教訓集約済</span>
-            </div>
-            <div class="harness-desc">過去の全失敗・解決・教訓を meta_knowledge.json に蓄積し再発防止</div>
-            <div style="font-size: 11px; color: var(--text-muted); display: flex; gap: 16px;">
-              <span>種別: 知能 (学習集約)</span>
-              <span>監視対象: <span class="code-badge">全ツールの logs/trace.md</span></span>
-            </div>
-          </div>
-          
-          <div class="harness-card">
-            <div class="harness-card-header">
-              <div class="harness-name"><span>⚡</span> <span>日次自動徘徊 CI/CD (GitHub Actions Patrol)</span></div>
-              <span class="metric-status status-PASS">毎日 0:00 UTC 実行</span>
-            </div>
-            <div class="harness-desc">クラウド上で定期スキャンを実行し、ダッシュボードWebを最新自動同期</div>
-            <div style="font-size: 11px; color: var(--text-muted); display: flex; gap: 16px;">
-              <span>種別: 自動化 (クラウド監視)</span>
-              <span>監視対象: <span class="code-badge">リポジトリ全体 & GitHub Pages</span></span>
-            </div>
-          </div>
-          
+          <!-- ブロック2: プロジェクト別ハーネス検査マトリクス -->
+          <div class="card">
+            <h3 class="section-title">🧪 プロジェクト別ハーネス検査マトリクス</h3>
+            <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 16px;">
+              プロジェクトを選択すると、配備されている「全体規律テスト」「要件受入テスト」「教訓注入テスト」の合否判定一覧が表示されます。
+            </p>
 
-          <h4 style="font-size: 15px; font-weight: 700; color: #10b981; margin-top: 28px; margin-bottom: 12px;">【階層2】プロジェクト別品質ハーネス (個別法レベル)</h4>
-          
-          <div class="harness-card">
-            <div class="harness-card-header">
-              <div class="harness-name"><span>🎯</span> <span>GASミニツール 16基準評価ハーネス</span></div>
-              <span class="metric-status status-PASS">100% (2 / 2 ツール適合)</span>
+            <div class="p-tabs">
+              <button class="p-tab-btn active" onclick="selectProjectHarness('p1')">minitool_001_unreplied_emails</button>
+              <button class="p-tab-btn" onclick="selectProjectHarness('p2')">minitool_002_sheets_to_calendar</button>
+              <button class="p-tab-btn" onclick="selectProjectHarness('p3')">workspace_health_monitor</button>
             </div>
-            <div style="font-size: 12px; color: var(--text-muted); margin-bottom: 8px;">適用対象: <span class="code-badge">gas_project/*</span></div>
-            <div class="harness-criteria-list">
-              <span class="mini-badge ok">✔ 構文・実機DOM幾何判定</span><span class="mini-badge ok">✔ uninstallTool() 完全実装</span><span class="mini-badge ok">✔ note下書き＆タイトル100点チェック</span><span class="mini-badge ok">✔ デモGIF/動画アスペクト比</span><span class="mini-badge ok">✔ logs/trace.md 3段階教訓義務化</span>
+
+            <div id="harness-table-container">
+              <!-- 動的差し替えテーブル -->
             </div>
           </div>
-          
-          <div class="harness-card">
-            <div class="harness-card-header">
-              <div class="harness-name"><span>🎯</span> <span>ヘルスモニター自己検証ハーネス (Self-Test Harness)</span></div>
-              <span class="metric-status status-PASS">100% (2 / 2 テスト合格)</span>
+
+          <!-- ブロック3: メタハーネス自動生成エンジン（シミュレーター） -->
+          <div class="card generator-box">
+            <h3 class="section-title">⚡ メタハーネス自動生成エンジン (Live Generator)</h3>
+            <p style="font-size: 13px; color: var(--text-muted);">
+              新規プロジェクトの立ち上げ時、要件（仕様）とメタナレッジDBを入力として「専用テストコード」が自動生成される仕組みの実機プレビューです。
+            </p>
+            <div style="margin-top: 14px; display: flex; gap: 10px; align-items: center;">
+              <span style="font-size: 12px; font-weight: 600;">生成対象:</span>
+              <span class="code-badge">minitool_003_gmail_summarizer (GASミニツール)</span>
+              <span style="font-size: 11px; color: var(--text-muted);">エンジン: harness/meta_harness_generator.js</span>
             </div>
-            <div style="font-size: 12px; color: var(--text-muted); margin-bottom: 8px;">適用対象: <span class="code-badge">projects/workspace_health_monitor/*</span></div>
-            <div class="harness-criteria-list">
-              <span class="mini-badge ok">✔ 診断データ構造の決定論的検証</span><span class="mini-badge ok">✔ HTML/JSON成果物DOM完全性検証</span>
-            </div>
+            <pre class="code-preview">// [自動生成されたプロジェクト専用ハーネス]
+// File: gas_project/minitool_003_gmail_summarizer/harness/eval.js
+
+const { runInvariants } = require('../../../harness/global_rules/check_architecture_guard');
+
+// 1. 全体規律テスト (Global Invariants)
+// - 1ツール1フォルダ完全カプセル化: PASS
+// - trace.md 3段階教訓フォーマット: PASS
+
+// 2. 要件受入テスト (Capability Evals)
+// - Gmail下書き自動作成機能 (Draft API呼び出し確認): PASS
+// - x_post.md 140字以内投稿文の生成確認: PASS
+
+// 3. 教訓注入テスト (Injected Regression Checks from meta_knowledge.json)
+// - [from minitool_001]: uninstallTool() トリガー解除関数の実装確認: PASS
+// - [from minitool_002]: 自作モック排除・実機UI幾何判定: PASS
+// - [from monitor]: ログサイズ軽量性 (50KB未満) 確認: PASS</pre>
           </div>
-          
-          <div class="harness-card">
-            <div class="harness-card-header">
-              <div class="harness-name"><span>🎯</span> <span>DOM幾何＆実機UI検証ハーネス (Anti-Mock Guard)</span></div>
-              <span class="metric-status status-PASS">100% (偽モック完全排除)</span>
-            </div>
-            <div style="font-size: 12px; color: var(--text-muted); margin-bottom: 8px;">適用対象: <span class="code-badge">Demo Video Capture</span></div>
-            <div class="harness-criteria-list">
-              <span class="mini-badge ok">✔ Google公式DOM下部タブ判定</span><span class="mini-badge ok">✔ 自作HTMLモック撮影の永久禁止</span>
-            </div>
-          </div>
-          
+
         </div>
       </div>
 
       <!-- ============================================== -->
-      <!-- VIEW 4: ディレクトリ構造 (Tree Explorer) -->
+      <!-- VIEW 4: ディレクトリ階層 (Tree) -->
       <!-- ============================================== -->
       <div id="view-tree" class="view-panel">
         <div class="card">
           <h3 class="section-title">🌲 ワークスペース階層構造エクスプローラー</h3>
-          <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 16px;">
-            各主要フォルダをクリックすると、配下のツールおよび健全性を展開できます。
+          <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 20px;">
+            カシマ様のワークスペース内の主要ディレクトリ構成と各領域の責務です。
           </p>
-          <div class="tree-container">
-            
-            <div class="tree-card">
-              <div class="tree-header" onclick="toggleTree('tree-sec-0')">
-                <div style="font-family: 'JetBrains Mono', monospace; font-size: 14px; font-weight: 700;">
-                  📁 gas_project/ <span style="font-size: 12px; font-weight: normal; color: var(--text-muted);">GASミニツール本番 (2 ツール完全カプセル化)</span>
-                </div>
-                <div style="display: flex; gap: 10px; align-items: center;">
-                  <span class="metric-status status-PASS">HEALTHY</span>
-                  <span style="font-size: 12px; color: var(--text-muted);">2 項目 ▼</span>
-                </div>
-              </div>
-              <div id="tree-sec-0" class="tree-body">
-                
-                <div class="tree-item">
-                  <span>📂 minitool_001_unreplied_emails</span>
-                  <span style="color: var(--text-muted); font-size: 11px;">10 項目</span>
-                </div>
-                
-                <div class="tree-item">
-                  <span>📂 minitool_002_sheets_to_calendar</span>
-                  <span style="color: var(--text-muted); font-size: 11px;">9 項目</span>
-                </div>
-                
-              </div>
-            </div>
-            
-            <div class="tree-card">
-              <div class="tree-header" onclick="toggleTree('tree-sec-1')">
-                <div style="font-family: 'JetBrains Mono', monospace; font-size: 14px; font-weight: 700;">
-                  📁 projects/ <span style="font-size: 12px; font-weight: normal; color: var(--text-muted);"></span>
-                </div>
-                <div style="display: flex; gap: 10px; align-items: center;">
-                  <span class="metric-status status-PASS">HEALTHY</span>
-                  <span style="font-size: 12px; color: var(--text-muted);">7 項目 ▼</span>
-                </div>
-              </div>
-              <div id="tree-sec-1" class="tree-body">
-                
-                <div class="tree-item">
-                  <span>📂 moodle_sync</span>
-                  <span style="color: var(--text-muted); font-size: 11px;">2 項目</span>
-                </div>
-                
-                <div class="tree-item">
-                  <span>📂 notebooklm_enhancer</span>
-                  <span style="color: var(--text-muted); font-size: 11px;">9 項目</span>
-                </div>
-                
-                <div class="tree-item">
-                  <span>📂 pt_anatomy_quiz</span>
-                  <span style="color: var(--text-muted); font-size: 11px;">4 項目</span>
-                </div>
-                
-                <div class="tree-item">
-                  <span>📂 pt_knowledge_visual_library</span>
-                  <span style="color: var(--text-muted); font-size: 11px;">14 項目</span>
-                </div>
-                
-                <div class="tree-item">
-                  <span>📂 pt_quiz_temp</span>
-                  <span style="color: var(--text-muted); font-size: 11px;">4 項目</span>
-                </div>
-                
-                <div class="tree-item">
-                  <span>📂 workspace_health_monitor</span>
-                  <span style="color: var(--text-muted); font-size: 11px;">10 項目</span>
-                </div>
-                
-                <div class="tree-item">
-                  <span>📂 youtube_visual_library</span>
-                  <span style="color: var(--text-muted); font-size: 11px;">8 項目</span>
-                </div>
-                
-              </div>
-            </div>
-            
-            <div class="tree-card">
-              <div class="tree-header" onclick="toggleTree('tree-sec-2')">
-                <div style="font-family: 'JetBrains Mono', monospace; font-size: 14px; font-weight: 700;">
-                  📁 harness/ <span style="font-size: 12px; font-weight: normal; color: var(--text-muted);">16基準評価＆メタ集約エンジン</span>
-                </div>
-                <div style="display: flex; gap: 10px; align-items: center;">
-                  <span class="metric-status status-PASS">HEALTHY</span>
-                  <span style="font-size: 12px; color: var(--text-muted);">18 項目 ▼</span>
-                </div>
-              </div>
-              <div id="tree-sec-2" class="tree-body">
-                
-                <div class="tree-item">
-                  <span>📄 evaluator_instagram_carousel.js</span>
-                  <span style="color: var(--text-muted); font-size: 11px;">7.1 KB</span>
-                </div>
-                
-                <div class="tree-item">
-                  <span>📄 evaluator_stage1.js</span>
-                  <span style="color: var(--text-muted); font-size: 11px;">5.4 KB</span>
-                </div>
-                
-                <div class="tree-item">
-                  <span>📄 evaluator_stage2.js</span>
-                  <span style="color: var(--text-muted); font-size: 11px;">6.3 KB</span>
-                </div>
-                
-                <div class="tree-item">
-                  <span>📄 evaluator_stage3.js</span>
-                  <span style="color: var(--text-muted); font-size: 11px;">5.8 KB</span>
-                </div>
-                
-                <div class="tree-item">
-                  <span>📄 evaluator_stage4.js</span>
-                  <span style="color: var(--text-muted); font-size: 11px;">9.2 KB</span>
-                </div>
-                
-                <div class="tree-item">
-                  <span>📄 evaluator_stage5.js</span>
-                  <span style="color: var(--text-muted); font-size: 11px;">13.1 KB</span>
-                </div>
-                
-                <div class="tree-item">
-                  <span>📄 evaluator_video_hyperframes.js</span>
-                  <span style="color: var(--text-muted); font-size: 11px;">10.8 KB</span>
-                </div>
-                
-                <div class="tree-item">
-                  <span>📄 eval_results.json</span>
-                  <span style="color: var(--text-muted); font-size: 11px;">4.4 KB</span>
-                </div>
-                
-                <div class="tree-item">
-                  <span>📂 gas_minitool</span>
-                  <span style="color: var(--text-muted); font-size: 11px;">2 項目</span>
-                </div>
-                
-                <div class="tree-item">
-                  <span>📂 global_rules</span>
-                  <span style="color: var(--text-muted); font-size: 11px;">1 項目</span>
-                </div>
-                
-                <div class="tree-item">
-                  <span>📄 jev_dev_pipeline.js</span>
-                  <span style="color: var(--text-muted); font-size: 11px;">5.7 KB</span>
-                </div>
-                
-                <div class="tree-item">
-                  <span>📄 live_evaluator_stage5.js</span>
-                  <span style="color: var(--text-muted); font-size: 11px;">13.6 KB</span>
-                </div>
-                
-                <div class="tree-item">
-                  <span>📄 meta_harness_collector.js</span>
-                  <span style="color: var(--text-muted); font-size: 11px;">2.8 KB</span>
-                </div>
-                
-                <div class="tree-item">
-                  <span>📄 meta_knowledge.json</span>
-                  <span style="color: var(--text-muted); font-size: 11px;">2.2 KB</span>
-                </div>
-                
-                <div class="tree-item">
-                  <span>📄 run_all_evals.js</span>
-                  <span style="color: var(--text-muted); font-size: 11px;">1.3 KB</span>
-                </div>
-                
-                <div class="tree-item">
-                  <span>📄 test_carousel_audit.js</span>
-                  <span style="color: var(--text-muted); font-size: 11px;">2.3 KB</span>
-                </div>
-                
-                <div class="tree-item">
-                  <span>📄 test_jev_cycle.js</span>
-                  <span style="color: var(--text-muted); font-size: 11px;">3.9 KB</span>
-                </div>
-                
-                <div class="tree-item">
-                  <span>📄 ux_evaluator_stage6.js</span>
-                  <span style="color: var(--text-muted); font-size: 11px;">13.8 KB</span>
-                </div>
-                
-              </div>
-            </div>
-            
-            <div class="tree-card">
-              <div class="tree-header" onclick="toggleTree('tree-sec-3')">
-                <div style="font-family: 'JetBrains Mono', monospace; font-size: 14px; font-weight: 700;">
-                  📁 docs/ <span style="font-size: 12px; font-weight: normal; color: var(--text-muted);"></span>
-                </div>
-                <div style="display: flex; gap: 10px; align-items: center;">
-                  <span class="metric-status status-PASS">HEALTHY</span>
-                  <span style="font-size: 12px; color: var(--text-muted);">6 項目 ▼</span>
-                </div>
-              </div>
-              <div id="tree-sec-3" class="tree-body">
-                
-                <div class="tree-item">
-                  <span>📂 anatomy_quiz_20261022</span>
-                  <span style="color: var(--text-muted); font-size: 11px;">6 項目</span>
-                </div>
-                
-                <div class="tree-item">
-                  <span>📄 index.html</span>
-                  <span style="color: var(--text-muted); font-size: 11px;">86.0 KB</span>
-                </div>
-                
-                <div class="tree-item">
-                  <span>📄 PT学生向け解剖生理学_全10回マスター講座.md</span>
-                  <span style="color: var(--text-muted); font-size: 11px;">13.3 KB</span>
-                </div>
-                
-                <div class="tree-item">
-                  <span>📄 WEBSITE_PORTAL.md</span>
-                  <span style="color: var(--text-muted); font-size: 11px;">1.6 KB</span>
-                </div>
-                
-                <div class="tree-item">
-                  <span>📄 YouTube文字起こし_日本語訳.txt</span>
-                  <span style="color: var(--text-muted); font-size: 11px;">5.8 KB</span>
-                </div>
-                
-                <div class="tree-item">
-                  <span>📄 YouTube文字起こし結果_英語原本.txt</span>
-                  <span style="color: var(--text-muted); font-size: 11px;">16.2 KB</span>
-                </div>
-                
-              </div>
-            </div>
-            
-            <div class="tree-card">
-              <div class="tree-header" onclick="toggleTree('tree-sec-4')">
-                <div style="font-family: 'JetBrains Mono', monospace; font-size: 14px; font-weight: 700;">
-                  📁 scratch/ <span style="font-size: 12px; font-weight: normal; color: var(--text-muted);"></span>
-                </div>
-                <div style="display: flex; gap: 10px; align-items: center;">
-                  <span class="metric-status status-PASS">HEALTHY</span>
-                  <span style="font-size: 12px; color: var(--text-muted);">0 項目 ▼</span>
-                </div>
-              </div>
-              <div id="tree-sec-4" class="tree-body">
-                <div style="font-size: 12px; color: var(--text-muted);">（空）</div>
-              </div>
-            </div>
-            
-            <div class="tree-card">
-              <div class="tree-header" onclick="toggleTree('tree-sec-5')">
-                <div style="font-family: 'JetBrains Mono', monospace; font-size: 14px; font-weight: 700;">
-                  📁 archive/ <span style="font-size: 12px; font-weight: normal; color: var(--text-muted);">過去アセット完全隔離 (111.9 MB)</span>
-                </div>
-                <div style="display: flex; gap: 10px; align-items: center;">
-                  <span class="metric-status status-PASS">ARCHIVED</span>
-                  <span style="font-size: 12px; color: var(--text-muted);">5 項目 ▼</span>
-                </div>
-              </div>
-              <div id="tree-sec-5" class="tree-body">
-                
-                <div class="tree-item">
-                  <span>📂 experiments</span>
-                  <span style="color: var(--text-muted); font-size: 11px;">45 項目</span>
-                </div>
-                
-                <div class="tree-item">
-                  <span>📂 gas_project_legacy_20261008</span>
-                  <span style="color: var(--text-muted); font-size: 11px;">3 項目</span>
-                </div>
-                
-                <div class="tree-item">
-                  <span>📂 root_legacy_20261008</span>
-                  <span style="color: var(--text-muted); font-size: 11px;">42 項目</span>
-                </div>
-                
-                <div class="tree-item">
-                  <span>📂 scrapers</span>
-                  <span style="color: var(--text-muted); font-size: 11px;">31 項目</span>
-                </div>
-                
-                <div class="tree-item">
-                  <span>📂 scratch_legacy_20261008</span>
-                  <span style="color: var(--text-muted); font-size: 11px;">306 項目</span>
-                </div>
-                
-              </div>
-            </div>
-            
+          <div style="background: var(--card-bg-subtle); padding: 18px; border-radius: 10px; border: 1px solid var(--card-border); font-family: 'JetBrains Mono', monospace; font-size: 12px; line-height: 1.8;">
+            <div>📁 <strong>ForPTstudent/</strong> (ルート)</div>
+            <div style="padding-left: 20px;">├── 📁 <strong>gas_project/</strong> 👉 GASミニツール本番（1ツール1フォルダ完全カプセル化）</div>
+            <div style="padding-left: 20px;">├── 📁 <strong>harness/</strong> 👉 品質判定・メタハーネス生成エンジン・教訓DB</div>
+            <div style="padding-left: 20px;">├── 📁 <strong>projects/</strong> 👉 独立アプリケーション（ヘルスモニター等）</div>
+            <div style="padding-left: 20px;">├── 📁 <strong>docs/</strong> 👉 ポータル一覧・公開仕様書</div>
+            <div style="padding-left: 20px;">├── 📁 <strong>.agents/skills/</strong> 👉 専門スキル群（eval-harness 等）</div>
+            <div style="padding-left: 20px;">├── 📁 <strong>scratch/</strong> 👉 一時検証作業場（検証終了後に即時破棄）</div>
+            <div style="padding-left: 20px;">└── 📁 <strong>archive/</strong> 👉 過去アセット隔離フォルダ</div>
           </div>
         </div>
       </div>
 
       <!-- ============================================== -->
-      <!-- VIEW 5: ログ＆メタ知識 (Logs & Intelligence) -->
+      <!-- VIEW 5: ログ＆メタ知識アーカイブ (Logs) -->
       <!-- ============================================== -->
       <div id="view-logs" class="view-panel">
         <div class="card">
-          <h3 class="section-title">📊 ログ容量＆軽量化規律チェック</h3>
-          <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 16px;">
-            AGENTS.md「生ログの軽量化規律（数KBに圧縮して教訓のみ抽出）」の遵守状況です。
+          <h3 class="section-title">📜 失敗と教訓の完全アーカイブ (trace.md 集約)</h3>
+          <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 20px;">
+            各プロジェクトの <span class="code-badge">logs/trace.md</span> に記録された恒久教訓の全テキストです。
           </p>
-          <div style="display: flex; flex-direction: column; gap: 10px;">
-            
-            <div style="display: flex; justify-content: space-between; align-items: center; padding: 12px 16px; background: rgba(255, 255, 255, 0.02); border-radius: 8px; font-size: 13px;">
-              <div>
-                <span style="font-family: 'JetBrains Mono', monospace; font-weight: 700;">minitool_001_unreplied_emails</span>
-                <span style="font-size: 11px; color: var(--text-muted); margin-left: 8px;">(GAS MiniTool)</span>
-              </div>
-              <div style="display: flex; gap: 16px; align-items: center;">
-                <span style="font-family: 'JetBrains Mono', monospace;">1 KB / 20 行</span>
-                <span class="mini-badge ok">✔ 3段階教訓完備</span>
-                <span class="metric-status status-PASS">OPTIMAL</span>
-              </div>
+          <div style="display: flex; flex-direction: column; gap: 16px;">
+            <div style="padding: 16px; background: var(--card-bg-subtle); border-radius: 10px; border: 1px solid var(--card-border);">
+              <h4 style="font-size: 14px; font-weight: 700; margin-bottom: 8px;">minitool_001_unreplied_emails</h4>
+              <p style="font-size: 12px; color: var(--text-muted); line-height: 1.6; font-family: 'JetBrains Mono', monospace;">
+1. 失敗: 自動トリガーを設定するツールでは、ユーザーが手動で解除する手段（uninstall関数）を忘れがちになる。<br>
+2. 解決: ScriptApp.deleteTrigger を含む uninstallTool() を標準実装とし、ハーネスでも必須検証項目とした。<br>
+3. 教訓: すべてのGASツールは「使い始める機能」と同等に「安全にやめる機能（uninstall）」を第一級市民として扱わなければならない。
+              </p>
             </div>
-            
-            <div style="display: flex; justify-content: space-between; align-items: center; padding: 12px 16px; background: rgba(255, 255, 255, 0.02); border-radius: 8px; font-size: 13px;">
-              <div>
-                <span style="font-family: 'JetBrains Mono', monospace; font-weight: 700;">minitool_002_sheets_to_calendar</span>
-                <span style="font-size: 11px; color: var(--text-muted); margin-left: 8px;">(GAS MiniTool)</span>
-              </div>
-              <div style="display: flex; gap: 16px; align-items: center;">
-                <span style="font-family: 'JetBrains Mono', monospace;">1.3 KB / 20 行</span>
-                <span class="mini-badge ok">✔ 3段階教訓完備</span>
-                <span class="metric-status status-PASS">OPTIMAL</span>
-              </div>
+            <div style="padding: 16px; background: var(--card-bg-subtle); border-radius: 10px; border: 1px solid var(--card-border);">
+              <h4 style="font-size: 14px; font-weight: 700; margin-bottom: 8px;">minitool_002_sheets_to_calendar</h4>
+              <p style="font-size: 12px; color: var(--text-muted); line-height: 1.6; font-family: 'JetBrains Mono', monospace;">
+1. 失敗: AIが手軽さを優先して自作HTMLモックでデモを撮影し、タブが上にあるあり得ない画面を合格と自己判定した。<br>
+2. 解決: 自作モックを永久禁止とし、Google公式DOM幾何判定（下部タブ等）をパスする本物実機UIでのみ撮影を許可した。<br>
+3. 教訓: 成果物の合否判定はAIの感想や自己評価に任せず、外部の客観的検証スクリプト（ハーネス）による機械判定でのみ確定させなければならない。
+              </p>
             </div>
-            
-            <div style="display: flex; justify-content: space-between; align-items: center; padding: 12px 16px; background: rgba(255, 255, 255, 0.02); border-radius: 8px; font-size: 13px;">
-              <div>
-                <span style="font-family: 'JetBrains Mono', monospace; font-weight: 700;">workspace_health_monitor</span>
-                <span style="font-size: 11px; color: var(--text-muted); margin-left: 8px;">(Projects)</span>
-              </div>
-              <div style="display: flex; gap: 16px; align-items: center;">
-                <span style="font-family: 'JetBrains Mono', monospace;">1.9 KB / 22 行</span>
-                <span class="mini-badge ok">✔ 3段階教訓完備</span>
-                <span class="metric-status status-PASS">OPTIMAL</span>
-              </div>
+            <div style="padding: 16px; background: var(--card-bg-subtle); border-radius: 10px; border: 1px solid var(--card-border);">
+              <h4 style="font-size: 14px; font-weight: 700; margin-bottom: 8px;">workspace_health_monitor</h4>
+              <p style="font-size: 12px; color: var(--text-muted); line-height: 1.6; font-family: 'JetBrains Mono', monospace;">
+1. 失敗: 初期スキャン時、scratch/ 残骸でスコアが急落し、パースプロパティの不整合で誤診が生じた。<br>
+2. 解決: scratch/ を隔離し、監視エンジン自体のテストハーネス（test_monitor.js）を構築して客観判定を確立。<br>
+3. 教訓: 監視ツール自身がテストハーネスで守られる必要があり、成果物は外部JS依存ゼロの静的HTMLに純化すべきである。
+              </p>
             </div>
-            
-          </div>
-
-          <h3 class="section-title" style="margin-top: 32px;">🧠 メタハーネス集約済みの教訓アーカイブ</h3>
-          <div class="lesson-item">
-            <h4>🔧 minitool_001_unreplied_emails (GASトリガー運用)</h4>
-            <pre>1. 失敗: 自動トリガーを設定するツールでは、ユーザーが手動で解除する手段（uninstall関数）を忘れがちになる。
-2. 解決: ScriptApp.deleteTrigger を含む uninstallTool() を標準実装とし、ハーネスでも必須検証項目とした。
-3. 教訓: すべてのGASツールは「使い始める機能」と同等に「安全にやめる機能（uninstall）」を第一級市民として扱わなければならない。</pre>
-          </div>
-
-          <div class="lesson-item">
-            <h4>🔧 minitool_002_sheets_to_calendar (実機UI検証と自己欺瞞防止)</h4>
-            <pre>1. 失敗: AIが手軽さを優先して自作HTMLモックでデモを撮影し、タブが上にあるあり得ない画面を合格と自己判定した。
-2. 解決: 自作モックを永久禁止とし、Google公式DOM幾何判定（下部タブ等）をパスする本物実機UIでのみ撮影を許可した。
-3. 教訓: 成果物の合否判定はAIの感想や自己評価に任せず、外部の客観的検証スクリプト（ハーネス）による機械判定でのみ確定させなければならない。</pre>
-          </div>
-
-          <div class="lesson-item">
-            <h4>🛡️ workspace_health_monitor (監視ツールの自己欺瞞防止＆スタンドアロン化)</h4>
-            <pre>1. 失敗: 初期スキャン時、scratch/ 残骸でスコアが75点に急落し、パースプロパティの不整合で教訓蓄積が0件と誤判定された。
-2. 解決: scratch/ を完全隔離し、監視エンジン自体のテストハーネス（test_monitor.js）を構築して客観判定を確立。
-3. 教訓: 監視ツール自身が自己欺瞞を持たず、テストハーネスで守られる必要がある。また成果物は外部JS依存ゼロの静的HTMLに純化すべきである。</pre>
           </div>
         </div>
       </div>
 
       <!-- ============================================== -->
-      <!-- VIEW 6: 定期徘徊・CI/CD (Automation) -->
+      <!-- VIEW 6: 定期巡回・CI/CD (Automation) -->
       <!-- ============================================== -->
       <div id="view-automation" class="view-panel">
         <div class="card">
-          <h3 class="section-title">⏰ 自動徘徊＆定期スキャン運用スケジュール</h3>
+          <h3 class="section-title">⏰ 自動巡回＆定期スキャン運用スケジュール</h3>
           <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 20px;">
-            カシマ様のPCおよびGitHubクラウド上で、ディレクトリ健全性が自動で保たれる仕組みです。
+            カシマ様のPCおよびGitHubクラウド上で、ディレクトリ健全性とハーネス品質が自動維持される仕組みです。
           </p>
-
           <div style="display: flex; flex-direction: column; gap: 14px;">
-            <div style="padding: 16px; background: rgba(255, 255, 255, 0.02); border-radius: 10px; border-left: 3px solid var(--accent);">
+            <div style="padding: 16px; background: var(--card-bg-subtle); border-radius: 10px; border-left: 3px solid var(--accent); border: 1px solid var(--card-border);">
               <h4 style="font-size: 14px; font-weight: 700; margin-bottom: 4px;">☁️ GitHub Actions 日次自動巡回 (Patrol Workflow)</h4>
-              <p style="font-size: 12px; color: var(--text-muted);">
-                スケジュール: 毎日日本時間 9:00 (UTC 0:00) 自動実行<br>
+              <p style="font-size: 12px; color: var(--text-muted); line-height: 1.6;">
+                スケジュール: 毎日日本時間 9:00 自動実行<br>
                 ワークフロー: <span class="code-badge">.github/workflows/directory_health_check.yml</span><br>
                 動作: クラウド上でディレクトリ境界・ハーネス判定を自動実行し、本Webサイトを最新状態に自動プッシュ。
               </p>
             </div>
-
-            <div style="padding: 16px; background: rgba(255, 255, 255, 0.02); border-radius: 10px; border-left: 3px solid var(--success);">
+            <div style="padding: 16px; background: var(--card-bg-subtle); border-radius: 10px; border-left: 3px solid var(--success); border: 1px solid var(--card-border);">
               <h4 style="font-size: 14px; font-weight: 700; margin-bottom: 4px;">🛡️ 境界ガードレール (Pre-commit / Pre-test Guard)</h4>
-              <p style="font-size: 12px; color: var(--text-muted);">
+              <p style="font-size: 12px; color: var(--text-muted); line-height: 1.6;">
                 スクリプト: <span class="code-badge">harness/global_rules/check_architecture_guard.js</span><br>
-                動作: AIが作業中にルート直下や未許可領域にファイルを置いた瞬間に、ビルド・テストをExit Code 1で強制中断。
+                動作: AIがルート直下や未許可領域にファイルを置いた瞬間に、ビルド・テストをExit Code 1で強制遮断。
               </p>
             </div>
           </div>
@@ -1688,7 +1219,6 @@
       document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active'));
       document.querySelectorAll('.view-panel').forEach(panel => panel.classList.remove('active'));
 
-      // ボタンのアクティブ化
       const btns = document.querySelectorAll('.nav-btn');
       btns.forEach(btn => {
         if (btn.getAttribute('onclick') && btn.getAttribute('onclick').includes(viewId)) {
@@ -1699,14 +1229,13 @@
       const target = document.getElementById(viewId);
       if (target) target.classList.add('active');
 
-      // タイトル動的更新
       const titleMap = {
         'view-overview': ['🏠 ワークスペース総合ヘルス概要', '境界防御・ディレクトリ健全性・全プロジェクト状況のリアルタイム監視'],
         'view-projects': ['🚀 全プロジェクト進捗・完成度トラッカー', '各ツールの成果物構成・仕様書・テスト適合状況の客観判定'],
-        'view-harness': ['🛡️ 2階層ハーネス稼働センター', '全体統制ガードレール（憲法）＆個別法品質ハーネスの合否判定マトリクス'],
+        'view-harness': ['🛡️ 評価ハーネス管理センター (事例C)', 'メタ教訓DBからの自動ルール注入＆プロジェクト専用ハーネスマトリクス'],
         'view-tree': ['🌲 ワークスペース階層構造エクスプローラー', '主要フォルダの展開・容量・衛生度マップ'],
-        'view-logs': ['📜 ログ容量＆メタ知識アーカイブ', '生ログの軽量化チェックおよび全教訓の抽出一覧'],
-        'view-automation': ['⏰ 自動徘徊＆定期スキャン運用', 'GitHub Actions日次巡回およびローカル常時統制の構成']
+        'view-logs': ['📜 失敗と教訓の完全アーカイブ', '各プロジェクトの trace.md から抽出された恒久教訓一覧'],
+        'view-automation': ['⏰ 自動巡回＆定期スキャン運用', 'GitHub Actions日次巡回およびローカル常時統制の構成']
       };
 
       if (titleMap[viewId]) {
@@ -1715,332 +1244,91 @@
       }
 
       if (viewId === 'view-harness') {
-        setTimeout(function() { selectCastleLayer(currentLayer); }, 50);
+        renderHarnessTable('p1');
       }
     }
 
-    // ツリー開閉
-    function toggleTree(id) {
-      const el = document.getElementById(id);
-      if (el) {
-        el.style.display = (el.style.display === 'none') ? 'flex' : 'none';
-      }
-    }
-
-    // 3階層ズーム防衛アーキテクチャ データ定義
-    const CONVEYOR_DATA = {
-      'guard': {
-        title: '🏭 LEVEL 2: 【外郭 城壁】境界防御ライン（ベルトコンベア検査工程）',
-        stations: [
-          {
-            id: 'g1',
-            num: 'STATION 01',
-            name: '📥 材料搬入 (AI生成)',
-            sub: 'ファイル受け入れ',
-            detail: {
-              title: '📥 材料搬入ステーション (AIファイル受入)',
-              role: 'AIエージェントが作成したコード、画像、スクリプトを受け取る最初のゲート。',
-              target: 'ワークスペース全域 (ルート / gas_project / projects)',
-              rules: 'ファイル命名規則、配置パスの受領確認',
-              status: 'READY (受入準備完了)'
-            }
-          },
-          {
-            id: 'g2',
-            num: 'STATION 02',
-            name: '⚖️ ホワイトリスト照合',
-            sub: 'ルート36品目検査',
-            detail: {
-              title: '⚖️ ホワイトリスト照合ステーション (厳格境界検査)',
-              role: 'ルート直下に置かれた全ファイルを許可リスト（36アイテム）と機械的に照合。',
-              target: 'harness/global_rules/check_architecture_guard.js',
-              rules: 'Set(ALLOWED_ROOT_ITEMS) と完全一致比較。1件でも未許可なら減点。',
-              status: 'PASS (違反 0件 / 25点満点)'
-            }
-          },
-          {
-            id: 'g3',
-            num: 'STATION 03',
-            name: '🚨 散乱遮断アーム',
-            sub: 'Exit Code 1 強制遮断',
-            detail: {
-              title: '🚨 散乱遮断アーム (物理的セーフティ機構)',
-              role: '未許可ファイルやカプセル化違反を検知した瞬間、プロセスを強制終了させて散乱を防止。',
-              target: 'Node.js process.exit(1)',
-              rules: '違反アイテムを検知した場合に即時ビルド・テストを中断。',
-              status: 'ACTIVE (異常なし・待機中)'
-            }
-          },
-          {
-            id: 'g4',
-            num: 'STATION 04',
-            name: '✅ クリーン通過',
-            sub: '第1防壁突破承認',
-            detail: {
-              title: '✅ クリーン通過ステーション (第1防壁クリア)',
-              role: '境界規律を100%遵守した成果物のみを次の「内郭 関所」へ送り出す。',
-              target: 'gas_project/*, projects/*',
-              rules: 'カプセル化完全性 25/25 pt 達成。',
-              status: 'PASS (第1防壁 突破承認)'
-            }
-          }
+    // プロジェクト別ハーネステーブルデータ
+    const HARNESS_DATA = {
+      'p1': {
+        name: 'minitool_001_unreplied_emails',
+        rows: [
+          { cat: 'cat-invariant', catName: '全体規律', name: 'ワークスペース境界検証', target: 'ルート直下36品目ホワイトリスト', type: 'AST / Path', status: 'PASS' },
+          { cat: 'cat-invariant', catName: '全体規律', name: '1ツール1フォルダカプセル化', target: 'gas_project/minitool_001/', type: 'Directory Scan', status: 'PASS' },
+          { cat: 'cat-capability', catName: '要件受入', name: '未返信メール抽出ロジック', target: 'Code.js (findUnreplied)', type: 'Syntax & Regex', status: 'PASS' },
+          { cat: 'cat-capability', catName: '要件受入', name: 'スプレッドシート書き込み機能', target: 'Code.js (outputToSheet)', type: 'Code Analysis', status: 'PASS' },
+          { cat: 'cat-regression', catName: '教訓注入', name: '安全なトリガー解除 (uninstallTool)', target: 'Code.js (uninstallTool)', type: 'AST Function Check', status: 'PASS' },
+          { cat: 'cat-regression', catName: '教訓注入', name: 'note記事構成・免責事項の網羅', target: 'article.md', type: 'Markdown Linter', status: 'PASS' }
         ]
       },
-      'harness': {
-        title: '🏭 LEVEL 2: 【内郭 関所】16基準品質ライン（ベルトコンベア検査工程）',
-        stations: [
-          {
-            id: 'h1',
-            num: 'STATION 01',
-            name: '📷 DOM幾何光学スキャン',
-            sub: '偽モック完全排除',
-            detail: {
-              title: '📷 DOM幾何光学スキャン (Anti-Mock Guard)',
-              role: 'Googleスプレッドシート公式の下部タブ座標を判定し、AIの自作HTML偽モックを永久排除。',
-              target: 'harness/gas_minitool/evaluator_gas_minitool.js (R14)',
-              rules: 'Google公式DOMセレクタ・座標幾何判定で本物実機UIでのみ合格判定。',
-              status: 'PASS (偽モック排除 100%)'
-            }
-          },
-          {
-            id: 'h2',
-            num: 'STATION 02',
-            name: '🔧 uninstall作動テスト',
-            sub: '安全な解除機能',
-            detail: {
-              title: '🔧 uninstall作動テストステーション (トリガー解除)',
-              role: 'GASの自動トリガーをユーザーが安全に解除できる手段が標準実装されているか検証。',
-              target: 'gas_project/*/Code.js (uninstallTool)',
-              rules: 'ScriptApp.deleteTrigger() の実装をコード構文解析で確認。',
-              status: 'PASS (全ツール実装済み)'
-            }
-          },
-          {
-            id: 'h3',
-            num: 'STATION 03',
-            name: '📝 note下書き100点採点',
-            sub: '記事構成・導線検査',
-            detail: {
-              title: '📝 note下書き100点採点ステーション',
-              role: '記事タイトル（文字数・具体性）、導入文、デモGIF埋め込み、免責事項の網羅性を採点。',
-              target: 'gas_project/*/article.md',
-              rules: '文字数、見出し構造、GIFリンクの存在を正規表現で自動判定。',
-              status: 'PASS (合格水準達成)'
-            }
-          },
-          {
-            id: 'h4',
-            num: 'STATION 04',
-            name: '🎯 16基準合格刻印',
-            sub: '品質保証スタンプ',
-            detail: {
-              title: '🎯 16基準合格刻印ステーション (改ざん不能スタンプ)',
-              role: '全16の検査項目をオールクリアした成果物にのみ本番出荷の許可スタンプを押印。',
-              target: 'harness/gas_minitool/evaluator_gas_minitool.js',
-              rules: '16/16 基準オールPASS（現在の適合率: 100% 2/2ツール）。',
-              status: 'PASS (16/16 ALL PASSED)'
-            }
-          }
+      'p2': {
+        name: 'minitool_002_sheets_to_calendar',
+        rows: [
+          { cat: 'cat-invariant', catName: '全体規律', name: 'ワークスペース境界検証', target: 'ルート直下36品目ホワイトリスト', type: 'AST / Path', status: 'PASS' },
+          { cat: 'cat-invariant', catName: '全体規律', name: '1ツール1フォルダカプセル化', target: 'gas_project/minitool_002/', type: 'Directory Scan', status: 'PASS' },
+          { cat: 'cat-capability', catName: '要件受入', name: '予定タイトル・日時パース処理', target: 'Code.js (parseEvents)', type: 'Unit Test', status: 'PASS' },
+          { cat: 'cat-capability', catName: '要件受入', name: 'Googleカレンダー登録実行', target: 'Code.js (syncCalendar)', type: 'Code Analysis', status: 'PASS' },
+          { cat: 'cat-regression', catName: '教訓注入', name: '実機DOM幾何光学判定 (偽モック排除)', target: 'demo.gif / スクリーンショット', type: 'DOM Coordinate Scan', status: 'PASS' },
+          { cat: 'cat-regression', catName: '教訓注入', name: '安全なトリガー解除 (uninstallTool)', target: 'Code.js (uninstallTool)', type: 'AST Function Check', status: 'PASS' }
         ]
       },
-      'deploy': {
-        title: '🏭 LEVEL 2: 【本丸 完成品】出荷デプロイライン（ベルトコンベア検査工程）',
-        stations: [
-          {
-            id: 'd1',
-            num: 'STATION 01',
-            name: '📄 note下書き保存',
-            sub: 'クラウド同期',
-            detail: {
-              title: '📄 note下書き自動保存ステーション',
-              role: '完成した記事原稿をnoteの草稿へ自動的に下書き保存し、編集可能状態にする。',
-              target: 'mcp-note / gas_project/*/article.md',
-              rules: 'マークダウンのHTML変換と下書きAPI同期。',
-              status: 'READY (下書き保存完了)'
-            }
-          },
-          {
-            id: 'd2',
-            num: 'STATION 02',
-            name: '🌐 GitHub Pages公開',
-            sub: '独立Webサイト更新',
-            detail: {
-              title: '🌐 GitHub Pages公開ステーション',
-              role: '成果物および健康診断ダッシュボードをGitHub Pages上に全世界公開。',
-              target: 'https://kassii77763.github.io/workspace-health-monitor/',
-              rules: '静的HTML/JSONの独立リポジトリへの自動プッシュ＆デプロイ。',
-              status: 'LIVE (稼働中)'
-            }
-          },
-          {
-            id: 'd3',
-            num: 'STATION 03',
-            name: '📢 X告知ポスト出力',
-            sub: '140字投稿原稿',
-            detail: {
-              title: '📢 X告知ポスト出力ステーション',
-              role: 'SNSで注目を集めるための訴求ポイントと動画付きポスト文を自動生成。',
-              target: 'gas_project/*/x_post.md',
-              rules: '140字以内、フック・課題・解決・リンクの構成比率確認。',
-              status: 'READY (原稿配備完了)'
-            }
-          }
-        ]
-      },
-      'meta': {
-        title: '🏭 LEVEL 2: 【地下 学習壕】知恵抽出ループライン（ベルトコンベア検査工程）',
-        stations: [
-          {
-            id: 'm1',
-            num: 'STATION 01',
-            name: '🔍 破片回収 (trace.md)',
-            sub: '3段階教訓の抽出',
-            detail: {
-              title: '🔍 破片回収ステーション (trace.md 解析)',
-              role: '各ツール開発時に記録された「失敗」「解決」「恒久教訓」の3段階テキストを回収。',
-              target: 'gas_project/*/logs/trace.md',
-              rules: '1.失敗 2.解決 3.教訓 の見出しが存在することを正規表現で検出。',
-              status: 'OPTIMAL (全3ファイル回収完了)'
-            }
-          },
-          {
-            id: 'm2',
-            num: 'STATION 02',
-            name: '🧠 ナレッジDB集約',
-            sub: 'meta_knowledge.json',
-            detail: {
-              title: '🧠 ナレッジDB集約ステーション',
-              role: '回収した教訓を構造化JSONへ自動集約し、AIが1発で読み込める形に圧縮保存。',
-              target: 'harness/meta_knowledge.json',
-              rules: '集約エンジン: harness/meta_harness_collector.js',
-              status: 'SYNCED (3件の教訓集約済み)'
-            }
-          },
-          {
-            id: 'm3',
-            num: 'STATION 03',
-            name: '⚡ 次世代AIへ再注入',
-            sub: 'プロンプト自己進化',
-            detail: {
-              title: '⚡ 次世代AIへ再注入ステーション (自己進化ループ)',
-              role: '蓄積された失敗パターンを親AI（Proposer）のシステム指示に組み込み、二度と同じ過ちを犯さない。',
-              target: 'AGENTS.md & 次期ハーネス自動設計',
-              rules: '過去失敗のチェックリスト化による自動予防。',
-              status: 'ACTIVE (自己進化ループ稼働中)'
-            }
-          }
+      'p3': {
+        name: 'workspace_health_monitor',
+        rows: [
+          { cat: 'cat-invariant', catName: '全体規律', name: 'ワークスペース境界検証', target: 'ルート直下36品目ホワイトリスト', type: 'AST / Path', status: 'PASS' },
+          { cat: 'cat-capability', catName: '要件受入', name: 'ヘルス監査エンジン (runHealthAudit)', target: 'monitor.js', type: 'Integration Test', status: 'PASS' },
+          { cat: 'cat-capability', catName: '要件受入', name: '静的ダッシュボードHTML出力', target: 'dist/index.html', type: 'File Assertion', status: 'PASS' },
+          { cat: 'cat-regression', catName: '教訓注入', name: '監視エンジン自己テスト完備', target: 'harness/test_monitor.js', type: 'Self Test Runner', status: 'PASS' },
+          { cat: 'cat-regression', catName: '教訓注入', name: '外部JS依存ゼロ (純粋HTML出力)', target: 'dist/index.html', type: 'Dependency Audit', status: 'PASS' }
         ]
       }
     };
 
-    let currentLayer = 'guard';
+    function selectProjectHarness(pKey) {
+      document.querySelectorAll('.p-tab-btn').forEach(b => b.classList.remove('active'));
+      const activeBtn = Array.from(document.querySelectorAll('.p-tab-btn')).find(b => b.getAttribute('onclick').includes(pKey));
+      if (activeBtn) activeBtn.classList.add('active');
 
-    // LEVEL 1: 城郭レイヤー選択
-    function selectCastleLayer(layerId) {
-      currentLayer = layerId;
-      document.querySelectorAll('.castle-layer-card').forEach(function(c) {
-        c.classList.remove('active-layer');
-      });
-      const activeCard = document.getElementById('cl-' + layerId);
-      if (activeCard) activeCard.classList.add('active-layer');
-
-      const data = CONVEYOR_DATA[layerId];
-      if (!data) return;
-
-      const titleEl = document.getElementById('conveyor-title');
-      if (titleEl) titleEl.innerText = data.title;
-
-      // LEVEL 2: コンベアライン再描画
-      const lineContainer = document.getElementById('conveyor-line-content');
-      if (!lineContainer) return;
-
-      let html = '';
-      for (let i = 0; i < data.stations.length; i++) {
-        const st = data.stations[i];
-        const activeCls = (i === 0) ? 'active-station' : '';
-        html += '<div class="conveyor-station ' + activeCls + '" data-sid="' + st.id + '">' +
-          '<span class="station-num">' + st.num + '</span>' +
-          '<div class="station-name">' + st.name + '</div>' +
-          '<span class="station-sub">' + st.sub + '</span>' +
-        '</div>';
-        if (i < data.stations.length - 1) {
-          html += '<div class="conveyor-arrow">➔</div>';
-        }
-      }
-      lineContainer.innerHTML = html;
-
-      // クリックイベントの登録（イベント委任）
-      lineContainer.onclick = function(e) {
-        const stCard = e.target.closest('.conveyor-station');
-        if (stCard) {
-          const sid = stCard.getAttribute('data-sid');
-          if (sid) selectConveyorStation(sid);
-        }
-      };
-
-      // デフォルトで第1ステーションを選択
-      if (data.stations.length > 0) {
-        selectConveyorStation(data.stations[0].id);
-      }
+      renderHarnessTable(pKey);
     }
 
-    // LEVEL 2: コンベアステーション選択 (LEVEL 3詳細表示)
-    function selectConveyorStation(stationId) {
-      document.querySelectorAll('.conveyor-station').forEach(function(s) {
-        s.classList.remove('active-station');
-      });
-      const activeStation = document.querySelector('.conveyor-station[data-sid="' + stationId + '"]');
-      if (activeStation) activeStation.classList.add('active-station');
-
-      const data = CONVEYOR_DATA[currentLayer];
+    function renderHarnessTable(pKey) {
+      const data = HARNESS_DATA[pKey];
       if (!data) return;
-      let targetSt = null;
-      for (let i = 0; i < data.stations.length; i++) {
-        if (data.stations[i].id === stationId) {
-          targetSt = data.stations[i];
-          break;
-        }
-      }
-      if (!targetSt) return;
 
-      const detail = targetSt.detail;
-      const titleEl = document.getElementById('inspector-title');
-      const statusEl = document.getElementById('inspector-status');
-      const gridEl = document.getElementById('inspector-grid');
+      const container = document.getElementById('harness-table-container');
+      if (!container) return;
 
-      if (titleEl) titleEl.innerHTML = detail.title;
-      if (statusEl) {
-        statusEl.innerText = detail.status.indexOf('PASS') !== -1 ? 'PASS' : 'ACTIVE';
-      }
+      let html = '<table class="eval-table">' +
+        '<thead>' +
+          '<tr>' +
+            '<th style="width: 100px;">検査種別</th>' +
+            '<th>テスト項目名</th>' +
+            '<th>対象成果物 / スクリプト</th>' +
+            '<th style="width: 160px;">検証方式</th>' +
+            '<th style="width: 90px; text-align: center;">ステータス</th>' +
+          '</tr>' +
+        '</thead>' +
+        '<tbody>';
 
-      if (gridEl) {
-        gridEl.innerHTML = 
-          '<div>' +
-            '<div class="detail-item-title">【担当役割・機能】</div>' +
-            '<div class="detail-item-val">' + detail.role + '</div>' +
-          '</div>' +
-          '<div>' +
-            '<div class="detail-item-title">【対象ファイル / スクリプト】</div>' +
-            '<div class="detail-item-val"><span class="code-badge">' + detail.target + '</span></div>' +
-          '</div>' +
-          '<div>' +
-            '<div class="detail-item-title">【判定ルール・検証基準】</div>' +
-            '<div class="detail-item-val">' + detail.rules + '</div>' +
-          '</div>' +
-          '<div>' +
-            '<div class="detail-item-title">【現在の稼働ステータス】</div>' +
-            '<div class="detail-item-val" style="color: var(--success); font-weight: 700;">● ' + detail.status + '</div>' +
-          '</div>';
-      }
+      data.rows.forEach(r => {
+        html += '<tr>' +
+          '<td><span class="eval-category-badge ' + r.cat + '">' + r.catName + '</span></td>' +
+          '<td style="font-weight: 600;">' + r.name + '</td>' +
+          '<td><span class="code-badge">' + r.target + '</span></td>' +
+          '<td style="color: var(--text-muted); font-size: 11px;">' + r.type + '</td>' +
+          '<td style="text-align: center;"><span class="mini-badge ok">● ' + r.status + '</span></td>' +
+        '</tr>';
+      });
+
+      html += '</tbody></table>';
+      container.innerHTML = html;
     }
 
     // 初期化
     window.addEventListener('DOMContentLoaded', function() {
-      selectCastleLayer('guard');
+      renderHarnessTable('p1');
     });
-    setTimeout(function() {
-      selectCastleLayer('guard');
-    }, 200);
   </script>
 </body>
 </html>
