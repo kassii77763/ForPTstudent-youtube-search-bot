@@ -31,7 +31,7 @@ function runTests() {
   assert(fs.existsSync(res.jsonPath), 'health_report.json must exist');
 
   const html = fs.readFileSync(res.htmlPath, 'utf8');
-  assert(html.includes('Workspace Health Monitor'), 'HTML must contain title');
+  assert(html.includes('Workspace Management Console') || html.includes('Workspace Health Monitor'), 'HTML must contain valid console title');
   assert(html.includes('gauge-svg'), 'HTML must contain gauge SVG');
   assert(html.includes(`GRADE ${audit.grade}`), 'HTML must contain accurate grade');
   console.log(' -> OK: HTML/JSON成果物およびDOM整合性確認');

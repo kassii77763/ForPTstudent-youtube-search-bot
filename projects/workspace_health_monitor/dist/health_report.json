@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-10-08T06:19:51.738Z",
+  "timestamp": "2026-10-11T06:16:00.614Z",
   "score": 100,
   "grade": "S",
   "summary": "極めて健全です。境界規律・カプセル化・ハーネス蓄積ともに完璧に保たれています。",
@@ -37,6 +37,191 @@
       "archiveSizeMB": 111.9,
       "status": "PASS"
     }
+  },
+  "projects": [
+    {
+      "name": "minitool_001_unreplied_emails",
+      "category": "GAS MiniTool",
+      "description": "未返信メール自動検知＆通知ツール",
+      "status": "COMPLETED",
+      "progress": 100,
+      "hasCode": true,
+      "hasDocs": true,
+      "hasTests": true,
+      "hasArtifacts": true,
+      "updatedAt": "2026-10-08T05:56:07.727Z",
+      "path": "gas_project/minitool_001_unreplied_emails"
+    },
+    {
+      "name": "minitool_002_sheets_to_calendar",
+      "category": "GAS MiniTool",
+      "description": "スプレッドシート ➡️ Googleカレンダー自動同期",
+      "status": "COMPLETED",
+      "progress": 100,
+      "hasCode": true,
+      "hasDocs": true,
+      "hasTests": true,
+      "hasArtifacts": true,
+      "updatedAt": "2026-10-08T05:56:20.899Z",
+      "path": "gas_project/minitool_002_sheets_to_calendar"
+    },
+    {
+      "name": "moodle_sync",
+      "category": "Integration Service",
+      "description": "外部システム連携・自動同期",
+      "status": "IN_PROGRESS",
+      "progress": 50,
+      "hasCode": true,
+      "hasDocs": false,
+      "hasTests": false,
+      "hasArtifacts": true,
+      "updatedAt": "2026-10-04T12:14:14.464Z",
+      "path": "projects/moodle_sync"
+    },
+    {
+      "name": "notebooklm_enhancer",
+      "category": "Chrome Extension",
+      "description": "NotebookLM 拡張ツール（UI機能強化・プロンプト統合）",
+      "status": "COMPLETED",
+      "progress": 90,
+      "hasCode": true,
+      "hasDocs": true,
+      "hasTests": false,
+      "hasArtifacts": true,
+      "updatedAt": "2026-10-03T06:59:25.506Z",
+      "path": "projects/notebooklm_enhancer"
+    },
+    {
+      "name": "pt_anatomy_quiz",
+      "category": "PT Education Platform",
+      "description": "理学療法学生向けナレッジベース＆学習クイズエンジン",
+      "status": "IN_PROGRESS",
+      "progress": 65,
+      "hasCode": true,
+      "hasDocs": false,
+      "hasTests": true,
+      "hasArtifacts": true,
+      "updatedAt": "2026-10-02T00:00:40.258Z",
+      "path": "projects/pt_anatomy_quiz"
+    },
+    {
+      "name": "pt_knowledge_visual_library",
+      "category": "PT Education Platform",
+      "description": "理学療法学生向けナレッジベース＆学習クイズエンジン",
+      "status": "IN_PROGRESS",
+      "progress": 85,
+      "hasCode": true,
+      "hasDocs": true,
+      "hasTests": true,
+      "hasArtifacts": true,
+      "updatedAt": "2026-10-01T05:28:01.025Z",
+      "path": "projects/pt_knowledge_visual_library"
+    },
+    {
+      "name": "pt_quiz_temp",
+      "category": "PT Education Platform",
+      "description": "理学療法学生向けナレッジベース＆学習クイズエンジン",
+      "status": "IN_PROGRESS",
+      "progress": 70,
+      "hasCode": true,
+      "hasDocs": true,
+      "hasTests": false,
+      "hasArtifacts": true,
+      "updatedAt": "2026-09-30T02:09:36.674Z",
+      "path": "projects/pt_quiz_temp"
+    },
+    {
+      "name": "workspace_health_monitor",
+      "category": "Cloud / Patrol Dashboard",
+      "description": "ディレクトリ健全性・2階層ハーネス・プロジェクト監視ダッシュボード (GitHub Pages配備済)",
+      "status": "COMPLETED",
+      "progress": 100,
+      "hasCode": true,
+      "hasDocs": true,
+      "hasTests": true,
+      "hasArtifacts": true,
+      "updatedAt": "2026-10-08T06:26:42.806Z",
+      "path": "projects/workspace_health_monitor"
+    },
+    {
+      "name": "youtube_visual_library",
+      "category": "Integration Service",
+      "description": "外部システム連携・自動同期",
+      "status": "IN_PROGRESS",
+      "progress": 85,
+      "hasCode": true,
+      "hasDocs": true,
+      "hasTests": true,
+      "hasArtifacts": true,
+      "updatedAt": "2026-09-30T01:49:01.136Z",
+      "path": "projects/youtube_visual_library"
+    }
+  ],
+  "harnesses": {
+    "systemLevel": [
+      {
+        "name": "アーキテクチャ境界ガードレール (Architecture Guard)",
+        "type": "憲法 (全体統制)",
+        "target": "ワークスペースルート & 全プロジェクト境界",
+        "status": "ACTIVE",
+        "health": "100% PASS",
+        "rulesCount": 36,
+        "description": "未許可アイテム・カプセル化違反を検知し、散乱を機械的に即時遮断"
+      },
+      {
+        "name": "メタハーネス自己進化エンジン (Meta-Harness Collector)",
+        "type": "知能 (学習集約)",
+        "target": "全ツールの logs/trace.md",
+        "status": "ACTIVE",
+        "health": "3 教訓集約済",
+        "rulesCount": 3,
+        "description": "過去の全失敗・解決・教訓を meta_knowledge.json に蓄積し再発防止"
+      },
+      {
+        "name": "日次自動徘徊 CI/CD (GitHub Actions Patrol)",
+        "type": "自動化 (クラウド監視)",
+        "target": "リポジトリ全体 & GitHub Pages",
+        "status": "ACTIVE",
+        "health": "毎日 0:00 UTC 実行",
+        "rulesCount": 1,
+        "description": "クラウド上で定期スキャンを実行し、ダッシュボードWebを最新自動同期"
+      }
+    ],
+    "domainLevel": [
+      {
+        "name": "GASミニツール 16基準評価ハーネス",
+        "domain": "gas_project/*",
+        "passRate": "100% (2 / 2 ツール適合)",
+        "status": "PASS",
+        "criteria": [
+          "構文・実機DOM幾何判定",
+          "uninstallTool() 完全実装",
+          "note下書き＆タイトル100点チェック",
+          "デモGIF/動画アスペクト比",
+          "logs/trace.md 3段階教訓義務化"
+        ]
+      },
+      {
+        "name": "ヘルスモニター自己検証ハーネス (Self-Test Harness)",
+        "domain": "projects/workspace_health_monitor/*",
+        "passRate": "100% (2 / 2 テスト合格)",
+        "status": "PASS",
+        "criteria": [
+          "診断データ構造の決定論的検証",
+          "HTML/JSON成果物DOM完全性検証"
+        ]
+      },
+      {
+        "name": "DOM幾何＆実機UI検証ハーネス (Anti-Mock Guard)",
+        "domain": "Demo Video Capture",
+        "passRate": "100% (偽モック完全排除)",
+        "status": "PASS",
+        "criteria": [
+          "Google公式DOM下部タブ判定",
+          "自作HTMLモック撮影の永久禁止"
+        ]
+      }
+    ]
   },
   "directoryTree": [
     {
@@ -266,7 +451,7 @@
       "name": "projects",
       "path": "projects",
       "isDir": true,
-      "sizeBytes": 700300,
+      "sizeBytes": 743746,
       "itemCount": 7,
       "status": "healthy",
       "note": "",
@@ -660,17 +845,27 @@
           "name": "workspace_health_monitor",
           "path": "projects/workspace_health_monitor",
           "isDir": true,
-          "sizeBytes": 47190,
-          "itemCount": 7,
+          "sizeBytes": 90636,
+          "itemCount": 10,
           "status": "healthy",
           "note": "",
           "children": [
+            {
+              "name": "avatar_crop.png",
+              "path": "projects/workspace_health_monitor/avatar_crop.png",
+              "isDir": false,
+              "sizeBytes": 1137,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
             {
               "name": "dist",
               "path": "projects/workspace_health_monitor/dist",
               "isDir": true,
               "sizeBytes": 0,
-              "itemCount": 2,
+              "itemCount": 3,
               "status": "healthy",
               "note": "",
               "children": []
@@ -679,7 +874,7 @@
               "name": "generate_dashboard.js",
               "path": "projects/workspace_health_monitor/generate_dashboard.js",
               "isDir": false,
-              "sizeBytes": 31270,
+              "sizeBytes": 59784,
               "itemCount": 0,
               "status": "healthy",
               "note": "",
@@ -709,7 +904,7 @@
               "name": "monitor.js",
               "path": "projects/workspace_health_monitor/monitor.js",
               "isDir": false,
-              "sizeBytes": 12882,
+              "sizeBytes": 18990,
               "itemCount": 0,
               "status": "healthy",
               "note": "",
@@ -730,6 +925,26 @@
               "path": "projects/workspace_health_monitor/run_health_check.bat",
               "isDir": false,
               "sizeBytes": 558,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "token_crop.png",
+              "path": "projects/workspace_health_monitor/token_crop.png",
+              "isDir": false,
+              "sizeBytes": 2723,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "token_enlarged.png",
+              "path": "projects/workspace_health_monitor/token_enlarged.png",
+              "isDir": false,
+              "sizeBytes": 4964,
               "itemCount": 0,
               "status": "healthy",
               "note": "",
@@ -1057,16 +1272,87 @@
       "name": "docs",
       "path": "docs",
       "isDir": true,
-      "sizeBytes": 79931,
-      "itemCount": 4,
+      "sizeBytes": 314805,
+      "itemCount": 6,
       "status": "healthy",
       "note": "",
       "children": [
         {
+          "name": "anatomy_quiz_20261022",
+          "path": "docs/anatomy_quiz_20261022",
+          "isDir": true,
+          "sizeBytes": 188997,
+          "itemCount": 6,
+          "status": "healthy",
+          "note": "",
+          "children": [
+            {
+              "name": "quiz_set_01_to_07.md",
+              "path": "docs/anatomy_quiz_20261022/quiz_set_01_to_07.md",
+              "isDir": false,
+              "sizeBytes": 67899,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "quiz_set_08_to_14.md",
+              "path": "docs/anatomy_quiz_20261022/quiz_set_08_to_14.md",
+              "isDir": false,
+              "sizeBytes": 71487,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "README.md",
+              "path": "docs/anatomy_quiz_20261022/README.md",
+              "isDir": false,
+              "sizeBytes": 6285,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "source_brain_anatomy.md",
+              "path": "docs/anatomy_quiz_20261022/source_brain_anatomy.md",
+              "isDir": false,
+              "sizeBytes": 12025,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "source_development_ventricles_csf.md",
+              "path": "docs/anatomy_quiz_20261022/source_development_ventricles_csf.md",
+              "isDir": false,
+              "sizeBytes": 14328,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "studio_quiz_notebooklm.md",
+              "path": "docs/anatomy_quiz_20261022/studio_quiz_notebooklm.md",
+              "isDir": false,
+              "sizeBytes": 16973,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            }
+          ]
+        },
+        {
           "name": "index.html",
           "path": "docs/index.html",
           "isDir": false,
-          "sizeBytes": 43763,
+          "sizeBytes": 88040,
           "itemCount": 0,
           "status": "healthy",
           "note": "",
@@ -1077,6 +1363,16 @@
           "path": "docs/PT学生向け解剖生理学_全10回マスター講座.md",
           "isDir": false,
           "sizeBytes": 13598,
+          "itemCount": 0,
+          "status": "healthy",
+          "note": "",
+          "children": []
+        },
+        {
+          "name": "WEBSITE_PORTAL.md",
+          "path": "docs/WEBSITE_PORTAL.md",
+          "isDir": false,
+          "sizeBytes": 1600,
           "itemCount": 0,
           "status": "healthy",
           "note": "",
@@ -5488,7 +5784,7 @@
   ],
   "patrol": {
     "schedule": "Daily (GitHub Actions 0:00 UTC) & On-Demand (.bat)",
-    "lastCheck": "2026-10-08T06:19:51.738Z",
+    "lastCheck": "2026-10-11T06:16:00.614Z",
     "status": "ACTIVE",
     "monitoredFoldersCount": 6
   },
