@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-10-11T06:59:02.304Z",
-  "score": 100,
-  "grade": "S",
-  "summary": "極めて健全です。境界規律・カプセル化・ハーネス蓄積ともに完璧に保たれています。",
+  "timestamp": "2026-10-11T12:34:59.234Z",
+  "score": 92,
+  "grade": "A",
+  "summary": "概ね良好ですが、一部カプセル化や一時ファイルの整理が推奨されます。",
   "metrics": {
     "rootBoundary": {
       "score": 25,
@@ -18,17 +18,17 @@
       "status": "PASS"
     },
     "scratchHygiene": {
-      "score": 20,
+      "score": 12,
       "max": 20,
-      "filesCount": 0,
+      "filesCount": 2,
       "totalBytes": 0,
-      "status": "PASS"
+      "status": "WARN"
     },
     "metaHarness": {
       "score": 15,
       "max": 15,
-      "traceCount": 3,
-      "lessonsCount": 3,
+      "traceCount": 4,
+      "lessonsCount": 4,
       "status": "PASS"
     },
     "storageCleanliness": {
@@ -451,7 +451,7 @@
       "name": "projects",
       "path": "projects",
       "isDir": true,
-      "sizeBytes": 767748,
+      "sizeBytes": 821293,
       "itemCount": 7,
       "status": "healthy",
       "note": "",
@@ -845,7 +845,7 @@
           "name": "workspace_health_monitor",
           "path": "projects/workspace_health_monitor",
           "isDir": true,
-          "sizeBytes": 114638,
+          "sizeBytes": 168183,
           "itemCount": 10,
           "status": "healthy",
           "note": "",
@@ -874,7 +874,7 @@
               "name": "generate_dashboard.js",
               "path": "projects/workspace_health_monitor/generate_dashboard.js",
               "isDir": false,
-              "sizeBytes": 83786,
+              "sizeBytes": 137331,
               "itemCount": 0,
               "status": "healthy",
               "note": "",
@@ -1049,8 +1049,8 @@
       "name": "harness",
       "path": "harness",
       "isDir": true,
-      "sizeBytes": 133055,
-      "itemCount": 19,
+      "sizeBytes": 139996,
+      "itemCount": 20,
       "status": "healthy",
       "note": "16基準評価＆メタ集約エンジン",
       "children": [
@@ -1230,11 +1230,72 @@
           "name": "meta_knowledge.json",
           "path": "harness/meta_knowledge.json",
           "isDir": false,
-          "sizeBytes": 2225,
+          "sizeBytes": 3037,
           "itemCount": 0,
           "status": "healthy",
           "note": "",
           "children": []
+        },
+        {
+          "name": "rubrics",
+          "path": "harness/rubrics",
+          "isDir": true,
+          "sizeBytes": 6129,
+          "itemCount": 5,
+          "status": "healthy",
+          "note": "",
+          "children": [
+            {
+              "name": "common",
+              "path": "harness/rubrics/common",
+              "isDir": true,
+              "sizeBytes": 0,
+              "itemCount": 1,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "freshness_rubric.md",
+              "path": "harness/rubrics/freshness_rubric.md",
+              "isDir": false,
+              "sizeBytes": 2172,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "overall_delivery.md",
+              "path": "harness/rubrics/overall_delivery.md",
+              "isDir": false,
+              "sizeBytes": 1812,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "projects",
+              "path": "harness/rubrics/projects",
+              "isDir": true,
+              "sizeBytes": 0,
+              "itemCount": 2,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            },
+            {
+              "name": "ui_cognitive_clarity.md",
+              "path": "harness/rubrics/ui_cognitive_clarity.md",
+              "isDir": false,
+              "sizeBytes": 2145,
+              "itemCount": 0,
+              "status": "healthy",
+              "note": "",
+              "children": []
+            }
+          ]
         },
         {
           "name": "run_all_evals.js",
@@ -1282,7 +1343,7 @@
       "name": "docs",
       "path": "docs",
       "isDir": true,
-      "sizeBytes": 319944,
+      "sizeBytes": 373502,
       "itemCount": 6,
       "status": "healthy",
       "note": "",
@@ -1362,7 +1423,7 @@
           "name": "index.html",
           "path": "docs/index.html",
           "isDir": false,
-          "sizeBytes": 93179,
+          "sizeBytes": 146737,
           "itemCount": 0,
           "status": "healthy",
           "note": "",
@@ -1414,11 +1475,32 @@
       "name": "scratch",
       "path": "scratch",
       "isDir": true,
-      "sizeBytes": 0,
-      "itemCount": 0,
-      "status": "healthy",
-      "note": "",
-      "children": []
+      "sizeBytes": 43875,
+      "itemCount": 2,
+      "status": "warning",
+      "note": "残骸 2 件放置中",
+      "children": [
+        {
+          "name": "update_dashboard_scripts.js",
+          "path": "scratch/update_dashboard_scripts.js",
+          "isDir": false,
+          "sizeBytes": 35972,
+          "itemCount": 0,
+          "status": "healthy",
+          "note": "",
+          "children": []
+        },
+        {
+          "name": "update_dashboard_views.js",
+          "path": "scratch/update_dashboard_views.js",
+          "isDir": false,
+          "sizeBytes": 7903,
+          "itemCount": 0,
+          "status": "healthy",
+          "note": "",
+          "children": []
+        }
+      ]
     },
     {
       "name": "archive",
@@ -5794,9 +5876,11 @@
   ],
   "patrol": {
     "schedule": "Daily (GitHub Actions 0:00 UTC) & On-Demand (.bat)",
-    "lastCheck": "2026-10-11T06:59:02.304Z",
+    "lastCheck": "2026-10-11T12:34:59.234Z",
     "status": "ACTIVE",
     "monitoredFoldersCount": 6
   },
-  "recommendations": []
+  "recommendations": [
+    "scratch/ に放置された検証ファイルが 2 件あります。即時破棄または archive/ へ隔離してください。"
+  ]
 }

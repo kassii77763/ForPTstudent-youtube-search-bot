@@ -41,7 +41,7 @@
       --wire-color: #8c8275;        /* トポロジー配線カラー */
       --shadow-sm: 0 1px 3px rgba(45, 35, 25, 0.04), 0 1px 2px rgba(45, 35, 25, 0.02);
       --shadow-md: 0 4px 14px rgba(45, 35, 25, 0.06), 0 1px 3px rgba(45, 35, 25, 0.03);
-      --grade-color: #2e7d32;
+      --grade-color: #8b5e34;
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -267,7 +267,7 @@
       stroke-width: 12;
       stroke-linecap: round;
       stroke-dasharray: 439.822971502571;
-      stroke-dashoffset: 0;
+      stroke-dashoffset: 35.185837720205654;
       transition: stroke-dashoffset 1s ease;
     }
     .circle-content {
@@ -606,6 +606,165 @@
       line-height: 1.4;
     }
 
+    /* Master-Detail 2-Pane Rubric Styles */
+    .rubric-master-detail {
+      display: flex;
+      gap: 20px;
+      align-items: flex-start;
+    }
+    .rubric-sidebar-pane {
+      width: 290px;
+      flex-shrink: 0;
+      background: var(--card-bg-subtle);
+      border-radius: 12px;
+      padding: 14px;
+      border: 1px solid var(--card-border);
+      max-height: 850px;
+      overflow-y: auto;
+    }
+    .rubric-proj-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .rubric-proj-item {
+      padding: 12px 14px;
+      border-radius: 10px;
+      border: 1px solid var(--card-border);
+      background: #ffffff;
+      cursor: pointer;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .rubric-proj-item:hover {
+      border-color: var(--accent-border);
+      transform: translateX(2px);
+    }
+    .rubric-proj-item.active {
+      border-color: var(--accent);
+      background: var(--accent-light);
+      box-shadow: var(--shadow-sm);
+    }
+    .r-item-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text-main);
+      margin-bottom: 2px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .r-item-sub {
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+    .rubric-content-pane {
+      flex: 1;
+      min-width: 0;
+    }
+
+    /* Accordion Styles */
+    .rubric-accordion-group {
+      margin-bottom: 24px;
+    }
+    .rubric-group-header {
+      font-size: 14px;
+      font-weight: 800;
+      color: var(--text-main);
+      margin-bottom: 12px;
+      padding-bottom: 6px;
+      border-bottom: 2px solid var(--card-border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .accordion-item {
+      background: #ffffff;
+      border: 1px solid var(--card-border);
+      border-radius: 10px;
+      margin-bottom: 10px;
+      overflow: hidden;
+      transition: all 0.2s;
+    }
+    .accordion-item:hover {
+      border-color: var(--accent-border);
+    }
+    .accordion-header {
+      padding: 13px 18px;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      user-select: none;
+      background: #ffffff;
+      transition: background 0.2s;
+    }
+    .accordion-header:hover {
+      background: var(--card-bg-subtle);
+    }
+    .accordion-item.open .accordion-header {
+      background: var(--card-bg-subtle);
+      border-bottom: 1px solid var(--card-border);
+    }
+    .accordion-title-wrap {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .accordion-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text-main);
+    }
+    .accordion-arrow {
+      font-size: 11px;
+      color: var(--text-muted);
+      transition: transform 0.2s;
+    }
+    .accordion-item.open .accordion-arrow {
+      transform: rotate(180deg);
+    }
+    .accordion-body {
+      display: none;
+      padding: 16px 20px 20px 20px;
+      background: #ffffff;
+    }
+    .accordion-item.open .accordion-body {
+      display: block;
+    }
+    .rubric-badge {
+      padding: 3px 8px;
+      border-radius: 6px;
+      font-size: 10.5px;
+      font-weight: 700;
+    }
+    .rubric-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 12px;
+      margin-top: 10px;
+    }
+    .rubric-table th, .rubric-table td {
+      padding: 9px 12px;
+      border: 1px solid var(--card-border);
+      text-align: left;
+    }
+    .rubric-table th {
+      background: var(--card-bg-subtle);
+      font-weight: 700;
+      color: var(--text-main);
+    }
+    .score-cell {
+      font-weight: 800;
+      width: 60px;
+      text-align: center;
+    }
+    .score-5 { background: #f0fdf4; color: #166534; }
+    .score-4 { background: #f0fdf4; color: #15803d; }
+    .score-3 { background: #fefce8; color: #854d0e; }
+    .score-2 { background: #fff7ed; color: #9a3412; }
+    .score-1 { background: #fef2f2; color: #991b1b; }
+
     /* Meta-Harness Loop Diagram */
     .meta-loop-diagram {
       display: flex;
@@ -680,6 +839,11 @@
           </button>
         </li>
         <li>
+          <button class="nav-btn" onclick="switchView('view-rubrics')">
+            <span>📊</span> ルーブリック評価基準
+          </button>
+        </li>
+        <li>
           <button class="nav-btn" onclick="switchView('view-tree')">
             <span>🌲</span> ディレクトリ構造
           </button>
@@ -697,7 +861,7 @@
       </ul>
 
       <div class="sidebar-footer">
-        <div>最終同期: 2026-10-11 06:59:02</div>
+        <div>最終同期: 2026-10-11 12:34:59</div>
         <div>監査エンジン: HealthAuditor v5.0</div>
       </div>
     </aside>
@@ -733,8 +897,8 @@
                 <circle class="circle-progress" cx="85" cy="85" r="70"></circle>
               </svg>
               <div class="circle-content">
-                <span class="score-number">100</span>
-                <span class="score-grade">GRADE S</span>
+                <span class="score-number">92</span>
+                <span class="score-grade">GRADE A</span>
               </div>
             </div>
             <h3 style="font-size: 16px; font-weight: 700; margin-bottom: 4px;">総合ディレクトリ衛生スコア</h3>
@@ -758,10 +922,10 @@
               <div class="metric-row">
                 <div class="metric-header">
                   <span>一時スクラッチ完全隔離</span>
-                  <span class="metric-status status-PASS">PASS</span>
+                  <span class="metric-status status-WARN">WARN</span>
                 </div>
-                <div class="progress-bar-bg"><div class="progress-bar-fill" style="width: 100%;"></div></div>
-                <div class="metric-detail"><span>残骸ファイル: 0 件</span><span>20 / 20 pt</span></div>
+                <div class="progress-bar-bg"><div class="progress-bar-fill" style="width: 60%;"></div></div>
+                <div class="metric-detail"><span>残骸ファイル: 2 件</span><span>12 / 20 pt</span></div>
               </div>
 
               <div class="metric-row">
@@ -779,7 +943,7 @@
                   <span class="metric-status status-PASS">PASS</span>
                 </div>
                 <div class="progress-bar-bg"><div class="progress-bar-fill" style="width: 100%;"></div></div>
-                <div class="metric-detail"><span>蓄積教訓: 3 件</span><span>15 / 15 pt</span></div>
+                <div class="metric-detail"><span>蓄積教訓: 4 件</span><span>15 / 15 pt</span></div>
               </div>
 
             </div>
@@ -1126,36 +1290,141 @@
               全プロジェクト横断の自己進化ハーネス回路です。現場で発生した失敗がどのように集約・圧縮され、次期プロジェクトのガードレールへ自動再注入されるかを規定します。
             </p>
 
-            <div class="meta-loop-diagram">
-              <div class="meta-step-card" onclick="inspectMetaStep('step1')">
-                <div class="meta-step-icon">❌</div>
-                <div class="meta-step-title">① 失敗・試行錯誤</div>
-                <div class="meta-step-sub">事後ガードで弾かれた不合格や予期せぬエラー</div>
-              </div>
-              <div style="color:#a8a29e; font-size:18px; font-weight:800;">➔</div>
-              <div class="meta-step-card" onclick="inspectMetaStep('step2')">
-                <div class="meta-step-icon">📝</div>
-                <div class="meta-step-title">② 教訓テキスト抽出</div>
-                <div class="meta-step-sub"><span class="code-badge">logs/trace.md</span><br>失敗/解決/教訓の3段階記録</div>
-              </div>
-              <div style="color:#a8a29e; font-size:18px; font-weight:800;">➔</div>
-              <div class="meta-step-card" onclick="inspectMetaStep('step3')">
-                <div class="meta-step-icon">⚙️</div>
-                <div class="meta-step-title">③ メタ回収バッチ</div>
-                <div class="meta-step-sub"><span class="code-badge">meta_harness_collector.js</span><br>全プロジェクトから機械的収集</div>
-              </div>
-              <div style="color:#a8a29e; font-size:18px; font-weight:800;">➔</div>
-              <div class="meta-step-card" onclick="inspectMetaStep('step4')">
-                <div class="meta-step-icon">🗄️</div>
-                <div class="meta-step-title">④ 構造化ナレッジDB</div>
-                <div class="meta-step-sub"><span class="code-badge">meta_knowledge.json</span><br>3件の恒久教訓を圧縮保存</div>
-              </div>
-              <div style="color:#a8a29e; font-size:18px; font-weight:800;">➔</div>
-              <div class="meta-step-card" onclick="inspectMetaStep('step5')">
-                <div class="meta-step-icon">⚡</div>
-                <div class="meta-step-title">⑤ 次期ガード自動生成</div>
-                <div class="meta-step-sub"><span class="code-badge">meta_harness_generator.js</span><br>新案件の事前・事後ガードへ注入</div>
-              </div>
+            <!-- 完全SVGベクター配線キャンバス: メタハーネス全体像マッピング -->
+            <div class="topology-canvas" style="margin-bottom: 24px;">
+              <svg class="topology-svg" viewBox="0 0 1080 340">
+                <defs>
+                  <marker id="meta-arrow" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto">
+                    <path d="M 0 0 L 10 4 L 0 8 Z" fill="#8c8275" />
+                  </marker>
+                  <marker id="meta-arrow-green" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto">
+                    <path d="M 0 0 L 10 4 L 0 8 Z" fill="#2e7d32" />
+                  </marker>
+                  <marker id="meta-arrow-purple" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto">
+                    <path d="M 0 0 L 10 4 L 0 8 Z" fill="#7c3aed" />
+                  </marker>
+                </defs>
+
+                <!-- 配線コネクタ群 -->
+                <g class="flow-wires">
+                  <!-- ① 現場 ➔ 失敗検知 -->
+                  <path d="M 190 63 L 240 63" stroke="var(--wire-color)" stroke-width="2.5" fill="none" marker-end="url(#meta-arrow)" />
+                  <!-- ② 失敗 ➔ 局所教訓ログ -->
+                  <path d="M 390 63 L 440 63" stroke="var(--wire-color)" stroke-width="2.5" fill="none" marker-end="url(#meta-arrow)" />
+                  <!-- ③ 教訓ログ ➔ メタ回収バッチ -->
+                  <path d="M 590 63 L 640 63" stroke="var(--wire-color)" stroke-width="2.5" fill="none" marker-end="url(#meta-arrow)" />
+                  <!-- ④ 回収バッチ ➔ ナレッジDB -->
+                  <path d="M 790 63 L 840 63" stroke="var(--wire-color)" stroke-width="2.5" fill="none" marker-end="url(#meta-arrow-purple)" />
+                  
+                  <!-- ⑤ ナレッジDB ➔ メタ生成エンジン (垂直落下) -->
+                  <path d="M 935 96 L 935 180" stroke="#7c3aed" stroke-width="2.5" fill="none" marker-end="url(#meta-arrow-purple)" />
+                  
+                  <!-- ⑥ メタ生成エンジン ➔ 事前ガード & 事後ガード (分岐) -->
+                  <path d="M 840 213 L 770 213 L 770 160 L 710 160" stroke="var(--wire-color)" stroke-width="2.5" fill="none" marker-end="url(#meta-arrow)" />
+                  <path d="M 770 213 L 770 266 L 710 266" stroke="var(--wire-color)" stroke-width="2.5" fill="none" marker-end="url(#meta-arrow)" />
+                  
+                  <!-- ⑦ 事前ガード & 事後ガード ➔ 新世代エージェント (合流) -->
+                  <path d="M 540 160 L 490 160 L 490 213 L 440 213" stroke="var(--wire-color)" stroke-width="2.5" fill="none" marker-end="url(#meta-arrow)" />
+                  <path d="M 540 266 L 490 266 L 490 213" stroke="var(--wire-color)" stroke-width="2.5" fill="none" />
+                  
+                  <!-- ⑧ 新世代エージェント ➔ 現場への再帰ループ (緑色太破線フィードバック) -->
+                  <path d="M 260 213 L 115 213 L 115 96" stroke="var(--success)" stroke-width="3" stroke-dasharray="6,4" fill="none" marker-end="url(#meta-arrow-green)" />
+
+                  <!-- 注釈テキスト -->
+                  <text x="948" y="142" font-size="11" fill="#7c3aed" font-weight="600">教訓JSON抽出</text>
+                  <text x="445" y="195" font-size="11" fill="var(--accent)" font-weight="600">次世代ガード適用</text>
+                  <text x="125" y="160" font-size="11" fill="var(--success)" font-weight="700">🔄 自己進化ループ（現場再配備）</text>
+                </g>
+
+                <!-- ノード配置 (foreignObject) -->
+                <!-- 上段: 全プロジェクト現場 -->
+                <foreignObject x="40" y="30" width="150" height="66">
+                  <div class="svg-node-card" id="meta-node-agents" onclick="inspectMetaStep('meta_agents')">
+                    <span class="s-icon">🏢</span>
+                    <span class="s-title">全プロジェクト現場</span>
+                    <span class="s-desc">minitool_001, 002等</span>
+                    <span class="s-badge">ACTIVE_AGENTS</span>
+                  </div>
+                </foreignObject>
+
+                <!-- 上段: ① 失敗・試行錯誤 -->
+                <foreignObject x="240" y="30" width="150" height="66">
+                  <div class="svg-node-card" id="meta-node-fail" onclick="inspectMetaStep('meta_fail')" style="border-color:#fca5a5;">
+                    <span class="s-icon">❌</span>
+                    <span class="s-title">① 失敗・試行錯誤</span>
+                    <span class="s-desc">事後不合格・例外検知</span>
+                    <span class="s-badge" style="background:#fef2f2; color:#b91c1c;">ERROR_EVENT</span>
+                  </div>
+                </foreignObject>
+
+                <!-- 上段: ② 教訓テキスト抽出 -->
+                <foreignObject x="440" y="30" width="150" height="66">
+                  <div class="svg-node-card" id="meta-node-trace" onclick="inspectMetaStep('meta_trace')">
+                    <span class="s-icon">📝</span>
+                    <span class="s-title">② 教訓テキスト抽出</span>
+                    <span class="s-desc">logs/trace.md</span>
+                    <span class="s-badge">3行サマリー規定</span>
+                  </div>
+                </foreignObject>
+
+                <!-- 上段: ③ メタ回収バッチ -->
+                <foreignObject x="640" y="30" width="150" height="66">
+                  <div class="svg-node-card" id="meta-node-collector" onclick="inspectMetaStep('meta_collector')" style="border-color:#fcd34d;">
+                    <span class="s-icon">⚙️</span>
+                    <span class="s-title">③ メタ回収バッチ</span>
+                    <span class="s-desc">collector.js 巡回</span>
+                    <span class="s-badge" style="background:#fefce8; color:#b45309;">BATCH_JOB</span>
+                  </div>
+                </foreignObject>
+
+                <!-- 上段右端: ④ 構造化ナレッジDB -->
+                <foreignObject x="840" y="30" width="190" height="66">
+                  <div class="svg-node-card card-memory" id="meta-node-db" onclick="inspectMetaStep('meta_db')" style="border-color:#c4b5fd;">
+                    <span class="s-icon">🧠</span>
+                    <span class="s-title">④ 構造化ナレッジDB</span>
+                    <span class="s-desc">meta_knowledge.json</span>
+                    <span class="s-badge" style="background:#f5f3ff; color:#7c3aed;">教訓アーカイブ</span>
+                  </div>
+                </foreignObject>
+
+                <!-- 下段右端: ⑤ メタ生成エンジン -->
+                <foreignObject x="840" y="180" width="190" height="66">
+                  <div class="svg-node-card" id="meta-node-generator" onclick="inspectMetaStep('meta_generator')" style="border-color:#93c5fd;">
+                    <span class="s-icon">⚡</span>
+                    <span class="s-title">⑤ メタ生成エンジン</span>
+                    <span class="s-desc">generator.js 合成</span>
+                    <span class="s-badge" style="background:#eff6ff; color:#1d4ed8;">GENERATOR</span>
+                  </div>
+                </foreignObject>
+
+                <!-- 下段中央上: ⑥ 次期事前ガード注入 -->
+                <foreignObject x="540" y="130" width="170" height="60">
+                  <div class="svg-node-card card-guard" id="meta-node-preguard" onclick="inspectMetaStep('meta_preguard')">
+                    <span class="s-icon">🛡️</span>
+                    <span class="s-title">⑥ 次期事前ガード注入</span>
+                    <span class="s-desc">AGENTS.md / プロンプト</span>
+                  </div>
+                </foreignObject>
+
+                <!-- 下段中央下: ⑦ 次期事後ガード注入 -->
+                <foreignObject x="540" y="236" width="170" height="60">
+                  <div class="svg-node-card card-guard" id="meta-node-postguard" onclick="inspectMetaStep('meta_postguard')">
+                    <span class="s-icon">⚖️</span>
+                    <span class="s-title">⑦ 次期事後ガード注入</span>
+                    <span class="s-desc">test_*.js / CIハーネス</span>
+                  </div>
+                </foreignObject>
+
+                <!-- 下段左: ⑧ 新世代エージェント -->
+                <foreignObject x="260" y="180" width="180" height="66">
+                  <div class="svg-node-card card-ai" id="meta-node-nextgen" onclick="inspectMetaStep('meta_nextgen')" style="border-color:var(--success-border);">
+                    <span class="s-icon">🚀</span>
+                    <span class="s-title">⑧ 新世代エージェント</span>
+                    <span class="s-desc">進化適応済み自律開発</span>
+                    <span class="s-badge" style="background:var(--success-bg); color:var(--success);">SELF_EVOLVED</span>
+                  </div>
+                </foreignObject>
+              </svg>
             </div>
           </div>
 
@@ -1402,6 +1671,101 @@
 
           </div>
 
+          <!-- セクション3: ルーブリック画面への誘導バナー -->
+          <div class="card" style="margin-top: 24px; background: linear-gradient(135deg, #fcfbf8 0%, #f7f3ec 100%); border-color: var(--accent-border);">
+            <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px;">
+              <div>
+                <div style="display:flex; align-items:center; gap:8px; margin-bottom:6px;">
+                  <span style="font-size:20px;">📊</span>
+                  <h3 style="font-size:16px; font-weight:800; color:var(--text-main); margin:0;">各ノードの1〜5点 採点基準表（ルーブリック）カタログ</h3>
+                  <span class="code-badge" style="color:var(--accent);">独立カタログ化</span>
+                </div>
+                <p style="font-size:13px; color:var(--text-muted); margin:0;">
+                  全社共通規律（6項目）、各プロジェクト固有基準（5項目）、全体総合出荷判定（1項目）の全12項目を「2ペイン・アコーディオン形式」で体系化しました。
+                </p>
+              </div>
+              <button class="nav-btn" onclick="switchView('view-rubrics')" style="width:auto; padding:10px 20px; background:var(--accent); color:#ffffff; border-radius:8px; font-weight:700; display:inline-flex; align-items:center; gap:8px; border:none; cursor:pointer;">
+                <span>ルーブリック評価基準を開く</span>
+                <span>➔</span>
+              </button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- ============================================== -->
+      <!-- VIEW: ルーブリック評価基準 (Rubrics 2-Pane Catalog) -->
+      <!-- ============================================== -->
+      <div id="view-rubrics" class="view-panel">
+        <div class="card" style="margin-bottom: 20px;">
+          <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;">
+            <div>
+              <h2 style="font-size: 18px; font-weight: 800; color: var(--text-main); display: flex; align-items: center; gap: 8px;">
+                <span>📊</span> 審査員AI（Critic / Evaluator）採点基準表マスター
+              </h2>
+              <p style="font-size: 13px; color: var(--text-muted); margin-top: 4px;">
+                全社共通6規律 ＋ プロジェクト固有基準 ＋ 全体総合出荷判定の全マトリックス。アコーディオンを開いて1〜5点の詳細基準を確認できます。
+              </p>
+            </div>
+            <div style="display: flex; gap: 8px;">
+              <button class="badge" onclick="toggleAllAccordions(true)" style="cursor: pointer; background: #ffffff; border: 1px solid var(--card-border);">
+                <span>➕ すべて展開</span>
+              </button>
+              <button class="badge" onclick="toggleAllAccordions(false)" style="cursor: pointer; background: #ffffff; border: 1px solid var(--card-border);">
+                <span>➖ すべて折りたたむ</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2-Pane Master-Detail Container -->
+        <div class="rubric-master-detail">
+          <!-- 左ペイン: プロジェクト＆規律選択リスト (幅290px) -->
+          <div class="rubric-sidebar-pane">
+            <div style="margin-bottom: 14px;">
+              <input type="text" id="rubric-search-input" placeholder="🔍 基準・ツールを検索..." oninput="filterRubricProjects(this.value)" style="width: 100%; padding: 8px 12px; border-radius: 8px; border: 1px solid var(--card-border); font-size: 12px; font-family: inherit; background: #ffffff;">
+            </div>
+
+            <div style="font-size: 11px; font-weight: 800; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 8px; padding-left: 4px;">
+              全社共通・全体判定
+            </div>
+            <div class="rubric-proj-list" id="rubric-list-common" style="margin-bottom: 16px;">
+              <div class="rubric-proj-item active" id="r-item-common" onclick="selectRubricProject('common')">
+                <div class="r-item-title">🌐 全社共通規律 (Common)</div>
+                <div class="r-item-sub">全ツール適用・6大必須基準</div>
+              </div>
+              <div class="rubric-proj-item" id="r-item-overall" onclick="selectRubricProject('overall')">
+                <div class="r-item-title">🏆 全体総合出荷判定 (Release)</div>
+                <div class="r-item-sub">受入・note公開・手直しゼロ基準</div>
+              </div>
+            </div>
+
+            <div style="font-size: 11px; font-weight: 800; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 8px; padding-left: 4px;">
+              GASミニツール（プロジェクト別）
+            </div>
+            <div class="rubric-proj-list" id="rubric-list-projects">
+              <div class="rubric-proj-item" id="r-item-p1" onclick="selectRubricProject('p1')">
+                <div class="r-item-title">📧 minitool_001_unreplied_emails</div>
+                <div class="r-item-sub">未返信メール抽出＆スプレッドシート</div>
+              </div>
+              <div class="rubric-proj-item" id="r-item-p2" onclick="selectRubricProject('p2')">
+                <div class="r-item-title">📅 minitool_002_schedule_conflict</div>
+                <div class="r-item-sub">予定重複検知＆カレンダー同期</div>
+              </div>
+              <div class="rubric-proj-item" id="r-item-p3" onclick="selectRubricProject('p3')">
+                <div class="r-item-title">📈 workspace_health_monitor</div>
+                <div class="r-item-sub">ワークスペース健全性コンソール</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 右ペイン: 選択された基準のアコーディオン一覧 -->
+          <div class="rubric-content-pane">
+            <div class="card" id="rubric-detail-card" style="padding: 24px;">
+              <!-- JavaScript selectRubricProject() で動的生成 -->
+            </div>
+          </div>
         </div>
       </div>
 
@@ -1516,7 +1880,8 @@
       const titleMap = {
         'view-overview': ['🏠 ワークスペース総合ヘルス概要', '境界防御・ディレクトリ健全性・全プロジェクト状況のリアルタイム監視'],
         'view-projects': ['🚀 全プロジェクト進捗・完成度トラッカー', '各ツールの成果物構成・仕様書・テスト適合状況の客観判定'],
-        'view-harness': ['🛡️ エージェントハーネス全体像マッピング', 'プロジェクト別行動トポロジー（入力・ガード・AI・MCP・記憶・出力）＆メタ進化ループ'],
+        'view-harness': ['🛡️ エージェントハーネス全体像', '行動トポロジー回路図（入力・事前ガード・AI・事後ガード・出力・メタ進化）'],
+        'view-rubrics': ['📊 ルーブリック評価基準（採点表カタログ）', '全社共通6規律 ＋ プロジェクト固有基準 ＋ 全体出荷判定マスター'],
         'view-tree': ['🌲 ワークスペース階層構造エクスプローラー', '主要フォルダの展開・容量・衛生度マップ'],
         'view-logs': ['📜 失敗と教訓の完全アーカイブ', '各プロジェクトの trace.md から抽出された恒久教訓一覧'],
         'view-automation': ['⏰ 自動巡回＆定期スキャン運用', 'GitHub Actions日次巡回およびローカル常時統制の構成']
@@ -1965,30 +2330,65 @@
     // メタステップのインスペクト
     function inspectMetaStep(stepKey) {
       const stepDetails = {
-        'step1': { title: '① 失敗・試行錯誤', badge: 'FAIL_EVENT', items: [
-          { label: '発生契機', val: '事後ガードで検証不合格（例: uninstall忘れ、自作モック判定）となった瞬間' },
-          { label: '処置', val: 'エラーメッセージと試行錯誤の履歴をエージェント内メモリに保持' }
+        'meta_agents': { title: '全プロジェクト現場 (Active Agents)', badge: 'ACTIVE_AGENTS', items: [
+          { label: '稼働対象', val: 'gas_project/minitool_001, minitool_002, projects/workspace_health_monitor 等' },
+          { label: '役割', val: '実案件の開発・デバッグ・検証を実行する最前線。ここで試行錯誤やエラーが発生する。' }
         ]},
-        'step2': { title: '② 教訓テキスト抽出', badge: 'PARSING', items: [
+        'meta_fail': { title: '① 失敗・試行錯誤 (Failure Detection)', badge: 'ERROR_EVENT', items: [
+          { label: '発生契機', val: '事後ガードで検証不合格（例: uninstall忘れ、自作モック判定、API制約不一致）となった瞬間' },
+          { label: '検知方法', val: '各プロジェクトの harness/test_*.js による判定およびコンソールエラー' },
+          { label: '処置', val: 'エラーメッセージと試行錯誤の履歴をエージェント内メモリに保持し、即座に修正を試みる' }
+        ]},
+        'meta_trace': { title: '② 教訓テキスト抽出 (Local Trace)', badge: '3-STEP_LOG', items: [
           { label: '保存先', val: 'gas_project/*/logs/trace.md' },
-          { label: '必須フォーマット', val: '1. 失敗: ... / 2. 解決: ... / 3. 教訓: ... の3段階要約テキスト' }
+          { label: '必須フォーマット', val: '1. 失敗の事実 / 2. 解決の道筋 / 3. 恒久教訓 の3段階要約テキスト（数KB以内）' },
+          { label: '目的', val: '巨大な生ログを破棄し、再利用可能なエッセンスのみを1プロジェクト内にカプセル化保存' }
         ]},
-        'step3': { title: '③ メタ回収バッチ', badge: 'BATCH_JOB', items: [
+        'meta_collector': { title: '③ メタ回収バッチ (Cross-Project Harvester)', badge: 'BATCH_JOB', items: [
           { label: '実行スクリプト', val: 'harness/meta_harness_collector.js' },
-          { label: '動作', val: 'ワークスペース全域の trace.md を再帰走査し、最新の失敗教訓をパース・回収' }
+          { label: '動作', val: 'ワークスペース全域の trace.md を再帰走査し、最新の失敗教訓をパース・重複排除して回収' },
+          { label: '定期実行', val: '開発セッション終了時、または CI/CD パイプライン内で自動実行' }
         ]},
-        'step4': { title: '④ 構造化ナレッジDB', badge: 'DATABASE', items: [
+        'meta_db': { title: '④ 構造化ナレッジDB (Permanent Wisdom DB)', badge: 'KNOWLEDGE_BASE', items: [
           { label: '保存ファイル', val: 'harness/meta_knowledge.json' },
-          { label: '現在の蓄積', val: '3件（トリガー解除、DOM幾何判定、監視自己欺瞞防止）' }
+          { label: '蓄積データ', val: '現在蓄積中: 4件（トリガー解除、DOM幾何判定、監視自己欺瞞防止、情報鮮度ルーブリック）' },
+          { label: '公式採点表', val: 'harness/rubrics/（freshness_rubric.md, ui_cognitive_clarity.md）' },
+          { label: '構造', val: 'カテゴリ・重要度・アンチパターン・推奨ガードルールを含む構造化JSON' }
         ]},
-        'step5': { title: '⑤ 次期ガード自動生成', badge: 'GENERATOR', items: [
+        'meta_generator': { title: '⑤ メタ生成エンジン (Rule & Harness Synthesizer)', badge: 'GENERATOR', items: [
           { label: 'エンジン', val: 'harness/meta_harness_generator.js' },
-          { label: '動作', val: '新案件のPRDと過去教訓を照合し、回帰防止テストを事前/事後ガードへ自動注入' }
-        ]}
+          { label: '動作', val: 'ナレッジDBの教訓をインプットとし、次期案件向けの「事前ガード(ルール)」と「事後ガード(テスト)」を自動合成' },
+          { label: '出力', val: '新規プロジェクト用の AGENTS.md 追記規律、および自動テストハーネス' }
+        ]},
+        'meta_preguard': { title: '⑥ 次期事前ガード注入 (Pre-Guard Injection)', badge: 'PROMPT_RULES', items: [
+          { label: '反映先', val: 'AGENTS.md / SKILL.md / プロンプト規律' },
+          { label: '効果', val: '過去の全失敗パターン（例: uninstall忘れ）を開発着手前の思考制約として先回り注入' },
+          { label: '抑止率', val: '既知の失敗パターンの再発を設計段階で100%防止' }
+        ]},
+        'meta_postguard': { title: '⑦ 次期事後ガード注入 (Post-Guard Harness)', badge: 'REGRESSION_TEST', items: [
+          { label: '反映先', val: 'harness/test_*.js / CI Gates' },
+          { label: '効果', val: '過去の失敗を再現する回帰テストケースを自動的にテストスイートへ追加配備' },
+          { label: '厳格性', val: '改ざん不可テスト（自己欺瞞ハーネスの排除）として実装' }
+        ]},
+        'meta_nextgen': { title: '⑧ 新世代エージェント (Self-Evolved Agent)', badge: 'NEXT_GEN', items: [
+          { label: '能力', val: '過去の全失敗知見を最初からインストールされた進化したエージェント' },
+          { label: '循環ループ', val: '開発した次期成果物は再び「全プロジェクト現場」へ投入され、新たな進化サイクルを開始する' }
+        ]},
+        // 旧キー互換
+        'step1': { title: '① 失敗・試行錯誤', badge: 'FAIL_EVENT', items: [{ label: '契機', val: '事後ガード不合格' }] },
+        'step2': { title: '② 教訓テキスト抽出', badge: 'PARSING', items: [{ label: '保存先', val: 'logs/trace.md' }] },
+        'step3': { title: '③ メタ回収バッチ', badge: 'BATCH_JOB', items: [{ label: 'スクリプト', val: 'meta_harness_collector.js' }] },
+        'step4': { title: '④ 構造化ナレッジDB', badge: 'DATABASE', items: [{ label: '保存先', val: 'meta_knowledge.json' }] },
+        'step5': { title: '⑤ 次期ガード自動生成', badge: 'GENERATOR', items: [{ label: 'エンジン', val: 'meta_harness_generator.js' }] }
       };
 
       const info = stepDetails[stepKey];
       if (!info) return;
+
+      // 選択ノードのハイライト切り替え
+      document.querySelectorAll('#view-harness .svg-node-card').forEach(el => el.classList.remove('selected'));
+      const activeEl = document.getElementById(stepKey.startsWith('meta_') ? 'meta-node-' + stepKey.replace('meta_', '') : stepKey);
+      if (activeEl) activeEl.classList.add('selected');
 
       document.getElementById('insp-title').innerText = '🧠 メタハーネス工程: ' + info.title;
       document.getElementById('insp-badge').innerText = info.badge;
@@ -2018,9 +2418,454 @@
       });
     }
 
+    // ==========================================
+    // ルーブリック評価基準マスター (RUBRICS_DATA)
+    // ==========================================
+    const RUBRICS_DATA = {
+      'common': {
+        title: '🌐 全社共通規律 (Common Rubrics)',
+        badge: '全ツール無条件適用 (6項目)',
+        summary: 'すべてのGASミニツール・自動化スクリプトが満たすべき、境界防御・情報鮮度・自己欺瞞排除・クォータ安全・最小権限・ログ圧縮の6大規律です。',
+        items: [
+          {
+            id: 'c1',
+            title: '1. 情報鮮度・時間軸整合性 (Freshness & Temporal Grounding)',
+            deploy: '🤖 AI (Antigravity 執行エンジン)',
+            passScore: '4点以上',
+            passType: 'success',
+            summary: '現在年（2026年）および現行最新モデル（Gemini 3.8 Flash等）の一次情報と整合しているか。過去情報混入を排除。',
+            rows: [
+              { score: '1点', rank: '致命的', color: 'danger', desc: '2〜3年以上前の旧モデル（Gemini 1.5 Flash等）を現行最新と断定して回答。', action: '即時自律リトライ' },
+              { score: '2点', rank: '不十分', color: 'warning', desc: '最新状況に触れつつも、過去の料金体系や前提が混在して誤認を与える。', action: '再検索・鮮度補正' },
+              { score: '3点', rank: '許容', color: 'amber', desc: '古い情報であることを明記し、歴史的経緯として現行最新と区別して言及。', action: '注記付きPASS' },
+              { score: '4点', rank: '良好', color: 'success', desc: '現在（2026年）の最新モデル（Gemini 3.8 Flash等）をベースに論理を展開。', action: 'PASS' },
+              { score: '5点', rank: '模範', color: 'success', desc: '現行最新の仕様・料金を一次情報に即して提示し、将来リスクまで客観言及。', action: 'PASS (EXCELLENT)' }
+            ]
+          },
+          {
+            id: 'c2',
+            title: '2. ワークスペース境界防御規律 (Workspace Boundary Protection)',
+            deploy: '🛡️ 事前ガード (check_architecture_guard)',
+            passScore: '5点のみ (絶対遵守)',
+            passType: 'danger',
+            summary: '1ツール1フォルダ完全カプセル化（gas_project/*/）を死守し、ルート直下のファイル汚染や外部漏出を完全ゼロにする。',
+            rows: [
+              { score: '1点', rank: '違反', color: 'danger', desc: 'ルート直下に単発スクリプトを作成したり、隠しフォルダの手動実行を要求。', action: '即時BLOCK・強制是正' },
+              { score: '3点', rank: '境界グレー', color: 'amber', desc: 'scratch/ に作成したが、検証完了後の即時破棄または archive/ 隔離が不明瞭。', action: '警告・即時隔離指示' },
+              { score: '5点', rank: '完全統制', color: 'success', desc: '指定されたカプセル化フォルダ内に全成果物を閉じ込め、外部漏出がゼロ。', action: 'PASS' }
+            ]
+          },
+          {
+            id: 'c3',
+            title: '3. 自己欺瞞テスト排除 (Anti-Self-Deception & Objective Verification)',
+            deploy: '🤖 AI ➔ ⚖️ 事後ガード',
+            passScore: '5点のみ (絶対遵守)',
+            passType: 'danger',
+            summary: 'AI自身の「自己申告」や自作モックでの成功を信用せず、改ざん不可の外部ハーネススクリプトで客観立証する。',
+            rows: [
+              { score: '1点', rank: '自己欺瞞', color: 'danger', desc: '自作HTMLモック等で動いたように見せかけ、実機公式DOMの崩れを無視して合格判定。', action: '即時FAIL・実機強制' },
+              { score: '3点', rank: '部分検証', color: 'amber', desc: 'テストはあるが、境界値やエッジケース（空配列、権限エラー）がモックされている。', action: '追加実機テスト要求' },
+              { score: '5点', rank: '客観立証', color: 'success', desc: '改ざん不可の外部ハーネススクリプトにより、本物実機・公式仕様で100%適合を証明。', action: 'PASS' }
+            ]
+          },
+          {
+            id: 'c4',
+            title: '4. 実行クォータ・タイムアウト安全対策 (Execution Quota & Safety)',
+            deploy: '⚖️ 事後ガード',
+            passScore: '4点以上',
+            passType: 'success',
+            summary: 'GAS 6分制限対策、APIレートリミット（429）、指数バックオフリトライ、安全な自律中断。',
+            rows: [
+              { score: '1点', rank: '危険', color: 'danger', desc: '無限ループの危険性があり、GASの6分制限やAPI制限で即時死する設計。', action: '即時FAIL' },
+              { score: '3点', rank: '許容', color: 'amber', desc: '単発実行では動くが、大量データ処理時のバッチ分割やページネーションが未実装。', action: '警告・要改善' },
+              { score: '5点', rank: '堅牢', color: 'success', desc: '実行時間計測による自律中断・再スケジュール、APIエラーの指数バックオフが完備。', action: 'PASS' }
+            ]
+          },
+          {
+            id: 'c5',
+            title: '5. 最小権限原則 (Least Privilege OAuth)',
+            deploy: '🛡️ 事前ガード',
+            passScore: '4点以上',
+            passType: 'success',
+            summary: 'appsscript.json の oauthScopes が必要最小限に制限されているか。過剰なDrive/Gmail全権限を排除。',
+            rows: [
+              { score: '1点', rank: '過剰権限', color: 'danger', desc: '不要なGoogle Drive全権限やGmail全権限を無邪気に要求。', action: '即時FAIL' },
+              { score: '3点', rank: '許容', color: 'amber', desc: '主要スコープは絞られているが、読み取り専用で足りる箇所に書き込み権限を要求。', action: '権限縮小指示' },
+              { score: '5点', rank: '最小権限', color: 'success', desc: '読み取り専用スコープ（.readonly）やスプレッドシート単体権限のみに厳密制限。', action: 'PASS' }
+            ]
+          },
+          {
+            id: 'c6',
+            title: '6. 局所教訓ログ圧縮品質 (Trace Summary Quality)',
+            deploy: '📝 局所教訓ログ ➔ ⚙️ メタ回収バッチ',
+            passScore: '4点以上',
+            passType: 'success',
+            summary: 'logs/trace.md の3段階フォーマット（1.失敗 / 2.解決 / 3.教訓）が高密度に数KB以内で凝縮されているか。',
+            rows: [
+              { score: '1点', rank: '低品質', color: 'danger', desc: '数十KBのスタックトレースやチャット全文を生のまま貼り付けて放置。', action: '即時要約要求' },
+              { score: '3点', rank: '許容', color: 'amber', desc: '経緯は書かれているが、他のプロジェクトで再利用可能な「普遍的教訓」に抽象化されていない。', action: '再抽象化指示' },
+              { score: '5点', rank: '模範', color: 'success', desc: '「1. 失敗 / 2. 解決 / 3. 教訓」の3段階で高密度要約され、即座に次期ガードレールへ変換可能。', action: 'PASS (DB昇格)' }
+            ]
+          }
+        ]
+      },
+      'overall': {
+        title: '🏆 全体総合出荷判定 (Overall Delivery Rubric)',
+        badge: '受入・note公開判定 (1項目)',
+        summary: '全ノードの個別合格（各項目4点以上）を前提とした、最終完成パッケージ（成果物出荷）の合否判定基準です。カシマ様の手直しゼロを目指します。',
+        items: [
+          {
+            id: 'ov1',
+            title: '受入出荷・完成パッケージ総合判定 (Release Readiness)',
+            deploy: '🏆 最終出荷ゲート (人へ返却の直前)',
+            passScore: '4点以上 (手動修正ゼロ)',
+            passType: 'success',
+            summary: '一気通貫の結合動作、初心者向け設定手順の完全性、note記事原稿の魅力、メタ教訓のDB還元。',
+            rows: [
+              { score: '1点', rank: '出荷不可', color: 'danger', desc: '各パーツは個別パスしているが、実際に動かすと連携エラー。境界破壊や重大セキュリティ欠陥が存在。', action: '即時FAIL（出荷禁止）' },
+              { score: '2点', rank: '要手動修正', color: 'warning', desc: '動作はするが、初期設定手順とコードの変数名に食い違いがあり、カシマ様が手動で直さないと使えない。', action: '要修正（エスカレーション）' },
+              { score: '3点', rank: '許容', color: 'amber', desc: '一連の業務フローは完結するが、エラー時のリカバリ案内やnoteの導入が粗削り。', action: '条件付きPASS' },
+              { score: '4点', rank: '出荷合格', color: 'success', desc: '全個別ノードが4点以上をクリアし、コード・設定・記事が完全に整合。カシマ様の手直しゼロで即座に配布可能。', action: '出荷合格 (PASS)' },
+              { score: '5点', rank: '卓越', color: 'success', desc: '完璧な動作、親切なトースト通知、美しいデモGIF、さらに教訓がメタ知識DBへ自動還元されている完全な状態。', action: '出荷合格 (EXCELLENT)' }
+            ]
+          }
+        ]
+      },
+      'p1': {
+        title: '📧 minitool_001_unreplied_emails 固有ルーブリック',
+        badge: '個別ツール固有基準 (5項目)',
+        summary: '未返信メール自動抽出＆スプレッドシート管理GASミニツールの業務・データ・安全性・記事・UX審査基準です。',
+        items: [
+          {
+            id: 'p1_1',
+            title: '1. [固有:業務] 未返信判定ロジックの正確性',
+            deploy: '⚖️ 事後ガード',
+            passScore: '4点以上',
+            passType: 'success',
+            summary: '下書き除外、自分送信スレッド除外、スレッド内最新メッセージの日時判定が正確か。',
+            rows: [
+              { score: '1点', rank: '欠陥', color: 'danger', desc: '下書きや自分宛てメモ、自分が最後に返信したスレッドまで未返信として誤判定。', action: '即時FAIL' },
+              { score: '3点', rank: '許容', color: 'amber', desc: '基本的な未返信判定は通るが、CCで自分が入っているスレッドの扱いが曖昧。', action: '条件調整要求' },
+              { score: '5点', rank: '完璧', color: 'success', desc: '下書き完全除外、自分が最終送信者のスレッド除外、最新受信日時の厳密比較が完全。', action: 'PASS' }
+            ]
+          },
+          {
+            id: 'p1_2',
+            title: '2. [固有:データ] スプレッドシート出力の完全性',
+            deploy: '⚖️ 事後ガード',
+            passScore: '4点以上',
+            passType: 'success',
+            summary: '列ずれゼロ、ISO日付フォーマット統一、見出し行自動凍結、Gmail直通リンク生成。',
+            rows: [
+              { score: '1点', rank: '破損', color: 'danger', desc: '送信者名や件名にカンマ・改行が含まれると列がずれ、データ構造が崩れる。', action: '即時FAIL' },
+              { score: '3点', rank: '許容', color: 'amber', desc: '列ずれはないが、日付フォーマットが混在したりスレッドURLリンクが未整備。', action: 'フォーマット修正' },
+              { score: '5点', rank: '完璧', color: 'success', desc: '件名、送信者、受信日時、Gmail直通リンクが完璧に整形され、見出し行も自動凍結。', action: 'PASS' }
+            ]
+          },
+          {
+            id: 'p1_3',
+            title: '3. [固有:安全] トリガー完全解除性 (uninstallTool必須)',
+            deploy: '⚖️ 事後ガード',
+            passScore: '5点のみ (教訓必須)',
+            passType: 'danger',
+            summary: 'uninstallTool() 関数の存在と、ScriptApp.deleteTrigger() の正常動作。',
+            rows: [
+              { score: '1点', rank: '致命的', color: 'danger', desc: '自動トリガーを設定するが、解除する uninstallTool 関数が存在しない。', action: '即時FAIL' },
+              { score: '3点', rank: '不完全', color: 'amber', desc: '関数はあるが、個別トリガーの指定削除のみで残骸トリガーが残る。', action: '全トリガー消去へ' },
+              { score: '5点', rank: '完全安全', color: 'success', desc: 'ワンクリックで全定期実行トリガーを消去し、完了メッセージをログ出力。', action: 'PASS' }
+            ]
+          },
+          {
+            id: 'p1_4',
+            title: '4. [固有:記事] note記事の共感導入と初心者再現性',
+            deploy: '📝 ドキュメント審査',
+            passScore: '4点以上',
+            passType: 'success',
+            summary: '「未返信で冷や汗をかいた経験」の導入、スプレッドシート初期設定手順の明確さ。',
+            rows: [
+              { score: '1点', rank: '退屈', color: 'danger', desc: 'コードだけが貼られており、読者が「なぜこれを使うべきか」が分からない。', action: '導入全面書き直し' },
+              { score: '3点', rank: '説明的', color: 'amber', desc: '手順はあるが専門用語が多く、非エンジニアがコピペで動かすのに迷う。', action: '手順画像追加指示' },
+              { score: '5点', rank: '魅力的', color: 'success', desc: '読者の共感を誘うストーリー導入、3ステップ完結手順、デモGIFが完璧に揃う。', action: 'PASS' }
+            ]
+          },
+          {
+            id: 'p1_5',
+            title: '5. [固有:UX] 実行完了時・エラー時のユーザー通知品質',
+            deploy: '👥 UX審査',
+            passScore: '4点以上',
+            passType: 'success',
+            summary: 'SpreadsheetApp.getActiveSpreadsheet().toast() による日本語通知。',
+            rows: [
+              { score: '1点', rank: '沈黙', color: 'danger', desc: '実行しても画面に何も出ず、終わったのかエラーなのか分からない。', action: '即時FAIL' },
+              { score: '3点', rank: '最低限', color: 'amber', desc: 'Logger.log には出るが、スプレッドシート画面側に通知が出ない。', action: 'トースト通知追加' },
+              { score: '5点', rank: '親切', color: 'success', desc: '「〇件の未返信メールを抽出しました」等の分かりやすいトースト通知が即座に出る。', action: 'PASS' }
+            ]
+          }
+        ]
+      },
+      'p2': {
+        title: '📅 minitool_002_schedule_conflict 固有ルーブリック',
+        badge: '個別ツール固有基準 (5項目)',
+        summary: 'Googleカレンダー予定重複検知＆差分更新GASミニツールの審査基準です。',
+        items: [
+          {
+            id: 'p2_1',
+            title: '1. [固有:業務] 重複検知アルゴリズム・終日予定判定',
+            deploy: '⚖️ 事後ガード',
+            passScore: '4点以上',
+            passType: 'success',
+            summary: 'ミリ秒単位の重複判定、終日予定（祝日やメモ）の柔軟なフィルタリング。',
+            rows: [
+              { score: '1点', rank: '誤検知', color: 'danger', desc: '連続する前後の予定（10:00終了と10:00開始）を重複と判定してしまう。', action: '即時FAIL' },
+              { score: '3点', rank: '許容', color: 'amber', desc: '時間重複は正確だが、終日イベントの除外設定が固定化されている。', action: 'オプション拡張' },
+              { score: '5点', rank: '完璧', color: 'success', desc: '完全な時間交差判定、終日予定のスマート除外、参加承諾ステータス判定完備。', action: 'PASS' }
+            ]
+          },
+          {
+            id: 'p2_2',
+            title: '2. [固有:データ] カレンダー差分更新・パフォーマンス',
+            deploy: '⚖️ 事後ガード',
+            passScore: '4点以上',
+            passType: 'success',
+            summary: '過去取得キャッシュの活用、API呼出回数の削減、6分制限の回避。',
+            rows: [
+              { score: '1点', rank: '重過負荷', color: 'danger', desc: '毎回数年分の全予定を取得し、GASのAPI制限でタイムアウト死する。', action: '即時FAIL' },
+              { score: '3点', rank: '標準', color: 'amber', desc: '直近2週間に絞っているが、予定ごとに個別APIを叩いており最適化の余地あり。', action: 'バッチ取得化' },
+              { score: '5点', rank: '超高速', color: 'success', desc: '期間指定の一括取得、PropertiesServiceによる差分比較で最小APIコールを実現。', action: 'PASS' }
+            ]
+          },
+          {
+            id: 'p2_3',
+            title: '3. [固有:安全] 予定変更・削除の不可逆操作防止',
+            deploy: '🛡️ 事前ガード',
+            passScore: '5点のみ (安全厳守)',
+            passType: 'danger',
+            summary: 'ユーザーの承認なしに勝手にカレンダー予定を移動・削除しない安全設計。',
+            rows: [
+              { score: '1点', rank: '破壊的', color: 'danger', desc: '重複した予定をAIが勝手に判断して削除・時刻変更してしまう。', action: '即時BLOCK' },
+              { score: '3点', rank: '警告付与', color: 'amber', desc: '変更前に確認ダイアログは出るが、変更前の予定バックアップがない。', action: 'バックアップ機構追加' },
+              { score: '5点', rank: '絶対安全', color: 'success', desc: '重複の「検知・一覧提示」に徹し、変更はユーザーの明示操作でのみ実行。', action: 'PASS' }
+            ]
+          },
+          {
+            id: 'p2_4',
+            title: '4. [固有:記事] タイムマネジメント視点のnoteストーリー',
+            deploy: '📝 ドキュメント審査',
+            passScore: '4点以上',
+            passType: 'success',
+            summary: '「ダブルブッキングで信用を失いかけた恐怖」から始まる実践的ライフハック記事。',
+            rows: [
+              { score: '1点', rank: '無機質', color: 'danger', desc: 'GASの仕様説明のみで、ビジネスパーソンの痛みに寄り添っていない。', action: 'ストーリー再構成' },
+              { score: '3点', rank: '良好', color: 'amber', desc: '導入はあるが、スマホ通知や毎朝の自動チェックの具体的な使い方が薄い。', action: '利用シーン加筆' },
+              { score: '5点', rank: '感動的', color: 'success', desc: 'カレンダー破綻を防ぐ実践知、毎朝のルーティン化、読者の行動変容を促す記事。', action: 'PASS' }
+            ]
+          },
+          {
+            id: 'p2_5',
+            title: '5. [固有:UX] 解決候補スロットの直感的提示',
+            deploy: '👥 UX審査',
+            passScore: '4点以上',
+            passType: 'success',
+            summary: '「どちらをどうずらせば空いているか」の代替時間帯候補の提示品質。',
+            rows: [
+              { score: '1点', rank: '不親切', color: 'danger', desc: '「重複しています」とだけ言って、どの時間が空いているかを教えない。', action: '改善要求' },
+              { score: '3点', rank: '許容', color: 'amber', desc: '空き時間は提示するが、就業時間外や深夜のスロットが含まれる。', action: '時間帯フィルタ追加' },
+              { score: '5点', rank: '快適', color: 'success', desc: '就業時間内の最短空きスロット3候補を提示し、ワンクリックで選べるUI。', action: 'PASS' }
+            ]
+          }
+        ]
+      },
+      'p3': {
+        title: '📈 workspace_health_monitor 固有ルーブリック',
+        badge: '個別ツール固有基準 (5項目)',
+        summary: 'ワークスペース健全性コンソール＆トポロジーダッシュボード自体の品質基準です。',
+        items: [
+          {
+            id: 'p3_1',
+            title: '1. [固有:客観] 14項目ヘルス判定の改ざん不能性',
+            deploy: '🛡️ ハーネス基盤',
+            passScore: '5点のみ (絶対遵守)',
+            passType: 'danger',
+            summary: '自己欺瞞を排し、ファイルシステムとCIの生データから客観的にスコアを算出。',
+            rows: [
+              { score: '1点', rank: 'ハードコード', color: 'danger', desc: 'ダッシュボードの点数を100点固定でハードコードし、実態の違反を隠蔽。', action: '即時FAIL' },
+              { score: '3点', rank: '静的検証', color: 'amber', desc: '動的判定はあるが、一部のチェック項目がスタブ関数になっている。', action: '全実装義務付け' },
+              { score: '5点', rank: '完全客観', color: 'success', desc: '14項目すべてが実ファイル探索・構文解析・テスト実行結果から動的生成。', action: 'PASS' }
+            ]
+          },
+          {
+            id: 'p3_2',
+            title: '2. [固有:美観] SVG配線トポロジーの認知的明確性',
+            deploy: '🎨 UI/UX基盤',
+            passScore: '4点以上',
+            passType: 'success',
+            summary: '直線・直交ベクター配線、矢印マーカー、アニメーション破線、完全な因果追跡性。',
+            rows: [
+              { score: '1点', rank: '線画崩壊', color: 'danger', desc: '配線がノードの文字に被る、矢印の向きが逆、交差が多すぎて追えない。', action: 'トポロジー再計算' },
+              { score: '3点', rank: '許容', color: 'amber', desc: '主要な線は綺麗だが、ループバック（自律リトライ）の線が他と重なっている。', action: 'オフセット調整' },
+              { score: '5点', rank: '極上', color: 'success', desc: 'ピクセルパーフェクトな直交配線、ホバー時のパスハイライト、芸術的視線誘導。', action: 'PASS' }
+            ]
+          },
+          {
+            id: 'p3_3',
+            title: '3. [固有:操作] 2ペイン ＆ アコーディオンの軽快性',
+            deploy: '🎨 UI/UX基盤',
+            passScore: '4点以上',
+            passType: 'success',
+            summary: '左ペインでの即時切替、アコーディオンのスムーズな開閉、一括操作の軽快性。',
+            rows: [
+              { score: '1点', rank: '操作不能', color: 'danger', desc: 'クリックしても反応しない、アコーディオンの中身が欠落している。', action: '即時バグ修正' },
+              { score: '3点', rank: '標準', color: 'amber', desc: '動作するが、プロジェクトを切り替えた時のスクロール位置やアニメーションがぎこちない。', action: 'UIポリッシュ' },
+              { score: '5点', rank: '快適極上', color: 'success', desc: 'ミリ秒単位の俊敏な切替、開閉状態の明確な視覚フィードバック、検索絞り込みの即時性。', action: 'PASS' }
+            ]
+          },
+          {
+            id: 'p3_4',
+            title: '4. [固有:同期] ルーブリック定義（.md）との100%整合性',
+            deploy: '⚙️ メタ同期',
+            passScore: '4点以上',
+            passType: 'success',
+            summary: 'harness/rubrics/ 配下のMarkdownファイルとダッシュボード表示の完全一致。',
+            rows: [
+              { score: '1点', rank: '乖離', color: 'danger', desc: 'Markdownとダッシュボードで書いてある採点基準や合格ラインが矛盾している。', action: '同期不整合FAIL' },
+              { score: '3点', rank: '一部相違', color: 'amber', desc: '基準は一致しているが、補足説明やアクションの表現に細かなズレがある。', action: '文言統一指示' },
+              { score: '5点', rank: '完全同期', color: 'success', desc: '共通・個別・全体の全12項目がMarkdown定義と一言一句違わず同期。', action: 'PASS' }
+            ]
+          },
+          {
+            id: 'p3_5',
+            title: '5. [固有:配信] GitHub Pages公開・キャッシュ破棄の自動化',
+            deploy: '🚀 CI/CD配信',
+            passScore: '5点のみ (配信保証)',
+            passType: 'danger',
+            summary: 'docs/index.html への自動反映、クエリパラメータによるキャッシュ回避、実機URLアクセス性。',
+            rows: [
+              { score: '1点', rank: '配信事故', color: 'danger', desc: 'ビルドしてもdocs/が更新されず、GitHub Pagesに古いバージョンが表示され続ける。', action: '即時配信修復' },
+              { score: '3点', rank: '手動更新', color: 'amber', desc: '自動コピーはあるが、ブラウザキャッシュでF5を押さないと最新にならない。', action: 'キャッシュバスティング追加' },
+              { score: '5点', rank: '完全自動配信', color: 'success', desc: 'ビルド時にdocs/index.htmlが自動更新され、バージョンクエリ付きURLで即座に最新が閲覧可能。', action: 'PASS' }
+            ]
+          }
+        ]
+      }
+    };
+
+    // ルーブリック プロジェクト選択
+    function selectRubricProject(pKey) {
+      document.querySelectorAll('.rubric-proj-item').forEach(function(el) {
+        el.classList.remove('active');
+      });
+      const activeItem = document.getElementById('r-item-' + pKey);
+      if (activeItem) activeItem.classList.add('active');
+
+      const data = RUBRICS_DATA[pKey];
+      if (!data) return;
+
+      const card = document.getElementById('rubric-detail-card');
+      if (!card) return;
+
+      let html = '<div style="margin-bottom: 20px; padding-bottom: 16px; border-bottom: 1px solid var(--card-border);">';
+      html += '<div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px; margin-bottom:8px;">';
+      html += '<h3 style="font-size:18px; font-weight:800; color:var(--text-main); margin:0;">' + data.title + '</h3>';
+      html += '<span class="badge" style="background:var(--accent-light); color:var(--accent); border-color:var(--accent-border);">' + data.badge + '</span>';
+      html += '</div>';
+      html += '<p style="font-size:13px; color:var(--text-muted); margin:0; line-height:1.6;">' + data.summary + '</p>';
+      html += '</div>';
+
+      html += '<div class="rubric-accordion-list">';
+      data.items.forEach(function(item, idx) {
+        const passBadgeBg = item.passType === 'danger' ? 'background:#fef2f2; color:#b91c1c;' : 'background:var(--success-bg); color:var(--success);';
+        html += '<div class="accordion-item' + (idx === 0 ? ' open' : '') + '" id="acc-' + item.id + '">';
+        html += '  <div class="accordion-header" onclick="toggleAccordion(\'' + item.id + '\')">';
+        html += '    <div class="accordion-title-wrap">';
+        html += '      <span class="accordion-title">' + item.title + '</span>';
+        html += '      <span class="rubric-badge" style="background:#eff6ff; color:#1d4ed8;">配備: ' + item.deploy + '</span>';
+        html += '      <span class="rubric-badge" style="' + passBadgeBg + '">合格: ' + item.passScore + '</span>';
+        html += '    </div>';
+        html += '    <span class="accordion-arrow">▼</span>';
+        html += '  </div>';
+        html += '  <div class="accordion-body">';
+        html += '    <div style="font-size:12px; color:var(--text-muted); margin-bottom:12px; background:var(--card-bg-subtle); padding:10px 14px; border-radius:8px; border:1px solid var(--card-border);">';
+        html += '      <strong>💡 評価観点:</strong> ' + item.summary;
+        html += '    </div>';
+        html += '    <table class="rubric-table">';
+        html += '      <thead>';
+        html += '        <tr>';
+        html += '          <th style="width:65px;">スコア</th>';
+        html += '          <th style="width:85px;">ランク</th>';
+        html += '          <th>判定基準・具象状態</th>';
+        html += '          <th style="width:140px;">ハーネス挙動 / アクション</th>';
+        html += '        </tr>';
+        html += '      </thead>';
+        html += '      <tbody>';
+        item.rows.forEach(function(r) {
+          let scoreColor = 'var(--text-main)';
+          let badgeStyle = 'background:#f3f4f6; color:#4b5563;';
+          if (r.color === 'danger') {
+            scoreColor = 'var(--danger)';
+            badgeStyle = 'background:var(--danger-bg); color:var(--danger);';
+          } else if (r.color === 'warning') {
+            scoreColor = 'var(--warning)';
+            badgeStyle = 'background:var(--warning-bg); color:var(--warning);';
+          } else if (r.color === 'amber') {
+            scoreColor = '#d97706';
+            badgeStyle = 'background:#fef3c7; color:#b45309;';
+          } else if (r.color === 'success') {
+            scoreColor = 'var(--success)';
+            badgeStyle = 'background:var(--success-bg); color:var(--success);';
+          }
+          html += '<tr>';
+          html += '  <td class="score-cell" style="color:' + scoreColor + ';">' + r.score + '</td>';
+          html += '  <td><span class="rubric-badge" style="' + badgeStyle + '">' + r.rank + '</span></td>';
+          html += '  <td style="line-height:1.5;">' + r.desc + '</td>';
+          html += '  <td><strong>' + r.action + '</strong></td>';
+          html += '</tr>';
+        });
+        html += '      </tbody>';
+        html += '    </table>';
+        html += '  </div>';
+        html += '</div>';
+      });
+      html += '</div>';
+
+      card.innerHTML = html;
+    }
+
+    // アコーディオンの開閉
+    function toggleAccordion(itemId) {
+      const el = document.getElementById('acc-' + itemId);
+      if (el) {
+        el.classList.toggle('open');
+      }
+    }
+
+    // 全アコーディオンの一括開閉
+    function toggleAllAccordions(expand) {
+      document.querySelectorAll('.accordion-item').forEach(function(el) {
+        if (expand) {
+          el.classList.add('open');
+        } else {
+          el.classList.remove('open');
+        }
+      });
+    }
+
+    // 左ペインのプロジェクト検索フィルター
+    function filterRubricProjects(q) {
+      const query = (q || '').toLowerCase().trim();
+      document.querySelectorAll('.rubric-proj-item').forEach(function(item) {
+        const text = item.innerText.toLowerCase();
+        if (text.includes(query)) {
+          item.style.display = 'block';
+        } else {
+          item.style.display = 'none';
+        }
+      });
+    }
+
     // 初期化
     window.addEventListener('DOMContentLoaded', function() {
       selectProjectHarness('p1');
+      selectRubricProject('common');
     });
   </script>
 </body>
