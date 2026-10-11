@@ -211,6 +211,157 @@ function analyzeHarnesses() {
   };
 }
 
+// メタハーネス（自己進化・ハーネス生成エンジン）の実構造をスキャン（Single Source of Truth）
+function scanMetaHarnessTopology() {
+  const metaDir = path.join(ROOT_DIR, 'harness');
+  const knowledgePath = path.join(metaDir, 'meta_knowledge.json');
+  const collectorPath = path.join(metaDir, 'meta_harness_collector.js');
+  const generatorPath = path.join(metaDir, 'meta_harness_generator.js');
+  const archGuardPath = path.join(metaDir, 'global_rules', 'check_architecture_guard.js');
+  const rubricsDir = path.join(metaDir, 'rubrics');
+
+  let lessonsCount = 0;
+  let latestLesson = '';
+  let lessonsList = [];
+  if (fs.existsSync(knowledgePath)) {
+    try {
+      const kd = JSON.parse(fs.readFileSync(knowledgePath, 'utf8'));
+      lessonsList = kd.knowledgeBase || [];
+      lessonsCount = lessonsList.length;
+      if (lessonsCount > 0) {
+        latestLesson = lessonsList[lessonsList.length - 1].lessonsRaw || '';
+      }
+    } catch (e) {}
+  }
+
+  // ルーブリック件数
+  let rubricFiles = [];
+  if (fs.existsSync(rubricsDir)) {
+    function getMdFiles(dir) {
+      let res = [];
+      try {
+        const entries = fs.readdirSync(dir, { withFileTypes: true });
+        for (const e of entries) {
+          const full = path.join(dir, e.name);
+          if (e.isDirectory()) res = res.concat(getMdFiles(full));
+          else if (e.name.endsWith('.md')) res.push(path.relative(ROOT_DIR, full).replace(/\\/g, '/'));
+        }
+      } catch (e) {}
+      return res;
+    }
+    rubricFiles = getMdFiles(rubricsDir);
+  }
+
+  return {
+    title: '🧠 メタハーネス自己進化＆動的生成アーキテクチャ',
+    status: 'ACTIVE',
+    lessonsCount,
+    rubricsCount: rubricFiles.length,
+    nodes: {
+      field: {
+        id: 'field',
+        title: '🏢 全プロジェクト現場 (Active Agents)',
+        badge: 'EXECUTION',
+        file: 'gas_project/*, projects/*',
+        desc: '実案件の開発・デバッグ・検証を実行する最前線',
+        details: [
+          { label: '稼働現場', val: 'gas_project (2ツール), projects (7プロジェクト)' },
+          { label: '役割', val: 'エージェントがタスクを実行し、予期せぬ失敗や例外に遭遇する現場' }
+        ]
+      },
+      fail: {
+        id: 'fail',
+        title: '❌ 失敗・例外検知 (Fail Event)',
+        badge: 'DETECTION',
+        file: 'harness/gas_minitool/evaluator_gas_minitool.js 等',
+        desc: '事後ガードで不合格となった瞬間を機械的に捕捉',
+        details: [
+          { label: '捕捉契機', val: 'コード構文エラー、uninstallTool欠落、DOM座標不一致、自己欺瞞の検知' },
+          { label: '規律', val: '失敗を握りつぶさず、即座にエージェントの修正試行錯誤へ移行' }
+        ]
+      },
+      trace: {
+        id: 'trace',
+        title: '📝 局所教訓ログ (Local Trace)',
+        badge: '3-STEP LOG',
+        file: 'gas_project/*/logs/trace.md',
+        desc: '失敗・解決・教訓の3段階要約テキスト',
+        details: [
+          { label: '必須フォーマット', val: '1. 失敗 / 2. 解決 / 3. 恒久教訓（数KB以内の軽量テキスト）' },
+          { label: 'カプセル化', val: '生ログの散乱を根絶し、1ツール1フォルダ内に圧縮保存' }
+        ]
+      },
+      collector: {
+        id: 'collector',
+        title: '🚜 メタ回収エンジン (Meta Collector)',
+        badge: 'HARVESTER',
+        file: 'harness/meta_harness_collector.js',
+        desc: '全現場から教訓を再帰走査・重複排除して自動回収',
+        details: [
+          { label: 'スクリプト実体', val: fs.existsSync(collectorPath) ? `harness/meta_harness_collector.js (${fs.statSync(collectorPath).size} bytes)` : '未配備' },
+          { label: '動作方式', val: '全プロジェクトの trace.md をパースし、差分教訓を自動抽出' }
+        ]
+      },
+      knowledge_db: {
+        id: 'knowledge_db',
+        title: '🗄️ 構造化ナレッジDB (Knowledge Base)',
+        badge: 'WISDOM DB',
+        file: 'harness/meta_knowledge.json',
+        desc: `蓄積された恒久知恵 (${lessonsCount} 件)`,
+        details: [
+          { label: 'DBファイル実体', val: fs.existsSync(knowledgePath) ? `harness/meta_knowledge.json (${fs.statSync(knowledgePath).size} bytes)` : '未配備' },
+          { label: '蓄積教訓数', val: `${lessonsCount} 件の恒久教訓を構造化保存` },
+          { label: '最新教訓', val: latestLesson ? latestLesson.split('\n')[2] || latestLesson.substring(0, 80) : '未登録' }
+        ]
+      },
+      rubrics: {
+        id: 'rubrics',
+        title: '📊 ルーブリック基準庫 (Rubric Matrix)',
+        badge: 'EVALUATION',
+        file: 'harness/rubrics/*',
+        desc: `採点基準表 (${rubricFiles.length} 件配備)`,
+        details: [
+          { label: '基準ファイル群', val: rubricFiles.join(', ') },
+          { label: '用途', val: '定性評価・Model Grader・出荷判定の客観的1〜5点スケール' }
+        ]
+      },
+      generator: {
+        id: 'generator',
+        title: '⚡ ハーネス合成ジェネレーター (Harness Generator)',
+        badge: 'SYNTHESIZER',
+        file: 'harness/meta_harness_generator.js',
+        desc: 'ナレッジDBから次世代ガードを自動生成する頭脳',
+        details: [
+          { label: 'エンジン実体', val: fs.existsSync(generatorPath) ? `harness/meta_harness_generator.js (${fs.statSync(generatorPath).size} bytes)` : '未配備' },
+          { label: 'コア機能', val: 'extractInjectedRules() により、過去の失敗パターンを新規案件の受入テストへ先回り注入' }
+        ]
+      },
+      pre_guard_inject: {
+        id: 'pre_guard_inject',
+        title: '🛡️ 事前ガード自動注入 (Pre-Guard Rule Injection)',
+        badge: 'RULE INJECTION',
+        file: 'AGENTS.md / check_architecture_guard.js',
+        desc: '思考制約として過去の失敗を設計前に遮断',
+        details: [
+          { label: '注入先', val: 'AGENTS.md（カプセル化・境界・命名規律）、SKILL.md' },
+          { label: '機械的検査', val: fs.existsSync(archGuardPath) ? 'check_architecture_guard.js 適合' : '未配備' }
+        ]
+      },
+      post_guard_inject: {
+        id: 'post_guard_inject',
+        title: '⚖️ 事後ガード自動注入 (Post-Guard Regression Test)',
+        badge: 'TEST INJECTION',
+        file: 'harness/gas_minitool/evaluator_gas_minitool.js 等',
+        desc: '回帰テストケースを自動配備し再発を永久根絶',
+        details: [
+          { label: '配備先', val: 'evaluator_gas_minitool.js (16基準), test_monitor.js' },
+          { label: '検証項目', val: 'uninstallTool存在検査、実機DOM幾何光学判定、自己欺瞞排除' }
+        ]
+      }
+    }
+  };
+}
+
 // フォルダ構造の実態から直接トポロジー＆マルチエージェント編成を検出（Single Source of Truth）
 function scanProjectHarnesses() {
   const harnesses = {};
@@ -823,6 +974,9 @@ function runHealthAudit() {
 
   // フォルダ構造実態連動ハーネストポロジー
   report.projectHarnesses = scanProjectHarnesses();
+
+  // メタハーネス（自己進化・ハーネス生成）実構造トポロジー
+  report.metaHarnessTopology = scanMetaHarnessTopology();
 
   return report;
 }

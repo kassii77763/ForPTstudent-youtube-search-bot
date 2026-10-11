@@ -22,6 +22,7 @@ function generateHtml(audit) {
   const projects = audit.projects || [];
   const harnesses = audit.projectHarnesses || {};
   const harnessKeys = Object.keys(harnesses);
+  const metaTop = audit.metaHarnessTopology || {};
 
   let gradeColor = '#2e7d32'; // フォレストグリーン
   if (score < 70) gradeColor = '#c53030';
@@ -1119,52 +1120,189 @@ function generateHtml(audit) {
       <div id="view-harness" class="view-panel">
         <div class="harness-matrix-container">
           
-          <!-- カード 1: メタハーネス自己進化ループ（システム全体統制・教訓回収サイクル） -->
+          <!-- カード 1: メタハーネス全体像（ハーネス生成＆自己進化トポロジー回路） -->
           <div class="card" style="margin-bottom: 24px;">
             <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
-              <h3 class="section-title" style="margin-bottom:0;">🧠 メタハーネス全体像（失敗回収 ➔ 知恵圧縮 ➔ 次期ガード再注入ループ）</h3>
+              <div>
+                <h3 class="section-title" style="margin-bottom:2px;">🧠 メタハーネス全体像（ハーネス生成＆自己進化トポロジー回路）</h3>
+                <span style="font-size:12px; color:var(--text-muted);">ハーネスを生み出し、失敗から進化させる高次元制御アーキテクチャ</span>
+              </div>
               <span class="code-badge" style="color:var(--success); border-color:var(--success-border); background:var(--success-bg);">
-                🔄 自己進化サイクル稼働中 (${metrics.metaHarness ? metrics.metaHarness.lessonsCount : 3}件 蓄積)
+                🔄 自己進化サイクル稼働中 (${metaTop.lessonsCount || 4}件 蓄積 / ${metaTop.rubricsCount || 6}基準 配備)
               </span>
             </div>
             <p style="font-size:13px; color:var(--text-muted); margin-bottom:16px;">
-              全プロジェクト横断の自己進化ハーネス回路です。現場で発生した失敗がどのように集約・圧縮され、次期プロジェクトのガードレールへ自動再注入されるかを規定します。各ステップをクリックするとインスペクターに詳細が展開されます。
+              現場（エージェント）の失敗がログから回収され、ナレッジDBとルーブリック基準庫に蓄積された後、<strong>「ハーネス合成ジェネレーター」によって次期プロジェクトの事前ルール・事後テストへと自動合成・再配備される循環回路</strong>です。各ノードをクリックすると詳細がインスペクターに展開されます。
             </p>
 
-            <div class="meta-loop-diagram">
-              <div class="meta-step-card" id="meta-step-1" onclick="inspectMetaStep('step1')">
-                <div class="meta-step-icon">❌</div>
-                <div class="meta-step-title">① 失敗・試行錯誤</div>
-                <div class="meta-step-sub">事後ガードで弾かれた不合格や予期せぬエラー</div>
-              </div>
-              <div class="c-arrow">➔</div>
-              <div class="meta-step-card" id="meta-step-2" onclick="inspectMetaStep('step2')">
-                <div class="meta-step-icon">📝</div>
-                <div class="meta-step-title">② 教訓テキスト抽出</div>
-                <div class="meta-step-sub"><span class="code-badge">logs/trace.md</span><br>失敗/解決/教訓の3段階記録</div>
-              </div>
-              <div class="c-arrow">➔</div>
-              <div class="meta-step-card" id="meta-step-3" onclick="inspectMetaStep('step3')">
-                <div class="meta-step-icon">⚙️</div>
-                <div class="meta-step-title">③ メタ回収バッチ</div>
-                <div class="meta-step-sub"><span class="code-badge">meta_harness_collector.js</span><br>全プロジェクトから機械的収集</div>
-              </div>
-              <div class="c-arrow">➔</div>
-              <div class="meta-step-card" id="meta-step-4" onclick="inspectMetaStep('step4')">
-                <div class="meta-step-icon">🗄️</div>
-                <div class="meta-step-title">④ 構造化ナレッジDB</div>
-                <div class="meta-step-sub"><span class="code-badge">meta_knowledge.json</span><br>恒久教訓を圧縮保存</div>
-              </div>
-              <div class="c-arrow">➔</div>
-              <div class="meta-step-card" id="meta-step-5" onclick="inspectMetaStep('step5')">
-                <div class="meta-step-icon">⚡</div>
-                <div class="meta-step-title">⑤ 次期ガード自動生成</div>
-                <div class="meta-step-sub"><span class="code-badge">meta_harness_generator.js</span><br>新案件の事前・事後ガードへ注入</div>
-              </div>
+            <!-- 完全SVGベクター配線キャンバス: メタハーネス回路図 -->
+            <div class="topology-canvas" style="margin-bottom: 14px;">
+              <svg class="topology-svg" viewBox="0 0 1080 395">
+                <defs>
+                  <marker id="arrow-meta" markerWidth="9" markerHeight="7" refX="8" refY="3.5" orient="auto">
+                    <path d="M 0 0 L 9 3.5 L 0 7 Z" fill="#8c8275" />
+                  </marker>
+                  <marker id="arrow-meta-purple" markerWidth="9" markerHeight="7" refX="8" refY="3.5" orient="auto">
+                    <path d="M 0 0 L 9 3.5 L 0 7 Z" fill="#7c3aed" />
+                  </marker>
+                  <marker id="arrow-meta-green" markerWidth="9" markerHeight="7" refX="8" refY="3.5" orient="auto">
+                    <path d="M 0 0 L 9 3.5 L 0 7 Z" fill="#2e7d32" />
+                  </marker>
+                </defs>
+
+                <!-- 配線コネクタ群 -->
+                <g class="flow-wires">
+                  <!-- ① 現場 ➔ 失敗検知 -->
+                  <path d="M 170 180 L 210 180" stroke="var(--wire-color)" stroke-width="2.5" fill="none" marker-end="url(#arrow-meta)" />
+                  
+                  <!-- ② 失敗検知 ➔ trace.md -->
+                  <path d="M 330 180 L 370 180" stroke="var(--wire-color)" stroke-width="2.5" fill="none" marker-end="url(#arrow-meta)" />
+                  
+                  <!-- ③ trace.md ➔ メタ回収バッチ -->
+                  <path d="M 490 180 L 530 180" stroke="var(--wire-color)" stroke-width="2.5" fill="none" marker-end="url(#arrow-meta)" />
+
+                  <!-- ④ メタ回収 ➔ ナレッジDB（上分岐） -->
+                  <path d="M 660 165 L 680 165 L 680 105 L 700 105" stroke="#7c3aed" stroke-width="2.5" fill="none" marker-end="url(#arrow-meta-purple)" />
+                  
+                  <!-- ⑤ メタ回収 ➔ ルーブリック基準庫（下分岐） -->
+                  <path d="M 660 195 L 680 195 L 680 255 L 700 255" stroke="#7c3aed" stroke-width="2.5" fill="none" marker-end="url(#arrow-meta-purple)" />
+
+                  <!-- ⑥ ナレッジDB ➔ ハーネス合成エンジン -->
+                  <path d="M 840 105 L 860 105 L 860 165 L 880 165" stroke="#7c3aed" stroke-width="2.5" fill="none" marker-end="url(#arrow-meta-purple)" />
+
+                  <!-- ⑦ ルーブリック基準庫 ➔ ハーネス合成エンジン -->
+                  <path d="M 840 255 L 860 255 L 860 195 L 880 195" stroke="#7c3aed" stroke-width="2.5" fill="none" marker-end="url(#arrow-meta-purple)" />
+
+                  <!-- ⑧ ハーネス合成 ➔ 次世代事前ガード注入（上へ折れて左へ） -->
+                  <path d="M 960 145 L 960 60 L 630 60" stroke="#2e7d32" stroke-width="2.5" stroke-dasharray="5,4" fill="none" marker-end="url(#arrow-meta-green)" />
+
+                  <!-- ⑨ ハーネス合成 ➔ 次世代事後ガード注入（下へ折れて左へ） -->
+                  <path d="M 960 215 L 960 335 L 630 335" stroke="#2e7d32" stroke-width="2.5" stroke-dasharray="5,4" fill="none" marker-end="url(#arrow-meta-green)" />
+
+                  <!-- ⑩ 次世代事前ガード ➔ 現場への再配備ループ（左端へ帰還） -->
+                  <path d="M 420 60 L 105 60 L 105 145" stroke="#2e7d32" stroke-width="2.5" stroke-dasharray="6,4" fill="none" marker-end="url(#arrow-meta-green)" />
+
+                  <!-- ⑪ 次世代事後ガード ➔ 現場への再配備ループ（左端へ帰還） -->
+                  <path d="M 420 335 L 105 335 L 105 215" stroke="#2e7d32" stroke-width="2.5" stroke-dasharray="6,4" fill="none" marker-end="url(#arrow-meta-green)" />
+
+                  <!-- 注記ラベル -->
+                  <text x="735" y="48" font-size="10.5" fill="#2e7d32" font-weight="700">ルール自動合成 (Rules)</text>
+                  <text x="735" y="352" font-size="10.5" fill="#2e7d32" font-weight="700">回帰テスト自動合成 (Tests)</text>
+                  <text x="115" y="52" font-size="10.5" fill="#2e7d32" font-weight="700">🔄 事前制約の再配備</text>
+                  <text x="115" y="348" font-size="10.5" fill="#2e7d32" font-weight="700">🔄 事後検査の再配備</text>
+                </g>
+
+                <!-- ノード配置 (foreignObject) -->
+                <!-- 1. 現場エージェント (x:30, y:145) -->
+                <foreignObject x="30" y="145" width="140" height="70">
+                  <div class="svg-node-card selected" id="meta-node-field" onclick="inspectMetaNode('field')">
+                    <span class="s-icon">🏢</span>
+                    <span class="s-title">全プロジェクト現場</span>
+                    <span class="s-desc">Active Agents</span>
+                    <span class="s-badge">EXECUTION</span>
+                  </div>
+                </foreignObject>
+
+                <!-- 2. 失敗検知 (x:210, y:145) -->
+                <foreignObject x="210" y="145" width="120" height="70">
+                  <div class="svg-node-card" id="meta-node-fail" onclick="inspectMetaNode('fail')" style="border-color:#fca5a5;">
+                    <span class="s-icon">❌</span>
+                    <span class="s-title">失敗・例外検知</span>
+                    <span class="s-desc">ガード不合格</span>
+                    <span class="s-badge" style="background:#fee2e2; color:#b91c1c;">DETECTION</span>
+                  </div>
+                </foreignObject>
+
+                <!-- 3. 教訓ログ (x:370, y:145) -->
+                <foreignObject x="370" y="145" width="120" height="70">
+                  <div class="svg-node-card" id="meta-node-trace" onclick="inspectMetaNode('trace')">
+                    <span class="s-icon">📝</span>
+                    <span class="s-title">局所教訓ログ</span>
+                    <span class="s-desc">logs/trace.md</span>
+                    <span class="s-badge">3-STEP LOG</span>
+                  </div>
+                </foreignObject>
+
+                <!-- 4. メタ回収バッチ (x:530, y:145) -->
+                <foreignObject x="530" y="145" width="130" height="70">
+                  <div class="svg-node-card card-tool" id="meta-node-collector" onclick="inspectMetaNode('collector')">
+                    <span class="s-icon">🚜</span>
+                    <span class="s-title">メタ回収エンジン</span>
+                    <span class="s-desc">collector.js</span>
+                    <span class="s-badge">HARVESTER</span>
+                  </div>
+                </foreignObject>
+
+                <!-- 5. ナレッジDB (x:700, y:70) -->
+                <foreignObject x="700" y="70" width="140" height="70">
+                  <div class="svg-node-card card-memory" id="meta-node-knowledge_db" onclick="inspectMetaNode('knowledge_db')">
+                    <span class="s-icon">🗄️</span>
+                    <span class="s-title">構造化ナレッジDB</span>
+                    <span class="s-desc">meta_knowledge.json</span>
+                    <span class="s-badge">${metaTop.lessonsCount || 4}件 蓄積</span>
+                  </div>
+                </foreignObject>
+
+                <!-- 6. ルーブリック基準庫 (x:700, y:220) -->
+                <foreignObject x="700" y="220" width="140" height="70">
+                  <div class="svg-node-card" id="meta-node-rubrics" onclick="inspectMetaNode('rubrics')" style="border-color:#c4b5fd;">
+                    <span class="s-icon">📊</span>
+                    <span class="s-title">ルーブリック基準庫</span>
+                    <span class="s-desc">harness/rubrics/</span>
+                    <span class="s-badge">${metaTop.rubricsCount || 6}基準 配備</span>
+                  </div>
+                </foreignObject>
+
+                <!-- 7. ハーネス合成ジェネレーター (x:880, y:145) -->
+                <foreignObject x="880" y="145" width="160" height="70">
+                  <div class="svg-node-card" id="meta-node-generator" onclick="inspectMetaNode('generator')" style="border:2px solid #7c3aed; background:#faf5ff;">
+                    <span class="s-icon">⚡</span>
+                    <span class="s-title">ハーネス合成エンジン</span>
+                    <span class="s-desc">generator.js</span>
+                    <span class="s-badge" style="background:#ede9fe; color:#6d28d9;">SYNTHESIZER</span>
+                  </div>
+                </foreignObject>
+
+                <!-- 8. 次世代事前ガード注入 (x:420, y:25) -->
+                <foreignObject x="420" y="25" width="210" height="70">
+                  <div class="svg-node-card card-guard" id="meta-node-pre_guard_inject" onclick="inspectMetaNode('pre_guard_inject')" style="border:1.5px solid var(--success);">
+                    <span class="s-icon">🛡️</span>
+                    <span class="s-title">次世代 事前ガード注入</span>
+                    <span class="s-desc">AGENTS.md / architecture_guard</span>
+                    <span class="s-badge" style="background:var(--success-bg); color:var(--success);">RULE INJECTION</span>
+                  </div>
+                </foreignObject>
+
+                <!-- 9. 次世代事後ガード注入 (x:420, y:300) -->
+                <foreignObject x="420" y="300" width="210" height="70">
+                  <div class="svg-node-card card-guard" id="meta-node-post_guard_inject" onclick="inspectMetaNode('post_guard_inject')" style="border:1.5px solid var(--success);">
+                    <span class="s-icon">⚖️</span>
+                    <span class="s-title">次世代 事後ガード注入</span>
+                    <span class="s-desc">evaluator_*.js / test_*.js</span>
+                    <span class="s-badge" style="background:var(--success-bg); color:var(--success);">TEST INJECTION</span>
+                  </div>
+                </foreignObject>
+              </svg>
             </div>
-            <div class="meta-loopback-badge">
-              <span>🔄</span>
-              <span>⑤ 生成されたガードレールは各プロジェクトの「事前ガード」「事後ガード」へ自動再配備され、同じ失敗の再発を未然に永久根絶します</span>
+
+            <!-- メタハーネス固有インスペクター（クリック連動） -->
+            <div class="node-inspector" style="margin-top:14px; padding:16px 20px;">
+              <div class="inspector-header" style="margin-bottom:10px; padding-bottom:8px;">
+                <div class="inspector-title" id="meta-insp-title">
+                  <span>🏢</span> 全プロジェクト現場 (Active Agents)
+                </div>
+                <span class="s-badge" id="meta-insp-badge" style="background:var(--accent-light); color:var(--accent); font-size:11px; padding:3px 8px;">EXECUTION</span>
+              </div>
+              <div class="inspector-grid" id="meta-insp-grid">
+                <div class="inspector-item">
+                  <div class="inspector-item-label">稼働現場</div>
+                  <div class="inspector-item-val">gas_project (2ツール), projects (7プロジェクト)</div>
+                </div>
+                <div class="inspector-item">
+                  <div class="inspector-item-label">役割</div>
+                  <div class="inspector-item-val">エージェントがタスクを実行し、予期せぬ失敗や例外に遭遇する現場</div>
+                </div>
+              </div>
             </div>
           </div>
 
@@ -1672,6 +1810,9 @@ function generateHtml(audit) {
       }
     }
 
+    // メタハーネス実構造スキャンデータ（Single Source of Truth）
+    const META_HARNESS_DATA = ${JSON.stringify(audit.metaHarnessTopology || {}, null, 2)};
+
     // フォルダ構造・実体ファイルから動的スキャンされた Single Source of Truth データ
     const PROJECT_HARNESS_DATA = ${JSON.stringify(audit.projectHarnesses || {}, null, 2)};
 
@@ -1843,7 +1984,34 @@ function generateHtml(audit) {
           '<div class="inspector-item-val">' + it.val + '</div>' +
         '</div>';
       });
-      grid.innerHTML = html;
+    }
+
+    // メタハーネストポロジーノードのインスペクター連動
+    function inspectMetaNode(nodeKey) {
+      document.querySelectorAll('#view-harness svg:first-of-type .svg-node-card').forEach(el => el.classList.remove('selected'));
+      const activeEl = document.getElementById('meta-node-' + nodeKey);
+      if (activeEl) activeEl.classList.add('selected');
+
+      const metaNodes = (META_HARNESS_DATA && META_HARNESS_DATA.nodes) ? META_HARNESS_DATA.nodes : {};
+      const node = metaNodes[nodeKey];
+      if (!node) return;
+
+      const titleEl = document.getElementById('meta-insp-title');
+      const badgeEl = document.getElementById('meta-insp-badge');
+      const gridEl = document.getElementById('meta-insp-grid');
+
+      if (titleEl) titleEl.innerHTML = node.title;
+      if (badgeEl) badgeEl.innerText = node.badge;
+      if (gridEl && node.details) {
+        let html = '';
+        node.details.forEach(d => {
+          html += '<div class="inspector-item">' +
+            '<div class="inspector-item-label">' + d.label + '</div>' +
+            '<div class="inspector-item-val">' + d.val + '</div>' +
+          '</div>';
+        });
+        gridEl.innerHTML = html;
+      }
     }
 
     // プロジェクトタブのインクリメンタル検索（拡張性対応）
@@ -2306,8 +2474,9 @@ function generateHtml(audit) {
 
     // 初期化
     window.addEventListener('DOMContentLoaded', function() {
-      selectProjectHarness('p1');
+      selectProjectHarness(currentProjectKey);
       selectRubricProject('common');
+      inspectMetaNode('field');
     });
   </script>
 </body>
