@@ -21,7 +21,7 @@
       --text-muted: #6e675d;        /* 補助テキスト：上品なウォームグレー */
       --text-dim: #999185;          /* 補足テキスト：淡いウォームグレー */
       
-      --accent: #8b5e34;            /* アクセント：深みのあるチェスナットベージュ */
+      --accent: #8b5e34;            /* アクセント：深みのあるチェスナットレザー */
       --accent-light: #f5ede4;      /* アクセント背景 */
       --accent-border: #d4bc9f;
       
@@ -39,7 +39,7 @@
       
       --code-bg: #ebe7dd;           /* コードバッジ背景 */
       --shadow-sm: 0 1px 3px rgba(45, 35, 25, 0.04), 0 1px 2px rgba(45, 35, 25, 0.02);
-      --shadow-md: 0 4px 12px rgba(45, 35, 25, 0.06), 0 1px 3px rgba(45, 35, 25, 0.03);
+      --shadow-md: 0 4px 14px rgba(45, 35, 25, 0.06), 0 1px 3px rgba(45, 35, 25, 0.03);
       --grade-color: #2e7d32;
     }
 
@@ -410,21 +410,59 @@
     }
 
     /* ============================================================== */
-    /* VIEW 3: HARNESS CONSOLE (CASE C: META-GENERATIVE ARCHITECTURE) */
+    /* VIEW 3: HARNESS TOPOLOGY & MAPPING ARCHITECTURE                */
     /* ============================================================== */
     .harness-matrix-container {
       display: flex;
       flex-direction: column;
       gap: 24px;
     }
-    
-    /* Project Selector Tabs */
-    .p-tabs {
+
+    /* Search & Tab Controller */
+    .tab-controller {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+    .search-box-wrap {
+      position: relative;
+      width: 280px;
+    }
+    .search-input {
+      width: 100%;
+      padding: 9px 14px 9px 34px;
+      border-radius: 10px;
+      border: 1px solid var(--card-border);
+      background: var(--card-bg);
+      color: var(--text-main);
+      font-size: 12px;
+      font-family: inherit;
+      outline: none;
+      transition: all 0.2s;
+    }
+    .search-input:focus {
+      border-color: var(--accent-border);
+      box-shadow: 0 0 0 3px rgba(139, 94, 52, 0.1);
+    }
+    .search-icon {
+      position: absolute;
+      left: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    /* Project Tabs (Scrollable) */
+    .p-tabs-scroll {
       display: flex;
       gap: 8px;
-      border-bottom: 1px solid var(--card-border);
-      padding-bottom: 12px;
-      margin-bottom: 18px;
+      overflow-x: auto;
+      padding-bottom: 4px;
+      max-width: calc(100% - 300px);
     }
     .p-tab-btn {
       padding: 8px 16px;
@@ -437,6 +475,8 @@
       cursor: pointer;
       font-family: inherit;
       transition: all 0.2s;
+      white-space: nowrap;
+      flex-shrink: 0;
     }
     .p-tab-btn:hover {
       background: #ffffff;
@@ -449,94 +489,163 @@
       box-shadow: var(--shadow-sm);
     }
 
-    /* Table Styles */
-    .eval-table {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: 13px;
-      margin-top: 10px;
-    }
-    .eval-table th {
-      text-align: left;
-      padding: 10px 14px;
+    /* Interactive Topology Canvas */
+    .topology-canvas {
       background: var(--card-bg-subtle);
-      color: var(--text-muted);
-      font-weight: 600;
-      border-bottom: 1px solid var(--card-border);
-      font-size: 12px;
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 32px 24px;
+      position: relative;
+      overflow-x: auto;
     }
-    .eval-table td {
-      padding: 12px 14px;
-      border-bottom: 1px solid var(--card-border);
-      vertical-align: middle;
-    }
-    .eval-table tr:hover {
-      background: rgba(245, 237, 228, 0.4);
-    }
-    .eval-category-badge {
-      display: inline-block;
-      font-size: 10px;
-      font-weight: 700;
-      padding: 2px 6px;
-      border-radius: 4px;
-    }
-    .cat-invariant { background: #ede8df; color: #5a5246; }
-    .cat-capability { background: #e0f2fe; color: #0369a1; }
-    .cat-regression { background: #fef3c7; color: #b45309; }
 
-    /* Lesson Card Grid */
-    .lessons-grid {
+    /* Diagram Grid Layout */
+    .diagram-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
-      gap: 16px;
-      margin-top: 12px;
-    }
-    .lesson-card {
-      background: var(--card-bg-subtle);
-      border: 1px solid var(--card-border);
-      border-radius: 10px;
-      padding: 16px;
-    }
-    .lesson-tool {
-      font-size: 13px;
-      font-weight: 700;
-      color: var(--text-main);
-      margin-bottom: 8px;
-      display: flex;
-      justify-content: space-between;
+      grid-template-columns: 160px 50px 180px 50px 220px 50px 180px 50px 180px;
+      grid-template-rows: auto 24px auto 24px auto 36px auto;
       align-items: center;
-    }
-    .lesson-body {
-      font-size: 12px;
-      color: var(--text-muted);
-      line-height: 1.5;
-      white-space: pre-line;
-      background: #ffffff;
-      padding: 12px;
-      border-radius: 8px;
-      border: 1px solid var(--card-border);
-      font-family: 'JetBrains Mono', monospace;
+      min-width: 1100px;
+      margin: 0 auto;
     }
 
-    /* Live Generator Simulator */
-    .generator-box {
-      background: var(--card-bg-subtle);
+    /* Nodes */
+    .h-node {
+      background: #ffffff;
+      border: 1.5px solid var(--card-border);
+      border-radius: 14px;
+      padding: 14px 16px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: var(--shadow-sm);
+      user-select: none;
+      position: relative;
+    }
+    .h-node:hover {
+      border-color: var(--accent-border);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+    }
+    .h-node.selected {
+      border-color: var(--accent);
+      background: var(--accent-light);
+      box-shadow: 0 0 0 3px rgba(139, 94, 52, 0.15);
+    }
+    .h-node-icon { font-size: 24px; margin-bottom: 6px; }
+    .h-node-title { font-size: 13px; font-weight: 700; color: var(--text-main); }
+    .h-node-desc { font-size: 10px; color: var(--text-muted); margin-top: 3px; line-height: 1.3; }
+    .h-node-badge {
+      font-size: 9px;
+      font-weight: 700;
+      padding: 1px 6px;
+      border-radius: 999px;
+      margin-top: 6px;
+      background: var(--code-bg);
+      color: var(--text-muted);
+    }
+
+    /* Specialized Node Themes */
+    .node-human { border-color: #d1c7bd; }
+    .node-guard { border-color: #cbd5e1; background: #fafafa; }
+    .node-ai { border-color: #bbf7d0; background: #f0fdf4; }
+    .node-tool { border-color: #bae6fd; background: #f0f9ff; }
+    .node-gate { border-color: #fed7aa; background: #fff7ed; }
+    .node-memory { border-color: #e9d5ff; background: #faf5ff; }
+
+    /* Arrows & Connectors */
+    .c-arrow {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #a8a29e;
+      font-size: 18px;
+      font-weight: 800;
+    }
+    .c-line-v {
+      width: 2px;
+      height: 100%;
+      background: #d6d3d1;
+      margin: 0 auto;
+    }
+
+    /* Inspector Drawer */
+    .node-inspector {
+      background: #ffffff;
       border: 1px solid var(--card-border);
       border-radius: 12px;
       padding: 20px;
+      margin-top: 20px;
+      box-shadow: var(--shadow-sm);
     }
-    .code-preview {
-      background: #2b2823;
-      color: #f7f5f0;
-      padding: 16px;
+    .inspector-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 14px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--card-border);
+    }
+    .inspector-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--text-main);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .inspector-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 16px;
+    }
+    .inspector-item {
+      background: var(--card-bg-subtle);
+      padding: 12px 14px;
       border-radius: 8px;
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 12px;
-      line-height: 1.5;
-      overflow-x: auto;
-      max-height: 280px;
-      margin-top: 12px;
+      border: 1px solid var(--card-border);
     }
+    .inspector-item-label {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--text-muted);
+      margin-bottom: 4px;
+    }
+    .inspector-item-val {
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--text-main);
+      line-height: 1.4;
+    }
+
+    /* Meta-Harness Loop Diagram */
+    .meta-loop-diagram {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      background: var(--card-bg-subtle);
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
+      padding: 22px;
+      overflow-x: auto;
+    }
+    .meta-step-card {
+      background: #ffffff;
+      border: 1px solid var(--card-border);
+      border-radius: 10px;
+      padding: 14px;
+      flex: 1;
+      min-width: 170px;
+      text-align: center;
+      box-shadow: var(--shadow-sm);
+    }
+    .meta-step-icon { font-size: 20px; margin-bottom: 4px; }
+    .meta-step-title { font-size: 12px; font-weight: 700; color: var(--text-main); margin-bottom: 2px; }
+    .meta-step-sub { font-size: 10px; color: var(--text-muted); line-height: 1.3; }
 
     /* Code & Utility */
     .code-badge {
@@ -576,7 +685,7 @@
         </li>
         <li>
           <button class="nav-btn" onclick="switchView('view-harness')">
-            <span>🛡️</span> 評価ハーネス管理 (事例C)
+            <span>🛡️</span> エージェントハーネス全体像
           </button>
         </li>
         <li>
@@ -597,8 +706,8 @@
       </ul>
 
       <div class="sidebar-footer">
-        <div>最終同期: 2026-10-11 06:40:32</div>
-        <div>監査エンジン: HealthAuditor v4.0</div>
+        <div>最終同期: 2026-10-11 06:46:59</div>
+        <div>監査エンジン: HealthAuditor v4.5</div>
       </div>
     </aside>
 
@@ -1011,111 +1120,222 @@
       </div>
 
       <!-- ============================================== -->
-      <!-- VIEW 3: 評価ハーネス管理センター (事例C: メタ自動生成型) -->
+      <!-- VIEW 3: エージェントハーネス全体像 (Topology Mapping) -->
       <!-- ============================================== -->
       <div id="view-harness" class="view-panel">
         <div class="harness-matrix-container">
           
-          <!-- ブロック1: メタナレッジ（注入元DB） -->
+          <!-- セクション1: メタハーネス自己進化ループ（全体セクション） -->
           <div class="card">
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
-              <div>
-                <h3 class="section-title" style="margin-bottom: 4px;">🧠 メタナレッジ蓄積DB（失敗教訓＆回帰防止ルール注入元）</h3>
-                <p style="font-size: 13px; color: var(--text-muted);">
-                  各ツールの開発過程で発生した「失敗・解決・恒久教訓」を集約したDBです。新規プロジェクト立ち上げ時にここから自動テストが抽出されます。
-                </p>
-              </div>
-              <span class="code-badge">蓄積ナレッジ: 3 件</span>
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+              <h3 class="section-title" style="margin-bottom:0;">🧠 メタハーネス全体像（失敗回収 ➔ 知恵圧縮 ➔ 次期ガード再注入ループ）</h3>
+              <span class="code-badge" style="color:var(--success);">自己進化サイクル稼働中</span>
             </div>
+            <p style="font-size:13px; color:var(--text-muted); margin-bottom:18px;">
+              各プロジェクトの現場で発生した失敗がどのように集約・圧縮され、次期プロジェクトのガードレールへ自動再注入されるかを規定する全域循環回路です。
+            </p>
 
-            <div class="lessons-grid">
-              <div class="lesson-card">
-                <div class="lesson-tool">
-                  <span>minitool_001_unreplied_emails</span>
-                  <span class="code-badge" style="color:var(--success);">ルール抽出済</span>
-                </div>
-                <div class="lesson-body">1. 失敗: 自動トリガー設定で uninstall 関数を忘れがちになる。
-2. 解決: uninstallTool() を標準実装しハーネスで必須化。
-3. 教訓: すべてのGASツールは安全に解除できる機能を第一級市民とする。</div>
-                <div style="margin-top: 8px; font-size: 11px; color: var(--accent); font-weight: 600;">
-                  ➔ 自動注入ルール: <span class="code-badge">uninstallTool_verification</span>
-                </div>
+            <div class="meta-loop-diagram">
+              <div class="meta-step-card" onclick="inspectMetaStep('step1')">
+                <div class="meta-step-icon">❌</div>
+                <div class="meta-step-title">① 失敗・試行錯誤</div>
+                <div class="meta-step-sub">事後ガードで弾かれた不合格や予期せぬエラー</div>
               </div>
-
-              <div class="lesson-card">
-                <div class="lesson-tool">
-                  <span>minitool_002_sheets_to_calendar</span>
-                  <span class="code-badge" style="color:var(--success);">ルール抽出済</span>
-                </div>
-                <div class="lesson-body">1. 失敗: 自作HTMLモックで上部タブの不自然な画面を合格判定。
-2. 解決: Google公式DOM座標幾何判定で本物実機UIのみ許可。
-3. 教訓: 合否判定はAIの主観を排し外部スクリプトの機械判定のみとする。</div>
-                <div style="margin-top: 8px; font-size: 11px; color: var(--accent); font-weight: 600;">
-                  ➔ 自動注入ルール: <span class="code-badge">anti_mock_optical_scan</span>
-                </div>
+              <div class="c-arrow">➔</div>
+              <div class="meta-step-card" onclick="inspectMetaStep('step2')">
+                <div class="meta-step-icon">📝</div>
+                <div class="meta-step-title">② 教訓テキスト抽出</div>
+                <div class="meta-step-sub"><span class="code-badge">logs/trace.md</span><br>失敗/解決/教訓の3段階記録</div>
               </div>
-
-              <div class="lesson-card">
-                <div class="lesson-tool">
-                  <span>workspace_health_monitor</span>
-                  <span class="code-badge" style="color:var(--success);">ルール抽出済</span>
-                </div>
-                <div class="lesson-body">1. 失敗: パースエラーや思い込みによる誤診。
-2. 解決: 監視ツール自身の自己テスト（test_monitor.js）を構築。
-3. 教訓: 監視ツール自身がテストハーネスで守られ、外部依存ゼロの静的HTMLとする。</div>
-                <div style="margin-top: 8px; font-size: 11px; color: var(--accent); font-weight: 600;">
-                  ➔ 自動注入ルール: <span class="code-badge">self_test_integrity_gate</span>
-                </div>
+              <div class="c-arrow">➔</div>
+              <div class="meta-step-card" onclick="inspectMetaStep('step3')">
+                <div class="meta-step-icon">⚙️</div>
+                <div class="meta-step-title">③ メタ回収バッチ</div>
+                <div class="meta-step-sub"><span class="code-badge">meta_harness_collector.js</span><br>全プロジェクトから機械的収集</div>
+              </div>
+              <div class="c-arrow">➔</div>
+              <div class="meta-step-card" onclick="inspectMetaStep('step4')">
+                <div class="meta-step-icon">🗄️</div>
+                <div class="meta-step-title">④ 構造化ナレッジDB</div>
+                <div class="meta-step-sub"><span class="code-badge">meta_knowledge.json</span><br>3件の恒久教訓を圧縮保存</div>
+              </div>
+              <div class="c-arrow">➔</div>
+              <div class="meta-step-card" onclick="inspectMetaStep('step5')">
+                <div class="meta-step-icon">⚡</div>
+                <div class="meta-step-title">⑤ 次期ガード自動生成</div>
+                <div class="meta-step-sub"><span class="code-badge">meta_harness_generator.js</span><br>新案件の事前・事後ガードへ注入</div>
               </div>
             </div>
           </div>
 
-          <!-- ブロック2: プロジェクト別ハーネス検査マトリクス -->
+          <!-- セクション2: プロジェクト別エージェントハーネス全体像マッピング -->
           <div class="card">
-            <h3 class="section-title">🧪 プロジェクト別ハーネス検査マトリクス</h3>
-            <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 16px;">
-              プロジェクトを選択すると、配備されている「全体規律テスト」「要件受入テスト」「教訓注入テスト」の合否判定一覧が表示されます。
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+              <h3 class="section-title" style="margin-bottom:0;">🧭 プロジェクト別 エージェントハーネス全体像マッピング</h3>
+              <span id="active-project-badge" class="code-badge">minitool_001_unreplied_emails</span>
+            </div>
+            <p style="font-size:13px; color:var(--text-muted); margin-bottom:20px;">
+              入力〜出力までの行動パス、事前/事後ガードレール、承認ゲート、MCP、記憶の接続関係をマッピングしています。各ノードをクリックすると詳細が展開されます。
             </p>
 
-            <div class="p-tabs">
-              <button class="p-tab-btn active" onclick="selectProjectHarness('p1')">minitool_001_unreplied_emails</button>
-              <button class="p-tab-btn" onclick="selectProjectHarness('p2')">minitool_002_sheets_to_calendar</button>
-              <button class="p-tab-btn" onclick="selectProjectHarness('p3')">workspace_health_monitor</button>
+            <!-- 検索 & プロジェクトタブ（拡張性対応） -->
+            <div class="tab-controller">
+              <div class="search-box-wrap">
+                <span class="search-icon">🔍</span>
+                <input type="text" class="search-input" id="project-search-input" placeholder="プロジェクトを検索..." oninput="filterProjectTabs(this.value)">
+              </div>
+              <div class="p-tabs-scroll" id="project-tabs-container">
+                <button class="p-tab-btn active" data-pname="minitool_001_unreplied_emails" onclick="selectProjectHarness('p1')">minitool_001_unreplied_emails</button>
+                <button class="p-tab-btn" data-pname="minitool_002_sheets_to_calendar" onclick="selectProjectHarness('p2')">minitool_002_sheets_to_calendar</button>
+                <button class="p-tab-btn" data-pname="workspace_health_monitor" onclick="selectProjectHarness('p3')">workspace_health_monitor</button>
+              </div>
             </div>
 
-            <div id="harness-table-container">
-              <!-- 動的差し替えテーブル -->
+            <!-- ハーネスマッピング図（カシマ様指定トポロジー） -->
+            <div class="topology-canvas">
+              <div class="diagram-grid">
+                
+                <!-- ROW 1: 上部（圧縮 ➔ コンテキスト） -->
+                <div style="grid-column: 1; grid-row: 1;">
+                  <div class="h-node" id="node-compress" onclick="inspectNode('compress')">
+                    <span class="h-node-icon">🗜️</span>
+                    <span class="h-node-title">圧縮</span>
+                    <span class="h-node-desc">指示・仕様の要約</span>
+                    <span class="h-node-badge">トークン最適化</span>
+                  </div>
+                </div>
+                <div class="c-arrow" style="grid-column: 2; grid-row: 1;">➔</div>
+                <div style="grid-column: 3; grid-row: 1;">
+                  <div class="h-node" id="node-context" onclick="inspectNode('context')">
+                    <span class="h-node-icon">📖</span>
+                    <span class="h-node-title">コンテキスト</span>
+                    <span class="h-node-desc" id="lbl-context">spec.md & 設計書</span>
+                    <span class="h-node-badge">背景情報</span>
+                  </div>
+                </div>
+
+                <!-- ROW 1: AI上部（承認ゲート ➔ ツール使用・MCP, 記憶） -->
+                <div class="c-arrow" style="grid-column: 4; grid-row: 1;"></div>
+                <div style="grid-column: 5; grid-row: 1; display:flex; gap:16px; justify-content:center;">
+                  <div class="h-node node-gate" id="node-gate" onclick="inspectNode('gate')">
+                    <span class="h-node-icon">🚪</span>
+                    <span class="h-node-title">承認ゲート</span>
+                    <span class="h-node-desc" id="lbl-gate">OAuth / 実行承認</span>
+                    <span class="h-node-badge">Human-in-the-loop</span>
+                  </div>
+                  <div class="c-arrow">➔</div>
+                  <div class="h-node node-tool" id="node-mcp" onclick="inspectNode('mcp')">
+                    <span class="h-node-icon">🌐</span>
+                    <span class="h-node-title">ツール使用・MCP</span>
+                    <span class="h-node-desc" id="lbl-mcp">Gmail / Sheets API</span>
+                    <span class="h-node-badge">外部アクション</span>
+                  </div>
+                </div>
+                <div class="c-arrow" style="grid-column: 6; grid-row: 1;"></div>
+                <div style="grid-column: 7; grid-row: 1;">
+                  <div class="h-node node-memory" id="node-memory" onclick="inspectNode('memory')">
+                    <span class="h-node-icon">🗄️</span>
+                    <span class="h-node-title">記憶 (Memory)</span>
+                    <span class="h-node-desc" id="lbl-memory">meta_knowledge.json</span>
+                    <span class="h-node-badge">過去教訓ロード</span>
+                  </div>
+                </div>
+
+                <!-- ROW 2: 垂直接続線 -->
+                <div style="grid-column: 3; grid-row: 2;"><div class="c-line-v"></div></div>
+                <div style="grid-column: 5; grid-row: 2;"><div class="c-line-v"></div></div>
+                <div style="grid-column: 7; grid-row: 2;"><div class="c-line-v"></div></div>
+
+                <!-- ROW 3: 主軸（人間 ➔ キュレーション/事前ガード ➔ AI ➔ 事後ガード ➔ 分岐） -->
+                <div style="grid-column: 1; grid-row: 3;">
+                  <div class="h-node node-human" id="node-human" onclick="inspectNode('human')">
+                    <span class="h-node-icon">👤</span>
+                    <span class="h-node-title">人間</span>
+                    <span class="h-node-desc">カシマ様 (要求入力)</span>
+                    <span class="h-node-badge">プロンプト</span>
+                  </div>
+                </div>
+                <div class="c-arrow" style="grid-column: 2; grid-row: 3;">➔</div>
+                <div style="grid-column: 3; grid-row: 3;">
+                  <div class="h-node node-guard" id="node-pre-guard" onclick="inspectNode('pre_guard')">
+                    <span class="h-node-icon">🛡️</span>
+                    <span class="h-node-title">事前ガード</span>
+                    <span class="h-node-desc" id="lbl-pre-guard">境界防御・カプセル化</span>
+                    <span class="h-node-badge" style="background:var(--success-bg); color:var(--success);">PASS</span>
+                  </div>
+                </div>
+                <div class="c-arrow" style="grid-column: 4; grid-row: 3;">➔</div>
+                <div style="grid-column: 5; grid-row: 3;">
+                  <div class="h-node node-ai selected" id="node-ai" onclick="inspectNode('ai')">
+                    <span class="h-node-icon">🤖</span>
+                    <span class="h-node-title">AI (Antigravity)</span>
+                    <span class="h-node-desc">自律推論＆コード生成</span>
+                    <span class="h-node-badge" style="background:var(--accent-light); color:var(--accent);">執行エンジン</span>
+                  </div>
+                </div>
+                <div class="c-arrow" style="grid-column: 6; grid-row: 3;">➔</div>
+                <div style="grid-column: 7; grid-row: 3;">
+                  <div class="h-node node-guard" id="node-post-guard" onclick="inspectNode('post_guard')">
+                    <span class="h-node-icon">⚖️</span>
+                    <span class="h-node-title">事後ガード</span>
+                    <span class="h-node-desc" id="lbl-post-guard">仕様テスト＆教訓検証</span>
+                    <span class="h-node-badge" style="background:var(--success-bg); color:var(--success);">100% 適合</span>
+                  </div>
+                </div>
+                <div class="c-arrow" style="grid-column: 8; grid-row: 3;">➔</div>
+                <div style="grid-column: 9; grid-row: 3; display:flex; flex-direction:column; gap:10px;">
+                  <div class="h-node" id="node-continue" onclick="inspectNode('continue')" style="padding:8px 12px;">
+                    <span style="font-size:11px; font-weight:700;">🔄 作業継続 ➔ AI</span>
+                    <span style="font-size:9px; color:var(--text-muted);">次工程へループ</span>
+                  </div>
+                  <div class="h-node" id="node-return" onclick="inspectNode('return')" style="padding:8px 12px; border-color:var(--success-border); background:var(--success-bg);">
+                    <span style="font-size:11px; font-weight:700; color:var(--success);">🎁 人へ返却 ➔ カシマ様</span>
+                    <span style="font-size:9px; color:var(--text-muted);">完成納品 (PASS)</span>
+                  </div>
+                </div>
+
+                <!-- ROW 4: 下部接続線 -->
+                <div style="grid-column: 5; grid-row: 4;"><div class="c-line-v"></div></div>
+
+                <!-- ROW 5: AI下部（エージェント間通信 サブAI） -->
+                <div style="grid-column: 5; grid-row: 5;">
+                  <div class="h-node node-ai" id="node-sub-ai" onclick="inspectNode('sub_ai')">
+                    <span class="h-node-icon">👥</span>
+                    <span class="h-node-title">エージェント間通信</span>
+                    <span class="h-node-desc">サブAI (Browser / Test)</span>
+                    <span class="h-node-badge">協調実行</span>
+                  </div>
+                </div>
+
+                <!-- ROW 6: スペーサー -->
+                <div style="grid-column: 1 / span 9; grid-row: 6;"></div>
+
+                <!-- ROW 7: セッション全体の監視バー -->
+                <div style="grid-column: 1 / span 9; grid-row: 7; background: #ffffff; border: 1.5px dashed var(--accent-border); border-radius: 12px; padding: 12px 20px; display: flex; justify-content: space-between; align-items: center;" onclick="inspectNode('session_monitor')">
+                  <div style="display:flex; align-items:center; gap:10px;">
+                    <span style="font-size:18px;">📈</span>
+                    <div>
+                      <span style="font-size:13px; font-weight:700; color:var(--text-main);">セッション全体の監視 (HealthAuditor v4.5)</span>
+                      <span style="font-size:11px; color:var(--text-muted); margin-left:12px;">タイムアウト防止・メモリリーク検知・境界ルール常時スキャン</span>
+                    </div>
+                  </div>
+                  <span class="code-badge" style="color:var(--success);">常時監視中 (NORMAL)</span>
+                </div>
+
+              </div>
             </div>
-          </div>
 
-          <!-- ブロック3: メタハーネス自動生成エンジン（シミュレーター） -->
-          <div class="card generator-box">
-            <h3 class="section-title">⚡ メタハーネス自動生成エンジン (Live Generator)</h3>
-            <p style="font-size: 13px; color: var(--text-muted);">
-              新規プロジェクトの立ち上げ時、要件（仕様）とメタナレッジDBを入力として「専用テストコード」が自動生成される仕組みの実機プレビューです。
-            </p>
-            <div style="margin-top: 14px; display: flex; gap: 10px; align-items: center;">
-              <span style="font-size: 12px; font-weight: 600;">生成対象:</span>
-              <span class="code-badge">minitool_003_gmail_summarizer (GASミニツール)</span>
-              <span style="font-size: 11px; color: var(--text-muted);">エンジン: harness/meta_harness_generator.js</span>
+            <!-- ノード詳細インスペクター (クリックで連動表示) -->
+            <div class="node-inspector" id="node-inspector">
+              <div class="inspector-header">
+                <div class="inspector-title" id="insp-title">🤖 ノード詳細: AI (Antigravity 執行エンジン)</div>
+                <span class="code-badge" id="insp-badge" style="color:var(--accent);">ACTIVE</span>
+              </div>
+              <div class="inspector-grid" id="insp-grid">
+                <!-- 動的に生成されるインスペクター詳細 -->
+              </div>
             </div>
-            <pre class="code-preview">// [自動生成されたプロジェクト専用ハーネス]
-// File: gas_project/minitool_003_gmail_summarizer/harness/eval.js
 
-const { runInvariants } = require('../../../harness/global_rules/check_architecture_guard');
-
-// 1. 全体規律テスト (Global Invariants)
-// - 1ツール1フォルダ完全カプセル化: PASS
-// - trace.md 3段階教訓フォーマット: PASS
-
-// 2. 要件受入テスト (Capability Evals)
-// - Gmail下書き自動作成機能 (Draft API呼び出し確認): PASS
-// - x_post.md 140字以内投稿文の生成確認: PASS
-
-// 3. 教訓注入テスト (Injected Regression Checks from meta_knowledge.json)
-// - [from minitool_001]: uninstallTool() トリガー解除関数の実装確認: PASS
-// - [from minitool_002]: 自作モック排除・実機UI幾何判定: PASS
-// - [from monitor]: ログサイズ軽量性 (50KB未満) 確認: PASS</pre>
           </div>
 
         </div>
@@ -1232,7 +1452,7 @@ const { runInvariants } = require('../../../harness/global_rules/check_architect
       const titleMap = {
         'view-overview': ['🏠 ワークスペース総合ヘルス概要', '境界防御・ディレクトリ健全性・全プロジェクト状況のリアルタイム監視'],
         'view-projects': ['🚀 全プロジェクト進捗・完成度トラッカー', '各ツールの成果物構成・仕様書・テスト適合状況の客観判定'],
-        'view-harness': ['🛡️ 評価ハーネス管理センター (事例C)', 'メタ教訓DBからの自動ルール注入＆プロジェクト専用ハーネスマトリクス'],
+        'view-harness': ['🛡️ エージェントハーネス全体像マッピング', 'プロジェクト別行動トポロジー（入力・ガード・AI・MCP・記憶・出力）＆メタ進化ループ'],
         'view-tree': ['🌲 ワークスペース階層構造エクスプローラー', '主要フォルダの展開・容量・衛生度マップ'],
         'view-logs': ['📜 失敗と教訓の完全アーカイブ', '各プロジェクトの trace.md から抽出された恒久教訓一覧'],
         'view-automation': ['⏰ 自動巡回＆定期スキャン運用', 'GitHub Actions日次巡回およびローカル常時統制の構成']
@@ -1244,90 +1464,475 @@ const { runInvariants } = require('../../../harness/global_rules/check_architect
       }
 
       if (viewId === 'view-harness') {
-        renderHarnessTable('p1');
+        selectProjectHarness(currentProjectKey);
       }
     }
 
-    // プロジェクト別ハーネステーブルデータ
-    const HARNESS_DATA = {
+    // プロジェクト別トポロジー詳細データ
+    const PROJECT_HARNESS_DATA = {
       'p1': {
+        id: 'minitool_001_unreplied_emails',
         name: 'minitool_001_unreplied_emails',
-        rows: [
-          { cat: 'cat-invariant', catName: '全体規律', name: 'ワークスペース境界検証', target: 'ルート直下36品目ホワイトリスト', type: 'AST / Path', status: 'PASS' },
-          { cat: 'cat-invariant', catName: '全体規律', name: '1ツール1フォルダカプセル化', target: 'gas_project/minitool_001/', type: 'Directory Scan', status: 'PASS' },
-          { cat: 'cat-capability', catName: '要件受入', name: '未返信メール抽出ロジック', target: 'Code.js (findUnreplied)', type: 'Syntax & Regex', status: 'PASS' },
-          { cat: 'cat-capability', catName: '要件受入', name: 'スプレッドシート書き込み機能', target: 'Code.js (outputToSheet)', type: 'Code Analysis', status: 'PASS' },
-          { cat: 'cat-regression', catName: '教訓注入', name: '安全なトリガー解除 (uninstallTool)', target: 'Code.js (uninstallTool)', type: 'AST Function Check', status: 'PASS' },
-          { cat: 'cat-regression', catName: '教訓注入', name: 'note記事構成・免責事項の網羅', target: 'article.md', type: 'Markdown Linter', status: 'PASS' }
-        ]
+        lblContext: 'spec.md & Gmailクエリ設計',
+        lblPreGuard: '境界防御 & カプセル化規律',
+        lblGate: 'Gmailトリガー設定権限の確認',
+        lblMcp: 'Gmail API / Google Sheets API',
+        lblMemory: 'uninstall忘れ防止教訓 (meta_knowledge)',
+        lblPostGuard: 'uninstallTool()存在 & note100点',
+        nodes: {
+          human: {
+            title: '👤 人間 (カシマ様)',
+            badge: 'INPUT',
+            items: [
+              { label: 'プロンプト要件', val: '未返信メールを自動抽出し、スプレッドシートにまとめるGASミニツールを作成してほしい' },
+              { label: '成果物受領', val: 'note記事下書き、Code.js、テストログ、デモデータ' }
+            ]
+          },
+          compress: {
+            title: '🗜️ 圧縮 (Token Optimization)',
+            badge: 'PRE-PROCESS',
+            items: [
+              { label: '圧縮エンジン', val: 'コンテキスト長最適化フィルタ' },
+              { label: '目的', val: '過去ログの冗長なトークンを削ぎ落とし、核心的な仕様要件のみを抽出' }
+            ]
+          },
+          context: {
+            title: '📖 コンテキスト (仕様・設計)',
+            badge: 'SPECIFICATION',
+            items: [
+              { label: '読み込みファイル', val: 'gas_project/minitool_001_unreplied_emails/spec.md' },
+              { label: '全体憲法', val: 'AGENTS.md (カシマ様呼称、カプセル化規律)' }
+            ]
+          },
+          pre_guard: {
+            title: '🛡️ 事前ガード (Pre-Execution Guardrails)',
+            badge: 'PASS (合格)',
+            items: [
+              { label: '適用ルール 1', val: 'check_architecture_guard.js（ルート直下への未許可ファイル書き出し完全禁止）' },
+              { label: '適用ルール 2', val: '1ツール1フォルダ完全カプセル化（外部漏出禁止）' },
+              { label: '判定方式', val: 'パス名静的AST検査 & ファイルシステム境界フック' }
+            ]
+          },
+          ai: {
+            title: '🤖 AI (Antigravity 執行エンジン)',
+            badge: 'EXECUTOR',
+            items: [
+              { label: 'モデル役割', val: 'ペアプログラミング＆自律コード実装 (Single Responsibility)' },
+              { label: '執行内容', val: 'Code.js生成、article.mdドラフト作成、テストハーネス適合' }
+            ]
+          },
+          gate: {
+            title: '🚪 承認ゲート (Approval Gate)',
+            badge: 'CONFIRMED',
+            items: [
+              { label: '監視対象アクション', val: 'GAS時間主導型トリガー（定期実行）の自動登録' },
+              { label: '承認ポリシー', val: '不可逆操作・外部API連携時のユーザー同意チェック' }
+            ]
+          },
+          mcp: {
+            title: '🌐 ツール使用・MCP (Tool Execution)',
+            badge: 'CONNECTED',
+            items: [
+              { label: '使用ツール群', val: 'Gmail API, Google Sheets API, note-post-mcp' },
+              { label: '外部連携', val: 'note下書き保存API (save_draft)' }
+            ]
+          },
+          memory: {
+            title: '🗄️ 記憶 (Knowledge Memory)',
+            badge: 'LOADED',
+            items: [
+              { label: '参照ナレッジ', val: 'harness/meta_knowledge.json' },
+              { label: 'ロードされた教訓', val: '「GASツールは使い始める機能と同等に安全にやめる機能(uninstall)を必須とする」' }
+            ]
+          },
+          sub_ai: {
+            title: '👥 エージェント間通信 (Subagent)',
+            badge: 'COLLABORATIVE',
+            items: [
+              { label: 'サブエージェント', val: 'Browser Subagent / Test Grader' },
+              { label: '責務', val: '実機ブラウザでの撮影・画面遷移検証の自律遂行' }
+            ]
+          },
+          post_guard: {
+            title: '⚖️ 事後ガード (Post-Execution Guardrails)',
+            badge: 'ALL PASS (100%)',
+            items: [
+              { label: '検証 1: 安全解除', val: 'uninstallTool() 関数がCode.jsに存在し、deleteTriggerが実装されているか' },
+              { label: '検証 2: note採点', val: 'タイトル文字数、導入、デモGIFリンク、免責事項の網羅性チェック' },
+              { label: '検証 3: ログ規律', val: 'logs/trace.md に「失敗・解決・教訓」の3段階が記録されているか' }
+            ]
+          },
+          continue: {
+            title: '🔄 作業継続 (Loop to AI)',
+            badge: 'RETRY',
+            items: [
+              { label: '条件', val: '事後ガードで1項目でもFAIL判定となった場合' },
+              { label: '動作', val: '失敗理由をプロンプトに差し戻し、AIが自己修正コードを再生成' }
+            ]
+          },
+          return: {
+            title: '🎁 人へ返却 (Deliver to Human)',
+            badge: 'COMPLETED',
+            items: [
+              { label: '返却先', val: 'カシマ様へ完了報告' },
+              { label: '納品アセット', val: '完成Code.js, note記事下書き, デモデータ, 正常終了ログ' }
+            ]
+          },
+          session_monitor: {
+            title: '📈 セッション全体の監視 (HealthAuditor v4.5)',
+            badge: 'HEALTHY',
+            items: [
+              { label: '監視項目', val: 'タイムアウト監視、メモリ上限検知、ワークスペース散乱常時スキャン' },
+              { label: '稼働ステータス', val: '正常稼働中（違反・残骸ゼロ）' }
+            ]
+          }
+        }
       },
       'p2': {
+        id: 'minitool_002_sheets_to_calendar',
         name: 'minitool_002_sheets_to_calendar',
-        rows: [
-          { cat: 'cat-invariant', catName: '全体規律', name: 'ワークスペース境界検証', target: 'ルート直下36品目ホワイトリスト', type: 'AST / Path', status: 'PASS' },
-          { cat: 'cat-invariant', catName: '全体規律', name: '1ツール1フォルダカプセル化', target: 'gas_project/minitool_002/', type: 'Directory Scan', status: 'PASS' },
-          { cat: 'cat-capability', catName: '要件受入', name: '予定タイトル・日時パース処理', target: 'Code.js (parseEvents)', type: 'Unit Test', status: 'PASS' },
-          { cat: 'cat-capability', catName: '要件受入', name: 'Googleカレンダー登録実行', target: 'Code.js (syncCalendar)', type: 'Code Analysis', status: 'PASS' },
-          { cat: 'cat-regression', catName: '教訓注入', name: '実機DOM幾何光学判定 (偽モック排除)', target: 'demo.gif / スクリーンショット', type: 'DOM Coordinate Scan', status: 'PASS' },
-          { cat: 'cat-regression', catName: '教訓注入', name: '安全なトリガー解除 (uninstallTool)', target: 'Code.js (uninstallTool)', type: 'AST Function Check', status: 'PASS' }
-        ]
+        lblContext: 'spec.md & カレンダー同期仕様',
+        lblPreGuard: '自作モック撮影禁止ルール',
+        lblGate: 'Googleカレンダー登録承認',
+        lblMcp: 'Calendar API / Playwright DOMスキャン',
+        lblMemory: 'DOM幾何光学判定教訓 (meta_knowledge)',
+        lblPostGuard: '実機DOM下部タブ判定 & uninstall',
+        nodes: {
+          human: {
+            title: '👤 人間 (カシマ様)',
+            badge: 'INPUT',
+            items: [
+              { label: 'プロンプト要件', val: 'スプレッドシートの行データをGoogleカレンダーに一括登録するGASツールを作成' },
+              { label: '成果物受領', val: '実機UIデモGIF、Code.js、note記事下書き' }
+            ]
+          },
+          compress: {
+            title: '🗜️ 圧縮 (Token Optimization)',
+            badge: 'PRE-PROCESS',
+            items: [
+              { label: '圧縮エンジン', val: 'カレンダーデータ形式のトークン圧縮' },
+              { label: '目的', val: '大量の日時テストデータを軽量化してプロンプトへ注入' }
+            ]
+          },
+          context: {
+            title: '📖 コンテキスト (仕様・設計)',
+            badge: 'SPECIFICATION',
+            items: [
+              { label: '読み込みファイル', val: 'gas_project/minitool_002_sheets_to_calendar/spec.md' },
+              { label: '全体憲法', val: 'AGENTS.md & 偽モック完全排除ルール' }
+            ]
+          },
+          pre_guard: {
+            title: '🛡️ 事前ガード (Pre-Execution Guardrails)',
+            badge: 'PASS (合格)',
+            items: [
+              { label: '適用ルール 1', val: '自作HTMLモックによるデモ撮影の永久禁止' },
+              { label: '適用ルール 2', val: '公式GoogleスプレッドシートDOMセレクタの事前設定' }
+            ]
+          },
+          ai: {
+            title: '🤖 AI (Antigravity 執行エンジン)',
+            badge: 'EXECUTOR',
+            items: [
+              { label: 'モデル役割', val: 'カレンダー連携GAS開発 & Playwright実機自動操作スクリプト作成' },
+              { label: '執行内容', val: 'parseEvents(), syncCalendar(), uninstallTool() 実装' }
+            ]
+          },
+          gate: {
+            title: '🚪 承認ゲート (Approval Gate)',
+            badge: 'CONFIRMED',
+            items: [
+              { label: '監視対象アクション', val: '本番カレンダーへのイベント一括書き込み実行' },
+              { label: '承認ポリシー', val: 'テスト用カレンダーIDへの隔離書き込み検証' }
+            ]
+          },
+          mcp: {
+            title: '🌐 ツール使用・MCP (Tool Execution)',
+            badge: 'CONNECTED',
+            items: [
+              { label: '使用ツール群', val: 'Google Calendar API, Google Sheets API, Playwright' },
+              { label: '光学スキャン', val: '実機ブラウザDOM幾何光学座標判定 (Anti-Mock Guard)' }
+            ]
+          },
+          memory: {
+            title: '🗄️ 記憶 (Knowledge Memory)',
+            badge: 'LOADED',
+            items: [
+              { label: '参照ナレッジ', val: 'harness/meta_knowledge.json' },
+              { label: 'ロードされた教訓', val: '「合否判定はAIの感想に任せず、外部検証スクリプトの機械判定でのみ確定させる」' }
+            ]
+          },
+          sub_ai: {
+            title: '👥 エージェント間通信 (Subagent)',
+            badge: 'COLLABORATIVE',
+            items: [
+              { label: 'サブエージェント', val: 'Browser Subagent' },
+              { label: '責務', val: 'Googleスプレッドシートの実機画面録画とGIF変換' }
+            ]
+          },
+          post_guard: {
+            title: '⚖️ 事後ガード (Post-Execution Guardrails)',
+            badge: 'ALL PASS (100%)',
+            items: [
+              { label: '検証 1: 光学スキャン', val: 'Google公式下部タブ座標を幾何判定し、自作HTMLモックを完全排除' },
+              { label: '検証 2: 安全解除', val: 'uninstallTool() の実装検査' },
+              { label: '検証 3: アスペクト比', val: 'デモ動画・GIFのアスペクト比とファイルサイズ制限（5MB未満）' }
+            ]
+          },
+          continue: {
+            title: '🔄 作業継続 (Loop to AI)',
+            badge: 'RETRY',
+            items: [
+              { label: '条件', val: 'DOM光学スキャンでモック判定された場合の再撮影指示' },
+              { label: '動作', val: '実機UIセレクタを再調整して再実行' }
+            ]
+          },
+          return: {
+            title: '🎁 人へ返却 (Deliver to Human)',
+            badge: 'COMPLETED',
+            items: [
+              { label: '返却先', val: 'カシマ様へ完了報告' },
+              { label: '納品アセット', val: '本物実機デモGIF, 完成Code.js, note記事下書き' }
+            ]
+          },
+          session_monitor: {
+            title: '📈 セッション全体の監視 (HealthAuditor v4.5)',
+            badge: 'HEALTHY',
+            items: [
+              { label: '監視項目', val: 'ディレクトリ境界検査、ブラウザサブエージェントのゾンビプロセス監視' },
+              { label: '稼働ステータス', val: '正常稼働中' }
+            ]
+          }
+        }
       },
       'p3': {
+        id: 'workspace_health_monitor',
         name: 'workspace_health_monitor',
-        rows: [
-          { cat: 'cat-invariant', catName: '全体規律', name: 'ワークスペース境界検証', target: 'ルート直下36品目ホワイトリスト', type: 'AST / Path', status: 'PASS' },
-          { cat: 'cat-capability', catName: '要件受入', name: 'ヘルス監査エンジン (runHealthAudit)', target: 'monitor.js', type: 'Integration Test', status: 'PASS' },
-          { cat: 'cat-capability', catName: '要件受入', name: '静的ダッシュボードHTML出力', target: 'dist/index.html', type: 'File Assertion', status: 'PASS' },
-          { cat: 'cat-regression', catName: '教訓注入', name: '監視エンジン自己テスト完備', target: 'harness/test_monitor.js', type: 'Self Test Runner', status: 'PASS' },
-          { cat: 'cat-regression', catName: '教訓注入', name: '外部JS依存ゼロ (純粋HTML出力)', target: 'dist/index.html', type: 'Dependency Audit', status: 'PASS' }
-        ]
+        lblContext: 'ワークスペース全構造 & AGENTS.md',
+        lblPreGuard: 'ホワイトリスト36品目厳格照合',
+        lblGate: 'GitHub Pages デプロイ承認',
+        lblMcp: 'Node.js fs / git / GitHub API',
+        lblMemory: '監視自己欺瞞防止教訓 (meta_knowledge)',
+        lblPostGuard: '自己テスト (test_monitor.js) PASS',
+        nodes: {
+          human: {
+            title: '👤 人間 (カシマ様)',
+            badge: 'INPUT',
+            items: [
+              { label: 'プロンプト要件', val: 'ディレクトリ健全性を監視し、ハーネス全体像を直感的に把握できるダッシュボードを構築' },
+              { label: '成果物受領', val: 'GitHub Pages公開Webサイト (ナチュラルベージュ基調)' }
+            ]
+          },
+          compress: {
+            title: '🗜️ 圧縮 (Token Optimization)',
+            badge: 'PRE-PROCESS',
+            items: [
+              { label: '圧縮エンジン', val: 'ファイルツリー走査結果の構造化JSON化' },
+              { label: '目的', val: '数千ファイルのファイルツリーを要約メトリクスへ要約' }
+            ]
+          },
+          context: {
+            title: '📖 コンテキスト (仕様・設計)',
+            badge: 'SPECIFICATION',
+            items: [
+              { label: '読み込みファイル', val: 'AGENTS.md (Sitemap & 境界規律)' },
+              { label: '全体憲法', val: '隠しフォルダ探索要求の禁止、カシマ様呼称' }
+            ]
+          },
+          pre_guard: {
+            title: '🛡️ 事前ガード (Pre-Execution Guardrails)',
+            badge: 'PASS (合格)',
+            items: [
+              { label: '適用ルール 1', val: 'ホワイトリスト照合 (ALLOWED_ROOT_ITEMS 36品目)' },
+              { label: '適用ルール 2', val: 'scratch/ 一時ファイルの即時隔離・残骸放置禁止' }
+            ]
+          },
+          ai: {
+            title: '🤖 AI (Antigravity 執行エンジン)',
+            badge: 'EXECUTOR',
+            items: [
+              { label: 'モデル役割', val: '監視エンジン (monitor.js) & ダッシュボード生成器の構築' },
+              { label: '執行内容', val: 'ナチュラルベージュUI、エージェントハーネストポロジー図のレンダリング' }
+            ]
+          },
+          gate: {
+            title: '🚪 承認ゲート (Approval Gate)',
+            badge: 'CONFIRMED',
+            items: [
+              { label: '監視対象アクション', val: 'GitHub Pages独立リポジトリへの git push --force' },
+              { label: '承認ポリシー', val: '全テスト合格（Score 100）時のみ本番反映' }
+            ]
+          },
+          mcp: {
+            title: '🌐 ツール使用・MCP (Tool Execution)',
+            badge: 'CONNECTED',
+            items: [
+              { label: '使用ツール群', val: 'Node.js fs/path, git, GitHub Pages API, browser_subagent' },
+              { label: '検証ツール', val: '実機ブラウザによるクリックイベント・レンダリング自動検証' }
+            ]
+          },
+          memory: {
+            title: '🗄️ 記憶 (Knowledge Memory)',
+            badge: 'LOADED',
+            items: [
+              { label: '参照ナレッジ', val: 'harness/meta_knowledge.json' },
+              { label: 'ロードされた教訓', val: '「監視ツール自身が自己欺瞞を持たず、テストハーネスで守られる必要がある」' }
+            ]
+          },
+          sub_ai: {
+            title: '👥 エージェント間通信 (Subagent)',
+            badge: 'COLLABORATIVE',
+            items: [
+              { label: 'サブエージェント', val: 'Browser Subagent' },
+              { label: '責務', val: '公開後GitHub Pagesの実機アクセス・DOMクリック動作確認' }
+            ]
+          },
+          post_guard: {
+            title: '⚖️ 事後ガード (Post-Execution Guardrails)',
+            badge: 'ALL PASS (100%)',
+            items: [
+              { label: '検証 1: 自己テスト', val: 'harness/test_monitor.js がExit Code 0で終了するか' },
+              { label: '検証 2: 依存性監査', val: '外部JavaScriptライブラリ依存ゼロの完全静的HTMLであるか' },
+              { label: '検証 3: 境界テスト', val: 'check_architecture_guard.js 適合' }
+            ]
+          },
+          continue: {
+            title: '🔄 作業継続 (Loop to AI)',
+            badge: 'RETRY',
+            items: [
+              { label: '条件', val: '自己テスト失敗、または構文エラー検知時' },
+              { label: '動作', val: '生成コードを即時ロールバック・再ビルド' }
+            ]
+          },
+          return: {
+            title: '🎁 人へ返却 (Deliver to Human)',
+            badge: 'COMPLETED',
+            items: [
+              { label: '返却先', val: 'カシマ様へ完了報告' },
+              { label: '納品アセット', val: '公開Webダッシュボード (https://kassii77763.github.io/workspace-health-monitor/)' }
+            ]
+          },
+          session_monitor: {
+            title: '📈 セッション全体の監視 (HealthAuditor v4.5)',
+            badge: 'HEALTHY',
+            items: [
+              { label: '監視項目', val: '常時稼働ヘルススキャン、GitHub Actions日次巡回ワークフロー' },
+              { label: '稼働ステータス', val: '毎日 9:00 自動巡回' }
+            ]
+          }
+        }
       }
     };
 
+    let currentProjectKey = 'p1';
+    let currentSelectedNode = 'ai';
+
     function selectProjectHarness(pKey) {
+      currentProjectKey = pKey;
       document.querySelectorAll('.p-tab-btn').forEach(b => b.classList.remove('active'));
       const activeBtn = Array.from(document.querySelectorAll('.p-tab-btn')).find(b => b.getAttribute('onclick').includes(pKey));
       if (activeBtn) activeBtn.classList.add('active');
 
-      renderHarnessTable(pKey);
-    }
-
-    function renderHarnessTable(pKey) {
-      const data = HARNESS_DATA[pKey];
+      const data = PROJECT_HARNESS_DATA[pKey];
       if (!data) return;
 
-      const container = document.getElementById('harness-table-container');
-      if (!container) return;
+      // ラベル更新
+      document.getElementById('active-project-badge').innerText = data.name;
+      document.getElementById('lbl-context').innerText = data.lblContext;
+      document.getElementById('lbl-pre-guard').innerText = data.lblPreGuard;
+      document.getElementById('lbl-gate').innerText = data.lblGate;
+      document.getElementById('lbl-mcp').innerText = data.lblMcp;
+      document.getElementById('lbl-memory').innerText = data.lblMemory;
+      document.getElementById('lbl-post-guard').innerText = data.lblPostGuard;
 
-      let html = '<table class="eval-table">' +
-        '<thead>' +
-          '<tr>' +
-            '<th style="width: 100px;">検査種別</th>' +
-            '<th>テスト項目名</th>' +
-            '<th>対象成果物 / スクリプト</th>' +
-            '<th style="width: 160px;">検証方式</th>' +
-            '<th style="width: 90px; text-align: center;">ステータス</th>' +
-          '</tr>' +
-        '</thead>' +
-        '<tbody>';
+      // 現在選択中のノードを再描画
+      inspectNode(currentSelectedNode);
+    }
 
-      data.rows.forEach(r => {
-        html += '<tr>' +
-          '<td><span class="eval-category-badge ' + r.cat + '">' + r.catName + '</span></td>' +
-          '<td style="font-weight: 600;">' + r.name + '</td>' +
-          '<td><span class="code-badge">' + r.target + '</span></td>' +
-          '<td style="color: var(--text-muted); font-size: 11px;">' + r.type + '</td>' +
-          '<td style="text-align: center;"><span class="mini-badge ok">● ' + r.status + '</span></td>' +
-        '</tr>';
+    // ノードインスペクター表示
+    function inspectNode(nodeKey) {
+      currentSelectedNode = nodeKey;
+      document.querySelectorAll('.h-node').forEach(n => n.classList.remove('selected'));
+      const nodeEl = document.getElementById('node-' + nodeKey.replace('_', '-'));
+      if (nodeEl) nodeEl.classList.add('selected');
+
+      const pData = PROJECT_HARNESS_DATA[currentProjectKey];
+      if (!pData || !pData.nodes[nodeKey]) return;
+
+      const nodeInfo = pData.nodes[nodeKey];
+      document.getElementById('insp-title').innerText = nodeInfo.title;
+      document.getElementById('insp-badge').innerText = nodeInfo.badge;
+
+      const grid = document.getElementById('insp-grid');
+      let html = '';
+      nodeInfo.items.forEach(it => {
+        html += '<div class="inspector-item">' +
+          '<div class="inspector-item-label">' + it.label + '</div>' +
+          '<div class="inspector-item-val">' + it.val + '</div>' +
+        '</div>';
       });
+      grid.innerHTML = html;
+    }
 
-      html += '</tbody></table>';
-      container.innerHTML = html;
+    // メタステップのインスペクト
+    function inspectMetaStep(stepKey) {
+      const stepDetails = {
+        'step1': { title: '① 失敗・試行錯誤', badge: 'FAIL_EVENT', items: [
+          { label: '発生契機', val: '事後ガードで検証不合格（例: uninstall忘れ、自作モック判定）となった瞬間' },
+          { label: '処置', val: 'エラーメッセージと試行錯誤の履歴をエージェント内メモリに保持' }
+        ]},
+        'step2': { title: '② 教訓テキスト抽出', badge: 'PARSING', items: [
+          { label: '保存先', val: 'gas_project/*/logs/trace.md' },
+          { label: '必須フォーマット', val: '1. 失敗: ... / 2. 解決: ... / 3. 教訓: ... の3段階要約テキスト' }
+        ]},
+        'step3': { title: '③ メタ回収バッチ', badge: 'BATCH_JOB', items: [
+          { label: '実行スクリプト', val: 'harness/meta_harness_collector.js' },
+          { label: '動作', val: 'ワークスペース全域の trace.md を再帰走査し、最新の失敗教訓をパース・回収' }
+        ]},
+        'step4': { title: '④ 構造化ナレッジDB', badge: 'DATABASE', items: [
+          { label: '保存ファイル', val: 'harness/meta_knowledge.json' },
+          { label: '現在の蓄積', val: '3件（トリガー解除、DOM幾何判定、監視自己欺瞞防止）' }
+        ]},
+        'step5': { title: '⑤ 次期ガード自動生成', badge: 'GENERATOR', items: [
+          { label: 'エンジン', val: 'harness/meta_harness_generator.js' },
+          { label: '動作', val: '新案件のPRDと過去教訓を照合し、回帰防止テストを事前/事後ガードへ自動注入' }
+        ]}
+      };
+
+      const info = stepDetails[stepKey];
+      if (!info) return;
+
+      document.getElementById('insp-title').innerText = '🧠 メタハーネス工程: ' + info.title;
+      document.getElementById('insp-badge').innerText = info.badge;
+
+      const grid = document.getElementById('insp-grid');
+      let html = '';
+      info.items.forEach(it => {
+        html += '<div class="inspector-item">' +
+          '<div class="inspector-item-label">' + it.label + '</div>' +
+          '<div class="inspector-item-val">' + it.val + '</div>' +
+        '</div>';
+      });
+      grid.innerHTML = html;
+    }
+
+    // プロジェクトタブのインクリメンタル検索（拡張性対応）
+    function filterProjectTabs(query) {
+      const q = query.trim().toLowerCase();
+      const btns = document.querySelectorAll('.p-tab-btn');
+      btns.forEach(btn => {
+        const pName = btn.getAttribute('data-pname').toLowerCase();
+        if (pName.includes(q)) {
+          btn.style.display = 'block';
+        } else {
+          btn.style.display = 'none';
+        }
+      });
     }
 
     // 初期化
     window.addEventListener('DOMContentLoaded', function() {
-      renderHarnessTable('p1');
+      selectProjectHarness('p1');
     });
   </script>
 </body>
