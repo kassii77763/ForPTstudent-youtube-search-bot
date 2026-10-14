@@ -24,6 +24,13 @@ function generateHtml(audit) {
   const harnessKeys = Object.keys(harnesses);
   const metaTop = audit.metaHarnessTopology || {};
   const liveExec = metaTop.liveExecution || {};
+  const tokenUsage = audit.tokenUsage || {
+    conversations: { totalSizeMB: 0, estimatedTokens: 0, sessionCount: 0, sessions: [] },
+    contextHeavyFiles: [],
+    status: 'OPTIMAL',
+    tokenHygieneScore: 100,
+    recommendations: []
+  };
 
   let gradeColor = '#2e7d32'; // フォレストグリーン
   if (score < 70) gradeColor = '#c53030';
@@ -187,7 +194,9 @@ function generateHtml(audit) {
       flex: 1;
       padding: 32px 40px;
       max-width: 1440px;
+      min-width: 980px;
       overflow-y: auto;
+      overflow-x: auto;
     }
     .top-header {
       display: flex;
@@ -716,6 +725,7 @@ function generateHtml(audit) {
       display: flex;
       gap: 20px;
       align-items: flex-start;
+      min-width: 960px;
     }
     .rubric-sidebar-pane {
       width: 290px;
@@ -764,7 +774,7 @@ function generateHtml(audit) {
     }
     .rubric-content-pane {
       flex: 1;
-      min-width: 0;
+      min-width: 640px;
     }
 
     /* Accordion Styles */
@@ -959,6 +969,11 @@ function generateHtml(audit) {
           </button>
         </li>
         <li>
+          <button class="nav-btn" onclick="switchView('view-tokens')">
+            <span>⚡</span> トークン＆肥大化監視
+          </button>
+        </li>
+        <li>
           <button class="nav-btn" onclick="switchView('view-automation')">
             <span>⏰</span> 定期巡回・CI/CD
           </button>
@@ -1055,11 +1070,41 @@ function generateHtml(audit) {
           </div>
         </div>
 
-        <div class="card" style="background: var(--success-bg); border: 1px solid var(--success-border);">
+        <div class="card" style="background: var(--success-bg); border: 1px solid var(--success-border); margin-bottom: 20px;">
           <h3 style="font-size: 15px; font-weight: 700; color: var(--success); margin-bottom: 4px;">🎉 全項目パーフェクト（Zero Defect）</h3>
           <p style="font-size: 13px; color: var(--text-muted);">
             ディレクトリ散乱、一時ファイル放置、カプセル化違反は一切ありません。現在 ${projects.length} 件のプロジェクトと 3 つのシステムガードが完全統制されています。
           </p>
+        </div>
+
+        <!-- ⚡ トークン＆コンテキスト健全性ハイライト -->
+        <div class="card" style="padding: 22px;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px;">
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <span style="font-size: 18px;">⚡</span>
+              <h3 style="font-size: 16px; font-weight: 700;">トークン消費＆コンテキスト健全性</h3>
+            </div>
+            <span class="code-badge" style="background: ${tokenUsage.status === 'OPTIMAL' ? 'var(--success-bg)' : 'var(--warning-bg)'}; color: ${tokenUsage.status === 'OPTIMAL' ? 'var(--success)' : 'var(--warning)'}; border-color: ${tokenUsage.status === 'OPTIMAL' ? 'var(--success-border)' : 'var(--warning-border)'}; font-weight: 700;">
+              STATUS: ${tokenUsage.status} (${tokenUsage.tokenHygieneScore} pt)
+            </span>
+          </div>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px;">
+            <div style="background: var(--card-bg-subtle); padding: 14px; border-radius: 10px; border: 1px solid var(--card-border);">
+              <div style="font-size: 11px; color: var(--text-muted);">会話セッション総容量</div>
+              <div style="font-size: 20px; font-weight: 800; font-family: 'JetBrains Mono', monospace; margin: 4px 0;">${tokenUsage.conversations.totalSizeMB} MB</div>
+              <div style="font-size: 11px; color: var(--text-muted);">${tokenUsage.conversations.sessionCount} セッション記録済</div>
+            </div>
+            <div style="background: var(--card-bg-subtle); padding: 14px; border-radius: 10px; border: 1px solid var(--card-border);">
+              <div style="font-size: 11px; color: var(--text-muted);">推定総消費トークン量</div>
+              <div style="font-size: 20px; font-weight: 800; font-family: 'JetBrains Mono', monospace; margin: 4px 0; color: var(--accent);">${tokenUsage.conversations.estimatedTokens.toLocaleString()}</div>
+              <div style="font-size: 11px; color: var(--text-muted);">会話DB実効換算</div>
+            </div>
+            <div style="background: var(--card-bg-subtle); padding: 14px; border-radius: 10px; border: 1px solid var(--card-border);">
+              <div style="font-size: 11px; color: var(--text-muted);">コンテキスト高負荷ファイル</div>
+              <div style="font-size: 20px; font-weight: 800; font-family: 'JetBrains Mono', monospace; margin: 4px 0;">${tokenUsage.contextHeavyFiles.length} 件</div>
+              <div style="font-size: 11px; color: var(--text-muted);">>20KB テキスト/コード</div>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -1710,21 +1755,16 @@ function generateHtml(audit) {
             </div>
 
             <div style="font-size: 11px; font-weight: 800; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 8px; padding-left: 4px;">
-              GASミニツール（プロジェクト別）
+              プロジェクト別ルーブリック (${harnessKeys.length} 件)
             </div>
             <div class="rubric-proj-list" id="rubric-list-projects">
-              <div class="rubric-proj-item" id="r-item-p1" onclick="selectRubricProject('p1')">
-                <div class="r-item-title">📧 minitool_001_unreplied_emails</div>
-                <div class="r-item-sub">未返信メール抽出＆スプレッドシート</div>
-              </div>
-              <div class="rubric-proj-item" id="r-item-p2" onclick="selectRubricProject('p2')">
-                <div class="r-item-title">📅 minitool_002_schedule_conflict</div>
-                <div class="r-item-sub">予定重複検知＆カレンダー同期</div>
-              </div>
-              <div class="rubric-proj-item" id="r-item-p3" onclick="selectRubricProject('p3')">
-                <div class="r-item-title">📈 workspace_health_monitor</div>
-                <div class="r-item-sub">ワークスペース健全性コンソール</div>
-              </div>
+              ${Object.values(harnesses).map(h => {
+                const subDesc = (h.nodes && h.nodes.human && h.nodes.human.items[1] ? h.nodes.human.items[1].val : (h.category || '')).slice(0, 28);
+                return `<div class="rubric-proj-item" id="r-item-${h.key}" onclick="selectRubricProject('${h.key}')">
+                <div class="r-item-title">${h.icon || '📦'} ${h.name}</div>
+                <div class="r-item-sub">${subDesc}</div>
+              </div>`;
+              }).join('\n              ')}
             </div>
           </div>
 
@@ -1798,6 +1838,97 @@ function generateHtml(audit) {
       </div>
 
       <!-- ============================================== -->
+      <!-- VIEW: トークン＆肥大化監視 (Token & Context Monitor) -->
+      <!-- ============================================== -->
+      <div id="view-tokens" class="view-panel">
+        <div class="card" style="margin-bottom: 24px;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+            <div>
+              <h3 class="section-title" style="margin-bottom: 4px;">⚡ トークン消費＆コンテキスト肥大化監視コンソール</h3>
+              <p style="font-size: 13px; color: var(--text-muted);">AntigravityセッションDB容量、推定トークン量、AIコンテキスト高負荷ファイルをリアルタイム追跡</p>
+            </div>
+            <span class="code-badge" style="background: var(--success-bg); color: var(--success); border-color: var(--success-border); font-weight: 700;">
+              HYGIENE: ${tokenUsage.status} (${tokenUsage.tokenHygieneScore} / 100 pt)
+            </span>
+          </div>
+
+          <!-- サマリー統計グリッド -->
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; margin-bottom: 8px;">
+            <div style="background: var(--card-bg-subtle); padding: 18px; border-radius: 12px; border: 1px solid var(--card-border);">
+              <div style="font-size: 12px; color: var(--text-muted); font-weight: 600;">📁 会話セッションDB総容量</div>
+              <div style="font-size: 26px; font-weight: 800; font-family: 'JetBrains Mono', monospace; margin: 6px 0; color: var(--text-main);">${tokenUsage.conversations.totalSizeMB} MB</div>
+              <div style="font-size: 11px; color: var(--text-muted);">${tokenUsage.conversations.sessionCount} セッション（上限目安: 100MB）</div>
+            </div>
+            <div style="background: var(--card-bg-subtle); padding: 18px; border-radius: 12px; border: 1px solid var(--card-border);">
+              <div style="font-size: 12px; color: var(--text-muted); font-weight: 600;">🤖 推定総消費トークン数</div>
+              <div style="font-size: 26px; font-weight: 800; font-family: 'JetBrains Mono', monospace; margin: 6px 0; color: var(--accent);">${tokenUsage.conversations.estimatedTokens.toLocaleString()}</div>
+              <div style="font-size: 11px; color: var(--text-muted);">会話DB実効テキスト換算（1KB ≈ 250 tok）</div>
+            </div>
+            <div style="background: var(--card-bg-subtle); padding: 18px; border-radius: 12px; border: 1px solid var(--card-border);">
+              <div style="font-size: 12px; color: var(--text-muted); font-weight: 600;">📑 コンテキスト高負荷ファイル</div>
+              <div style="font-size: 26px; font-weight: 800; font-family: 'JetBrains Mono', monospace; margin: 6px 0; color: ${tokenUsage.contextHeavyFiles.length > 5 ? 'var(--warning)' : 'var(--success)'};">${tokenUsage.contextHeavyFiles.length} 件</div>
+              <div style="font-size: 11px; color: var(--text-muted);">>20KB テキスト（AI読込時のトークン消費源）</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2カラム: 会話セッション一覧 & 高負荷ファイルTop 10 -->
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 24px;">
+          <!-- 会話セッション一覧 -->
+          <div class="card">
+            <h4 style="font-size: 15px; font-weight: 700; margin-bottom: 12px; display: flex; align-items: center; gap: 8px;">
+              <span>💬</span> 会話セッションDB規模一覧
+            </h4>
+            <div style="display: flex; flex-direction: column; gap: 10px;">
+              ${tokenUsage.conversations.sessions.map(s => `
+                <div style="padding: 12px 14px; background: var(--card-bg-subtle); border-radius: 8px; border: 1px solid var(--card-border); display: flex; justify-content: space-between; align-items: center;">
+                  <div style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 260px;">
+                    <div style="font-size: 12px; font-weight: 700; font-family: 'JetBrains Mono', monospace;">${s.name}</div>
+                    <div style="font-size: 10px; color: var(--text-muted);">更新: ${s.updatedAt.substring(0, 16).replace('T', ' ')}</div>
+                  </div>
+                  <div style="text-align: right;">
+                    <span class="code-badge" style="font-weight: 700;">${(s.sizeKB / 1024).toFixed(2)} MB</span>
+                    <div style="font-size: 10px; color: var(--text-muted); margin-top: 2px;">≈ ${s.estimatedTokens.toLocaleString()} tok</div>
+                  </div>
+                </div>
+              `).join('')}
+            </div>
+          </div>
+
+          <!-- コンテキスト高負荷ファイル Top 10 -->
+          <div class="card">
+            <h4 style="font-size: 15px; font-weight: 700; margin-bottom: 12px; display: flex; align-items: center; gap: 8px;">
+              <span>⚠️</span> コンテキスト高負荷ファイル Top 10
+            </h4>
+            <div style="display: flex; flex-direction: column; gap: 10px;">
+              ${tokenUsage.contextHeavyFiles.map(f => `
+                <div style="padding: 12px 14px; background: var(--card-bg-subtle); border-radius: 8px; border: 1px solid var(--card-border); display: flex; justify-content: space-between; align-items: center;">
+                  <div style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 260px;">
+                    <div style="font-size: 12px; font-weight: 600; color: var(--text-main);" title="${f.path}">${f.path}</div>
+                    <div style="font-size: 10px; color: var(--text-muted);">読込時推定: ≈ ${f.estimatedTokens.toLocaleString()} tok</div>
+                  </div>
+                  <span class="code-badge" style="font-weight: 700; color: ${f.sizeKB > 100 ? 'var(--warning)' : 'var(--text-main)'};">
+                    ${f.sizeKB} KB
+                  </span>
+                </div>
+              `).join('')}
+            </div>
+          </div>
+        </div>
+
+        <!-- 肥大化防止の恒久ベストプラクティス -->
+        <div class="card" style="background: var(--card-bg-subtle);">
+          <h4 style="font-size: 15px; font-weight: 700; margin-bottom: 8px;">🛡️ トークン節約＆コンテキスト肥大化防止の運用規律</h4>
+          <ul style="font-size: 12px; color: var(--text-muted); line-height: 1.8; padding-left: 20px;">
+            <li><strong>生ログの軽量化</strong>: <code>trace.md</code> は失敗・解決・教訓の3行サマリー（数KB以内）に抑え、生ログを直接ワークスペース直下に放置しない。</li>
+            <li><strong>スライス読み込みの徹底</strong>: 巨大ファイルは一度に全行読み込まず、<code>view_file</code> の <code>StartLine/EndLine</code> で必要な範囲だけを読み込む。</li>
+            <li><strong>不要セッションのクリーンアップ</strong>: 終了したタスクの会話DBが肥大化した際は、定期的に整理・隔離する。</li>
+            <li><strong>スクラッチの即時破棄</strong>: <code>scratch/</code> 内の一時ファイルは検証終了後に即時破棄または <code>archive/</code> へ隔離する。</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- ============================================== -->
       <!-- VIEW 6: 定期巡回・CI/CD (Automation) -->
       <!-- ============================================== -->
       <div id="view-automation" class="view-panel">
@@ -1852,6 +1983,7 @@ function generateHtml(audit) {
         'view-rubrics': ['📊 ルーブリック評価基準（採点表カタログ）', '全社共通6規律 ＋ プロジェクト固有基準 ＋ 全体出荷判定マスター'],
         'view-tree': ['🌲 ワークスペース階層構造エクスプローラー', '主要フォルダの展開・容量・衛生度マップ'],
         'view-logs': ['📜 失敗と教訓の完全アーカイブ', '各プロジェクトの trace.md から抽出された恒久教訓一覧'],
+        'view-tokens': ['⚡ トークン＆コンテキスト肥大化監視', '会話セッション規模・AIコンテキスト負荷・肥大化リスクのリアルタイム追跡'],
         'view-automation': ['⏰ 自動巡回＆定期スキャン運用', 'GitHub Actions日次巡回およびローカル常時統制の構成']
       };
 
@@ -2422,7 +2554,58 @@ function generateHtml(audit) {
       const activeItem = document.getElementById('r-item-' + pKey);
       if (activeItem) activeItem.classList.add('active');
 
-      const data = RUBRICS_DATA[pKey];
+      let data = RUBRICS_DATA[pKey];
+      if (!data) {
+        const ph = PROJECT_HARNESS_DATA[pKey];
+        if (ph) {
+          data = {
+            title: (ph.icon || '📦') + ' ' + ph.name + ' 品質審査ルーブリック',
+            badge: ph.category || 'カスタムプロジェクト',
+            summary: (ph.nodes && ph.nodes.human && ph.nodes.human.items[1] ? ph.nodes.human.items[1].val : ph.name + ' の品質規律マトリクス') + '。境界防御・テスト・カプセル化・納品完全性を機械判定。',
+            items: [
+              {
+                id: pKey + '_1',
+                title: '1. [憲法:境界] 1ツール1フォルダ完全カプセル化',
+                deploy: '🛡️ 境界ガード',
+                passScore: '5点のみ (絶対遵守)',
+                passType: 'danger',
+                summary: 'ワークスペースルートや外部ディレクトリへのファイル漏出ゼロを保証。',
+                rows: [
+                  { score: '1点', rank: '散乱違反', color: 'danger', desc: 'ルート直下や別フォルダに一時ファイルやテストスクリプトを漏出放置。', action: '即時FAIL・隔離' },
+                  { score: '3点', rank: '部分隔離', color: 'amber', desc: '主要コードは収まっているが、ログや一時ファイルが散乱気味。', action: 'ディレクトリ再編成' },
+                  { score: '5点', rank: '完全密閉', color: 'success', desc: ph.path + ' 配下にすべてのコード・仕様・ログ・アセットが密閉。', action: 'PASS' }
+                ]
+              },
+              {
+                id: pKey + '_2',
+                title: '2. [機能:実装] コア機能および仕様適合性',
+                deploy: '💻 実装基盤',
+                passScore: '4点以上',
+                passType: 'success',
+                summary: '仕様書（' + ph.lblContext + '）を満たす完全な実装と依存整合性。',
+                rows: [
+                  { score: '1点', rank: '未実装/構文エラー', color: 'danger', desc: '実行時に即時構文エラーや未定義例外が発生する。', action: '即時修正' },
+                  { score: '3点', rank: '基本動作', color: 'amber', desc: '主要機能は動くが、エッジケースや例外処理に未考慮がある。', action: 'ガード強化' },
+                  { score: '5点', rank: '堅牢完備', color: 'success', desc: '全エラーハンドリング完備、' + ph.lblMcp + ' 連携が正常稼働。', action: 'PASS' }
+                ]
+              },
+              {
+                id: pKey + '_3',
+                title: '3. [検証:事後] 改ざん不可テスト＆自己欺瞞排除',
+                deploy: '⚖️ 事後ガード',
+                passScore: '4点以上',
+                passType: 'success',
+                summary: ph.lblPostGuard + ' による客観検証。ダミーや自己検査の抜け穴を排除。',
+                rows: [
+                  { score: '1点', rank: '自己欺瞞/無検証', color: 'danger', desc: 'テストなし、またはダミーでも通る甘い検査でPASSと誤認。', action: 'テスト再設計' },
+                  { score: '3点', rank: '静的検証のみ', color: 'amber', desc: 'ファイル存在のみ確認し、中身や実機動作を未確認。', action: '実機テスト追加' },
+                  { score: '5点', rank: '客観検証完全適合', color: 'success', desc: '実機または回帰ハーネスによる確証とlogs/trace.md教訓記録が完了。', action: 'PASS' }
+                ]
+              }
+            ]
+          };
+        }
+      }
       if (!data) return;
 
       const card = document.getElementById('rubric-detail-card');

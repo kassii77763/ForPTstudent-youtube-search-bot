@@ -152,7 +152,9 @@
       flex: 1;
       padding: 32px 40px;
       max-width: 1440px;
+      min-width: 980px;
       overflow-y: auto;
+      overflow-x: auto;
     }
     .top-header {
       display: flex;
@@ -681,6 +683,7 @@
       display: flex;
       gap: 20px;
       align-items: flex-start;
+      min-width: 960px;
     }
     .rubric-sidebar-pane {
       width: 290px;
@@ -729,7 +732,7 @@
     }
     .rubric-content-pane {
       flex: 1;
-      min-width: 0;
+      min-width: 640px;
     }
 
     /* Accordion Styles */
@@ -900,7 +903,7 @@
         </li>
         <li>
           <button class="nav-btn" onclick="switchView('view-projects')">
-            <span>🚀</span> プロジェクト管理 (9)
+            <span>🚀</span> プロジェクト管理 (15)
           </button>
         </li>
         <li>
@@ -924,6 +927,11 @@
           </button>
         </li>
         <li>
+          <button class="nav-btn" onclick="switchView('view-tokens')">
+            <span>⚡</span> トークン＆肥大化監視
+          </button>
+        </li>
+        <li>
           <button class="nav-btn" onclick="switchView('view-automation')">
             <span>⏰</span> 定期巡回・CI/CD
           </button>
@@ -931,7 +939,7 @@
       </ul>
 
       <div class="sidebar-footer">
-        <div>最終同期: 2026-10-11 22:41:59</div>
+        <div>最終同期: 2026-10-14 22:56:32</div>
         <div>監査エンジン: HealthAuditor v5.0</div>
       </div>
     </aside>
@@ -949,7 +957,7 @@
             <span>監査ステータス: 完全統制 (100点)</span>
           </div>
           <div class="badge">
-            <span>プロジェクト数: 9 件</span>
+            <span>プロジェクト数: 15 件</span>
           </div>
         </div>
       </div>
@@ -1013,18 +1021,48 @@
                   <span class="metric-status status-PASS">PASS</span>
                 </div>
                 <div class="progress-bar-bg"><div class="progress-bar-fill" style="width: 100%;"></div></div>
-                <div class="metric-detail"><span>蓄積教訓: 3 件</span><span>15 / 15 pt</span></div>
+                <div class="metric-detail"><span>蓄積教訓: 5 件</span><span>15 / 15 pt</span></div>
               </div>
 
             </div>
           </div>
         </div>
 
-        <div class="card" style="background: var(--success-bg); border: 1px solid var(--success-border);">
+        <div class="card" style="background: var(--success-bg); border: 1px solid var(--success-border); margin-bottom: 20px;">
           <h3 style="font-size: 15px; font-weight: 700; color: var(--success); margin-bottom: 4px;">🎉 全項目パーフェクト（Zero Defect）</h3>
           <p style="font-size: 13px; color: var(--text-muted);">
-            ディレクトリ散乱、一時ファイル放置、カプセル化違反は一切ありません。現在 9 件のプロジェクトと 3 つのシステムガードが完全統制されています。
+            ディレクトリ散乱、一時ファイル放置、カプセル化違反は一切ありません。現在 15 件のプロジェクトと 3 つのシステムガードが完全統制されています。
           </p>
+        </div>
+
+        <!-- ⚡ トークン＆コンテキスト健全性ハイライト -->
+        <div class="card" style="padding: 22px;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px;">
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <span style="font-size: 18px;">⚡</span>
+              <h3 style="font-size: 16px; font-weight: 700;">トークン消費＆コンテキスト健全性</h3>
+            </div>
+            <span class="code-badge" style="background: var(--success-bg); color: var(--success); border-color: var(--success-border); font-weight: 700;">
+              STATUS: OPTIMAL (95 pt)
+            </span>
+          </div>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px;">
+            <div style="background: var(--card-bg-subtle); padding: 14px; border-radius: 10px; border: 1px solid var(--card-border);">
+              <div style="font-size: 11px; color: var(--text-muted);">会話セッション総容量</div>
+              <div style="font-size: 20px; font-weight: 800; font-family: 'JetBrains Mono', monospace; margin: 4px 0;">21.66 MB</div>
+              <div style="font-size: 11px; color: var(--text-muted);">4 セッション記録済</div>
+            </div>
+            <div style="background: var(--card-bg-subtle); padding: 14px; border-radius: 10px; border: 1px solid var(--card-border);">
+              <div style="font-size: 11px; color: var(--text-muted);">推定総消費トークン量</div>
+              <div style="font-size: 20px; font-weight: 800; font-family: 'JetBrains Mono', monospace; margin: 4px 0; color: var(--accent);">5,544,000</div>
+              <div style="font-size: 11px; color: var(--text-muted);">会話DB実効換算</div>
+            </div>
+            <div style="background: var(--card-bg-subtle); padding: 14px; border-radius: 10px; border: 1px solid var(--card-border);">
+              <div style="font-size: 11px; color: var(--text-muted);">コンテキスト高負荷ファイル</div>
+              <div style="font-size: 20px; font-weight: 800; font-family: 'JetBrains Mono', monospace; margin: 4px 0;">10 件</div>
+              <div style="font-size: 11px; color: var(--text-muted);">>20KB テキスト/コード</div>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -1038,10 +1076,43 @@
               <h3 class="section-title" style="margin-bottom: 4px;">🚀 全プロジェクト進捗・完成度トラッカー</h3>
               <p style="font-size: 13px; color: var(--text-muted);">各ツールの成果物構成・進捗を客観判定しています。</p>
             </div>
-            <span class="code-badge">進行中＆完了: 9 件</span>
+            <span class="code-badge">進行中＆完了: 15 件</span>
           </div>
 
           <div class="projects-grid">
+            
+            <div class="project-card">
+              <div class="project-header">
+                <div>
+                  <div class="project-title">line_pt_anatomy_search_bot</div>
+                  <div class="project-category">GAS Service</div>
+                </div>
+                <span class="badge-status IN_PROGRESS">IN PROGRESS (進行中)</span>
+              </div>
+              <p class="project-desc">PT/OT学生が実習や国家試験対策中に疑問に思った解剖生理学用語をLINEで送信すると、関連するYouTube講義動画の該当箇所ピンポイント再生URLをカルーセル形式で提示し、学習効率を飛躍的に向上さ</p>
+              
+              <div>
+                <div style="display: flex; justify-content: space-between; font-size: 11px; margin-bottom: 4px;">
+                  <span style="color: var(--text-muted);">完成度・成果物適合率</span>
+                  <span style="font-weight: 700; font-family: 'JetBrains Mono', monospace;">65%</span>
+                </div>
+                <div class="progress-bar-bg">
+                  <div class="progress-bar-fill" style="width: 65%; background: var(--accent);"></div>
+                </div>
+              </div>
+
+              <div class="project-badges">
+                <span class="mini-badge ok">✔ コード実装</span>
+                <span class="mini-badge ">ドキュメント</span>
+                <span class="mini-badge ok">✔ ハーネス/ログ</span>
+                <span class="mini-badge ">アセット</span>
+              </div>
+
+              <div style="font-size: 11px; color: var(--text-muted); display: flex; justify-content: space-between; margin-top: 4px;">
+                <span>パス: gas_project/line_pt_anatomy_search_bot</span>
+                <span>更新: 2026-10-13</span>
+              </div>
+            </div>
             
             <div class="project-card">
               <div class="project-header">
@@ -1051,7 +1122,7 @@
                 </div>
                 <span class="badge-status COMPLETED">COMPLETED (完成)</span>
               </div>
-              <p class="project-desc">未返信メール自動検知＆通知ツール</p>
+              <p class="project-desc">「コピペで試せるGoogle Workspaceミニツール」第1弾</p>
               
               <div>
                 <div style="display: flex; justify-content: space-between; font-size: 11px; margin-bottom: 4px;">
@@ -1084,7 +1155,7 @@
                 </div>
                 <span class="badge-status COMPLETED">COMPLETED (完成)</span>
               </div>
-              <p class="project-desc">スプレッドシート ➡️ Googleカレンダー自動同期</p>
+              <p class="project-desc">- **プロジェクト名**: minitool_002_sheets_to_calendar</p>
               
               <div>
                 <div style="display: flex; justify-content: space-between; font-size: 11px; margin-bottom: 4px;">
@@ -1105,7 +1176,139 @@
 
               <div style="font-size: 11px; color: var(--text-muted); display: flex; justify-content: space-between; margin-top: 4px;">
                 <span>パス: gas_project/minitool_002_sheets_to_calendar</span>
-                <span>更新: 2026-10-08</span>
+                <span>更新: 2026-10-12</span>
+              </div>
+            </div>
+            
+            <div class="project-card">
+              <div class="project-header">
+                <div>
+                  <div class="project-title">minitool_003_gmail_summarizer</div>
+                  <div class="project-category">GAS MiniTool</div>
+                </div>
+                <span class="badge-status IN_PROGRESS">IN PROGRESS (進行中)</span>
+              </div>
+              <p class="project-desc">- **プロジェクト名**: minitool_003_gmail_summarizer</p>
+              
+              <div>
+                <div style="display: flex; justify-content: space-between; font-size: 11px; margin-bottom: 4px;">
+                  <span style="color: var(--text-muted);">完成度・成果物適合率</span>
+                  <span style="font-weight: 700; font-family: 'JetBrains Mono', monospace;">65%</span>
+                </div>
+                <div class="progress-bar-bg">
+                  <div class="progress-bar-fill" style="width: 65%; background: var(--accent);"></div>
+                </div>
+              </div>
+
+              <div class="project-badges">
+                <span class="mini-badge ok">✔ コード実装</span>
+                <span class="mini-badge ">ドキュメント</span>
+                <span class="mini-badge ok">✔ ハーネス/ログ</span>
+                <span class="mini-badge ">アセット</span>
+              </div>
+
+              <div style="font-size: 11px; color: var(--text-muted); display: flex; justify-content: space-between; margin-top: 4px;">
+                <span>パス: gas_project/minitool_003_gmail_summarizer</span>
+                <span>更新: 2026-10-11</span>
+              </div>
+            </div>
+            
+            <div class="project-card">
+              <div class="project-header">
+                <div>
+                  <div class="project-title">api_security_lab</div>
+                  <div class="project-category">Security Lab</div>
+                </div>
+                <span class="badge-status IN_PROGRESS">IN PROGRESS (進行中)</span>
+              </div>
+              <p class="project-desc">外部API通信・シークレット分離＆BFFセキュリティ検証</p>
+              
+              <div>
+                <div style="display: flex; justify-content: space-between; font-size: 11px; margin-bottom: 4px;">
+                  <span style="color: var(--text-muted);">完成度・成果物適合率</span>
+                  <span style="font-weight: 700; font-family: 'JetBrains Mono', monospace;">50%</span>
+                </div>
+                <div class="progress-bar-bg">
+                  <div class="progress-bar-fill" style="width: 50%; background: var(--accent);"></div>
+                </div>
+              </div>
+
+              <div class="project-badges">
+                <span class="mini-badge ok">✔ コード実装</span>
+                <span class="mini-badge ">ドキュメント</span>
+                <span class="mini-badge ">テスト</span>
+                <span class="mini-badge ok">✔ デモ動画/成果物</span>
+              </div>
+
+              <div style="font-size: 11px; color: var(--text-muted); display: flex; justify-content: space-between; margin-top: 4px;">
+                <span>パス: projects/api_security_lab</span>
+                <span>更新: 2026-10-13</span>
+              </div>
+            </div>
+            
+            <div class="project-card">
+              <div class="project-header">
+                <div>
+                  <div class="project-title">koeiro_guide</div>
+                  <div class="project-category">Integration Service</div>
+                </div>
+                <span class="badge-status IN_PROGRESS">IN PROGRESS (進行中)</span>
+              </div>
+              <p class="project-desc">koeiro_guide 開発プロジェクト</p>
+              
+              <div>
+                <div style="display: flex; justify-content: space-between; font-size: 11px; margin-bottom: 4px;">
+                  <span style="color: var(--text-muted);">完成度・成果物適合率</span>
+                  <span style="font-weight: 700; font-family: 'JetBrains Mono', monospace;">50%</span>
+                </div>
+                <div class="progress-bar-bg">
+                  <div class="progress-bar-fill" style="width: 50%; background: var(--accent);"></div>
+                </div>
+              </div>
+
+              <div class="project-badges">
+                <span class="mini-badge ok">✔ コード実装</span>
+                <span class="mini-badge ">ドキュメント</span>
+                <span class="mini-badge ">テスト</span>
+                <span class="mini-badge ok">✔ デモ動画/成果物</span>
+              </div>
+
+              <div style="font-size: 11px; color: var(--text-muted); display: flex; justify-content: space-between; margin-top: 4px;">
+                <span>パス: projects/koeiro_guide</span>
+                <span>更新: 2026-10-13</span>
+              </div>
+            </div>
+            
+            <div class="project-card">
+              <div class="project-header">
+                <div>
+                  <div class="project-title">line_bot_proposal</div>
+                  <div class="project-category">Integration Service</div>
+                </div>
+                <span class="badge-status IN_PROGRESS">IN PROGRESS (進行中)</span>
+              </div>
+              <p class="project-desc">LINE公式アカウント × 解剖学学習検索Bot</p>
+              
+              <div>
+                <div style="display: flex; justify-content: space-between; font-size: 11px; margin-bottom: 4px;">
+                  <span style="color: var(--text-muted);">完成度・成果物適合率</span>
+                  <span style="font-weight: 700; font-family: 'JetBrains Mono', monospace;">50%</span>
+                </div>
+                <div class="progress-bar-bg">
+                  <div class="progress-bar-fill" style="width: 50%; background: var(--accent);"></div>
+                </div>
+              </div>
+
+              <div class="project-badges">
+                <span class="mini-badge ok">✔ コード実装</span>
+                <span class="mini-badge ">ドキュメント</span>
+                <span class="mini-badge ">テスト</span>
+                <span class="mini-badge ok">✔ デモ動画/成果物</span>
+              </div>
+
+              <div style="font-size: 11px; color: var(--text-muted); display: flex; justify-content: space-between; margin-top: 4px;">
+                <span>パス: projects/line_bot_proposal</span>
+                <span>更新: 2026-10-13</span>
               </div>
             </div>
             
@@ -1117,7 +1320,7 @@
                 </div>
                 <span class="badge-status IN_PROGRESS">IN PROGRESS (進行中)</span>
               </div>
-              <p class="project-desc">外部システム連携・自動同期</p>
+              <p class="project-desc">moodle_sync 開発プロジェクト</p>
               
               <div>
                 <div style="display: flex; justify-content: space-between; font-size: 11px; margin-bottom: 4px;">
@@ -1150,7 +1353,7 @@
                 </div>
                 <span class="badge-status COMPLETED">COMPLETED (完成)</span>
               </div>
-              <p class="project-desc">NotebookLM 拡張ツール（UI機能強化・プロンプト統合）</p>
+              <p class="project-desc">Google Gemini Notebook (NotebookLM) のスタジオ機能を強化する拡張機能です。</p>
               
               <div>
                 <div style="display: flex; justify-content: space-between; font-size: 11px; margin-bottom: 4px;">
@@ -1183,7 +1386,7 @@
                 </div>
                 <span class="badge-status IN_PROGRESS">IN PROGRESS (進行中)</span>
               </div>
-              <p class="project-desc">理学療法学生向けナレッジベース＆学習クイズエンジン</p>
+              <p class="project-desc">LINE公式アカウント × 解剖学学習検索Bot</p>
               
               <div>
                 <div style="display: flex; justify-content: space-between; font-size: 11px; margin-bottom: 4px;">
@@ -1216,7 +1419,7 @@
                 </div>
                 <span class="badge-status IN_PROGRESS">IN PROGRESS (進行中)</span>
               </div>
-              <p class="project-desc">理学療法学生向けナレッジベース＆学習クイズエンジン</p>
+              <p class="project-desc">- **プロジェクト名**: `pt_knowledge_visual_library`</p>
               
               <div>
                 <div style="display: flex; justify-content: space-between; font-size: 11px; margin-bottom: 4px;">
@@ -1249,7 +1452,7 @@
                 </div>
                 <span class="badge-status IN_PROGRESS">IN PROGRESS (進行中)</span>
               </div>
-              <p class="project-desc">理学療法学生向けナレッジベース＆学習クイズエンジン</p>
+              <p class="project-desc">大阪リハビリテーション専門学校（OCR）理学療法学科 1年次生向け、通学電車やスキマ時間でマスターできる科目別クイズアプリのポータルリポジトリです。</p>
               
               <div>
                 <div style="display: flex; justify-content: space-between; font-size: 11px; margin-bottom: 4px;">
@@ -1277,12 +1480,45 @@
             <div class="project-card">
               <div class="project-header">
                 <div>
+                  <div class="project-title">status_guide_board</div>
+                  <div class="project-category">Integration Service</div>
+                </div>
+                <span class="badge-status IN_PROGRESS">IN PROGRESS (進行中)</span>
+              </div>
+              <p class="project-desc">status_guide_board 開発プロジェクト</p>
+              
+              <div>
+                <div style="display: flex; justify-content: space-between; font-size: 11px; margin-bottom: 4px;">
+                  <span style="color: var(--text-muted);">完成度・成果物適合率</span>
+                  <span style="font-weight: 700; font-family: 'JetBrains Mono', monospace;">50%</span>
+                </div>
+                <div class="progress-bar-bg">
+                  <div class="progress-bar-fill" style="width: 50%; background: var(--accent);"></div>
+                </div>
+              </div>
+
+              <div class="project-badges">
+                <span class="mini-badge ok">✔ コード実装</span>
+                <span class="mini-badge ">ドキュメント</span>
+                <span class="mini-badge ">テスト</span>
+                <span class="mini-badge ok">✔ デモ動画/成果物</span>
+              </div>
+
+              <div style="font-size: 11px; color: var(--text-muted); display: flex; justify-content: space-between; margin-top: 4px;">
+                <span>パス: projects/status_guide_board</span>
+                <span>更新: 2026-10-13</span>
+              </div>
+            </div>
+            
+            <div class="project-card">
+              <div class="project-header">
+                <div>
                   <div class="project-title">workspace_health_monitor</div>
                   <div class="project-category">Cloud / Patrol Dashboard</div>
                 </div>
                 <span class="badge-status COMPLETED">COMPLETED (完成)</span>
               </div>
-              <p class="project-desc">ディレクトリ健全性・2階層ハーネス・プロジェクト監視ダッシュボード (GitHub Pages配備済)</p>
+              <p class="project-desc">PC・ワークスペースのディレクトリ環境が「クリーンで境界規律を守れているか」を自動徘徊・診断し、モダンなHTMLダッシュボードとして可視化する監視システムです。</p>
               
               <div>
                 <div style="display: flex; justify-content: space-between; font-size: 11px; margin-bottom: 4px;">
@@ -1303,7 +1539,7 @@
 
               <div style="font-size: 11px; color: var(--text-muted); display: flex; justify-content: space-between; margin-top: 4px;">
                 <span>パス: projects/workspace_health_monitor</span>
-                <span>更新: 2026-10-11</span>
+                <span>更新: 2026-10-14</span>
               </div>
             </div>
             
@@ -1315,7 +1551,7 @@
                 </div>
                 <span class="badge-status IN_PROGRESS">IN PROGRESS (進行中)</span>
               </div>
-              <p class="project-desc">外部システム連携・自動同期</p>
+              <p class="project-desc">**Methodology:** Spec-Driven Development (`addyosmani/agent-skills@spec-driven-development`) & Impec</p>
               
               <div>
                 <div style="display: flex; justify-content: space-between; font-size: 11px; margin-bottom: 4px;">
@@ -1358,7 +1594,7 @@
                 <span style="font-size:12px; color:var(--text-muted);">ハーネスを生み出し、失敗から進化させる高次元制御アーキテクチャ</span>
               </div>
               <span class="code-badge" style="color:var(--success); border-color:var(--success-border); background:var(--success-bg);">
-                🔄 自己進化サイクル稼働中 (3件 蓄積 / 6基準 配備)
+                🔄 自己進化サイクル稼働中 (5件 蓄積 / 6基準 配備)
               </span>
             </div>
             <p style="font-size:13px; color:var(--text-muted); margin-bottom:16px;">
@@ -1469,7 +1705,7 @@
                     <span class="s-icon">🗄️</span>
                     <span class="s-title">構造化ナレッジDB</span>
                     <span class="s-desc">meta_knowledge.json</span>
-                    <span class="s-badge">3件 蓄積</span>
+                    <span class="s-badge">5件 蓄積</span>
                   </div>
                 </foreignObject>
 
@@ -1545,7 +1781,7 @@
                   </span>
                 </div>
                 <span style="font-size: 11px; color: var(--text-muted); font-family: 'JetBrains Mono', monospace;">
-                  最終集約: 2026-10-11 22:41:59
+                  最終集約: 2026-10-12 23:38:24
                 </span>
               </div>
 
@@ -1555,7 +1791,7 @@
                     <span>🚜</span> メタ回収実績 (Harvester Trace)
                   </div>
                   <div style="color:var(--text-muted); line-height:1.4;">
-                    回収元: <strong style="color:var(--text-main);">minitool_001_unreplied_emails, minitool_002_sheets_to_calendar, workspace_health_monitor</strong><br>
+                    回収元: <strong style="color:var(--text-main);">minitool_001_unreplied_emails, minitool_002_sheets_to_calendar, minitool_003_gmail_summarizer, workspace_health_monitor, meta_harness_architecture</strong><br>
                     全ツールの <code style="background:var(--code-bg); padding:1px 4px; border-radius:3px;">logs/trace.md</code> を走査し、最新教訓を構造化蓄積完了
                   </div>
                 </div>
@@ -1623,9 +1859,21 @@
                 <input type="text" class="search-input" id="project-search-input" placeholder="プロジェクトを検索..." oninput="filterProjectTabs(this.value)">
               </div>
               <div class="p-tabs-scroll" id="project-tabs-container">
-                <button class="p-tab-btn active" data-pname="minitool_001_unreplied_emails" onclick="selectProjectHarness('p1')">📧 minitool_001_unreplied_emails</button>
-                <button class="p-tab-btn " data-pname="minitool_002_sheets_to_calendar" onclick="selectProjectHarness('p2')">📅 minitool_002_sheets_to_calendar</button>
-                <button class="p-tab-btn " data-pname="workspace_health_monitor" onclick="selectProjectHarness('p3')">📈 workspace_health_monitor</button>
+                <button class="p-tab-btn active" data-pname="line_pt_anatomy_search_bot" onclick="selectProjectHarness('p1')">💬 line_pt_anatomy_search_bot</button>
+                <button class="p-tab-btn " data-pname="minitool_001_unreplied_emails" onclick="selectProjectHarness('p2')">📧 minitool_001_unreplied_emails</button>
+                <button class="p-tab-btn " data-pname="minitool_002_sheets_to_calendar" onclick="selectProjectHarness('p3')">📅 minitool_002_sheets_to_calendar</button>
+                <button class="p-tab-btn " data-pname="minitool_003_gmail_summarizer" onclick="selectProjectHarness('p4')">📧 minitool_003_gmail_summarizer</button>
+                <button class="p-tab-btn " data-pname="api_security_lab" onclick="selectProjectHarness('p5')">🔒 api_security_lab</button>
+                <button class="p-tab-btn " data-pname="koeiro_guide" onclick="selectProjectHarness('p6')">🎙️ koeiro_guide</button>
+                <button class="p-tab-btn " data-pname="line_bot_proposal" onclick="selectProjectHarness('p7')">💬 line_bot_proposal</button>
+                <button class="p-tab-btn " data-pname="moodle_sync" onclick="selectProjectHarness('p8')">🎓 moodle_sync</button>
+                <button class="p-tab-btn " data-pname="notebooklm_enhancer" onclick="selectProjectHarness('p9')">📓 notebooklm_enhancer</button>
+                <button class="p-tab-btn " data-pname="pt_anatomy_quiz" onclick="selectProjectHarness('p10')">🎯 pt_anatomy_quiz</button>
+                <button class="p-tab-btn " data-pname="pt_knowledge_visual_library" onclick="selectProjectHarness('p11')">🎨 pt_knowledge_visual_library</button>
+                <button class="p-tab-btn " data-pname="pt_quiz_temp" onclick="selectProjectHarness('p12')">🎯 pt_quiz_temp</button>
+                <button class="p-tab-btn " data-pname="status_guide_board" onclick="selectProjectHarness('p13')">🎙️ status_guide_board</button>
+                <button class="p-tab-btn " data-pname="workspace_health_monitor" onclick="selectProjectHarness('p14')">📈 workspace_health_monitor</button>
+                <button class="p-tab-btn " data-pname="youtube_visual_library" onclick="selectProjectHarness('p15')">🎥 youtube_visual_library</button>
               </div>
             </div>
 
@@ -1954,20 +2202,68 @@
             </div>
 
             <div style="font-size: 11px; font-weight: 800; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 8px; padding-left: 4px;">
-              GASミニツール（プロジェクト別）
+              プロジェクト別ルーブリック (15 件)
             </div>
             <div class="rubric-proj-list" id="rubric-list-projects">
               <div class="rubric-proj-item" id="r-item-p1" onclick="selectRubricProject('p1')">
-                <div class="r-item-title">📧 minitool_001_unreplied_emails</div>
-                <div class="r-item-sub">未返信メール抽出＆スプレッドシート</div>
+                <div class="r-item-title">💬 line_pt_anatomy_search_bot</div>
+                <div class="r-item-sub">PT/OT学生が実習や国家試験対策中に疑問に思った解剖生</div>
               </div>
               <div class="rubric-proj-item" id="r-item-p2" onclick="selectRubricProject('p2')">
-                <div class="r-item-title">📅 minitool_002_schedule_conflict</div>
-                <div class="r-item-sub">予定重複検知＆カレンダー同期</div>
+                <div class="r-item-title">📧 minitool_001_unreplied_emails</div>
+                <div class="r-item-sub">「コピペで試せるGoogle Workspaceミニツー</div>
               </div>
               <div class="rubric-proj-item" id="r-item-p3" onclick="selectRubricProject('p3')">
+                <div class="r-item-title">📅 minitool_002_sheets_to_calendar</div>
+                <div class="r-item-sub">- **プロジェクト名**: minitool_002_</div>
+              </div>
+              <div class="rubric-proj-item" id="r-item-p4" onclick="selectRubricProject('p4')">
+                <div class="r-item-title">📧 minitool_003_gmail_summarizer</div>
+                <div class="r-item-sub">- **プロジェクト名**: minitool_003_</div>
+              </div>
+              <div class="rubric-proj-item" id="r-item-p5" onclick="selectRubricProject('p5')">
+                <div class="r-item-title">🔒 api_security_lab</div>
+                <div class="r-item-sub">外部API通信・シークレット分離＆BFFセキュリティ検証</div>
+              </div>
+              <div class="rubric-proj-item" id="r-item-p6" onclick="selectRubricProject('p6')">
+                <div class="r-item-title">🎙️ koeiro_guide</div>
+                <div class="r-item-sub">koeiro_guide 開発プロジェクト</div>
+              </div>
+              <div class="rubric-proj-item" id="r-item-p7" onclick="selectRubricProject('p7')">
+                <div class="r-item-title">💬 line_bot_proposal</div>
+                <div class="r-item-sub">LINE公式アカウント × 解剖学学習検索Bot</div>
+              </div>
+              <div class="rubric-proj-item" id="r-item-p8" onclick="selectRubricProject('p8')">
+                <div class="r-item-title">🎓 moodle_sync</div>
+                <div class="r-item-sub">moodle_sync 開発プロジェクト</div>
+              </div>
+              <div class="rubric-proj-item" id="r-item-p9" onclick="selectRubricProject('p9')">
+                <div class="r-item-title">📓 notebooklm_enhancer</div>
+                <div class="r-item-sub">Google Gemini Notebook (Note</div>
+              </div>
+              <div class="rubric-proj-item" id="r-item-p10" onclick="selectRubricProject('p10')">
+                <div class="r-item-title">🎯 pt_anatomy_quiz</div>
+                <div class="r-item-sub">LINE公式アカウント × 解剖学学習検索Bot</div>
+              </div>
+              <div class="rubric-proj-item" id="r-item-p11" onclick="selectRubricProject('p11')">
+                <div class="r-item-title">🎨 pt_knowledge_visual_library</div>
+                <div class="r-item-sub">- **プロジェクト名**: `pt_knowledge</div>
+              </div>
+              <div class="rubric-proj-item" id="r-item-p12" onclick="selectRubricProject('p12')">
+                <div class="r-item-title">🎯 pt_quiz_temp</div>
+                <div class="r-item-sub">大阪リハビリテーション専門学校（OCR）理学療法学科 1</div>
+              </div>
+              <div class="rubric-proj-item" id="r-item-p13" onclick="selectRubricProject('p13')">
+                <div class="r-item-title">🎙️ status_guide_board</div>
+                <div class="r-item-sub">status_guide_board 開発プロジェクト</div>
+              </div>
+              <div class="rubric-proj-item" id="r-item-p14" onclick="selectRubricProject('p14')">
                 <div class="r-item-title">📈 workspace_health_monitor</div>
-                <div class="r-item-sub">ワークスペース健全性コンソール</div>
+                <div class="r-item-sub">PC・ワークスペースのディレクトリ環境が「クリーンで境界</div>
+              </div>
+              <div class="rubric-proj-item" id="r-item-p15" onclick="selectRubricProject('p15')">
+                <div class="r-item-title">🎥 youtube_visual_library</div>
+                <div class="r-item-sub">**Methodology:** Spec-Driven</div>
               </div>
             </div>
           </div>
@@ -2042,6 +2338,220 @@
       </div>
 
       <!-- ============================================== -->
+      <!-- VIEW: トークン＆肥大化監視 (Token & Context Monitor) -->
+      <!-- ============================================== -->
+      <div id="view-tokens" class="view-panel">
+        <div class="card" style="margin-bottom: 24px;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+            <div>
+              <h3 class="section-title" style="margin-bottom: 4px;">⚡ トークン消費＆コンテキスト肥大化監視コンソール</h3>
+              <p style="font-size: 13px; color: var(--text-muted);">AntigravityセッションDB容量、推定トークン量、AIコンテキスト高負荷ファイルをリアルタイム追跡</p>
+            </div>
+            <span class="code-badge" style="background: var(--success-bg); color: var(--success); border-color: var(--success-border); font-weight: 700;">
+              HYGIENE: OPTIMAL (95 / 100 pt)
+            </span>
+          </div>
+
+          <!-- サマリー統計グリッド -->
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; margin-bottom: 8px;">
+            <div style="background: var(--card-bg-subtle); padding: 18px; border-radius: 12px; border: 1px solid var(--card-border);">
+              <div style="font-size: 12px; color: var(--text-muted); font-weight: 600;">📁 会話セッションDB総容量</div>
+              <div style="font-size: 26px; font-weight: 800; font-family: 'JetBrains Mono', monospace; margin: 6px 0; color: var(--text-main);">21.66 MB</div>
+              <div style="font-size: 11px; color: var(--text-muted);">4 セッション（上限目安: 100MB）</div>
+            </div>
+            <div style="background: var(--card-bg-subtle); padding: 18px; border-radius: 12px; border: 1px solid var(--card-border);">
+              <div style="font-size: 12px; color: var(--text-muted); font-weight: 600;">🤖 推定総消費トークン数</div>
+              <div style="font-size: 26px; font-weight: 800; font-family: 'JetBrains Mono', monospace; margin: 6px 0; color: var(--accent);">5,544,000</div>
+              <div style="font-size: 11px; color: var(--text-muted);">会話DB実効テキスト換算（1KB ≈ 250 tok）</div>
+            </div>
+            <div style="background: var(--card-bg-subtle); padding: 18px; border-radius: 12px; border: 1px solid var(--card-border);">
+              <div style="font-size: 12px; color: var(--text-muted); font-weight: 600;">📑 コンテキスト高負荷ファイル</div>
+              <div style="font-size: 26px; font-weight: 800; font-family: 'JetBrains Mono', monospace; margin: 6px 0; color: var(--warning);">10 件</div>
+              <div style="font-size: 11px; color: var(--text-muted);">>20KB テキスト（AI読込時のトークン消費源）</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2カラム: 会話セッション一覧 & 高負荷ファイルTop 10 -->
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 24px;">
+          <!-- 会話セッション一覧 -->
+          <div class="card">
+            <h4 style="font-size: 15px; font-weight: 700; margin-bottom: 12px; display: flex; align-items: center; gap: 8px;">
+              <span>💬</span> 会話セッションDB規模一覧
+            </h4>
+            <div style="display: flex; flex-direction: column; gap: 10px;">
+              
+                <div style="padding: 12px 14px; background: var(--card-bg-subtle); border-radius: 8px; border: 1px solid var(--card-border); display: flex; justify-content: space-between; align-items: center;">
+                  <div style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 260px;">
+                    <div style="font-size: 12px; font-weight: 700; font-family: 'JetBrains Mono', monospace;">26bbd6c3-791d-442a-b63d-92e985fb407d.db</div>
+                    <div style="font-size: 10px; color: var(--text-muted);">更新: 2026-09-30 08:08</div>
+                  </div>
+                  <div style="text-align: right;">
+                    <span class="code-badge" style="font-weight: 700;">11.32 MB</span>
+                    <div style="font-size: 10px; color: var(--text-muted); margin-top: 2px;">≈ 2,899,000 tok</div>
+                  </div>
+                </div>
+              
+                <div style="padding: 12px 14px; background: var(--card-bg-subtle); border-radius: 8px; border: 1px solid var(--card-border); display: flex; justify-content: space-between; align-items: center;">
+                  <div style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 260px;">
+                    <div style="font-size: 12px; font-weight: 700; font-family: 'JetBrains Mono', monospace;">9f30a6bc-923b-4c69-bdde-5512feb9e3c4.db</div>
+                    <div style="font-size: 10px; color: var(--text-muted);">更新: 2026-10-13 01:03</div>
+                  </div>
+                  <div style="text-align: right;">
+                    <span class="code-badge" style="font-weight: 700;">8.80 MB</span>
+                    <div style="font-size: 10px; color: var(--text-muted); margin-top: 2px;">≈ 2,252,000 tok</div>
+                  </div>
+                </div>
+              
+                <div style="padding: 12px 14px; background: var(--card-bg-subtle); border-radius: 8px; border: 1px solid var(--card-border); display: flex; justify-content: space-between; align-items: center;">
+                  <div style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 260px;">
+                    <div style="font-size: 12px; font-weight: 700; font-family: 'JetBrains Mono', monospace;">3468eb96-4272-413b-9910-4b98a3d77af8.db</div>
+                    <div style="font-size: 10px; color: var(--text-muted);">更新: 2026-09-30 10:41</div>
+                  </div>
+                  <div style="text-align: right;">
+                    <span class="code-badge" style="font-weight: 700;">1.35 MB</span>
+                    <div style="font-size: 10px; color: var(--text-muted); margin-top: 2px;">≈ 346,000 tok</div>
+                  </div>
+                </div>
+              
+                <div style="padding: 12px 14px; background: var(--card-bg-subtle); border-radius: 8px; border: 1px solid var(--card-border); display: flex; justify-content: space-between; align-items: center;">
+                  <div style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 260px;">
+                    <div style="font-size: 12px; font-weight: 700; font-family: 'JetBrains Mono', monospace;">f5e8b473-46ce-40b8-8110-cfc6c1b10a95.db</div>
+                    <div style="font-size: 10px; color: var(--text-muted);">更新: 2026-09-30 07:25</div>
+                  </div>
+                  <div style="text-align: right;">
+                    <span class="code-badge" style="font-weight: 700;">0.18 MB</span>
+                    <div style="font-size: 10px; color: var(--text-muted); margin-top: 2px;">≈ 47,000 tok</div>
+                  </div>
+                </div>
+              
+            </div>
+          </div>
+
+          <!-- コンテキスト高負荷ファイル Top 10 -->
+          <div class="card">
+            <h4 style="font-size: 15px; font-weight: 700; margin-bottom: 12px; display: flex; align-items: center; gap: 8px;">
+              <span>⚠️</span> コンテキスト高負荷ファイル Top 10
+            </h4>
+            <div style="display: flex; flex-direction: column; gap: 10px;">
+              
+                <div style="padding: 12px 14px; background: var(--card-bg-subtle); border-radius: 8px; border: 1px solid var(--card-border); display: flex; justify-content: space-between; align-items: center;">
+                  <div style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 260px;">
+                    <div style="font-size: 12px; font-weight: 600; color: var(--text-main);" title=".agents/skills/impeccable/scripts/data/font-index.json">.agents/skills/impeccable/scripts/data/font-index.json</div>
+                    <div style="font-size: 10px; color: var(--text-muted);">読込時推定: ≈ 275,003 tok</div>
+                  </div>
+                  <span class="code-badge" style="font-weight: 700; color: var(--warning);">
+                    1074.2 KB
+                  </span>
+                </div>
+              
+                <div style="padding: 12px 14px; background: var(--card-bg-subtle); border-radius: 8px; border: 1px solid var(--card-border); display: flex; justify-content: space-between; align-items: center;">
+                  <div style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 260px;">
+                    <div style="font-size: 12px; font-weight: 600; color: var(--text-main);" title=".agents/skills/notebooklm/docs/diagrams/34-client-ownership-boundaries.html">.agents/skills/notebooklm/docs/diagrams/34-client-ownership-boundaries.html</div>
+                    <div style="font-size: 10px; color: var(--text-muted);">読込時推定: ≈ 185,511 tok</div>
+                  </div>
+                  <span class="code-badge" style="font-weight: 700; color: var(--warning);">
+                    724.7 KB
+                  </span>
+                </div>
+              
+                <div style="padding: 12px 14px; background: var(--card-bg-subtle); border-radius: 8px; border: 1px solid var(--card-border); display: flex; justify-content: space-between; align-items: center;">
+                  <div style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 260px;">
+                    <div style="font-size: 12px; font-weight: 600; color: var(--text-main);" title=".agents/skills/notebooklm/docs/diagrams/27-capability-contracts.html">.agents/skills/notebooklm/docs/diagrams/27-capability-contracts.html</div>
+                    <div style="font-size: 10px; color: var(--text-muted);">読込時推定: ≈ 185,076 tok</div>
+                  </div>
+                  <span class="code-badge" style="font-weight: 700; color: var(--warning);">
+                    723 KB
+                  </span>
+                </div>
+              
+                <div style="padding: 12px 14px; background: var(--card-bg-subtle); border-radius: 8px; border: 1px solid var(--card-border); display: flex; justify-content: space-between; align-items: center;">
+                  <div style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 260px;">
+                    <div style="font-size: 12px; font-weight: 600; color: var(--text-main);" title=".agents/skills/notebooklm/docs/diagrams/30-transfer-security-boundaries.dataflow.html">.agents/skills/notebooklm/docs/diagrams/30-transfer-security-boundaries.dataflow.html</div>
+                    <div style="font-size: 10px; color: var(--text-muted);">読込時推定: ≈ 184,784 tok</div>
+                  </div>
+                  <span class="code-badge" style="font-weight: 700; color: var(--warning);">
+                    721.8 KB
+                  </span>
+                </div>
+              
+                <div style="padding: 12px 14px; background: var(--card-bg-subtle); border-radius: 8px; border: 1px solid var(--card-border); display: flex; justify-content: space-between; align-items: center;">
+                  <div style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 260px;">
+                    <div style="font-size: 12px; font-weight: 600; color: var(--text-main);" title=".agents/skills/notebooklm/docs/diagrams/39-fault-coverage.html">.agents/skills/notebooklm/docs/diagrams/39-fault-coverage.html</div>
+                    <div style="font-size: 10px; color: var(--text-muted);">読込時推定: ≈ 184,782 tok</div>
+                  </div>
+                  <span class="code-badge" style="font-weight: 700; color: var(--warning);">
+                    721.8 KB
+                  </span>
+                </div>
+              
+                <div style="padding: 12px 14px; background: var(--card-bg-subtle); border-radius: 8px; border: 1px solid var(--card-border); display: flex; justify-content: space-between; align-items: center;">
+                  <div style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 260px;">
+                    <div style="font-size: 12px; font-weight: 600; color: var(--text-main);" title=".agents/skills/notebooklm/docs/diagrams/23-runtime-class-model.html">.agents/skills/notebooklm/docs/diagrams/23-runtime-class-model.html</div>
+                    <div style="font-size: 10px; color: var(--text-muted);">読込時推定: ≈ 184,587 tok</div>
+                  </div>
+                  <span class="code-badge" style="font-weight: 700; color: var(--warning);">
+                    721 KB
+                  </span>
+                </div>
+              
+                <div style="padding: 12px 14px; background: var(--card-bg-subtle); border-radius: 8px; border: 1px solid var(--card-border); display: flex; justify-content: space-between; align-items: center;">
+                  <div style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 260px;">
+                    <div style="font-size: 12px; font-weight: 600; color: var(--text-main);" title=".agents/skills/notebooklm/docs/diagrams/17-mcp-subsystem.html">.agents/skills/notebooklm/docs/diagrams/17-mcp-subsystem.html</div>
+                    <div style="font-size: 10px; color: var(--text-muted);">読込時推定: ≈ 184,554 tok</div>
+                  </div>
+                  <span class="code-badge" style="font-weight: 700; color: var(--warning);">
+                    720.9 KB
+                  </span>
+                </div>
+              
+                <div style="padding: 12px 14px; background: var(--card-bg-subtle); border-radius: 8px; border: 1px solid var(--card-border); display: flex; justify-content: space-between; align-items: center;">
+                  <div style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 260px;">
+                    <div style="font-size: 12px; font-weight: 600; color: var(--text-main);" title=".agents/skills/notebooklm/docs/diagrams/04-authentication.html">.agents/skills/notebooklm/docs/diagrams/04-authentication.html</div>
+                    <div style="font-size: 10px; color: var(--text-muted);">読込時推定: ≈ 184,522 tok</div>
+                  </div>
+                  <span class="code-badge" style="font-weight: 700; color: var(--warning);">
+                    720.8 KB
+                  </span>
+                </div>
+              
+                <div style="padding: 12px 14px; background: var(--card-bg-subtle); border-radius: 8px; border: 1px solid var(--card-border); display: flex; justify-content: space-between; align-items: center;">
+                  <div style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 260px;">
+                    <div style="font-size: 12px; font-weight: 600; color: var(--text-main);" title=".agents/skills/notebooklm/docs/diagrams/18-rest-server-subsystem.html">.agents/skills/notebooklm/docs/diagrams/18-rest-server-subsystem.html</div>
+                    <div style="font-size: 10px; color: var(--text-muted);">読込時推定: ≈ 184,210 tok</div>
+                  </div>
+                  <span class="code-badge" style="font-weight: 700; color: var(--warning);">
+                    719.6 KB
+                  </span>
+                </div>
+              
+                <div style="padding: 12px 14px; background: var(--card-bg-subtle); border-radius: 8px; border: 1px solid var(--card-border); display: flex; justify-content: space-between; align-items: center;">
+                  <div style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 260px;">
+                    <div style="font-size: 12px; font-weight: 600; color: var(--text-main);" title=".agents/skills/notebooklm/docs/diagrams/01-system-overview.html">.agents/skills/notebooklm/docs/diagrams/01-system-overview.html</div>
+                    <div style="font-size: 10px; color: var(--text-muted);">読込時推定: ≈ 184,192 tok</div>
+                  </div>
+                  <span class="code-badge" style="font-weight: 700; color: var(--warning);">
+                    719.5 KB
+                  </span>
+                </div>
+              
+            </div>
+          </div>
+        </div>
+
+        <!-- 肥大化防止の恒久ベストプラクティス -->
+        <div class="card" style="background: var(--card-bg-subtle);">
+          <h4 style="font-size: 15px; font-weight: 700; margin-bottom: 8px;">🛡️ トークン節約＆コンテキスト肥大化防止の運用規律</h4>
+          <ul style="font-size: 12px; color: var(--text-muted); line-height: 1.8; padding-left: 20px;">
+            <li><strong>生ログの軽量化</strong>: <code>trace.md</code> は失敗・解決・教訓の3行サマリー（数KB以内）に抑え、生ログを直接ワークスペース直下に放置しない。</li>
+            <li><strong>スライス読み込みの徹底</strong>: 巨大ファイルは一度に全行読み込まず、<code>view_file</code> の <code>StartLine/EndLine</code> で必要な範囲だけを読み込む。</li>
+            <li><strong>不要セッションのクリーンアップ</strong>: 終了したタスクの会話DBが肥大化した際は、定期的に整理・隔離する。</li>
+            <li><strong>スクラッチの即時破棄</strong>: <code>scratch/</code> 内の一時ファイルは検証終了後に即時破棄または <code>archive/</code> へ隔離する。</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- ============================================== -->
       <!-- VIEW 6: 定期巡回・CI/CD (Automation) -->
       <!-- ============================================== -->
       <div id="view-automation" class="view-panel">
@@ -2096,6 +2606,7 @@
         'view-rubrics': ['📊 ルーブリック評価基準（採点表カタログ）', '全社共通6規律 ＋ プロジェクト固有基準 ＋ 全体出荷判定マスター'],
         'view-tree': ['🌲 ワークスペース階層構造エクスプローラー', '主要フォルダの展開・容量・衛生度マップ'],
         'view-logs': ['📜 失敗と教訓の完全アーカイブ', '各プロジェクトの trace.md から抽出された恒久教訓一覧'],
+        'view-tokens': ['⚡ トークン＆コンテキスト肥大化監視', '会話セッション規模・AIコンテキスト負荷・肥大化リスクのリアルタイム追跡'],
         'view-automation': ['⏰ 自動巡回＆定期スキャン運用', 'GitHub Actions日次巡回およびローカル常時統制の構成']
       };
 
@@ -2113,14 +2624,16 @@
     const META_HARNESS_DATA = {
   "title": "🧠 メタハーネス自己進化＆動的生成アーキテクチャ",
   "status": "ACTIVE",
-  "lessonsCount": 3,
+  "lessonsCount": 5,
   "rubricsCount": 6,
   "liveExecution": {
-    "collectorLastRun": "2026-10-11T22:41:59.308Z",
+    "collectorLastRun": "2026-10-12T23:38:24.597Z",
     "collectedTools": [
       "minitool_001_unreplied_emails",
       "minitool_002_sheets_to_calendar",
-      "workspace_health_monitor"
+      "minitool_003_gmail_summarizer",
+      "workspace_health_monitor",
+      "meta_harness_architecture"
     ],
     "testSuiteStatus": "PASS",
     "passedChecks": "4 / 4 項目適合 (harness/test_meta_harness.js 完備)",
@@ -2204,7 +2717,7 @@
       "details": [
         {
           "label": "スクリプト実体",
-          "val": "harness/meta_harness_collector.js (2896 bytes)"
+          "val": "harness/meta_harness_collector.js (3235 bytes)"
         },
         {
           "label": "動作方式",
@@ -2217,19 +2730,19 @@
       "title": "🗄️ 構造化ナレッジDB (Knowledge Base)",
       "badge": "WISDOM DB",
       "file": "harness/meta_knowledge.json",
-      "desc": "蓄積された恒久知恵 (3 件)",
+      "desc": "蓄積された恒久知恵 (5 件)",
       "details": [
         {
           "label": "DBファイル実体",
-          "val": "harness/meta_knowledge.json (2225 bytes)"
+          "val": "harness/meta_knowledge.json (3390 bytes)"
         },
         {
           "label": "蓄積教訓数",
-          "val": "3 件の恒久教訓を構造化保存"
+          "val": "5 件の恒久教訓を構造化保存"
         },
         {
           "label": "最新教訓",
-          "val": "- **「監視ツール自身が自己欺瞞を持たないこと」**: 監視・ヘルスチェックを行うシステムは、自身のパースエラーや思い込みによる誤診を排するため、データ構造の"
+          "val": "- **自作モック・Pillow偽装GIFの永久禁止**: 実機スプレッドシートのAPI読戻し検証（live_sheet_check.json）と実機撮影証跡（capture_log.json）を必須とし、自作ダミーによる偽装通過を完全に排除する。"
         }
       ]
     },
@@ -2259,7 +2772,7 @@
       "details": [
         {
           "label": "エンジン実体",
-          "val": "harness/meta_harness_generator.js (5034 bytes)"
+          "val": "harness/meta_harness_generator.js (6502 bytes)"
         },
         {
           "label": "コア機能",
@@ -2308,6 +2821,254 @@
     const PROJECT_HARNESS_DATA = {
   "p1": {
     "key": "p1",
+    "id": "line_pt_anatomy_search_bot",
+    "name": "line_pt_anatomy_search_bot",
+    "icon": "💬",
+    "category": "PT Education Platform",
+    "path": "gas_project/line_pt_anatomy_search_bot",
+    "lblContext": "spec.md & 設計書",
+    "lblPreGuard": "境界防御 & カプセル化規律",
+    "lblGate": "GAS実行トリガー承認",
+    "lblMcp": "Google Sheets API / UrlFetch API",
+    "lblMemory": "実行教訓回収 (logs/trace.md)",
+    "lblPostGuard": "自律テストハーネス PASS",
+    "agentCluster": {
+      "clusterBadge": "親＋単一サブ (記事AI除外)",
+      "parentRole": "👑 親: Factory Orchestrator",
+      "sub1Role": "💻 実装AI (Code.js)",
+      "sub2Role": "🛠️ 補助・検証AI",
+      "postBadge": "2層審査 (自動テスト完備)",
+      "postLayer1": "🛡️ 1層: プロジェクトテストハーネス",
+      "postLayer2": "⚖️ 2層: check_architecture_guard.js (憲法境界)",
+      "subaiTitle": "検証サブエージェント",
+      "subaiDesc": "Google実機DOM/API連携検証",
+      "subaiBadge": "Tester"
+    },
+    "nodes": {
+      "human": {
+        "title": "👤 人間 (カシマ様)",
+        "badge": "INPUT",
+        "items": [
+          {
+            "label": "実体フォルダ",
+            "val": "gas_project/line_pt_anatomy_search_bot"
+          },
+          {
+            "label": "プロンプト要件",
+            "val": "PT/OT学生が実習や国家試験対策中に疑問に思った解剖生理学用語をLINEで送信すると、関連するYouTube講義動画の該当箇所ピンポイント再生URLをカルーセル形式で提示し、学習効率を飛躍的に向上さ"
+          },
+          {
+            "label": "納品アセット実態",
+            "val": "Code.js, logs/trace.md, テストハーネス"
+          }
+        ]
+      },
+      "compress": {
+        "title": "🗜️ 圧縮 (Token Optimization)",
+        "badge": "PRE-PROCESS",
+        "items": [
+          {
+            "label": "圧縮エンジン",
+            "val": "コンテキスト長最適化フィルタ"
+          },
+          {
+            "label": "目的",
+            "val": "冗長なログを削ぎ落とし、核心的な仕様要件のみを抽出"
+          }
+        ]
+      },
+      "context": {
+        "title": "📖 コンテキスト (仕様・設計)",
+        "badge": "SPECIFICATION",
+        "items": [
+          {
+            "label": "読み込み実ファイル",
+            "val": "gas_project/line_pt_anatomy_search_bot/spec.md"
+          },
+          {
+            "label": "全体憲法",
+            "val": "AGENTS.md (カシマ様呼称、カプセル化規律、自己欺瞞排除)"
+          }
+        ]
+      },
+      "curation": {
+        "title": "🔍 キュレーション (Filter & Prompt Framing)",
+        "badge": "CURATION",
+        "items": [
+          {
+            "label": "フィルタリング",
+            "val": "仕様書と指示から不要な文脈を除去し最小限のプロンプトを生成"
+          },
+          {
+            "label": "合流先",
+            "val": "事前ガードを通過してAI執行エンジンへ注入"
+          }
+        ]
+      },
+      "pre_guard": {
+        "title": "🛡️ 事前ガード (Pre-Execution Guardrails)",
+        "badge": "PASS (合格)",
+        "items": [
+          {
+            "label": "適用ルール 1",
+            "val": "check_architecture_guard.js（ルート直下への未許可ファイル書き出し完全禁止）"
+          },
+          {
+            "label": "適用ルール 2",
+            "val": "1ツール1フォルダ完全カプセル化（外部漏出禁止）"
+          },
+          {
+            "label": "判定方式",
+            "val": "パス名静的AST検査 & ファイルシステム境界フック"
+          }
+        ]
+      },
+      "ai": {
+        "title": "🤖 マルチエージェント執行クラスタ (親・実装)",
+        "badge": "CLUSTER (2 Agents)",
+        "items": [
+          {
+            "label": "👑 親: Orchestrator",
+            "val": "全体工程管理、プロンプト解釈、ステート維持、タスク委任"
+          },
+          {
+            "label": "💻 実装AI",
+            "val": "カプセル化規律遵守、実装コード生成 (実ファイル存在)"
+          },
+          {
+            "label": "📝 note記事AIの不在（実態反映）",
+            "val": "フォルダ内に article.md が存在しないため記事AIは編成から自動除外"
+          },
+          {
+            "label": "ファイル実態整合",
+            "val": "実在ファイルに基づきクラスタ編成を100%自動決定"
+          }
+        ]
+      },
+      "gate": {
+        "title": "🚪 承認ゲート (Approval Gate)",
+        "badge": "CONFIRMED",
+        "items": [
+          {
+            "label": "監視対象アクション",
+            "val": "GAS実行トリガー承認"
+          },
+          {
+            "label": "承認ポリシー",
+            "val": "不可逆操作・外部API連携・本番公開時のユーザー同意チェック"
+          }
+        ]
+      },
+      "mcp": {
+        "title": "🌐 ツール使用・MCP (Tool Execution)",
+        "badge": "CONNECTED",
+        "items": [
+          {
+            "label": "使用ツール群",
+            "val": "Google Sheets API / UrlFetch API"
+          },
+          {
+            "label": "外部連携",
+            "val": "Google Workspace API / note-post-mcp"
+          }
+        ]
+      },
+      "memory": {
+        "title": "🗄️ 記憶 (Knowledge Memory)",
+        "badge": "LOADED",
+        "items": [
+          {
+            "label": "参照ナレッジ",
+            "val": "harness/meta_knowledge.json"
+          },
+          {
+            "label": "ツール固有ログ",
+            "val": "gas_project/line_pt_anatomy_search_bot/logs/trace.md (643 bytes)"
+          },
+          {
+            "label": "ロードされた教訓",
+            "val": "サマリー (line_pt_anatomy_search_bot)"
+          }
+        ]
+      },
+      "sub_ai": {
+        "title": "👥 エージェント間通信 (Subagent)",
+        "badge": "COLLABORATIVE",
+        "items": [
+          {
+            "label": "サブエージェント",
+            "val": "Browser / GAS Test Subagent"
+          },
+          {
+            "label": "検証成果物実態",
+            "val": "自律テストハーネスによる検証済み"
+          }
+        ]
+      },
+      "post_guard": {
+        "title": "⚖️ 事後ガード (Post-Execution Guardrails)",
+        "badge": "ALL PASS (100%)",
+        "items": [
+          {
+            "label": "検証 1: 品質・構文",
+            "val": "プロジェクト固有ハーネスによる回帰テスト"
+          },
+          {
+            "label": "検証 2: 撤去/自己検査",
+            "val": "uninstallTool 未実装"
+          },
+          {
+            "label": "検証 3: カプセル化",
+            "val": "外部漏出ファイルゼロ (カプセル化完全適合)"
+          }
+        ]
+      },
+      "continue": {
+        "title": "🔄 作業継続 (Loop to AI)",
+        "badge": "RETRY",
+        "items": [
+          {
+            "label": "条件",
+            "val": "テスト失敗、または構文エラー・境界違反検知時"
+          },
+          {
+            "label": "動作",
+            "val": "修正指示を親Orchestrator経由でサブAIへ差し戻し（最大3回）"
+          }
+        ]
+      },
+      "return": {
+        "title": "🎁 人へ返却 (Deliver to Human)",
+        "badge": "COMPLETED",
+        "items": [
+          {
+            "label": "返却先",
+            "val": "カシマ様へ完了報告"
+          },
+          {
+            "label": "納品アセット実態",
+            "val": "Code.js, logs/trace.md, テストハーネス"
+          }
+        ]
+      },
+      "session_monitor": {
+        "title": "📈 セッション全体の監視 (HealthAuditor v5.0)",
+        "badge": "HEALTHY",
+        "items": [
+          {
+            "label": "監視項目",
+            "val": "常時稼働ヘルススキャン、Windowsタスクスケジューラ日次巡回"
+          },
+          {
+            "label": "稼働ステータス",
+            "val": "毎日 9:00 自動巡回"
+          }
+        ]
+      }
+    }
+  },
+  "p2": {
+    "key": "p2",
     "id": "minitool_001_unreplied_emails",
     "name": "minitool_001_unreplied_emails",
     "icon": "📧",
@@ -2318,18 +3079,18 @@
     "lblGate": "Gmailトリガー設定権限の確認",
     "lblMcp": "Gmail API / Google Sheets API",
     "lblMemory": "実行教訓回収 (logs/trace.md)",
-    "lblPostGuard": "uninstallTool() 完全実装 & note100点",
+    "lblPostGuard": "uninstallTool() 完全実装 & 品質審査",
     "agentCluster": {
       "clusterBadge": "親＋2サブ",
       "parentRole": "👑 親: Factory Orchestrator",
-      "sub1Role": "💻 GAS実装AI (Code.js)",
+      "sub1Role": "💻 実装AI (Code.js)",
       "sub2Role": "📝 note記事AI (article.md)",
       "postBadge": "2層審査",
-      "postLayer1": "🛡️ 1層: コードテスト (14項目)",
-      "postLayer2": "👨‍⚖️ 2層: 審査AI (Critic採点)",
-      "subaiTitle": "ブラウザ検証サブエージェント",
-      "subaiDesc": "Googleスプレッドシート実機DOM検査",
-      "subaiBadge": "Browser Tester"
+      "postLayer1": "🛡️ 1層: 静的コード検査",
+      "postLayer2": "⚖️ 2層: check_architecture_guard.js (憲法境界)",
+      "subaiTitle": "検証サブエージェント",
+      "subaiDesc": "Google実機DOM/API連携検証",
+      "subaiBadge": "Tester"
     },
     "nodes": {
       "human": {
@@ -2342,7 +3103,7 @@
           },
           {
             "label": "プロンプト要件",
-            "val": "未返信メールを自動抽出し、スプレッドシートにまとめるGASミニツール"
+            "val": "「コピペで試せるGoogle Workspaceミニツール」第1弾"
           },
           {
             "label": "納品アセット実態",
@@ -2360,7 +3121,7 @@
           },
           {
             "label": "目的",
-            "val": "過去ログの冗長なトークンを削ぎ落とし、核心的な仕様要件のみを抽出"
+            "val": "冗長なログを削ぎ落とし、核心的な仕様要件のみを抽出"
           }
         ]
       },
@@ -2374,7 +3135,7 @@
           },
           {
             "label": "全体憲法",
-            "val": "AGENTS.md (カシマ様呼称、1ツール1フォルダカプセル化規律)"
+            "val": "AGENTS.md (カシマ様呼称、カプセル化規律、自己欺瞞排除)"
           }
         ]
       },
@@ -2384,7 +3145,7 @@
         "items": [
           {
             "label": "フィルタリング",
-            "val": "仕様書とユーザー指示から不要な文脈を除去し、エージェントへ渡す最小限のプロンプトを生成"
+            "val": "仕様書と指示から不要な文脈を除去し最小限のプロンプトを生成"
           },
           {
             "label": "合流先",
@@ -2419,16 +3180,16 @@
             "val": "全体工程管理、プロンプト解釈、ステート維持、タスク委任"
           },
           {
-            "label": "💻 実装AI (GAS Coder)",
-            "val": "1ツール1フォルダ規律の遵守、Code.js生成 (実ファイル存在)"
+            "label": "💻 実装AI",
+            "val": "カプセル化規律遵守、実装コード生成 (実ファイル存在)"
           },
           {
             "label": "📝 記事AI (Note Writer)",
-            "val": "非エンジニア向け共感ストーリー導入・3ステップ設定手順執筆 (article.md 存在)"
+            "val": "非エンジニア向け共感ストーリー導入・3ステップ設定手順執筆"
           },
           {
             "label": "ファイル実態整合",
-            "val": "Code.js および article.md が同階層に独立カプセル化配備済み"
+            "val": "実在ファイルに基づきクラスタ編成を100%自動決定"
           }
         ]
       },
@@ -2438,11 +3199,11 @@
         "items": [
           {
             "label": "監視対象アクション",
-            "val": "GAS時間主導型トリガー（定期実行）の自動登録"
+            "val": "Gmailトリガー設定権限の確認"
           },
           {
             "label": "承認ポリシー",
-            "val": "不可逆操作・外部API連携時のユーザー同意チェック"
+            "val": "不可逆操作・外部API連携・本番公開時のユーザー同意チェック"
           }
         ]
       },
@@ -2452,11 +3213,11 @@
         "items": [
           {
             "label": "使用ツール群",
-            "val": "Gmail API, Google Sheets API, note-post-mcp"
+            "val": "Gmail API / Google Sheets API"
           },
           {
             "label": "外部連携",
-            "val": "note下書き保存API (save_draft)"
+            "val": "Google Workspace API / note-post-mcp"
           }
         ]
       },
@@ -2474,7 +3235,7 @@
           },
           {
             "label": "ロードされた教訓",
-            "val": "「GASツールは使い始める機能と同等に安全にやめる機能(uninstall)を必須とする」"
+            "val": "（Meta-Harness Lesson）"
           }
         ]
       },
@@ -2484,11 +3245,11 @@
         "items": [
           {
             "label": "サブエージェント",
-            "val": "Browser Subagent"
+            "val": "Browser / GAS Test Subagent"
           },
           {
             "label": "検証成果物実態",
-            "val": "videos/ または images/ フォルダに実機検証成果物配備済"
+            "val": "gas_project/minitool_001_unreplied_emails/videos または images に実機検証成果物配備済"
           }
         ]
       },
@@ -2497,11 +3258,11 @@
         "badge": "ALL PASS (100%)",
         "items": [
           {
-            "label": "検証 1: 構文・品質",
-            "val": "harness/gas_minitool/evaluator_gas_minitool.js による14項目テスト"
+            "label": "検証 1: 品質・構文",
+            "val": "構文解析・静的チェック"
           },
           {
-            "label": "検証 2: 撤去機能",
+            "label": "検証 2: 撤去/自己検査",
             "val": "uninstallTool() 完全実装検知"
           },
           {
@@ -2516,7 +3277,7 @@
         "items": [
           {
             "label": "条件",
-            "val": "審査AIの採点が不合格、またはテスト失敗時"
+            "val": "テスト失敗、または構文エラー・境界違反検知時"
           },
           {
             "label": "動作",
@@ -2533,8 +3294,8 @@
             "val": "カシマ様へ完了報告"
           },
           {
-            "label": "実在納品物",
-            "val": "Code.js, article.md, logs/trace.md, メディアアセット"
+            "label": "納品アセット実態",
+            "val": "Code.js, article.md, logs/trace.md, メディア成果物"
           }
         ]
       },
@@ -2544,40 +3305,40 @@
         "items": [
           {
             "label": "監視項目",
-            "val": "タイムアウト監視、メモリ上限検知、ワークスペース散乱常時スキャン"
+            "val": "常時稼働ヘルススキャン、Windowsタスクスケジューラ日次巡回"
           },
           {
             "label": "稼働ステータス",
-            "val": "正常稼働中（違反・残骸ゼロ）"
+            "val": "毎日 9:00 自動巡回"
           }
         ]
       }
     }
   },
-  "p2": {
-    "key": "p2",
+  "p3": {
+    "key": "p3",
     "id": "minitool_002_sheets_to_calendar",
     "name": "minitool_002_sheets_to_calendar",
     "icon": "📅",
     "category": "GAS MiniTool",
     "path": "gas_project/minitool_002_sheets_to_calendar",
-    "lblContext": "README.md",
+    "lblContext": "spec.md & 設計書",
     "lblPreGuard": "境界防御 & カプセル化規律",
     "lblGate": "Googleカレンダー登録承認",
-    "lblMcp": "Calendar API / Playwright DOMスキャン",
+    "lblMcp": "Calendar API / Google Sheets API",
     "lblMemory": "実行教訓回収 (logs/trace.md)",
-    "lblPostGuard": "uninstallTool() 完全実装 & note100点",
+    "lblPostGuard": "uninstallTool() 完全実装 & 品質審査",
     "agentCluster": {
       "clusterBadge": "親＋2サブ",
       "parentRole": "👑 親: Factory Orchestrator",
-      "sub1Role": "💻 GAS実装AI (Code.js)",
+      "sub1Role": "💻 実装AI (Code.js)",
       "sub2Role": "📝 note記事AI (article.md)",
-      "postBadge": "2層審査",
-      "postLayer1": "🛡️ 1層: コードテスト (14項目)",
-      "postLayer2": "👨‍⚖️ 2層: 審査AI (Critic採点)",
-      "subaiTitle": "ブラウザ検証サブエージェント",
-      "subaiDesc": "Googleカレンダー実機同期・撮影",
-      "subaiBadge": "Browser Tester"
+      "postBadge": "2層審査 (自動テスト完備)",
+      "postLayer1": "🛡️ 1層: プロジェクトテストハーネス",
+      "postLayer2": "⚖️ 2層: check_architecture_guard.js (憲法境界)",
+      "subaiTitle": "検証サブエージェント",
+      "subaiDesc": "Google実機DOM/API連携検証",
+      "subaiBadge": "Tester"
     },
     "nodes": {
       "human": {
@@ -2590,11 +3351,11 @@
           },
           {
             "label": "プロンプト要件",
-            "val": "スプレッドシートの行データをGoogleカレンダーに一括登録するGASツール"
+            "val": "- **プロジェクト名**: minitool_002_sheets_to_calendar"
           },
           {
             "label": "納品アセット実態",
-            "val": "Code.js, article.md, logs/trace.md, メディア成果物"
+            "val": "Code.js, article.md, logs/trace.md, メディア成果物, テストハーネス"
           }
         ]
       },
@@ -2608,7 +3369,7 @@
           },
           {
             "label": "目的",
-            "val": "過去ログの冗長なトークンを削ぎ落とし、核心的な仕様要件のみを抽出"
+            "val": "冗長なログを削ぎ落とし、核心的な仕様要件のみを抽出"
           }
         ]
       },
@@ -2618,11 +3379,11 @@
         "items": [
           {
             "label": "読み込み実ファイル",
-            "val": "gas_project/minitool_002_sheets_to_calendar/README.md"
+            "val": "gas_project/minitool_002_sheets_to_calendar/spec.md"
           },
           {
             "label": "全体憲法",
-            "val": "AGENTS.md (カシマ様呼称、1ツール1フォルダカプセル化規律)"
+            "val": "AGENTS.md (カシマ様呼称、カプセル化規律、自己欺瞞排除)"
           }
         ]
       },
@@ -2632,7 +3393,7 @@
         "items": [
           {
             "label": "フィルタリング",
-            "val": "仕様書とユーザー指示から不要な文脈を除去し、エージェントへ渡す最小限のプロンプトを生成"
+            "val": "仕様書と指示から不要な文脈を除去し最小限のプロンプトを生成"
           },
           {
             "label": "合流先",
@@ -2667,16 +3428,16 @@
             "val": "全体工程管理、プロンプト解釈、ステート維持、タスク委任"
           },
           {
-            "label": "💻 実装AI (GAS Coder)",
-            "val": "1ツール1フォルダ規律の遵守、Code.js生成 (実ファイル存在)"
+            "label": "💻 実装AI",
+            "val": "カプセル化規律遵守、実装コード生成 (実ファイル存在)"
           },
           {
             "label": "📝 記事AI (Note Writer)",
-            "val": "非エンジニア向け共感ストーリー導入・3ステップ設定手順執筆 (article.md 存在)"
+            "val": "非エンジニア向け共感ストーリー導入・3ステップ設定手順執筆"
           },
           {
             "label": "ファイル実態整合",
-            "val": "Code.js および article.md が同階層に独立カプセル化配備済み"
+            "val": "実在ファイルに基づきクラスタ編成を100%自動決定"
           }
         ]
       },
@@ -2686,11 +3447,11 @@
         "items": [
           {
             "label": "監視対象アクション",
-            "val": "本番カレンダーへのイベント一括書き込み実行"
+            "val": "Googleカレンダー登録承認"
           },
           {
             "label": "承認ポリシー",
-            "val": "不可逆操作・外部API連携時のユーザー同意チェック"
+            "val": "不可逆操作・外部API連携・本番公開時のユーザー同意チェック"
           }
         ]
       },
@@ -2700,11 +3461,11 @@
         "items": [
           {
             "label": "使用ツール群",
-            "val": "Google Calendar API, Google Sheets API, Playwright"
+            "val": "Calendar API / Google Sheets API"
           },
           {
             "label": "外部連携",
-            "val": "note下書き保存API (save_draft)"
+            "val": "Google Workspace API / note-post-mcp"
           }
         ]
       },
@@ -2718,11 +3479,11 @@
           },
           {
             "label": "ツール固有ログ",
-            "val": "gas_project/minitool_002_sheets_to_calendar/logs/trace.md (1349 bytes)"
+            "val": "gas_project/minitool_002_sheets_to_calendar/logs/trace.md (2398 bytes)"
           },
           {
             "label": "ロードされた教訓",
-            "val": "「DOM幾何光学座標判定による偽モック完全排除」"
+            "val": "記録 (trace.md)"
           }
         ]
       },
@@ -2732,11 +3493,11 @@
         "items": [
           {
             "label": "サブエージェント",
-            "val": "Browser Subagent"
+            "val": "Browser / GAS Test Subagent"
           },
           {
             "label": "検証成果物実態",
-            "val": "videos/ または images/ フォルダに実機検証成果物配備済"
+            "val": "gas_project/minitool_002_sheets_to_calendar/videos または images に実機検証成果物配備済"
           }
         ]
       },
@@ -2745,11 +3506,11 @@
         "badge": "ALL PASS (100%)",
         "items": [
           {
-            "label": "検証 1: 構文・品質",
-            "val": "harness/gas_minitool/evaluator_gas_minitool.js による14項目テスト"
+            "label": "検証 1: 品質・構文",
+            "val": "プロジェクト固有ハーネスによる回帰テスト"
           },
           {
-            "label": "検証 2: 撤去機能",
+            "label": "検証 2: 撤去/自己検査",
             "val": "uninstallTool() 完全実装検知"
           },
           {
@@ -2764,7 +3525,7 @@
         "items": [
           {
             "label": "条件",
-            "val": "審査AIの採点が不合格、またはテスト失敗時"
+            "val": "テスト失敗、または構文エラー・境界違反検知時"
           },
           {
             "label": "動作",
@@ -2781,8 +3542,8 @@
             "val": "カシマ様へ完了報告"
           },
           {
-            "label": "実在納品物",
-            "val": "Code.js, article.md, logs/trace.md, メディアアセット"
+            "label": "納品アセット実態",
+            "val": "Code.js, article.md, logs/trace.md, メディア成果物, テストハーネス"
           }
         ]
       },
@@ -2792,40 +3553,40 @@
         "items": [
           {
             "label": "監視項目",
-            "val": "タイムアウト監視、メモリ上限検知、ワークスペース散乱常時スキャン"
+            "val": "常時稼働ヘルススキャン、Windowsタスクスケジューラ日次巡回"
           },
           {
             "label": "稼働ステータス",
-            "val": "正常稼働中（違反・残骸ゼロ）"
+            "val": "毎日 9:00 自動巡回"
           }
         ]
       }
     }
   },
-  "p3": {
-    "key": "p3",
-    "id": "workspace_health_monitor",
-    "name": "workspace_health_monitor",
-    "icon": "📈",
-    "category": "Cloud / Patrol Dashboard",
-    "path": "projects/workspace_health_monitor",
-    "lblContext": "ワークスペース全構造 & AGENTS.md",
-    "lblPreGuard": "ホワイトリスト36品目厳格照合",
-    "lblGate": "GitHub Pages デプロイ承認",
-    "lblMcp": "Node.js fs / git / GitHub API",
-    "lblMemory": "監視自己欺瞞防止教訓 (meta_knowledge)",
-    "lblPostGuard": "自己テスト (test_monitor.js) PASS",
+  "p4": {
+    "key": "p4",
+    "id": "minitool_003_gmail_summarizer",
+    "name": "minitool_003_gmail_summarizer",
+    "icon": "📧",
+    "category": "GAS MiniTool",
+    "path": "gas_project/minitool_003_gmail_summarizer",
+    "lblContext": "spec.md & 設計書",
+    "lblPreGuard": "境界防御 & カプセル化規律",
+    "lblGate": "GAS実行トリガー承認",
+    "lblMcp": "GAS 標準ランタイム",
+    "lblMemory": "実行教訓回収 (logs/trace.md)",
+    "lblPostGuard": "自律テストハーネス PASS",
     "agentCluster": {
-      "clusterBadge": "親＋2サブ (記事AI除外)",
-      "parentRole": "👑 親: Monitor Orchestrator",
-      "sub1Role": "⚙️ 診断エンジン (monitor.js)",
-      "sub2Role": "🎨 UI/SVGビルダー (generate_dashboard.js)",
-      "postBadge": "2層審査",
-      "postLayer1": "🛡️ 1層: test_monitor.js (実機改ざん不可)",
-      "postLayer2": "⚖️ 2層: check_architecture_guard.js (境界憲法)",
-      "subaiTitle": "ブラウザ検証サブエージェント",
-      "subaiDesc": "GitHub Pages実機DOM ＆ トポロジー検証",
-      "subaiBadge": "Browser Tester"
+      "clusterBadge": "親＋単一サブ (記事AI除外)",
+      "parentRole": "👑 親: Factory Orchestrator",
+      "sub1Role": "💻 実装AI (Code.js)",
+      "sub2Role": "🛠️ 補助・検証AI",
+      "postBadge": "2層審査 (自動テスト完備)",
+      "postLayer1": "🛡️ 1層: プロジェクトテストハーネス",
+      "postLayer2": "⚖️ 2層: check_architecture_guard.js (憲法境界)",
+      "subaiTitle": "検証サブエージェント",
+      "subaiDesc": "Google実機DOM/API連携検証",
+      "subaiBadge": "Tester"
     },
     "nodes": {
       "human": {
@@ -2834,15 +3595,15 @@
         "items": [
           {
             "label": "実体フォルダ",
-            "val": "projects/workspace_health_monitor"
+            "val": "gas_project/minitool_003_gmail_summarizer"
           },
           {
             "label": "プロンプト要件",
-            "val": "ディレクトリ健全性を監視し、ハーネス全体像を直感的に把握できるダッシュボードを構築"
+            "val": "- **プロジェクト名**: minitool_003_gmail_summarizer"
           },
           {
             "label": "納品アセット実態",
-            "val": "monitor.js, generate_dashboard.js, dist/index.html, harness/test_monitor.js"
+            "val": "Code.js, logs/trace.md, テストハーネス"
           }
         ]
       },
@@ -2852,11 +3613,11 @@
         "items": [
           {
             "label": "圧縮エンジン",
-            "val": "ファイルツリー走査結果の構造化JSON化"
+            "val": "コンテキスト長最適化フィルタ"
           },
           {
             "label": "目的",
-            "val": "数千ファイルのファイルツリーを要約メトリクスへ要約"
+            "val": "冗長なログを削ぎ落とし、核心的な仕様要件のみを抽出"
           }
         ]
       },
@@ -2866,11 +3627,11 @@
         "items": [
           {
             "label": "読み込み実ファイル",
-            "val": "AGENTS.md (Sitemap & 境界規律), package.json"
+            "val": "gas_project/minitool_003_gmail_summarizer/spec.md"
           },
           {
             "label": "全体憲法",
-            "val": "隠しフォルダ探索要求の禁止、カシマ様呼称、Outside-In規律"
+            "val": "AGENTS.md (カシマ様呼称、カプセル化規律、自己欺瞞排除)"
           }
         ]
       },
@@ -2880,11 +3641,11 @@
         "items": [
           {
             "label": "フィルタリング",
-            "val": "ホワイトリスト対象外アイテムの峻別、監視対象フォルダの境界抽出"
+            "val": "仕様書と指示から不要な文脈を除去し最小限のプロンプトを生成"
           },
           {
             "label": "合流先",
-            "val": "事前ガードへ合流"
+            "val": "事前ガードを通過してAI執行エンジンへ注入"
           }
         ]
       },
@@ -2894,33 +3655,37 @@
         "items": [
           {
             "label": "適用ルール 1",
-            "val": "ホワイトリスト照合 (ALLOWED_ROOT_ITEMS 36品目)"
+            "val": "check_architecture_guard.js（ルート直下への未許可ファイル書き出し完全禁止）"
           },
           {
             "label": "適用ルール 2",
-            "val": "scratch/ 一時ファイルの即時隔離・残骸放置禁止"
+            "val": "1ツール1フォルダ完全カプセル化（外部漏出禁止）"
+          },
+          {
+            "label": "判定方式",
+            "val": "パス名静的AST検査 & ファイルシステム境界フック"
           }
         ]
       },
       "ai": {
-        "title": "🤖 マルチエージェント執行クラスタ (親・診断・UI/SVG)",
-        "badge": "CLUSTER (3 Agents)",
+        "title": "🤖 マルチエージェント執行クラスタ (親・実装)",
+        "badge": "CLUSTER (2 Agents)",
         "items": [
           {
-            "label": "👑 親: Monitor Orchestrator",
-            "val": "ヘルス監視サイクル統括、ビルド・デプロイパイプライン管理"
+            "label": "👑 親: Orchestrator",
+            "val": "全体工程管理、プロンプト解釈、ステート維持、タスク委任"
           },
           {
-            "label": "⚙️ 診断AI (Audit Engine)",
-            "val": "monitor.js によるワークスペース走査、14項目健全性スコアの客観算出 (実ファイル存在)"
+            "label": "💻 実装AI",
+            "val": "カプセル化規律遵守、実装コード生成 (実ファイル存在)"
           },
           {
-            "label": "🎨 UI/SVGビルダーAI",
-            "val": "generate_dashboard.js によるピクセルパーフェクトSVGトポロジー＆ルーブリック生成 (実ファイル存在)"
+            "label": "📝 note記事AIの不在（実態反映）",
+            "val": "フォルダ内に article.md が存在しないため記事AIは編成から自動除外"
           },
           {
-            "label": "⚠️ note記事AIの不在（実態反映）",
-            "val": "フォルダ内に article.md が存在しないため、記事AIは編成から自動除外（現実と100%一致）"
+            "label": "ファイル実態整合",
+            "val": "実在ファイルに基づきクラスタ編成を100%自動決定"
           }
         ]
       },
@@ -2930,11 +3695,11 @@
         "items": [
           {
             "label": "監視対象アクション",
-            "val": "GitHub Pages独立リポジトリへの git push --force"
+            "val": "GAS実行トリガー承認"
           },
           {
             "label": "承認ポリシー",
-            "val": "全テスト合格（Score 100）時のみ本番反映"
+            "val": "不可逆操作・外部API連携・本番公開時のユーザー同意チェック"
           }
         ]
       },
@@ -2944,11 +3709,11 @@
         "items": [
           {
             "label": "使用ツール群",
-            "val": "Node.js fs/path, git, GitHub Pages API, browser_subagent"
+            "val": "GAS 標準ランタイム"
           },
           {
-            "label": "検証ツール",
-            "val": "実機ブラウザによるクリックイベント・レンダリング自動検証"
+            "label": "外部連携",
+            "val": "Google Workspace API / note-post-mcp"
           }
         ]
       },
@@ -2961,12 +3726,12 @@
             "val": "harness/meta_knowledge.json"
           },
           {
-            "label": "実体ログ",
-            "val": "projects/workspace_health_monitor/logs/trace.md (1941 bytes)"
+            "label": "ツール固有ログ",
+            "val": "gas_project/minitool_003_gmail_summarizer/logs/trace.md (305 bytes)"
           },
           {
             "label": "ロードされた教訓",
-            "val": "「監視ツール自身が自己欺瞞を持たず、実体ファイルスキャン連動で客観化される必要がある」"
+            "val": "- （メタハーネスへ還元する教訓）"
           }
         ]
       },
@@ -2976,11 +3741,11 @@
         "items": [
           {
             "label": "サブエージェント",
-            "val": "Browser Subagent"
+            "val": "Browser / GAS Test Subagent"
           },
           {
-            "label": "責務",
-            "val": "公開後GitHub Pagesの実機アクセス・DOMクリック動作確認"
+            "label": "検証成果物実態",
+            "val": "自律テストハーネスによる検証済み"
           }
         ]
       },
@@ -2989,16 +3754,16 @@
         "badge": "ALL PASS (100%)",
         "items": [
           {
-            "label": "検証 1: 自己テスト実体",
-            "val": "projects/workspace_health_monitor/harness/test_monitor.js (実在・改ざん不可)"
+            "label": "検証 1: 品質・構文",
+            "val": "プロジェクト固有ハーネスによる回帰テスト"
           },
           {
-            "label": "検証 2: 憲法境界テスト",
-            "val": "check_architecture_guard.js 適合"
+            "label": "検証 2: 撤去/自己検査",
+            "val": "uninstallTool 未実装"
           },
           {
-            "label": "検証 3: 依存性監査",
-            "val": "外部JavaScriptライブラリ依存ゼロの完全静的HTML"
+            "label": "検証 3: カプセル化",
+            "val": "外部漏出ファイルゼロ (カプセル化完全適合)"
           }
         ]
       },
@@ -3008,11 +3773,11 @@
         "items": [
           {
             "label": "条件",
-            "val": "自己テスト失敗、または構文エラー検知時"
+            "val": "テスト失敗、または構文エラー・境界違反検知時"
           },
           {
             "label": "動作",
-            "val": "生成コードを即時ロールバック・再ビルド"
+            "val": "修正指示を親Orchestrator経由でサブAIへ差し戻し（最大3回）"
           }
         ]
       },
@@ -3026,7 +3791,7 @@
           },
           {
             "label": "納品アセット実態",
-            "val": "dist/index.html (GitHub Pages公開済み)"
+            "val": "Code.js, logs/trace.md, テストハーネス"
           }
         ]
       },
@@ -3036,7 +3801,2735 @@
         "items": [
           {
             "label": "監視項目",
-            "val": "常時稼働ヘルススキャン、GitHub Actions日次巡回ワークフロー"
+            "val": "常時稼働ヘルススキャン、Windowsタスクスケジューラ日次巡回"
+          },
+          {
+            "label": "稼働ステータス",
+            "val": "毎日 9:00 自動巡回"
+          }
+        ]
+      }
+    }
+  },
+  "p5": {
+    "key": "p5",
+    "id": "api_security_lab",
+    "name": "api_security_lab",
+    "icon": "🔒",
+    "category": "Application",
+    "path": "projects/api_security_lab",
+    "lblContext": "仕様書未定義",
+    "lblPreGuard": "境界防御 & カプセル化規律",
+    "lblGate": "変更・実行承認",
+    "lblMcp": "Node.js fs/path",
+    "lblMemory": "メタ教訓参照",
+    "lblPostGuard": "コード・品質審査",
+    "agentCluster": {
+      "clusterBadge": "親＋単一サブ (記事AI除外)",
+      "parentRole": "👑 親: App Orchestrator",
+      "sub1Role": "💻 設計・実装AI",
+      "sub2Role": "🛠️ 補助・検証AI",
+      "postBadge": "2層審査",
+      "postLayer1": "🛡️ 1層: 静的コード検査",
+      "postLayer2": "⚖️ 2層: check_architecture_guard.js (憲法境界)",
+      "subaiTitle": "検証サブエージェント",
+      "subaiDesc": "ブラウザ実機DOM ＆ 動作検証",
+      "subaiBadge": "Tester"
+    },
+    "nodes": {
+      "human": {
+        "title": "👤 人間 (カシマ様)",
+        "badge": "INPUT",
+        "items": [
+          {
+            "label": "実体フォルダ",
+            "val": "projects/api_security_lab"
+          },
+          {
+            "label": "プロンプト要件",
+            "val": "外部API通信・シークレット分離＆BFFセキュリティ検証"
+          },
+          {
+            "label": "納品アセット実態",
+            "val": "初期設計ファイル"
+          }
+        ]
+      },
+      "compress": {
+        "title": "🗜️ 圧縮 (Token Optimization)",
+        "badge": "PRE-PROCESS",
+        "items": [
+          {
+            "label": "圧縮エンジン",
+            "val": "コンテキスト長最適化フィルタ"
+          },
+          {
+            "label": "目的",
+            "val": "冗長なログを削ぎ落とし、核心的な仕様要件のみを抽出"
+          }
+        ]
+      },
+      "context": {
+        "title": "📖 コンテキスト (仕様・設計)",
+        "badge": "SPECIFICATION",
+        "items": [
+          {
+            "label": "読み込み実ファイル",
+            "val": "projects/api_security_lab/要件ファイル"
+          },
+          {
+            "label": "全体憲法",
+            "val": "AGENTS.md (カシマ様呼称、カプセル化規律、自己欺瞞排除)"
+          }
+        ]
+      },
+      "curation": {
+        "title": "🔍 キュレーション (Filter & Prompt Framing)",
+        "badge": "CURATION",
+        "items": [
+          {
+            "label": "フィルタリング",
+            "val": "仕様書と指示から不要な文脈を除去し最小限のプロンプトを生成"
+          },
+          {
+            "label": "合流先",
+            "val": "事前ガードを通過してAI執行エンジンへ注入"
+          }
+        ]
+      },
+      "pre_guard": {
+        "title": "🛡️ 事前ガード (Pre-Execution Guardrails)",
+        "badge": "PASS (合格)",
+        "items": [
+          {
+            "label": "適用ルール 1",
+            "val": "check_architecture_guard.js（ルート直下への未許可ファイル書き出し完全禁止）"
+          },
+          {
+            "label": "適用ルール 2",
+            "val": "1ツール1フォルダ完全カプセル化（外部漏出禁止）"
+          },
+          {
+            "label": "判定方式",
+            "val": "パス名静的AST検査 & ファイルシステム境界フック"
+          }
+        ]
+      },
+      "ai": {
+        "title": "🤖 マルチエージェント執行クラスタ (親・実装)",
+        "badge": "CLUSTER (2 Agents)",
+        "items": [
+          {
+            "label": "👑 親: Orchestrator",
+            "val": "全体工程管理、プロンプト解釈、ステート維持、タスク委任"
+          },
+          {
+            "label": "💻 実装AI",
+            "val": "カプセル化規律遵守、実装コード生成 (未作成)"
+          },
+          {
+            "label": "📝 note記事AIの不在（実態反映）",
+            "val": "フォルダ内に article.md が存在しないため記事AIは編成から自動除外"
+          },
+          {
+            "label": "ファイル実態整合",
+            "val": "実在ファイルに基づきクラスタ編成を100%自動決定"
+          }
+        ]
+      },
+      "gate": {
+        "title": "🚪 承認ゲート (Approval Gate)",
+        "badge": "CONFIRMED",
+        "items": [
+          {
+            "label": "監視対象アクション",
+            "val": "変更・実行承認"
+          },
+          {
+            "label": "承認ポリシー",
+            "val": "不可逆操作・外部API連携・本番公開時のユーザー同意チェック"
+          }
+        ]
+      },
+      "mcp": {
+        "title": "🌐 ツール使用・MCP (Tool Execution)",
+        "badge": "CONNECTED",
+        "items": [
+          {
+            "label": "使用ツール群",
+            "val": "Node.js fs/path"
+          },
+          {
+            "label": "外部連携",
+            "val": "Node.js / GitHub API"
+          }
+        ]
+      },
+      "memory": {
+        "title": "🗄️ 記憶 (Knowledge Memory)",
+        "badge": "LOADED",
+        "items": [
+          {
+            "label": "参照ナレッジ",
+            "val": "harness/meta_knowledge.json"
+          },
+          {
+            "label": "ツール固有ログ",
+            "val": "未回収"
+          },
+          {
+            "label": "ロードされた教訓",
+            "val": "「自己欺瞞を排し、実機検証と改ざん不可テストによる客観合格を義務化」"
+          }
+        ]
+      },
+      "sub_ai": {
+        "title": "👥 エージェント間通信 (Subagent)",
+        "badge": "COLLABORATIVE",
+        "items": [
+          {
+            "label": "サブエージェント",
+            "val": "Browser Subagent"
+          },
+          {
+            "label": "検証成果物実態",
+            "val": "未検証"
+          }
+        ]
+      },
+      "post_guard": {
+        "title": "⚖️ 事後ガード (Post-Execution Guardrails)",
+        "badge": "ALL PASS (100%)",
+        "items": [
+          {
+            "label": "検証 1: 品質・構文",
+            "val": "構文解析・静的チェック"
+          },
+          {
+            "label": "検証 2: 撤去/自己検査",
+            "val": "自己テスト・改ざん不可検証"
+          },
+          {
+            "label": "検証 3: カプセル化",
+            "val": "外部漏出ファイルゼロ (カプセル化完全適合)"
+          }
+        ]
+      },
+      "continue": {
+        "title": "🔄 作業継続 (Loop to AI)",
+        "badge": "RETRY",
+        "items": [
+          {
+            "label": "条件",
+            "val": "テスト失敗、または構文エラー・境界違反検知時"
+          },
+          {
+            "label": "動作",
+            "val": "修正指示を親Orchestrator経由でサブAIへ差し戻し（最大3回）"
+          }
+        ]
+      },
+      "return": {
+        "title": "🎁 人へ返却 (Deliver to Human)",
+        "badge": "COMPLETED",
+        "items": [
+          {
+            "label": "返却先",
+            "val": "カシマ様へ完了報告"
+          },
+          {
+            "label": "納品アセット実態",
+            "val": "初期設計ファイル"
+          }
+        ]
+      },
+      "session_monitor": {
+        "title": "📈 セッション全体の監視 (HealthAuditor v5.0)",
+        "badge": "HEALTHY",
+        "items": [
+          {
+            "label": "監視項目",
+            "val": "常時稼働ヘルススキャン、Windowsタスクスケジューラ日次巡回"
+          },
+          {
+            "label": "稼働ステータス",
+            "val": "毎日 9:00 自動巡回"
+          }
+        ]
+      }
+    }
+  },
+  "p6": {
+    "key": "p6",
+    "id": "koeiro_guide",
+    "name": "koeiro_guide",
+    "icon": "🎙️",
+    "category": "Application",
+    "path": "projects/koeiro_guide",
+    "lblContext": "仕様書未定義",
+    "lblPreGuard": "境界防御 & カプセル化規律",
+    "lblGate": "変更・実行承認",
+    "lblMcp": "Node.js Runtime",
+    "lblMemory": "メタ教訓参照",
+    "lblPostGuard": "コード・品質審査",
+    "agentCluster": {
+      "clusterBadge": "親＋単一サブ (記事AI除外)",
+      "parentRole": "👑 親: App Orchestrator",
+      "sub1Role": "💻 設計・実装AI",
+      "sub2Role": "🛠️ 補助・検証AI",
+      "postBadge": "2層審査",
+      "postLayer1": "🛡️ 1層: 静的コード検査",
+      "postLayer2": "⚖️ 2層: check_architecture_guard.js (憲法境界)",
+      "subaiTitle": "検証サブエージェント",
+      "subaiDesc": "ブラウザ実機DOM ＆ 動作検証",
+      "subaiBadge": "Tester"
+    },
+    "nodes": {
+      "human": {
+        "title": "👤 人間 (カシマ様)",
+        "badge": "INPUT",
+        "items": [
+          {
+            "label": "実体フォルダ",
+            "val": "projects/koeiro_guide"
+          },
+          {
+            "label": "プロンプト要件",
+            "val": "koeiro_guide 開発プロジェクト"
+          },
+          {
+            "label": "納品アセット実態",
+            "val": "初期設計ファイル"
+          }
+        ]
+      },
+      "compress": {
+        "title": "🗜️ 圧縮 (Token Optimization)",
+        "badge": "PRE-PROCESS",
+        "items": [
+          {
+            "label": "圧縮エンジン",
+            "val": "コンテキスト長最適化フィルタ"
+          },
+          {
+            "label": "目的",
+            "val": "冗長なログを削ぎ落とし、核心的な仕様要件のみを抽出"
+          }
+        ]
+      },
+      "context": {
+        "title": "📖 コンテキスト (仕様・設計)",
+        "badge": "SPECIFICATION",
+        "items": [
+          {
+            "label": "読み込み実ファイル",
+            "val": "projects/koeiro_guide/要件ファイル"
+          },
+          {
+            "label": "全体憲法",
+            "val": "AGENTS.md (カシマ様呼称、カプセル化規律、自己欺瞞排除)"
+          }
+        ]
+      },
+      "curation": {
+        "title": "🔍 キュレーション (Filter & Prompt Framing)",
+        "badge": "CURATION",
+        "items": [
+          {
+            "label": "フィルタリング",
+            "val": "仕様書と指示から不要な文脈を除去し最小限のプロンプトを生成"
+          },
+          {
+            "label": "合流先",
+            "val": "事前ガードを通過してAI執行エンジンへ注入"
+          }
+        ]
+      },
+      "pre_guard": {
+        "title": "🛡️ 事前ガード (Pre-Execution Guardrails)",
+        "badge": "PASS (合格)",
+        "items": [
+          {
+            "label": "適用ルール 1",
+            "val": "check_architecture_guard.js（ルート直下への未許可ファイル書き出し完全禁止）"
+          },
+          {
+            "label": "適用ルール 2",
+            "val": "1ツール1フォルダ完全カプセル化（外部漏出禁止）"
+          },
+          {
+            "label": "判定方式",
+            "val": "パス名静的AST検査 & ファイルシステム境界フック"
+          }
+        ]
+      },
+      "ai": {
+        "title": "🤖 マルチエージェント執行クラスタ (親・実装)",
+        "badge": "CLUSTER (2 Agents)",
+        "items": [
+          {
+            "label": "👑 親: Orchestrator",
+            "val": "全体工程管理、プロンプト解釈、ステート維持、タスク委任"
+          },
+          {
+            "label": "💻 実装AI",
+            "val": "カプセル化規律遵守、実装コード生成 (未作成)"
+          },
+          {
+            "label": "📝 note記事AIの不在（実態反映）",
+            "val": "フォルダ内に article.md が存在しないため記事AIは編成から自動除外"
+          },
+          {
+            "label": "ファイル実態整合",
+            "val": "実在ファイルに基づきクラスタ編成を100%自動決定"
+          }
+        ]
+      },
+      "gate": {
+        "title": "🚪 承認ゲート (Approval Gate)",
+        "badge": "CONFIRMED",
+        "items": [
+          {
+            "label": "監視対象アクション",
+            "val": "変更・実行承認"
+          },
+          {
+            "label": "承認ポリシー",
+            "val": "不可逆操作・外部API連携・本番公開時のユーザー同意チェック"
+          }
+        ]
+      },
+      "mcp": {
+        "title": "🌐 ツール使用・MCP (Tool Execution)",
+        "badge": "CONNECTED",
+        "items": [
+          {
+            "label": "使用ツール群",
+            "val": "Node.js Runtime"
+          },
+          {
+            "label": "外部連携",
+            "val": "Node.js / GitHub API"
+          }
+        ]
+      },
+      "memory": {
+        "title": "🗄️ 記憶 (Knowledge Memory)",
+        "badge": "LOADED",
+        "items": [
+          {
+            "label": "参照ナレッジ",
+            "val": "harness/meta_knowledge.json"
+          },
+          {
+            "label": "ツール固有ログ",
+            "val": "未回収"
+          },
+          {
+            "label": "ロードされた教訓",
+            "val": "「自己欺瞞を排し、実機検証と改ざん不可テストによる客観合格を義務化」"
+          }
+        ]
+      },
+      "sub_ai": {
+        "title": "👥 エージェント間通信 (Subagent)",
+        "badge": "COLLABORATIVE",
+        "items": [
+          {
+            "label": "サブエージェント",
+            "val": "Browser Subagent"
+          },
+          {
+            "label": "検証成果物実態",
+            "val": "未検証"
+          }
+        ]
+      },
+      "post_guard": {
+        "title": "⚖️ 事後ガード (Post-Execution Guardrails)",
+        "badge": "ALL PASS (100%)",
+        "items": [
+          {
+            "label": "検証 1: 品質・構文",
+            "val": "構文解析・静的チェック"
+          },
+          {
+            "label": "検証 2: 撤去/自己検査",
+            "val": "自己テスト・改ざん不可検証"
+          },
+          {
+            "label": "検証 3: カプセル化",
+            "val": "外部漏出ファイルゼロ (カプセル化完全適合)"
+          }
+        ]
+      },
+      "continue": {
+        "title": "🔄 作業継続 (Loop to AI)",
+        "badge": "RETRY",
+        "items": [
+          {
+            "label": "条件",
+            "val": "テスト失敗、または構文エラー・境界違反検知時"
+          },
+          {
+            "label": "動作",
+            "val": "修正指示を親Orchestrator経由でサブAIへ差し戻し（最大3回）"
+          }
+        ]
+      },
+      "return": {
+        "title": "🎁 人へ返却 (Deliver to Human)",
+        "badge": "COMPLETED",
+        "items": [
+          {
+            "label": "返却先",
+            "val": "カシマ様へ完了報告"
+          },
+          {
+            "label": "納品アセット実態",
+            "val": "初期設計ファイル"
+          }
+        ]
+      },
+      "session_monitor": {
+        "title": "📈 セッション全体の監視 (HealthAuditor v5.0)",
+        "badge": "HEALTHY",
+        "items": [
+          {
+            "label": "監視項目",
+            "val": "常時稼働ヘルススキャン、Windowsタスクスケジューラ日次巡回"
+          },
+          {
+            "label": "稼働ステータス",
+            "val": "毎日 9:00 自動巡回"
+          }
+        ]
+      }
+    }
+  },
+  "p7": {
+    "key": "p7",
+    "id": "line_bot_proposal",
+    "name": "line_bot_proposal",
+    "icon": "💬",
+    "category": "Application",
+    "path": "projects/line_bot_proposal",
+    "lblContext": "仕様書未定義",
+    "lblPreGuard": "境界防御 & カプセル化規律",
+    "lblGate": "変更・実行承認",
+    "lblMcp": "Node.js fs/path",
+    "lblMemory": "メタ教訓参照",
+    "lblPostGuard": "コード・品質審査",
+    "agentCluster": {
+      "clusterBadge": "親＋単一サブ (記事AI除外)",
+      "parentRole": "👑 親: App Orchestrator",
+      "sub1Role": "💻 設計・実装AI",
+      "sub2Role": "🛠️ 補助・検証AI",
+      "postBadge": "2層審査",
+      "postLayer1": "🛡️ 1層: 静的コード検査",
+      "postLayer2": "⚖️ 2層: check_architecture_guard.js (憲法境界)",
+      "subaiTitle": "検証サブエージェント",
+      "subaiDesc": "ブラウザ実機DOM ＆ 動作検証",
+      "subaiBadge": "Tester"
+    },
+    "nodes": {
+      "human": {
+        "title": "👤 人間 (カシマ様)",
+        "badge": "INPUT",
+        "items": [
+          {
+            "label": "実体フォルダ",
+            "val": "projects/line_bot_proposal"
+          },
+          {
+            "label": "プロンプト要件",
+            "val": "LINE公式アカウント × 解剖学学習検索Bot"
+          },
+          {
+            "label": "納品アセット実態",
+            "val": "初期設計ファイル"
+          }
+        ]
+      },
+      "compress": {
+        "title": "🗜️ 圧縮 (Token Optimization)",
+        "badge": "PRE-PROCESS",
+        "items": [
+          {
+            "label": "圧縮エンジン",
+            "val": "コンテキスト長最適化フィルタ"
+          },
+          {
+            "label": "目的",
+            "val": "冗長なログを削ぎ落とし、核心的な仕様要件のみを抽出"
+          }
+        ]
+      },
+      "context": {
+        "title": "📖 コンテキスト (仕様・設計)",
+        "badge": "SPECIFICATION",
+        "items": [
+          {
+            "label": "読み込み実ファイル",
+            "val": "projects/line_bot_proposal/要件ファイル"
+          },
+          {
+            "label": "全体憲法",
+            "val": "AGENTS.md (カシマ様呼称、カプセル化規律、自己欺瞞排除)"
+          }
+        ]
+      },
+      "curation": {
+        "title": "🔍 キュレーション (Filter & Prompt Framing)",
+        "badge": "CURATION",
+        "items": [
+          {
+            "label": "フィルタリング",
+            "val": "仕様書と指示から不要な文脈を除去し最小限のプロンプトを生成"
+          },
+          {
+            "label": "合流先",
+            "val": "事前ガードを通過してAI執行エンジンへ注入"
+          }
+        ]
+      },
+      "pre_guard": {
+        "title": "🛡️ 事前ガード (Pre-Execution Guardrails)",
+        "badge": "PASS (合格)",
+        "items": [
+          {
+            "label": "適用ルール 1",
+            "val": "check_architecture_guard.js（ルート直下への未許可ファイル書き出し完全禁止）"
+          },
+          {
+            "label": "適用ルール 2",
+            "val": "1ツール1フォルダ完全カプセル化（外部漏出禁止）"
+          },
+          {
+            "label": "判定方式",
+            "val": "パス名静的AST検査 & ファイルシステム境界フック"
+          }
+        ]
+      },
+      "ai": {
+        "title": "🤖 マルチエージェント執行クラスタ (親・実装)",
+        "badge": "CLUSTER (2 Agents)",
+        "items": [
+          {
+            "label": "👑 親: Orchestrator",
+            "val": "全体工程管理、プロンプト解釈、ステート維持、タスク委任"
+          },
+          {
+            "label": "💻 実装AI",
+            "val": "カプセル化規律遵守、実装コード生成 (未作成)"
+          },
+          {
+            "label": "📝 note記事AIの不在（実態反映）",
+            "val": "フォルダ内に article.md が存在しないため記事AIは編成から自動除外"
+          },
+          {
+            "label": "ファイル実態整合",
+            "val": "実在ファイルに基づきクラスタ編成を100%自動決定"
+          }
+        ]
+      },
+      "gate": {
+        "title": "🚪 承認ゲート (Approval Gate)",
+        "badge": "CONFIRMED",
+        "items": [
+          {
+            "label": "監視対象アクション",
+            "val": "変更・実行承認"
+          },
+          {
+            "label": "承認ポリシー",
+            "val": "不可逆操作・外部API連携・本番公開時のユーザー同意チェック"
+          }
+        ]
+      },
+      "mcp": {
+        "title": "🌐 ツール使用・MCP (Tool Execution)",
+        "badge": "CONNECTED",
+        "items": [
+          {
+            "label": "使用ツール群",
+            "val": "Node.js fs/path"
+          },
+          {
+            "label": "外部連携",
+            "val": "Node.js / GitHub API"
+          }
+        ]
+      },
+      "memory": {
+        "title": "🗄️ 記憶 (Knowledge Memory)",
+        "badge": "LOADED",
+        "items": [
+          {
+            "label": "参照ナレッジ",
+            "val": "harness/meta_knowledge.json"
+          },
+          {
+            "label": "ツール固有ログ",
+            "val": "未回収"
+          },
+          {
+            "label": "ロードされた教訓",
+            "val": "「自己欺瞞を排し、実機検証と改ざん不可テストによる客観合格を義務化」"
+          }
+        ]
+      },
+      "sub_ai": {
+        "title": "👥 エージェント間通信 (Subagent)",
+        "badge": "COLLABORATIVE",
+        "items": [
+          {
+            "label": "サブエージェント",
+            "val": "Browser Subagent"
+          },
+          {
+            "label": "検証成果物実態",
+            "val": "未検証"
+          }
+        ]
+      },
+      "post_guard": {
+        "title": "⚖️ 事後ガード (Post-Execution Guardrails)",
+        "badge": "ALL PASS (100%)",
+        "items": [
+          {
+            "label": "検証 1: 品質・構文",
+            "val": "構文解析・静的チェック"
+          },
+          {
+            "label": "検証 2: 撤去/自己検査",
+            "val": "自己テスト・改ざん不可検証"
+          },
+          {
+            "label": "検証 3: カプセル化",
+            "val": "外部漏出ファイルゼロ (カプセル化完全適合)"
+          }
+        ]
+      },
+      "continue": {
+        "title": "🔄 作業継続 (Loop to AI)",
+        "badge": "RETRY",
+        "items": [
+          {
+            "label": "条件",
+            "val": "テスト失敗、または構文エラー・境界違反検知時"
+          },
+          {
+            "label": "動作",
+            "val": "修正指示を親Orchestrator経由でサブAIへ差し戻し（最大3回）"
+          }
+        ]
+      },
+      "return": {
+        "title": "🎁 人へ返却 (Deliver to Human)",
+        "badge": "COMPLETED",
+        "items": [
+          {
+            "label": "返却先",
+            "val": "カシマ様へ完了報告"
+          },
+          {
+            "label": "納品アセット実態",
+            "val": "初期設計ファイル"
+          }
+        ]
+      },
+      "session_monitor": {
+        "title": "📈 セッション全体の監視 (HealthAuditor v5.0)",
+        "badge": "HEALTHY",
+        "items": [
+          {
+            "label": "監視項目",
+            "val": "常時稼働ヘルススキャン、Windowsタスクスケジューラ日次巡回"
+          },
+          {
+            "label": "稼働ステータス",
+            "val": "毎日 9:00 自動巡回"
+          }
+        ]
+      }
+    }
+  },
+  "p8": {
+    "key": "p8",
+    "id": "moodle_sync",
+    "name": "moodle_sync",
+    "icon": "🎓",
+    "category": "Application",
+    "path": "projects/moodle_sync",
+    "lblContext": "仕様書未定義",
+    "lblPreGuard": "境界防御 & カプセル化規律",
+    "lblGate": "変更・実行承認",
+    "lblMcp": "Node.js Runtime",
+    "lblMemory": "メタ教訓参照",
+    "lblPostGuard": "コード・品質審査",
+    "agentCluster": {
+      "clusterBadge": "親＋単一サブ (記事AI除外)",
+      "parentRole": "👑 親: App Orchestrator",
+      "sub1Role": "💻 設計・実装AI",
+      "sub2Role": "🛠️ 補助・検証AI",
+      "postBadge": "2層審査",
+      "postLayer1": "🛡️ 1層: 静的コード検査",
+      "postLayer2": "⚖️ 2層: check_architecture_guard.js (憲法境界)",
+      "subaiTitle": "検証サブエージェント",
+      "subaiDesc": "ブラウザ実機DOM ＆ 動作検証",
+      "subaiBadge": "Tester"
+    },
+    "nodes": {
+      "human": {
+        "title": "👤 人間 (カシマ様)",
+        "badge": "INPUT",
+        "items": [
+          {
+            "label": "実体フォルダ",
+            "val": "projects/moodle_sync"
+          },
+          {
+            "label": "プロンプト要件",
+            "val": "moodle_sync 開発プロジェクト"
+          },
+          {
+            "label": "納品アセット実態",
+            "val": "初期設計ファイル"
+          }
+        ]
+      },
+      "compress": {
+        "title": "🗜️ 圧縮 (Token Optimization)",
+        "badge": "PRE-PROCESS",
+        "items": [
+          {
+            "label": "圧縮エンジン",
+            "val": "コンテキスト長最適化フィルタ"
+          },
+          {
+            "label": "目的",
+            "val": "冗長なログを削ぎ落とし、核心的な仕様要件のみを抽出"
+          }
+        ]
+      },
+      "context": {
+        "title": "📖 コンテキスト (仕様・設計)",
+        "badge": "SPECIFICATION",
+        "items": [
+          {
+            "label": "読み込み実ファイル",
+            "val": "projects/moodle_sync/要件ファイル"
+          },
+          {
+            "label": "全体憲法",
+            "val": "AGENTS.md (カシマ様呼称、カプセル化規律、自己欺瞞排除)"
+          }
+        ]
+      },
+      "curation": {
+        "title": "🔍 キュレーション (Filter & Prompt Framing)",
+        "badge": "CURATION",
+        "items": [
+          {
+            "label": "フィルタリング",
+            "val": "仕様書と指示から不要な文脈を除去し最小限のプロンプトを生成"
+          },
+          {
+            "label": "合流先",
+            "val": "事前ガードを通過してAI執行エンジンへ注入"
+          }
+        ]
+      },
+      "pre_guard": {
+        "title": "🛡️ 事前ガード (Pre-Execution Guardrails)",
+        "badge": "PASS (合格)",
+        "items": [
+          {
+            "label": "適用ルール 1",
+            "val": "check_architecture_guard.js（ルート直下への未許可ファイル書き出し完全禁止）"
+          },
+          {
+            "label": "適用ルール 2",
+            "val": "1ツール1フォルダ完全カプセル化（外部漏出禁止）"
+          },
+          {
+            "label": "判定方式",
+            "val": "パス名静的AST検査 & ファイルシステム境界フック"
+          }
+        ]
+      },
+      "ai": {
+        "title": "🤖 マルチエージェント執行クラスタ (親・実装)",
+        "badge": "CLUSTER (2 Agents)",
+        "items": [
+          {
+            "label": "👑 親: Orchestrator",
+            "val": "全体工程管理、プロンプト解釈、ステート維持、タスク委任"
+          },
+          {
+            "label": "💻 実装AI",
+            "val": "カプセル化規律遵守、実装コード生成 (未作成)"
+          },
+          {
+            "label": "📝 note記事AIの不在（実態反映）",
+            "val": "フォルダ内に article.md が存在しないため記事AIは編成から自動除外"
+          },
+          {
+            "label": "ファイル実態整合",
+            "val": "実在ファイルに基づきクラスタ編成を100%自動決定"
+          }
+        ]
+      },
+      "gate": {
+        "title": "🚪 承認ゲート (Approval Gate)",
+        "badge": "CONFIRMED",
+        "items": [
+          {
+            "label": "監視対象アクション",
+            "val": "変更・実行承認"
+          },
+          {
+            "label": "承認ポリシー",
+            "val": "不可逆操作・外部API連携・本番公開時のユーザー同意チェック"
+          }
+        ]
+      },
+      "mcp": {
+        "title": "🌐 ツール使用・MCP (Tool Execution)",
+        "badge": "CONNECTED",
+        "items": [
+          {
+            "label": "使用ツール群",
+            "val": "Node.js Runtime"
+          },
+          {
+            "label": "外部連携",
+            "val": "Node.js / GitHub API"
+          }
+        ]
+      },
+      "memory": {
+        "title": "🗄️ 記憶 (Knowledge Memory)",
+        "badge": "LOADED",
+        "items": [
+          {
+            "label": "参照ナレッジ",
+            "val": "harness/meta_knowledge.json"
+          },
+          {
+            "label": "ツール固有ログ",
+            "val": "未回収"
+          },
+          {
+            "label": "ロードされた教訓",
+            "val": "「自己欺瞞を排し、実機検証と改ざん不可テストによる客観合格を義務化」"
+          }
+        ]
+      },
+      "sub_ai": {
+        "title": "👥 エージェント間通信 (Subagent)",
+        "badge": "COLLABORATIVE",
+        "items": [
+          {
+            "label": "サブエージェント",
+            "val": "Browser Subagent"
+          },
+          {
+            "label": "検証成果物実態",
+            "val": "未検証"
+          }
+        ]
+      },
+      "post_guard": {
+        "title": "⚖️ 事後ガード (Post-Execution Guardrails)",
+        "badge": "ALL PASS (100%)",
+        "items": [
+          {
+            "label": "検証 1: 品質・構文",
+            "val": "構文解析・静的チェック"
+          },
+          {
+            "label": "検証 2: 撤去/自己検査",
+            "val": "自己テスト・改ざん不可検証"
+          },
+          {
+            "label": "検証 3: カプセル化",
+            "val": "外部漏出ファイルゼロ (カプセル化完全適合)"
+          }
+        ]
+      },
+      "continue": {
+        "title": "🔄 作業継続 (Loop to AI)",
+        "badge": "RETRY",
+        "items": [
+          {
+            "label": "条件",
+            "val": "テスト失敗、または構文エラー・境界違反検知時"
+          },
+          {
+            "label": "動作",
+            "val": "修正指示を親Orchestrator経由でサブAIへ差し戻し（最大3回）"
+          }
+        ]
+      },
+      "return": {
+        "title": "🎁 人へ返却 (Deliver to Human)",
+        "badge": "COMPLETED",
+        "items": [
+          {
+            "label": "返却先",
+            "val": "カシマ様へ完了報告"
+          },
+          {
+            "label": "納品アセット実態",
+            "val": "初期設計ファイル"
+          }
+        ]
+      },
+      "session_monitor": {
+        "title": "📈 セッション全体の監視 (HealthAuditor v5.0)",
+        "badge": "HEALTHY",
+        "items": [
+          {
+            "label": "監視項目",
+            "val": "常時稼働ヘルススキャン、Windowsタスクスケジューラ日次巡回"
+          },
+          {
+            "label": "稼働ステータス",
+            "val": "毎日 9:00 自動巡回"
+          }
+        ]
+      }
+    }
+  },
+  "p9": {
+    "key": "p9",
+    "id": "notebooklm_enhancer",
+    "name": "notebooklm_enhancer",
+    "icon": "📓",
+    "category": "Chrome Extension",
+    "path": "projects/notebooklm_enhancer",
+    "lblContext": "README.md",
+    "lblPreGuard": "境界防御 & カプセル化規律",
+    "lblGate": "変更・実行承認",
+    "lblMcp": "Node.js Runtime",
+    "lblMemory": "メタ教訓参照",
+    "lblPostGuard": "コード・品質審査",
+    "agentCluster": {
+      "clusterBadge": "親＋単一サブ (記事AI除外)",
+      "parentRole": "👑 親: App Orchestrator",
+      "sub1Role": "💻 設計・実装AI",
+      "sub2Role": "🛠️ 補助・検証AI",
+      "postBadge": "2層審査",
+      "postLayer1": "🛡️ 1層: 静的コード検査",
+      "postLayer2": "⚖️ 2層: check_architecture_guard.js (憲法境界)",
+      "subaiTitle": "検証サブエージェント",
+      "subaiDesc": "ブラウザ実機DOM ＆ 動作検証",
+      "subaiBadge": "Tester"
+    },
+    "nodes": {
+      "human": {
+        "title": "👤 人間 (カシマ様)",
+        "badge": "INPUT",
+        "items": [
+          {
+            "label": "実体フォルダ",
+            "val": "projects/notebooklm_enhancer"
+          },
+          {
+            "label": "プロンプト要件",
+            "val": "Google Gemini Notebook (NotebookLM) のスタジオ機能を強化する拡張機能です。"
+          },
+          {
+            "label": "納品アセット実態",
+            "val": "初期設計ファイル"
+          }
+        ]
+      },
+      "compress": {
+        "title": "🗜️ 圧縮 (Token Optimization)",
+        "badge": "PRE-PROCESS",
+        "items": [
+          {
+            "label": "圧縮エンジン",
+            "val": "コンテキスト長最適化フィルタ"
+          },
+          {
+            "label": "目的",
+            "val": "冗長なログを削ぎ落とし、核心的な仕様要件のみを抽出"
+          }
+        ]
+      },
+      "context": {
+        "title": "📖 コンテキスト (仕様・設計)",
+        "badge": "SPECIFICATION",
+        "items": [
+          {
+            "label": "読み込み実ファイル",
+            "val": "projects/notebooklm_enhancer/README.md"
+          },
+          {
+            "label": "全体憲法",
+            "val": "AGENTS.md (カシマ様呼称、カプセル化規律、自己欺瞞排除)"
+          }
+        ]
+      },
+      "curation": {
+        "title": "🔍 キュレーション (Filter & Prompt Framing)",
+        "badge": "CURATION",
+        "items": [
+          {
+            "label": "フィルタリング",
+            "val": "仕様書と指示から不要な文脈を除去し最小限のプロンプトを生成"
+          },
+          {
+            "label": "合流先",
+            "val": "事前ガードを通過してAI執行エンジンへ注入"
+          }
+        ]
+      },
+      "pre_guard": {
+        "title": "🛡️ 事前ガード (Pre-Execution Guardrails)",
+        "badge": "PASS (合格)",
+        "items": [
+          {
+            "label": "適用ルール 1",
+            "val": "check_architecture_guard.js（ルート直下への未許可ファイル書き出し完全禁止）"
+          },
+          {
+            "label": "適用ルール 2",
+            "val": "1ツール1フォルダ完全カプセル化（外部漏出禁止）"
+          },
+          {
+            "label": "判定方式",
+            "val": "パス名静的AST検査 & ファイルシステム境界フック"
+          }
+        ]
+      },
+      "ai": {
+        "title": "🤖 マルチエージェント執行クラスタ (親・実装)",
+        "badge": "CLUSTER (2 Agents)",
+        "items": [
+          {
+            "label": "👑 親: Orchestrator",
+            "val": "全体工程管理、プロンプト解釈、ステート維持、タスク委任"
+          },
+          {
+            "label": "💻 実装AI",
+            "val": "カプセル化規律遵守、実装コード生成 (未作成)"
+          },
+          {
+            "label": "📝 note記事AIの不在（実態反映）",
+            "val": "フォルダ内に article.md が存在しないため記事AIは編成から自動除外"
+          },
+          {
+            "label": "ファイル実態整合",
+            "val": "実在ファイルに基づきクラスタ編成を100%自動決定"
+          }
+        ]
+      },
+      "gate": {
+        "title": "🚪 承認ゲート (Approval Gate)",
+        "badge": "CONFIRMED",
+        "items": [
+          {
+            "label": "監視対象アクション",
+            "val": "変更・実行承認"
+          },
+          {
+            "label": "承認ポリシー",
+            "val": "不可逆操作・外部API連携・本番公開時のユーザー同意チェック"
+          }
+        ]
+      },
+      "mcp": {
+        "title": "🌐 ツール使用・MCP (Tool Execution)",
+        "badge": "CONNECTED",
+        "items": [
+          {
+            "label": "使用ツール群",
+            "val": "Node.js Runtime"
+          },
+          {
+            "label": "外部連携",
+            "val": "Node.js / GitHub API"
+          }
+        ]
+      },
+      "memory": {
+        "title": "🗄️ 記憶 (Knowledge Memory)",
+        "badge": "LOADED",
+        "items": [
+          {
+            "label": "参照ナレッジ",
+            "val": "harness/meta_knowledge.json"
+          },
+          {
+            "label": "ツール固有ログ",
+            "val": "未回収"
+          },
+          {
+            "label": "ロードされた教訓",
+            "val": "「自己欺瞞を排し、実機検証と改ざん不可テストによる客観合格を義務化」"
+          }
+        ]
+      },
+      "sub_ai": {
+        "title": "👥 エージェント間通信 (Subagent)",
+        "badge": "COLLABORATIVE",
+        "items": [
+          {
+            "label": "サブエージェント",
+            "val": "Browser Subagent"
+          },
+          {
+            "label": "検証成果物実態",
+            "val": "未検証"
+          }
+        ]
+      },
+      "post_guard": {
+        "title": "⚖️ 事後ガード (Post-Execution Guardrails)",
+        "badge": "ALL PASS (100%)",
+        "items": [
+          {
+            "label": "検証 1: 品質・構文",
+            "val": "構文解析・静的チェック"
+          },
+          {
+            "label": "検証 2: 撤去/自己検査",
+            "val": "自己テスト・改ざん不可検証"
+          },
+          {
+            "label": "検証 3: カプセル化",
+            "val": "外部漏出ファイルゼロ (カプセル化完全適合)"
+          }
+        ]
+      },
+      "continue": {
+        "title": "🔄 作業継続 (Loop to AI)",
+        "badge": "RETRY",
+        "items": [
+          {
+            "label": "条件",
+            "val": "テスト失敗、または構文エラー・境界違反検知時"
+          },
+          {
+            "label": "動作",
+            "val": "修正指示を親Orchestrator経由でサブAIへ差し戻し（最大3回）"
+          }
+        ]
+      },
+      "return": {
+        "title": "🎁 人へ返却 (Deliver to Human)",
+        "badge": "COMPLETED",
+        "items": [
+          {
+            "label": "返却先",
+            "val": "カシマ様へ完了報告"
+          },
+          {
+            "label": "納品アセット実態",
+            "val": "初期設計ファイル"
+          }
+        ]
+      },
+      "session_monitor": {
+        "title": "📈 セッション全体の監視 (HealthAuditor v5.0)",
+        "badge": "HEALTHY",
+        "items": [
+          {
+            "label": "監視項目",
+            "val": "常時稼働ヘルススキャン、Windowsタスクスケジューラ日次巡回"
+          },
+          {
+            "label": "稼働ステータス",
+            "val": "毎日 9:00 自動巡回"
+          }
+        ]
+      }
+    }
+  },
+  "p10": {
+    "key": "p10",
+    "id": "pt_anatomy_quiz",
+    "name": "pt_anatomy_quiz",
+    "icon": "🎯",
+    "category": "PT Education Platform",
+    "path": "projects/pt_anatomy_quiz",
+    "lblContext": "仕様書未定義",
+    "lblPreGuard": "境界防御 & カプセル化規律",
+    "lblGate": "変更・実行承認",
+    "lblMcp": "Node.js Runtime",
+    "lblMemory": "メタ教訓参照",
+    "lblPostGuard": "自律テストハーネス PASS",
+    "agentCluster": {
+      "clusterBadge": "親＋単一サブ (記事AI除外)",
+      "parentRole": "👑 親: App Orchestrator",
+      "sub1Role": "💻 実装AI (Core Logic)",
+      "sub2Role": "🛠️ 補助・検証AI",
+      "postBadge": "2層審査 (自動テスト完備)",
+      "postLayer1": "🛡️ 1層: プロジェクトテストハーネス",
+      "postLayer2": "⚖️ 2層: check_architecture_guard.js (憲法境界)",
+      "subaiTitle": "検証サブエージェント",
+      "subaiDesc": "ブラウザ実機DOM ＆ 動作検証",
+      "subaiBadge": "Tester"
+    },
+    "nodes": {
+      "human": {
+        "title": "👤 人間 (カシマ様)",
+        "badge": "INPUT",
+        "items": [
+          {
+            "label": "実体フォルダ",
+            "val": "projects/pt_anatomy_quiz"
+          },
+          {
+            "label": "プロンプト要件",
+            "val": "LINE公式アカウント × 解剖学学習検索Bot"
+          },
+          {
+            "label": "納品アセット実態",
+            "val": "Source Code, テストハーネス"
+          }
+        ]
+      },
+      "compress": {
+        "title": "🗜️ 圧縮 (Token Optimization)",
+        "badge": "PRE-PROCESS",
+        "items": [
+          {
+            "label": "圧縮エンジン",
+            "val": "コンテキスト長最適化フィルタ"
+          },
+          {
+            "label": "目的",
+            "val": "冗長なログを削ぎ落とし、核心的な仕様要件のみを抽出"
+          }
+        ]
+      },
+      "context": {
+        "title": "📖 コンテキスト (仕様・設計)",
+        "badge": "SPECIFICATION",
+        "items": [
+          {
+            "label": "読み込み実ファイル",
+            "val": "projects/pt_anatomy_quiz/要件ファイル"
+          },
+          {
+            "label": "全体憲法",
+            "val": "AGENTS.md (カシマ様呼称、カプセル化規律、自己欺瞞排除)"
+          }
+        ]
+      },
+      "curation": {
+        "title": "🔍 キュレーション (Filter & Prompt Framing)",
+        "badge": "CURATION",
+        "items": [
+          {
+            "label": "フィルタリング",
+            "val": "仕様書と指示から不要な文脈を除去し最小限のプロンプトを生成"
+          },
+          {
+            "label": "合流先",
+            "val": "事前ガードを通過してAI執行エンジンへ注入"
+          }
+        ]
+      },
+      "pre_guard": {
+        "title": "🛡️ 事前ガード (Pre-Execution Guardrails)",
+        "badge": "PASS (合格)",
+        "items": [
+          {
+            "label": "適用ルール 1",
+            "val": "check_architecture_guard.js（ルート直下への未許可ファイル書き出し完全禁止）"
+          },
+          {
+            "label": "適用ルール 2",
+            "val": "1ツール1フォルダ完全カプセル化（外部漏出禁止）"
+          },
+          {
+            "label": "判定方式",
+            "val": "パス名静的AST検査 & ファイルシステム境界フック"
+          }
+        ]
+      },
+      "ai": {
+        "title": "🤖 マルチエージェント執行クラスタ (親・実装)",
+        "badge": "CLUSTER (2 Agents)",
+        "items": [
+          {
+            "label": "👑 親: Orchestrator",
+            "val": "全体工程管理、プロンプト解釈、ステート維持、タスク委任"
+          },
+          {
+            "label": "💻 実装AI",
+            "val": "カプセル化規律遵守、実装コード生成 (実ファイル存在)"
+          },
+          {
+            "label": "📝 note記事AIの不在（実態反映）",
+            "val": "フォルダ内に article.md が存在しないため記事AIは編成から自動除外"
+          },
+          {
+            "label": "ファイル実態整合",
+            "val": "実在ファイルに基づきクラスタ編成を100%自動決定"
+          }
+        ]
+      },
+      "gate": {
+        "title": "🚪 承認ゲート (Approval Gate)",
+        "badge": "CONFIRMED",
+        "items": [
+          {
+            "label": "監視対象アクション",
+            "val": "変更・実行承認"
+          },
+          {
+            "label": "承認ポリシー",
+            "val": "不可逆操作・外部API連携・本番公開時のユーザー同意チェック"
+          }
+        ]
+      },
+      "mcp": {
+        "title": "🌐 ツール使用・MCP (Tool Execution)",
+        "badge": "CONNECTED",
+        "items": [
+          {
+            "label": "使用ツール群",
+            "val": "Node.js Runtime"
+          },
+          {
+            "label": "外部連携",
+            "val": "Node.js / GitHub API"
+          }
+        ]
+      },
+      "memory": {
+        "title": "🗄️ 記憶 (Knowledge Memory)",
+        "badge": "LOADED",
+        "items": [
+          {
+            "label": "参照ナレッジ",
+            "val": "harness/meta_knowledge.json"
+          },
+          {
+            "label": "ツール固有ログ",
+            "val": "未回収"
+          },
+          {
+            "label": "ロードされた教訓",
+            "val": "「自己欺瞞を排し、実機検証と改ざん不可テストによる客観合格を義務化」"
+          }
+        ]
+      },
+      "sub_ai": {
+        "title": "👥 エージェント間通信 (Subagent)",
+        "badge": "COLLABORATIVE",
+        "items": [
+          {
+            "label": "サブエージェント",
+            "val": "Browser Subagent"
+          },
+          {
+            "label": "検証成果物実態",
+            "val": "自律テストハーネスによる検証済み"
+          }
+        ]
+      },
+      "post_guard": {
+        "title": "⚖️ 事後ガード (Post-Execution Guardrails)",
+        "badge": "ALL PASS (100%)",
+        "items": [
+          {
+            "label": "検証 1: 品質・構文",
+            "val": "プロジェクト固有ハーネスによる回帰テスト"
+          },
+          {
+            "label": "検証 2: 撤去/自己検査",
+            "val": "自己テスト・改ざん不可検証"
+          },
+          {
+            "label": "検証 3: カプセル化",
+            "val": "外部漏出ファイルゼロ (カプセル化完全適合)"
+          }
+        ]
+      },
+      "continue": {
+        "title": "🔄 作業継続 (Loop to AI)",
+        "badge": "RETRY",
+        "items": [
+          {
+            "label": "条件",
+            "val": "テスト失敗、または構文エラー・境界違反検知時"
+          },
+          {
+            "label": "動作",
+            "val": "修正指示を親Orchestrator経由でサブAIへ差し戻し（最大3回）"
+          }
+        ]
+      },
+      "return": {
+        "title": "🎁 人へ返却 (Deliver to Human)",
+        "badge": "COMPLETED",
+        "items": [
+          {
+            "label": "返却先",
+            "val": "カシマ様へ完了報告"
+          },
+          {
+            "label": "納品アセット実態",
+            "val": "Source Code, テストハーネス"
+          }
+        ]
+      },
+      "session_monitor": {
+        "title": "📈 セッション全体の監視 (HealthAuditor v5.0)",
+        "badge": "HEALTHY",
+        "items": [
+          {
+            "label": "監視項目",
+            "val": "常時稼働ヘルススキャン、Windowsタスクスケジューラ日次巡回"
+          },
+          {
+            "label": "稼働ステータス",
+            "val": "毎日 9:00 自動巡回"
+          }
+        ]
+      }
+    }
+  },
+  "p11": {
+    "key": "p11",
+    "id": "pt_knowledge_visual_library",
+    "name": "pt_knowledge_visual_library",
+    "icon": "🎨",
+    "category": "PT Education Platform",
+    "path": "projects/pt_knowledge_visual_library",
+    "lblContext": "spec.md & 設計書",
+    "lblPreGuard": "境界防御 & カプセル化規律",
+    "lblGate": "変更・実行承認",
+    "lblMcp": "Node.js Runtime",
+    "lblMemory": "メタ教訓参照",
+    "lblPostGuard": "自律テストハーネス PASS",
+    "agentCluster": {
+      "clusterBadge": "親＋単一サブ (記事AI除外)",
+      "parentRole": "👑 親: App Orchestrator",
+      "sub1Role": "💻 実装AI (Core Logic)",
+      "sub2Role": "🛠️ 補助・検証AI",
+      "postBadge": "2層審査 (自動テスト完備)",
+      "postLayer1": "🛡️ 1層: プロジェクトテストハーネス",
+      "postLayer2": "⚖️ 2層: check_architecture_guard.js (憲法境界)",
+      "subaiTitle": "検証サブエージェント",
+      "subaiDesc": "ブラウザ実機DOM ＆ 動作検証",
+      "subaiBadge": "Tester"
+    },
+    "nodes": {
+      "human": {
+        "title": "👤 人間 (カシマ様)",
+        "badge": "INPUT",
+        "items": [
+          {
+            "label": "実体フォルダ",
+            "val": "projects/pt_knowledge_visual_library"
+          },
+          {
+            "label": "プロンプト要件",
+            "val": "- **プロジェクト名**: `pt_knowledge_visual_library`"
+          },
+          {
+            "label": "納品アセット実態",
+            "val": "Source Code, テストハーネス"
+          }
+        ]
+      },
+      "compress": {
+        "title": "🗜️ 圧縮 (Token Optimization)",
+        "badge": "PRE-PROCESS",
+        "items": [
+          {
+            "label": "圧縮エンジン",
+            "val": "コンテキスト長最適化フィルタ"
+          },
+          {
+            "label": "目的",
+            "val": "冗長なログを削ぎ落とし、核心的な仕様要件のみを抽出"
+          }
+        ]
+      },
+      "context": {
+        "title": "📖 コンテキスト (仕様・設計)",
+        "badge": "SPECIFICATION",
+        "items": [
+          {
+            "label": "読み込み実ファイル",
+            "val": "projects/pt_knowledge_visual_library/spec.md"
+          },
+          {
+            "label": "全体憲法",
+            "val": "AGENTS.md (カシマ様呼称、カプセル化規律、自己欺瞞排除)"
+          }
+        ]
+      },
+      "curation": {
+        "title": "🔍 キュレーション (Filter & Prompt Framing)",
+        "badge": "CURATION",
+        "items": [
+          {
+            "label": "フィルタリング",
+            "val": "仕様書と指示から不要な文脈を除去し最小限のプロンプトを生成"
+          },
+          {
+            "label": "合流先",
+            "val": "事前ガードを通過してAI執行エンジンへ注入"
+          }
+        ]
+      },
+      "pre_guard": {
+        "title": "🛡️ 事前ガード (Pre-Execution Guardrails)",
+        "badge": "PASS (合格)",
+        "items": [
+          {
+            "label": "適用ルール 1",
+            "val": "check_architecture_guard.js（ルート直下への未許可ファイル書き出し完全禁止）"
+          },
+          {
+            "label": "適用ルール 2",
+            "val": "1ツール1フォルダ完全カプセル化（外部漏出禁止）"
+          },
+          {
+            "label": "判定方式",
+            "val": "パス名静的AST検査 & ファイルシステム境界フック"
+          }
+        ]
+      },
+      "ai": {
+        "title": "🤖 マルチエージェント執行クラスタ (親・実装)",
+        "badge": "CLUSTER (2 Agents)",
+        "items": [
+          {
+            "label": "👑 親: Orchestrator",
+            "val": "全体工程管理、プロンプト解釈、ステート維持、タスク委任"
+          },
+          {
+            "label": "💻 実装AI",
+            "val": "カプセル化規律遵守、実装コード生成 (実ファイル存在)"
+          },
+          {
+            "label": "📝 note記事AIの不在（実態反映）",
+            "val": "フォルダ内に article.md が存在しないため記事AIは編成から自動除外"
+          },
+          {
+            "label": "ファイル実態整合",
+            "val": "実在ファイルに基づきクラスタ編成を100%自動決定"
+          }
+        ]
+      },
+      "gate": {
+        "title": "🚪 承認ゲート (Approval Gate)",
+        "badge": "CONFIRMED",
+        "items": [
+          {
+            "label": "監視対象アクション",
+            "val": "変更・実行承認"
+          },
+          {
+            "label": "承認ポリシー",
+            "val": "不可逆操作・外部API連携・本番公開時のユーザー同意チェック"
+          }
+        ]
+      },
+      "mcp": {
+        "title": "🌐 ツール使用・MCP (Tool Execution)",
+        "badge": "CONNECTED",
+        "items": [
+          {
+            "label": "使用ツール群",
+            "val": "Node.js Runtime"
+          },
+          {
+            "label": "外部連携",
+            "val": "Node.js / GitHub API"
+          }
+        ]
+      },
+      "memory": {
+        "title": "🗄️ 記憶 (Knowledge Memory)",
+        "badge": "LOADED",
+        "items": [
+          {
+            "label": "参照ナレッジ",
+            "val": "harness/meta_knowledge.json"
+          },
+          {
+            "label": "ツール固有ログ",
+            "val": "未回収"
+          },
+          {
+            "label": "ロードされた教訓",
+            "val": "「自己欺瞞を排し、実機検証と改ざん不可テストによる客観合格を義務化」"
+          }
+        ]
+      },
+      "sub_ai": {
+        "title": "👥 エージェント間通信 (Subagent)",
+        "badge": "COLLABORATIVE",
+        "items": [
+          {
+            "label": "サブエージェント",
+            "val": "Browser Subagent"
+          },
+          {
+            "label": "検証成果物実態",
+            "val": "自律テストハーネスによる検証済み"
+          }
+        ]
+      },
+      "post_guard": {
+        "title": "⚖️ 事後ガード (Post-Execution Guardrails)",
+        "badge": "ALL PASS (100%)",
+        "items": [
+          {
+            "label": "検証 1: 品質・構文",
+            "val": "プロジェクト固有ハーネスによる回帰テスト"
+          },
+          {
+            "label": "検証 2: 撤去/自己検査",
+            "val": "自己テスト・改ざん不可検証"
+          },
+          {
+            "label": "検証 3: カプセル化",
+            "val": "外部漏出ファイルゼロ (カプセル化完全適合)"
+          }
+        ]
+      },
+      "continue": {
+        "title": "🔄 作業継続 (Loop to AI)",
+        "badge": "RETRY",
+        "items": [
+          {
+            "label": "条件",
+            "val": "テスト失敗、または構文エラー・境界違反検知時"
+          },
+          {
+            "label": "動作",
+            "val": "修正指示を親Orchestrator経由でサブAIへ差し戻し（最大3回）"
+          }
+        ]
+      },
+      "return": {
+        "title": "🎁 人へ返却 (Deliver to Human)",
+        "badge": "COMPLETED",
+        "items": [
+          {
+            "label": "返却先",
+            "val": "カシマ様へ完了報告"
+          },
+          {
+            "label": "納品アセット実態",
+            "val": "Source Code, テストハーネス"
+          }
+        ]
+      },
+      "session_monitor": {
+        "title": "📈 セッション全体の監視 (HealthAuditor v5.0)",
+        "badge": "HEALTHY",
+        "items": [
+          {
+            "label": "監視項目",
+            "val": "常時稼働ヘルススキャン、Windowsタスクスケジューラ日次巡回"
+          },
+          {
+            "label": "稼働ステータス",
+            "val": "毎日 9:00 自動巡回"
+          }
+        ]
+      }
+    }
+  },
+  "p12": {
+    "key": "p12",
+    "id": "pt_quiz_temp",
+    "name": "pt_quiz_temp",
+    "icon": "🎯",
+    "category": "PT Education Platform",
+    "path": "projects/pt_quiz_temp",
+    "lblContext": "README.md",
+    "lblPreGuard": "境界防御 & カプセル化規律",
+    "lblGate": "変更・実行承認",
+    "lblMcp": "Node.js Runtime",
+    "lblMemory": "メタ教訓参照",
+    "lblPostGuard": "コード・品質審査",
+    "agentCluster": {
+      "clusterBadge": "親＋単一サブ (記事AI除外)",
+      "parentRole": "👑 親: App Orchestrator",
+      "sub1Role": "💻 設計・実装AI",
+      "sub2Role": "🛠️ 補助・検証AI",
+      "postBadge": "2層審査",
+      "postLayer1": "🛡️ 1層: 静的コード検査",
+      "postLayer2": "⚖️ 2層: check_architecture_guard.js (憲法境界)",
+      "subaiTitle": "検証サブエージェント",
+      "subaiDesc": "ブラウザ実機DOM ＆ 動作検証",
+      "subaiBadge": "Tester"
+    },
+    "nodes": {
+      "human": {
+        "title": "👤 人間 (カシマ様)",
+        "badge": "INPUT",
+        "items": [
+          {
+            "label": "実体フォルダ",
+            "val": "projects/pt_quiz_temp"
+          },
+          {
+            "label": "プロンプト要件",
+            "val": "大阪リハビリテーション専門学校（OCR）理学療法学科 1年次生向け、通学電車やスキマ時間でマスターできる科目別クイズアプリのポータルリポジトリです。"
+          },
+          {
+            "label": "納品アセット実態",
+            "val": "初期設計ファイル"
+          }
+        ]
+      },
+      "compress": {
+        "title": "🗜️ 圧縮 (Token Optimization)",
+        "badge": "PRE-PROCESS",
+        "items": [
+          {
+            "label": "圧縮エンジン",
+            "val": "コンテキスト長最適化フィルタ"
+          },
+          {
+            "label": "目的",
+            "val": "冗長なログを削ぎ落とし、核心的な仕様要件のみを抽出"
+          }
+        ]
+      },
+      "context": {
+        "title": "📖 コンテキスト (仕様・設計)",
+        "badge": "SPECIFICATION",
+        "items": [
+          {
+            "label": "読み込み実ファイル",
+            "val": "projects/pt_quiz_temp/README.md"
+          },
+          {
+            "label": "全体憲法",
+            "val": "AGENTS.md (カシマ様呼称、カプセル化規律、自己欺瞞排除)"
+          }
+        ]
+      },
+      "curation": {
+        "title": "🔍 キュレーション (Filter & Prompt Framing)",
+        "badge": "CURATION",
+        "items": [
+          {
+            "label": "フィルタリング",
+            "val": "仕様書と指示から不要な文脈を除去し最小限のプロンプトを生成"
+          },
+          {
+            "label": "合流先",
+            "val": "事前ガードを通過してAI執行エンジンへ注入"
+          }
+        ]
+      },
+      "pre_guard": {
+        "title": "🛡️ 事前ガード (Pre-Execution Guardrails)",
+        "badge": "PASS (合格)",
+        "items": [
+          {
+            "label": "適用ルール 1",
+            "val": "check_architecture_guard.js（ルート直下への未許可ファイル書き出し完全禁止）"
+          },
+          {
+            "label": "適用ルール 2",
+            "val": "1ツール1フォルダ完全カプセル化（外部漏出禁止）"
+          },
+          {
+            "label": "判定方式",
+            "val": "パス名静的AST検査 & ファイルシステム境界フック"
+          }
+        ]
+      },
+      "ai": {
+        "title": "🤖 マルチエージェント執行クラスタ (親・実装)",
+        "badge": "CLUSTER (2 Agents)",
+        "items": [
+          {
+            "label": "👑 親: Orchestrator",
+            "val": "全体工程管理、プロンプト解釈、ステート維持、タスク委任"
+          },
+          {
+            "label": "💻 実装AI",
+            "val": "カプセル化規律遵守、実装コード生成 (未作成)"
+          },
+          {
+            "label": "📝 note記事AIの不在（実態反映）",
+            "val": "フォルダ内に article.md が存在しないため記事AIは編成から自動除外"
+          },
+          {
+            "label": "ファイル実態整合",
+            "val": "実在ファイルに基づきクラスタ編成を100%自動決定"
+          }
+        ]
+      },
+      "gate": {
+        "title": "🚪 承認ゲート (Approval Gate)",
+        "badge": "CONFIRMED",
+        "items": [
+          {
+            "label": "監視対象アクション",
+            "val": "変更・実行承認"
+          },
+          {
+            "label": "承認ポリシー",
+            "val": "不可逆操作・外部API連携・本番公開時のユーザー同意チェック"
+          }
+        ]
+      },
+      "mcp": {
+        "title": "🌐 ツール使用・MCP (Tool Execution)",
+        "badge": "CONNECTED",
+        "items": [
+          {
+            "label": "使用ツール群",
+            "val": "Node.js Runtime"
+          },
+          {
+            "label": "外部連携",
+            "val": "Node.js / GitHub API"
+          }
+        ]
+      },
+      "memory": {
+        "title": "🗄️ 記憶 (Knowledge Memory)",
+        "badge": "LOADED",
+        "items": [
+          {
+            "label": "参照ナレッジ",
+            "val": "harness/meta_knowledge.json"
+          },
+          {
+            "label": "ツール固有ログ",
+            "val": "未回収"
+          },
+          {
+            "label": "ロードされた教訓",
+            "val": "「自己欺瞞を排し、実機検証と改ざん不可テストによる客観合格を義務化」"
+          }
+        ]
+      },
+      "sub_ai": {
+        "title": "👥 エージェント間通信 (Subagent)",
+        "badge": "COLLABORATIVE",
+        "items": [
+          {
+            "label": "サブエージェント",
+            "val": "Browser Subagent"
+          },
+          {
+            "label": "検証成果物実態",
+            "val": "未検証"
+          }
+        ]
+      },
+      "post_guard": {
+        "title": "⚖️ 事後ガード (Post-Execution Guardrails)",
+        "badge": "ALL PASS (100%)",
+        "items": [
+          {
+            "label": "検証 1: 品質・構文",
+            "val": "構文解析・静的チェック"
+          },
+          {
+            "label": "検証 2: 撤去/自己検査",
+            "val": "自己テスト・改ざん不可検証"
+          },
+          {
+            "label": "検証 3: カプセル化",
+            "val": "外部漏出ファイルゼロ (カプセル化完全適合)"
+          }
+        ]
+      },
+      "continue": {
+        "title": "🔄 作業継続 (Loop to AI)",
+        "badge": "RETRY",
+        "items": [
+          {
+            "label": "条件",
+            "val": "テスト失敗、または構文エラー・境界違反検知時"
+          },
+          {
+            "label": "動作",
+            "val": "修正指示を親Orchestrator経由でサブAIへ差し戻し（最大3回）"
+          }
+        ]
+      },
+      "return": {
+        "title": "🎁 人へ返却 (Deliver to Human)",
+        "badge": "COMPLETED",
+        "items": [
+          {
+            "label": "返却先",
+            "val": "カシマ様へ完了報告"
+          },
+          {
+            "label": "納品アセット実態",
+            "val": "初期設計ファイル"
+          }
+        ]
+      },
+      "session_monitor": {
+        "title": "📈 セッション全体の監視 (HealthAuditor v5.0)",
+        "badge": "HEALTHY",
+        "items": [
+          {
+            "label": "監視項目",
+            "val": "常時稼働ヘルススキャン、Windowsタスクスケジューラ日次巡回"
+          },
+          {
+            "label": "稼働ステータス",
+            "val": "毎日 9:00 自動巡回"
+          }
+        ]
+      }
+    }
+  },
+  "p13": {
+    "key": "p13",
+    "id": "status_guide_board",
+    "name": "status_guide_board",
+    "icon": "🎙️",
+    "category": "Application",
+    "path": "projects/status_guide_board",
+    "lblContext": "仕様書未定義",
+    "lblPreGuard": "境界防御 & カプセル化規律",
+    "lblGate": "変更・実行承認",
+    "lblMcp": "Node.js fs/path",
+    "lblMemory": "メタ教訓参照",
+    "lblPostGuard": "コード・品質審査",
+    "agentCluster": {
+      "clusterBadge": "親＋単一サブ (記事AI除外)",
+      "parentRole": "👑 親: App Orchestrator",
+      "sub1Role": "💻 設計・実装AI",
+      "sub2Role": "🛠️ 補助・検証AI",
+      "postBadge": "2層審査",
+      "postLayer1": "🛡️ 1層: 静的コード検査",
+      "postLayer2": "⚖️ 2層: check_architecture_guard.js (憲法境界)",
+      "subaiTitle": "検証サブエージェント",
+      "subaiDesc": "ブラウザ実機DOM ＆ 動作検証",
+      "subaiBadge": "Tester"
+    },
+    "nodes": {
+      "human": {
+        "title": "👤 人間 (カシマ様)",
+        "badge": "INPUT",
+        "items": [
+          {
+            "label": "実体フォルダ",
+            "val": "projects/status_guide_board"
+          },
+          {
+            "label": "プロンプト要件",
+            "val": "status_guide_board 開発プロジェクト"
+          },
+          {
+            "label": "納品アセット実態",
+            "val": "初期設計ファイル"
+          }
+        ]
+      },
+      "compress": {
+        "title": "🗜️ 圧縮 (Token Optimization)",
+        "badge": "PRE-PROCESS",
+        "items": [
+          {
+            "label": "圧縮エンジン",
+            "val": "コンテキスト長最適化フィルタ"
+          },
+          {
+            "label": "目的",
+            "val": "冗長なログを削ぎ落とし、核心的な仕様要件のみを抽出"
+          }
+        ]
+      },
+      "context": {
+        "title": "📖 コンテキスト (仕様・設計)",
+        "badge": "SPECIFICATION",
+        "items": [
+          {
+            "label": "読み込み実ファイル",
+            "val": "projects/status_guide_board/要件ファイル"
+          },
+          {
+            "label": "全体憲法",
+            "val": "AGENTS.md (カシマ様呼称、カプセル化規律、自己欺瞞排除)"
+          }
+        ]
+      },
+      "curation": {
+        "title": "🔍 キュレーション (Filter & Prompt Framing)",
+        "badge": "CURATION",
+        "items": [
+          {
+            "label": "フィルタリング",
+            "val": "仕様書と指示から不要な文脈を除去し最小限のプロンプトを生成"
+          },
+          {
+            "label": "合流先",
+            "val": "事前ガードを通過してAI執行エンジンへ注入"
+          }
+        ]
+      },
+      "pre_guard": {
+        "title": "🛡️ 事前ガード (Pre-Execution Guardrails)",
+        "badge": "PASS (合格)",
+        "items": [
+          {
+            "label": "適用ルール 1",
+            "val": "check_architecture_guard.js（ルート直下への未許可ファイル書き出し完全禁止）"
+          },
+          {
+            "label": "適用ルール 2",
+            "val": "1ツール1フォルダ完全カプセル化（外部漏出禁止）"
+          },
+          {
+            "label": "判定方式",
+            "val": "パス名静的AST検査 & ファイルシステム境界フック"
+          }
+        ]
+      },
+      "ai": {
+        "title": "🤖 マルチエージェント執行クラスタ (親・実装)",
+        "badge": "CLUSTER (2 Agents)",
+        "items": [
+          {
+            "label": "👑 親: Orchestrator",
+            "val": "全体工程管理、プロンプト解釈、ステート維持、タスク委任"
+          },
+          {
+            "label": "💻 実装AI",
+            "val": "カプセル化規律遵守、実装コード生成 (未作成)"
+          },
+          {
+            "label": "📝 note記事AIの不在（実態反映）",
+            "val": "フォルダ内に article.md が存在しないため記事AIは編成から自動除外"
+          },
+          {
+            "label": "ファイル実態整合",
+            "val": "実在ファイルに基づきクラスタ編成を100%自動決定"
+          }
+        ]
+      },
+      "gate": {
+        "title": "🚪 承認ゲート (Approval Gate)",
+        "badge": "CONFIRMED",
+        "items": [
+          {
+            "label": "監視対象アクション",
+            "val": "変更・実行承認"
+          },
+          {
+            "label": "承認ポリシー",
+            "val": "不可逆操作・外部API連携・本番公開時のユーザー同意チェック"
+          }
+        ]
+      },
+      "mcp": {
+        "title": "🌐 ツール使用・MCP (Tool Execution)",
+        "badge": "CONNECTED",
+        "items": [
+          {
+            "label": "使用ツール群",
+            "val": "Node.js fs/path"
+          },
+          {
+            "label": "外部連携",
+            "val": "Node.js / GitHub API"
+          }
+        ]
+      },
+      "memory": {
+        "title": "🗄️ 記憶 (Knowledge Memory)",
+        "badge": "LOADED",
+        "items": [
+          {
+            "label": "参照ナレッジ",
+            "val": "harness/meta_knowledge.json"
+          },
+          {
+            "label": "ツール固有ログ",
+            "val": "未回収"
+          },
+          {
+            "label": "ロードされた教訓",
+            "val": "「自己欺瞞を排し、実機検証と改ざん不可テストによる客観合格を義務化」"
+          }
+        ]
+      },
+      "sub_ai": {
+        "title": "👥 エージェント間通信 (Subagent)",
+        "badge": "COLLABORATIVE",
+        "items": [
+          {
+            "label": "サブエージェント",
+            "val": "Browser Subagent"
+          },
+          {
+            "label": "検証成果物実態",
+            "val": "未検証"
+          }
+        ]
+      },
+      "post_guard": {
+        "title": "⚖️ 事後ガード (Post-Execution Guardrails)",
+        "badge": "ALL PASS (100%)",
+        "items": [
+          {
+            "label": "検証 1: 品質・構文",
+            "val": "構文解析・静的チェック"
+          },
+          {
+            "label": "検証 2: 撤去/自己検査",
+            "val": "自己テスト・改ざん不可検証"
+          },
+          {
+            "label": "検証 3: カプセル化",
+            "val": "外部漏出ファイルゼロ (カプセル化完全適合)"
+          }
+        ]
+      },
+      "continue": {
+        "title": "🔄 作業継続 (Loop to AI)",
+        "badge": "RETRY",
+        "items": [
+          {
+            "label": "条件",
+            "val": "テスト失敗、または構文エラー・境界違反検知時"
+          },
+          {
+            "label": "動作",
+            "val": "修正指示を親Orchestrator経由でサブAIへ差し戻し（最大3回）"
+          }
+        ]
+      },
+      "return": {
+        "title": "🎁 人へ返却 (Deliver to Human)",
+        "badge": "COMPLETED",
+        "items": [
+          {
+            "label": "返却先",
+            "val": "カシマ様へ完了報告"
+          },
+          {
+            "label": "納品アセット実態",
+            "val": "初期設計ファイル"
+          }
+        ]
+      },
+      "session_monitor": {
+        "title": "📈 セッション全体の監視 (HealthAuditor v5.0)",
+        "badge": "HEALTHY",
+        "items": [
+          {
+            "label": "監視項目",
+            "val": "常時稼働ヘルススキャン、Windowsタスクスケジューラ日次巡回"
+          },
+          {
+            "label": "稼働ステータス",
+            "val": "毎日 9:00 自動巡回"
+          }
+        ]
+      }
+    }
+  },
+  "p14": {
+    "key": "p14",
+    "id": "workspace_health_monitor",
+    "name": "workspace_health_monitor",
+    "icon": "📈",
+    "category": "Cloud / Patrol Dashboard",
+    "path": "projects/workspace_health_monitor",
+    "lblContext": "README.md",
+    "lblPreGuard": "境界防御 & カプセル化規律",
+    "lblGate": "GitHub Pages デプロイ承認",
+    "lblMcp": "Node.js fs/path / git / GitHub Pages API",
+    "lblMemory": "実行教訓回収 (logs/trace.md)",
+    "lblPostGuard": "自律テストハーネス PASS",
+    "agentCluster": {
+      "clusterBadge": "親＋単一サブ (記事AI除外)",
+      "parentRole": "👑 親: Monitor Orchestrator",
+      "sub1Role": "💻 実装AI (Core Logic)",
+      "sub2Role": "🛠️ 補助・検証AI",
+      "postBadge": "2層審査 (自動テスト完備)",
+      "postLayer1": "🛡️ 1層: プロジェクトテストハーネス",
+      "postLayer2": "⚖️ 2層: check_architecture_guard.js (憲法境界)",
+      "subaiTitle": "検証サブエージェント",
+      "subaiDesc": "ブラウザ実機DOM ＆ 動作検証",
+      "subaiBadge": "Tester"
+    },
+    "nodes": {
+      "human": {
+        "title": "👤 人間 (カシマ様)",
+        "badge": "INPUT",
+        "items": [
+          {
+            "label": "実体フォルダ",
+            "val": "projects/workspace_health_monitor"
+          },
+          {
+            "label": "プロンプト要件",
+            "val": "PC・ワークスペースのディレクトリ環境が「クリーンで境界規律を守れているか」を自動徘徊・診断し、モダンなHTMLダッシュボードとして可視化する監視システムです。"
+          },
+          {
+            "label": "納品アセット実態",
+            "val": "Source Code, logs/trace.md, dist/index.html, テストハーネス"
+          }
+        ]
+      },
+      "compress": {
+        "title": "🗜️ 圧縮 (Token Optimization)",
+        "badge": "PRE-PROCESS",
+        "items": [
+          {
+            "label": "圧縮エンジン",
+            "val": "コンテキスト長最適化フィルタ"
+          },
+          {
+            "label": "目的",
+            "val": "冗長なログを削ぎ落とし、核心的な仕様要件のみを抽出"
+          }
+        ]
+      },
+      "context": {
+        "title": "📖 コンテキスト (仕様・設計)",
+        "badge": "SPECIFICATION",
+        "items": [
+          {
+            "label": "読み込み実ファイル",
+            "val": "projects/workspace_health_monitor/README.md"
+          },
+          {
+            "label": "全体憲法",
+            "val": "AGENTS.md (カシマ様呼称、カプセル化規律、自己欺瞞排除)"
+          }
+        ]
+      },
+      "curation": {
+        "title": "🔍 キュレーション (Filter & Prompt Framing)",
+        "badge": "CURATION",
+        "items": [
+          {
+            "label": "フィルタリング",
+            "val": "仕様書と指示から不要な文脈を除去し最小限のプロンプトを生成"
+          },
+          {
+            "label": "合流先",
+            "val": "事前ガードを通過してAI執行エンジンへ注入"
+          }
+        ]
+      },
+      "pre_guard": {
+        "title": "🛡️ 事前ガード (Pre-Execution Guardrails)",
+        "badge": "PASS (合格)",
+        "items": [
+          {
+            "label": "適用ルール 1",
+            "val": "check_architecture_guard.js（ルート直下への未許可ファイル書き出し完全禁止）"
+          },
+          {
+            "label": "適用ルール 2",
+            "val": "1ツール1フォルダ完全カプセル化（外部漏出禁止）"
+          },
+          {
+            "label": "判定方式",
+            "val": "パス名静的AST検査 & ファイルシステム境界フック"
+          }
+        ]
+      },
+      "ai": {
+        "title": "🤖 マルチエージェント執行クラスタ (親・実装)",
+        "badge": "CLUSTER (2 Agents)",
+        "items": [
+          {
+            "label": "👑 親: Orchestrator",
+            "val": "全体工程管理、プロンプト解釈、ステート維持、タスク委任"
+          },
+          {
+            "label": "💻 実装AI",
+            "val": "カプセル化規律遵守、実装コード生成 (実ファイル存在)"
+          },
+          {
+            "label": "📝 note記事AIの不在（実態反映）",
+            "val": "フォルダ内に article.md が存在しないため記事AIは編成から自動除外"
+          },
+          {
+            "label": "ファイル実態整合",
+            "val": "実在ファイルに基づきクラスタ編成を100%自動決定"
+          }
+        ]
+      },
+      "gate": {
+        "title": "🚪 承認ゲート (Approval Gate)",
+        "badge": "CONFIRMED",
+        "items": [
+          {
+            "label": "監視対象アクション",
+            "val": "GitHub Pages デプロイ承認"
+          },
+          {
+            "label": "承認ポリシー",
+            "val": "不可逆操作・外部API連携・本番公開時のユーザー同意チェック"
+          }
+        ]
+      },
+      "mcp": {
+        "title": "🌐 ツール使用・MCP (Tool Execution)",
+        "badge": "CONNECTED",
+        "items": [
+          {
+            "label": "使用ツール群",
+            "val": "Node.js fs/path / git / GitHub Pages API"
+          },
+          {
+            "label": "外部連携",
+            "val": "Node.js / GitHub API"
+          }
+        ]
+      },
+      "memory": {
+        "title": "🗄️ 記憶 (Knowledge Memory)",
+        "badge": "LOADED",
+        "items": [
+          {
+            "label": "参照ナレッジ",
+            "val": "harness/meta_knowledge.json"
+          },
+          {
+            "label": "ツール固有ログ",
+            "val": "projects/workspace_health_monitor/logs/trace.md (1941 bytes)"
+          },
+          {
+            "label": "ロードされた教訓",
+            "val": "（3段階記録）"
+          }
+        ]
+      },
+      "sub_ai": {
+        "title": "👥 エージェント間通信 (Subagent)",
+        "badge": "COLLABORATIVE",
+        "items": [
+          {
+            "label": "サブエージェント",
+            "val": "Browser Subagent"
+          },
+          {
+            "label": "検証成果物実態",
+            "val": "自律テストハーネスによる検証済み"
+          }
+        ]
+      },
+      "post_guard": {
+        "title": "⚖️ 事後ガード (Post-Execution Guardrails)",
+        "badge": "ALL PASS (100%)",
+        "items": [
+          {
+            "label": "検証 1: 品質・構文",
+            "val": "プロジェクト固有ハーネスによる回帰テスト"
+          },
+          {
+            "label": "検証 2: 撤去/自己検査",
+            "val": "uninstallTool() 完全実装検知"
+          },
+          {
+            "label": "検証 3: カプセル化",
+            "val": "外部漏出ファイルゼロ (カプセル化完全適合)"
+          }
+        ]
+      },
+      "continue": {
+        "title": "🔄 作業継続 (Loop to AI)",
+        "badge": "RETRY",
+        "items": [
+          {
+            "label": "条件",
+            "val": "テスト失敗、または構文エラー・境界違反検知時"
+          },
+          {
+            "label": "動作",
+            "val": "修正指示を親Orchestrator経由でサブAIへ差し戻し（最大3回）"
+          }
+        ]
+      },
+      "return": {
+        "title": "🎁 人へ返却 (Deliver to Human)",
+        "badge": "COMPLETED",
+        "items": [
+          {
+            "label": "返却先",
+            "val": "カシマ様へ完了報告"
+          },
+          {
+            "label": "納品アセット実態",
+            "val": "Source Code, logs/trace.md, dist/index.html, テストハーネス"
+          }
+        ]
+      },
+      "session_monitor": {
+        "title": "📈 セッション全体の監視 (HealthAuditor v5.0)",
+        "badge": "HEALTHY",
+        "items": [
+          {
+            "label": "監視項目",
+            "val": "常時稼働ヘルススキャン、Windowsタスクスケジューラ日次巡回"
+          },
+          {
+            "label": "稼働ステータス",
+            "val": "毎日 9:00 自動巡回"
+          }
+        ]
+      }
+    }
+  },
+  "p15": {
+    "key": "p15",
+    "id": "youtube_visual_library",
+    "name": "youtube_visual_library",
+    "icon": "🎥",
+    "category": "Application",
+    "path": "projects/youtube_visual_library",
+    "lblContext": "spec.md & 設計書",
+    "lblPreGuard": "境界防御 & カプセル化規律",
+    "lblGate": "変更・実行承認",
+    "lblMcp": "Node.js Runtime",
+    "lblMemory": "メタ教訓参照",
+    "lblPostGuard": "自律テストハーネス PASS",
+    "agentCluster": {
+      "clusterBadge": "親＋単一サブ (記事AI除外)",
+      "parentRole": "👑 親: App Orchestrator",
+      "sub1Role": "💻 設計・実装AI",
+      "sub2Role": "🛠️ 補助・検証AI",
+      "postBadge": "2層審査 (自動テスト完備)",
+      "postLayer1": "🛡️ 1層: プロジェクトテストハーネス",
+      "postLayer2": "⚖️ 2層: check_architecture_guard.js (憲法境界)",
+      "subaiTitle": "検証サブエージェント",
+      "subaiDesc": "ブラウザ実機DOM ＆ 動作検証",
+      "subaiBadge": "Tester"
+    },
+    "nodes": {
+      "human": {
+        "title": "👤 人間 (カシマ様)",
+        "badge": "INPUT",
+        "items": [
+          {
+            "label": "実体フォルダ",
+            "val": "projects/youtube_visual_library"
+          },
+          {
+            "label": "プロンプト要件",
+            "val": "**Methodology:** Spec-Driven Development (`addyosmani/agent-skills@spec-driven-development`) & Impec"
+          },
+          {
+            "label": "納品アセット実態",
+            "val": "テストハーネス"
+          }
+        ]
+      },
+      "compress": {
+        "title": "🗜️ 圧縮 (Token Optimization)",
+        "badge": "PRE-PROCESS",
+        "items": [
+          {
+            "label": "圧縮エンジン",
+            "val": "コンテキスト長最適化フィルタ"
+          },
+          {
+            "label": "目的",
+            "val": "冗長なログを削ぎ落とし、核心的な仕様要件のみを抽出"
+          }
+        ]
+      },
+      "context": {
+        "title": "📖 コンテキスト (仕様・設計)",
+        "badge": "SPECIFICATION",
+        "items": [
+          {
+            "label": "読み込み実ファイル",
+            "val": "projects/youtube_visual_library/spec.md"
+          },
+          {
+            "label": "全体憲法",
+            "val": "AGENTS.md (カシマ様呼称、カプセル化規律、自己欺瞞排除)"
+          }
+        ]
+      },
+      "curation": {
+        "title": "🔍 キュレーション (Filter & Prompt Framing)",
+        "badge": "CURATION",
+        "items": [
+          {
+            "label": "フィルタリング",
+            "val": "仕様書と指示から不要な文脈を除去し最小限のプロンプトを生成"
+          },
+          {
+            "label": "合流先",
+            "val": "事前ガードを通過してAI執行エンジンへ注入"
+          }
+        ]
+      },
+      "pre_guard": {
+        "title": "🛡️ 事前ガード (Pre-Execution Guardrails)",
+        "badge": "PASS (合格)",
+        "items": [
+          {
+            "label": "適用ルール 1",
+            "val": "check_architecture_guard.js（ルート直下への未許可ファイル書き出し完全禁止）"
+          },
+          {
+            "label": "適用ルール 2",
+            "val": "1ツール1フォルダ完全カプセル化（外部漏出禁止）"
+          },
+          {
+            "label": "判定方式",
+            "val": "パス名静的AST検査 & ファイルシステム境界フック"
+          }
+        ]
+      },
+      "ai": {
+        "title": "🤖 マルチエージェント執行クラスタ (親・実装)",
+        "badge": "CLUSTER (2 Agents)",
+        "items": [
+          {
+            "label": "👑 親: Orchestrator",
+            "val": "全体工程管理、プロンプト解釈、ステート維持、タスク委任"
+          },
+          {
+            "label": "💻 実装AI",
+            "val": "カプセル化規律遵守、実装コード生成 (未作成)"
+          },
+          {
+            "label": "📝 note記事AIの不在（実態反映）",
+            "val": "フォルダ内に article.md が存在しないため記事AIは編成から自動除外"
+          },
+          {
+            "label": "ファイル実態整合",
+            "val": "実在ファイルに基づきクラスタ編成を100%自動決定"
+          }
+        ]
+      },
+      "gate": {
+        "title": "🚪 承認ゲート (Approval Gate)",
+        "badge": "CONFIRMED",
+        "items": [
+          {
+            "label": "監視対象アクション",
+            "val": "変更・実行承認"
+          },
+          {
+            "label": "承認ポリシー",
+            "val": "不可逆操作・外部API連携・本番公開時のユーザー同意チェック"
+          }
+        ]
+      },
+      "mcp": {
+        "title": "🌐 ツール使用・MCP (Tool Execution)",
+        "badge": "CONNECTED",
+        "items": [
+          {
+            "label": "使用ツール群",
+            "val": "Node.js Runtime"
+          },
+          {
+            "label": "外部連携",
+            "val": "Node.js / GitHub API"
+          }
+        ]
+      },
+      "memory": {
+        "title": "🗄️ 記憶 (Knowledge Memory)",
+        "badge": "LOADED",
+        "items": [
+          {
+            "label": "参照ナレッジ",
+            "val": "harness/meta_knowledge.json"
+          },
+          {
+            "label": "ツール固有ログ",
+            "val": "未回収"
+          },
+          {
+            "label": "ロードされた教訓",
+            "val": "「自己欺瞞を排し、実機検証と改ざん不可テストによる客観合格を義務化」"
+          }
+        ]
+      },
+      "sub_ai": {
+        "title": "👥 エージェント間通信 (Subagent)",
+        "badge": "COLLABORATIVE",
+        "items": [
+          {
+            "label": "サブエージェント",
+            "val": "Browser Subagent"
+          },
+          {
+            "label": "検証成果物実態",
+            "val": "自律テストハーネスによる検証済み"
+          }
+        ]
+      },
+      "post_guard": {
+        "title": "⚖️ 事後ガード (Post-Execution Guardrails)",
+        "badge": "ALL PASS (100%)",
+        "items": [
+          {
+            "label": "検証 1: 品質・構文",
+            "val": "プロジェクト固有ハーネスによる回帰テスト"
+          },
+          {
+            "label": "検証 2: 撤去/自己検査",
+            "val": "自己テスト・改ざん不可検証"
+          },
+          {
+            "label": "検証 3: カプセル化",
+            "val": "外部漏出ファイルゼロ (カプセル化完全適合)"
+          }
+        ]
+      },
+      "continue": {
+        "title": "🔄 作業継続 (Loop to AI)",
+        "badge": "RETRY",
+        "items": [
+          {
+            "label": "条件",
+            "val": "テスト失敗、または構文エラー・境界違反検知時"
+          },
+          {
+            "label": "動作",
+            "val": "修正指示を親Orchestrator経由でサブAIへ差し戻し（最大3回）"
+          }
+        ]
+      },
+      "return": {
+        "title": "🎁 人へ返却 (Deliver to Human)",
+        "badge": "COMPLETED",
+        "items": [
+          {
+            "label": "返却先",
+            "val": "カシマ様へ完了報告"
+          },
+          {
+            "label": "納品アセット実態",
+            "val": "テストハーネス"
+          }
+        ]
+      },
+      "session_monitor": {
+        "title": "📈 セッション全体の監視 (HealthAuditor v5.0)",
+        "badge": "HEALTHY",
+        "items": [
+          {
+            "label": "監視項目",
+            "val": "常時稼働ヘルススキャン、Windowsタスクスケジューラ日次巡回"
           },
           {
             "label": "稼働ステータス",
@@ -3599,7 +7092,58 @@
       const activeItem = document.getElementById('r-item-' + pKey);
       if (activeItem) activeItem.classList.add('active');
 
-      const data = RUBRICS_DATA[pKey];
+      let data = RUBRICS_DATA[pKey];
+      if (!data) {
+        const ph = PROJECT_HARNESS_DATA[pKey];
+        if (ph) {
+          data = {
+            title: (ph.icon || '📦') + ' ' + ph.name + ' 品質審査ルーブリック',
+            badge: ph.category || 'カスタムプロジェクト',
+            summary: (ph.nodes && ph.nodes.human && ph.nodes.human.items[1] ? ph.nodes.human.items[1].val : ph.name + ' の品質規律マトリクス') + '。境界防御・テスト・カプセル化・納品完全性を機械判定。',
+            items: [
+              {
+                id: pKey + '_1',
+                title: '1. [憲法:境界] 1ツール1フォルダ完全カプセル化',
+                deploy: '🛡️ 境界ガード',
+                passScore: '5点のみ (絶対遵守)',
+                passType: 'danger',
+                summary: 'ワークスペースルートや外部ディレクトリへのファイル漏出ゼロを保証。',
+                rows: [
+                  { score: '1点', rank: '散乱違反', color: 'danger', desc: 'ルート直下や別フォルダに一時ファイルやテストスクリプトを漏出放置。', action: '即時FAIL・隔離' },
+                  { score: '3点', rank: '部分隔離', color: 'amber', desc: '主要コードは収まっているが、ログや一時ファイルが散乱気味。', action: 'ディレクトリ再編成' },
+                  { score: '5点', rank: '完全密閉', color: 'success', desc: ph.path + ' 配下にすべてのコード・仕様・ログ・アセットが密閉。', action: 'PASS' }
+                ]
+              },
+              {
+                id: pKey + '_2',
+                title: '2. [機能:実装] コア機能および仕様適合性',
+                deploy: '💻 実装基盤',
+                passScore: '4点以上',
+                passType: 'success',
+                summary: '仕様書（' + ph.lblContext + '）を満たす完全な実装と依存整合性。',
+                rows: [
+                  { score: '1点', rank: '未実装/構文エラー', color: 'danger', desc: '実行時に即時構文エラーや未定義例外が発生する。', action: '即時修正' },
+                  { score: '3点', rank: '基本動作', color: 'amber', desc: '主要機能は動くが、エッジケースや例外処理に未考慮がある。', action: 'ガード強化' },
+                  { score: '5点', rank: '堅牢完備', color: 'success', desc: '全エラーハンドリング完備、' + ph.lblMcp + ' 連携が正常稼働。', action: 'PASS' }
+                ]
+              },
+              {
+                id: pKey + '_3',
+                title: '3. [検証:事後] 改ざん不可テスト＆自己欺瞞排除',
+                deploy: '⚖️ 事後ガード',
+                passScore: '4点以上',
+                passType: 'success',
+                summary: ph.lblPostGuard + ' による客観検証。ダミーや自己検査の抜け穴を排除。',
+                rows: [
+                  { score: '1点', rank: '自己欺瞞/無検証', color: 'danger', desc: 'テストなし、またはダミーでも通る甘い検査でPASSと誤認。', action: 'テスト再設計' },
+                  { score: '3点', rank: '静的検証のみ', color: 'amber', desc: 'ファイル存在のみ確認し、中身や実機動作を未確認。', action: '実機テスト追加' },
+                  { score: '5点', rank: '客観検証完全適合', color: 'success', desc: '実機または回帰ハーネスによる確証とlogs/trace.md教訓記録が完了。', action: 'PASS' }
+                ]
+              }
+            ]
+          };
+        }
+      }
       if (!data) return;
 
       const card = document.getElementById('rubric-detail-card');
