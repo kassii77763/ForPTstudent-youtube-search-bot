@@ -456,48 +456,41 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 10px;
-  padding-bottom: 8px;
+  margin-bottom: 8px;
+  padding-bottom: 6px;
   border-bottom: 1px solid #f1f5f9;
-  gap: 8px;
-  flex-wrap: wrap;
+  gap: 6px;
 }
 .diag-header-left {
   display: flex;
   align-items: center;
-  gap: 8px;
-}
-.diag-badge {
-  font-size: 0.72rem;
-  font-weight: 800;
-  color: var(--primary-hover);
-  background: var(--primary-light);
-  padding: 3px 8px;
-  border-radius: 6px;
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
+  gap: 6px;
+  min-width: 0;
 }
 .view-switch {
   display: inline-flex;
   background: #f1f5f9;
-  padding: 3px;
+  padding: 2px;
   border-radius: 8px;
   gap: 2px;
+  overflow-x: auto;
+  white-space: nowrap;
 }
 .pin-btn {
   background: #ffffff;
   border: 1.5px solid var(--primary);
   color: var(--primary-hover);
-  padding: 4px 10px;
+  padding: 3px 8px;
   border-radius: 6px;
-  font-size: 0.74rem;
+  font-size: 0.70rem;
   font-weight: 700;
   cursor: pointer;
   display: inline-flex;
   align-items: center;
-  gap: 4px;
+  gap: 3px;
   transition: all 0.2s ease;
+  white-space: nowrap !important;
+  flex-shrink: 0;
   margin-left: auto;
 }
 .pin-btn:hover {
@@ -589,13 +582,15 @@ body {
 .switch-btn {
   background: none;
   border: none;
-  font-size: 0.74rem;
+  font-size: 0.70rem;
   font-weight: 700;
   color: var(--text-muted);
-  padding: 4px 10px;
+  padding: 3px 8px;
   border-radius: 6px;
   cursor: pointer;
   transition: all 0.15s ease;
+  white-space: nowrap !important;
+  flex-shrink: 0;
 }
 .switch-btn.active {
   background: #ffffff;
@@ -993,8 +988,13 @@ body.blind .a-box:not(.show)::after {
   .diag-container.is-pinned .resume-img {
     max-height: 120px;
   }
-  .diag-container.is-pinned .svg-wrapper svg {
-    max-height: 120px;
+  .switch-btn {
+    font-size: 0.67rem;
+    padding: 3px 6px;
+  }
+  .pin-btn {
+    font-size: 0.67rem;
+    padding: 3px 6px;
   }
 }
 
@@ -1079,171 +1079,7 @@ body.blind .a-box:not(.show)::after {
 
 <script>
 /* ==========================================================
-   カラーSVG解剖図（比較・解説用）
-   ========================================================== */
-const SVG_SAGITTAL = `
-<svg viewBox="0 0 520 280" xmlns="http://www.w3.org/2000/svg">
-  <path d="M50,170 C30,90 110,25 260,25 C410,25 480,90 465,170 C450,200 400,190 350,175 C260,155 150,195 50,170 Z" fill="#e0f2fe" stroke="#0284c7" stroke-width="2.5"/>
-  <path d="M110,160 C95,100 170,65 290,70 C350,73 380,105 360,145 C325,120 200,110 160,160 Z" fill="#bae6fd" stroke="#0369a1" stroke-width="4"/>
-  <path d="M180,115 C210,100 280,100 310,120 C290,125 220,120 180,115 Z" fill="#ffffff" stroke="#0284c7" stroke-width="1.5"/>
-  <ellipse cx="260" cy="145" rx="35" ry="20" fill="#fef3c7" stroke="#d97706" stroke-width="2"/>
-  <rect x="246" y="165" width="38" height="25" rx="5" fill="#fde68a" stroke="#d97706" stroke-width="2"/>
-  <ellipse cx="268" cy="210" rx="28" ry="18" fill="#fed7aa" stroke="#ea580c" stroke-width="2"/>
-  <path d="M260,228 L290,226 L298,265 L268,267 Z" fill="#ffedd5" stroke="#ea580c" stroke-width="2"/>
-  <ellipse cx="375" cy="205" rx="60" ry="40" fill="#ccfbf1" stroke="#0d9488" stroke-width="2.5"/>
-  <text x="245" y="55" font-weight="800" font-size="16" fill="#0369a1">A（大脳/終脳）</text>
-  <text x="250" y="151" font-weight="800" font-size="14" fill="#92400e">B（間脳）</text>
-  <text x="256" y="182" font-weight="800" font-size="14" fill="#92400e">C（中脳）</text>
-  <text x="260" y="215" font-weight="800" font-size="14" fill="#9a3412">D（橋）</text>
-  <text x="365" y="210" font-weight="800" font-size="16" fill="#0f766e">E（小脳）</text>
-  <text x="272" y="254" font-weight="800" font-size="14" fill="#9a3412">G（延髄）</text>
-  <line x1="335" y1="95" x2="410" y2="45" stroke="#0369a1" stroke-width="2"/>
-  <text x="415" y="45" font-weight="800" font-size="14" fill="#0369a1">F（辺縁葉）</text>
-</svg>`;
-
-const SVG_LATERAL = `
-<svg viewBox="0 0 540 280" xmlns="http://www.w3.org/2000/svg">
-  <path d="M45,160 C30,80 120,25 280,25 C420,25 500,90 495,170 C490,210 400,210 340,210 C240,225 170,225 155,190 C90,190 55,180 45,160 Z" fill="#f8fafc" stroke="#0284c7" stroke-width="2.5"/>
-  <path d="M270,27 C255,80 235,130 220,170" fill="none" stroke="#0f172a" stroke-width="3"/>
-  <path d="M155,185 C225,168 300,158 355,145" fill="none" stroke="#0f172a" stroke-width="3"/>
-  <path d="M232,32 C218,80 200,128 190,172 L220,170 C235,130 255,80 270,27 Z" fill="#bae6fd" stroke="#0284c7" stroke-dasharray="3,2"/>
-  <path d="M270,27 C255,80 235,130 220,170 L255,165 C272,126 290,80 305,32 Z" fill="#99f6e4" stroke="#0d9488" stroke-dasharray="3,2"/>
-  <polygon points="100,150 145,120 172,170 108,175" fill="#fde68a" stroke="#d97706" stroke-dasharray="3,2"/>
-  <ellipse cx="245" cy="182" rx="26" ry="12" fill="#fed7aa" stroke="#ea580c" stroke-dasharray="3,2"/>
-  <ellipse cx="325" cy="170" rx="38" ry="16" fill="#fecdd3" stroke="#e11d48" stroke-dasharray="3,2"/>
-  <path d="M495,140 C470,145 470,190 495,195 Z" fill="#ddd6fe" stroke="#7c3aed" stroke-dasharray="3,2"/>
-  <text x="122" y="156" font-weight="800" font-size="16" fill="#b45309">A (ブローカ野)</text>
-  <text x="228" y="80" font-weight="800" font-size="16" fill="#0369a1">B (4野:体幹/上肢)</text>
-  <text x="250" y="125" font-weight="800" font-size="16" fill="#0f766e">C (3,1,2野:手指/顔)</text>
-  <text x="238" y="188" font-weight="800" font-size="14" fill="#c2410c">D (聴覚野)</text>
-  <text x="315" y="176" font-weight="800" font-size="16" fill="#be123c">E (ウェルニッケ野)</text>
-  <text x="475" y="172" font-weight="800" font-size="16" fill="#6d28d9">F (視覚野)</text>
-</svg>`;
-
-const SVG_FIBERS = `
-<svg viewBox="0 0 520 220" xmlns="http://www.w3.org/2000/svg">
-  <rect x="10" y="10" width="155" height="195" rx="10" fill="#f0f9ff" stroke="#bae6fd" stroke-width="1.5"/>
-  <rect x="180" y="10" width="155" height="195" rx="10" fill="#f0fdf4" stroke="#bbf7d0" stroke-width="1.5"/>
-  <rect x="350" y="10" width="160" height="195" rx="10" fill="#fdf4ff" stroke="#f5d0fe" stroke-width="1.5"/>
-  <text x="88" y="36" text-anchor="middle" font-weight="800" font-size="15" fill="#0369a1">A：交連線維</text>
-  <ellipse cx="45" cy="135" rx="20" ry="30" fill="#e0f2fe" stroke="#0284c7"/>
-  <ellipse cx="130" cy="135" rx="20" ry="30" fill="#e0f2fe" stroke="#0284c7"/>
-  <path d="M45,110 C60,70 115,70 130,110" fill="none" stroke="#0284c7" stroke-width="4"/>
-  <text x="88" y="145" text-anchor="middle" font-size="12" font-weight="700" fill="#0369a1">左右半球を連絡</text>
-  <text x="88" y="175" text-anchor="middle" font-size="11" font-weight="600" fill="#475569">例：脳梁、前交連</text>
-  <text x="258" y="36" text-anchor="middle" font-weight="800" font-size="15" fill="#15803d">B：連合線維</text>
-  <ellipse cx="258" cy="135" rx="55" ry="32" fill="#dcfce7" stroke="#16a34a"/>
-  <path d="M210,135 C210,75 305,75 305,135" fill="none" stroke="#16a34a" stroke-width="4"/>
-  <text x="258" y="140" text-anchor="middle" font-size="12" font-weight="700" fill="#15803d">同側半球内を連絡</text>
-  <text x="258" y="175" text-anchor="middle" font-size="11" font-weight="600" fill="#475569">例：弓状束、上縦束</text>
-  <text x="430" y="36" text-anchor="middle" font-weight="800" font-size="15" fill="#a21caf">C：投射線維</text>
-  <path d="M380,80 L430,130 L430,185 M480,80 L430,130" fill="none" stroke="#c026d3" stroke-width="4"/>
-  <text x="430" y="115" text-anchor="middle" font-size="12" font-weight="700" fill="#a21caf">上下（皮質⇔脳幹/脊髄）</text>
-  <text x="430" y="195" text-anchor="middle" font-size="11" font-weight="600" fill="#475569">例：内包、放線冠、錐体路</text>
-</svg>`;
-
-const SVG_WILLIS = `
-<svg viewBox="0 0 520 250" xmlns="http://www.w3.org/2000/svg">
-  <rect x="10" y="10" width="500" height="230" rx="10" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5"/>
-  <text x="20" y="32" font-size="14" font-weight="800" fill="#0369a1">ウィリス動脈輪（Willis Circle）の構成</text>
-  <line x1="230" y1="70" x2="270" y2="70" stroke="#dc2626" stroke-width="4"/>
-  <text x="250" y="60" text-anchor="middle" font-size="11" font-weight="800" fill="#dc2626">① 前交通動脈</text>
-  <line x1="200" y1="100" x2="230" y2="70" stroke="#dc2626" stroke-width="4"/>
-  <line x1="300" y1="100" x2="270" y2="70" stroke="#dc2626" stroke-width="4"/>
-  <text x="175" y="78" font-size="11" font-weight="800" fill="#dc2626">② 前大脳動脈</text>
-  <circle cx="200" cy="100" r="7" fill="#2563eb"/>
-  <circle cx="300" cy="100" r="7" fill="#2563eb"/>
-  <text x="135" y="105" font-size="11" font-weight="800" fill="#2563eb">③ 内頸動脈</text>
-  <text x="315" y="105" font-size="11" font-weight="800" fill="#2563eb">③ 内頸動脈</text>
-  <line x1="200" y1="100" x2="140" y2="90" stroke="#94a3b8" stroke-width="3" stroke-dasharray="3,2"/>
-  <line x1="300" y1="100" x2="360" y2="90" stroke="#94a3b8" stroke-width="3" stroke-dasharray="3,2"/>
-  <text x="105" y="80" font-size="10" font-weight="700" fill="#64748b">中大脳A. (※輪外)</text>
-  <line x1="200" y1="100" x2="225" y2="150" stroke="#ea580c" stroke-width="4"/>
-  <line x1="300" y1="100" x2="275" y2="150" stroke="#ea580c" stroke-width="4"/>
-  <text x="150" y="140" font-size="11" font-weight="800" fill="#ea580c">④ 後交通動脈</text>
-  <line x1="225" y1="150" x2="250" y2="160" stroke="#ea580c" stroke-width="4"/>
-  <line x1="275" y1="150" x2="250" y2="160" stroke="#ea580c" stroke-width="4"/>
-  <text x="295" y="152" font-size="11" font-weight="800" fill="#ea580c">⑤ 後大脳動脈</text>
-  <line x1="250" y1="160" x2="250" y2="215" stroke="#059669" stroke-width="5"/>
-  <text x="250" y="235" text-anchor="middle" font-size="11" font-weight="800" fill="#059669">（⑥ 脳底動脈）</text>
-  <text x="360" y="220" font-size="10" font-weight="700" fill="#dc2626">※中大脳動脈は輪に含まれない！</text>
-</svg>`;
-
-const SVG_SULCI_GYRI = `
-<svg viewBox="0 0 540 330" xmlns="http://www.w3.org/2000/svg">
-  <g transform="translate(10, 10)">
-    <rect x="0" y="0" width="520" height="150" rx="8" fill="#f8fafc" stroke="#cbd5e1"/>
-    <text x="15" y="20" font-size="12" font-weight="800" fill="#0369a1">【外側面】①〜⑩の脳回・脳溝</text>
-    <path d="M40,110 C30,55 90,25 210,25 C310,25 380,55 375,100 C370,125 310,125 270,125 C190,135 130,135 120,115 C70,115 50,115 40,110 Z" fill="#ffffff" stroke="#64748b" stroke-width="1.8"/>
-    <path d="M200,27 C190,55 175,85 165,108" fill="none" stroke="#dc2626" stroke-width="2.5"/>
-    <text x="180" y="23" font-size="11" font-weight="800" fill="#dc2626">⑤溝（中心溝）</text>
-    <path d="M120,55 C150,53 180,55 190,57" fill="none" stroke="#2563eb" stroke-width="1.8"/>
-    <text x="135" y="50" font-size="11" font-weight="800" fill="#2563eb">②溝</text>
-    <path d="M120,110 C165,100 220,95 260,88" fill="none" stroke="#9333ea" stroke-width="2.5"/>
-    <text x="210" y="112" font-size="11" font-weight="800" fill="#9333ea">⑩溝（外側溝）</text>
-    <text x="135" y="40" font-size="11" font-weight="800" fill="#0369a1">①回（上前頭回）</text>
-    <text x="155" y="78" font-size="11" font-weight="800" fill="#0369a1">③回（中心前回）</text>
-    <text x="195" y="78" font-size="11" font-weight="800" fill="#0d9488">④回（中心後回）</text>
-    <text x="250" y="80" font-size="11" font-weight="800" fill="#d97706">⑥回（縁上回）</text>
-    <text x="290" y="95" font-size="11" font-weight="800" fill="#d97706">⑦回（角回）</text>
-    <text x="210" y="130" font-size="11" font-weight="800" fill="#475569">⑧回（中側頭回）</text>
-    <text x="90" y="95" font-size="11" font-weight="800" fill="#ea580c">⑨部（三角部/弁蓋部）</text>
-  </g>
-  <g transform="translate(10, 168)">
-    <rect x="0" y="0" width="520" height="150" rx="8" fill="#f8fafc" stroke="#cbd5e1"/>
-    <text x="15" y="20" font-size="12" font-weight="800" fill="#0d9488">【内側面】⑪〜⑭の脳回・脳溝 ＆ あ・い・う</text>
-    <path d="M40,110 C30,60 85,25 200,25 C310,25 365,60 355,110 C345,130 300,125 260,118 C190,105 110,130 40,110 Z" fill="#ffffff" stroke="#64748b" stroke-width="1.8"/>
-    <path d="M110,95 C130,70 190,70 230,85 C210,95 150,95 110,95 Z" fill="#e2e8f0" stroke="#94a3b8"/>
-    <path d="M90,80 C130,55 210,55 240,65 L255,40" fill="none" stroke="#0284c7" stroke-width="2"/>
-    <text x="195" y="20" font-size="11" font-weight="800" fill="#475569">あ ↓</text>
-    <text x="225" y="20" font-size="11" font-weight="800" fill="#dc2626">い ↓（⑤中心溝）</text>
-    <text x="255" y="20" font-size="11" font-weight="800" fill="#475569">う ↓</text>
-    <text x="145" y="66" font-size="11" font-weight="800" fill="#0369a1">⑪回（帯状回）</text>
-    <text x="280" y="70" font-size="11" font-weight="800" fill="#0284c7">⑫溝（頭頂後頭溝）</text>
-    <text x="150" y="112" font-size="11" font-weight="800" fill="#0d9488">⑬回（海馬傍回）</text>
-    <text x="300" y="105" font-size="11" font-weight="800" fill="#7c3aed">⑭溝（鳥距溝）</text>
-  </g>
-</svg>`;
-
-const SVG_SECTIONS = `
-<svg viewBox="0 0 540 260" xmlns="http://www.w3.org/2000/svg">
-  <g transform="translate(10, 10)">
-    <rect x="0" y="0" width="250" height="235" rx="10" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5"/>
-    <text x="12" y="24" font-weight="800" font-size="14" fill="#0369a1">図1：大脳水平断（A〜E）</text>
-    <path d="M40,120 C35,50 90,35 125,35 C160,35 215,50 210,120 C205,185 155,215 125,215 C95,215 45,185 40,120 Z" fill="#f8fafc" stroke="#64748b" stroke-width="1.8"/>
-    <path d="M115,70 Q125,85 115,100 M135,70 Q125,85 135,100" fill="none" stroke="#0284c7" stroke-width="2"/>
-    <ellipse cx="108" cy="85" rx="8" ry="12" fill="#fde68a" stroke="#d97706" stroke-width="1.5"/>
-    <ellipse cx="142" cy="85" rx="8" ry="12" fill="#fde68a" stroke="#d97706" stroke-width="1.5"/>
-    <ellipse cx="112" cy="140" rx="14" ry="22" fill="#fed7aa" stroke="#ea580c" stroke-width="1.5"/>
-    <ellipse cx="138" cy="140" rx="14" ry="22" fill="#fed7aa" stroke="#ea580c" stroke-width="1.5"/>
-    <path d="M75,95 Q90,90 95,115 Q85,135 75,120 Z" fill="#ccfbf1" stroke="#0d9488" stroke-width="2" stroke-dasharray="3,2"/>
-    <path d="M175,95 Q160,90 155,115 Q165,135 175,120 Z" fill="#ccfbf1" stroke="#0d9488" stroke-width="2" stroke-dasharray="3,2"/>
-    <text x="60" y="85" font-weight="800" font-size="12" fill="#0f766e">A:レンズ核</text>
-    <text x="65" y="105" font-weight="700" font-size="10" fill="#0f766e">(C被殻+D淡蒼球)</text>
-    <text x="75" y="70" font-weight="800" font-size="11" fill="#b45309">B:尾状核</text>
-    <text x="80" y="168" font-weight="800" font-size="12" fill="#c2410c">E:視床</text>
-  </g>
-  <g transform="translate(275, 10)">
-    <rect x="0" y="0" width="255" height="235" rx="10" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5"/>
-    <text x="12" y="24" font-weight="800" font-size="14" fill="#0d9488">図2：大脳前頭断（A〜E）</text>
-    <path d="M30,140 C20,60 80,35 125,35 C170,35 230,60 220,140 C210,190 180,210 125,210 C70,210 40,190 30,140 Z" fill="#f8fafc" stroke="#64748b" stroke-width="1.8"/>
-    <path d="M85,75 Q125,65 165,75" fill="none" stroke="#64748b" stroke-width="4"/>
-    <ellipse cx="100" cy="88" rx="8" ry="6" fill="#fde68a" stroke="#d97706"/>
-    <path d="M110,88 L125,135" fill="none" stroke="#2563eb" stroke-width="3"/>
-    <polygon points="75,100 105,105 90,135" fill="#ccfbf1" stroke="#0d9488" stroke-width="1.5"/>
-    <line x1="65" y1="98" x2="60" y2="135" stroke="#7c3aed" stroke-width="2.5"/>
-    <circle cx="85" cy="180" r="10" fill="#fecdd3" stroke="#e11d48" stroke-width="2"/>
-    <text x="32" y="95" font-weight="800" font-size="11" fill="#6d28d9">A:前障</text>
-    <text x="130" y="105" font-weight="800" font-size="11" fill="#1d4ed8">B:内包</text>
-    <text x="88" y="70" font-weight="800" font-size="11" fill="#b45309">C:尾状核</text>
-    <text x="50" y="152" font-weight="800" font-size="11" fill="#0f766e">D:レンズ核</text>
-    <text x="105" y="185" font-weight="800" font-size="12" fill="#be123c">★ E:扁桃体</text>
-  </g>
-</svg>`;
-
-
-/* ==========================================================
-   データ定義（全86問 ＆ 原本画像・カラーSVG完全照合版）
+   データ定義（全86問 ＆ 原本テスト図・講義レジュメ図完全照合版）
    ========================================================== */
 const DATA = [
   {
@@ -1260,20 +1096,19 @@ const DATA = [
         examCap: "📷 原本テスト図（1ページ目左上：正中矢状断の実物スキャン）",
         resumeImgs: [
           { src: "images/resume_g1_1_sagittal.webp", cap: "📖 講義レジュメ（中枢神経系 脳 p.5）：正中矢状断の区分（終脳・間脳・中脳・橋・小脳・延髄の実物解剖図）" },
-          { src: "images/resume_g1_1_divisions.webp", cap: "📖 講義レジュメ（中枢神経系 脳 p.6）：大脳・脳幹・小脳の区分体系ダイアグラム" }
+          { src: "images/resume_g1_1_divisions.webp", cap: "📖 講義レジュメ（中枢神経系 脳 p.6）：大脳・脳幹・小脳の区分体系ダイアグラム（問7の根拠：脳幹＝中脳・橋・延髄）" },
+          { src: "images/resume_g1_1_basics.webp", cap: "📖 講義レジュメ（中枢神経系 脳 p.3）：脳の基本（問8の根拠：重量1,200〜1,500g、酸素なしで3〜4分、血流量）" }
         ],
-        svg: SVG_SAGITTAL,
-        svgCap: "🎨 カラー解説図（構造別の色分け・名称ガイド）",
         notice: "<strong>【原本の位置関係の照合結果】</strong><br>・設問は「A〜Eで矢印の示す、脳を6つに区分した呼び名」ですが、枠はA〜Eの5つのみで、最下部に「G（延髄）」が振られています。<br>・Fは太線で囲まれた帯状回領域（辺縁葉・古皮質）を指しています。",
         items: [
-          ["問1", "A〜Eで矢印の示す、脳を6つに区分した呼び名：A (  )", "大脳（または 終脳）", "【原本照合】最上部の大きな半球全体を指しています。発生学的には前脳胞から分化した終脳です。"],
+          ["問1", "A〜Eで矢印の示す、脳を6つに区分した呼び名：A (  )", "終脳", "【原本照合】最上部の大きな半球全体を指しています。発生学的に前脳胞から分化した「終脳」です。"],
           ["問2", "脳を6つに区分した呼び名：B (  )", "間脳", "【原本照合】大脳半球に包まれた中央の楕円形領域（視床・視床下部）を指しています。"],
           ["問3", "脳を6つに区分した呼び名：C (  )", "中脳", "【原本照合】間脳の直下、大脳脚・四丘体の領域を指しています。"],
           ["問4", "脳を6つに区分した呼び名：D (  )", "橋（きょう）", "【原本照合】前方に丸く膨らむ橋領域を指しています。中小脳脚で小脳と繋がります。"],
           ["問5", "脳を6つに区分した呼び名：E (  ) ／ ※図のG (  )", "E：小脳 ／ ※G：延髄", "【原本照合】Eは橋・延髄の後背にある小脳、最下部Gは延髄を指しています。"],
           ["問6", "Fの太線で囲まれる部位は ( ① ) 葉と呼ばれ、( 新 or 古 ) 皮質と呼ばれる領域である。", "① 辺縁（大脳辺縁） ／ ② 古", "【原本照合】脳梁の周囲を囲む太線（帯状回・海馬傍回）です。系統発生的に古い「古皮質（原皮質・古皮質）」から成ります。"],
-          ["問7", "脳幹はA〜Eのどれか（完答）", "B, C, D（※狭義はC, D ／ G延髄を含めるとB, C, D, G）", "広義の脳幹＝間脳(B)・中脳(C)・橋(D)・延髄(G)。狭義＝中脳(C)・橋(D)・延髄(G)。解答枠A〜E内ではB, C, Dが該当します。"],
-          ["問8", "脳の重さ (  g)", "約 1,350 〜 1,400 g（※成人男性 約1,400g ／ 女性 約1,250g ／ 約1,300〜1,400g）", "【講義レジュメ完全準拠（脳の基本）】<br>① 日本人の脳の重さの平均：<strong>約1,350〜1,400g</strong>（男性 約1,400g、女性 約1,250g）<br>② 体重に占める割合：<strong>約 2%</strong>（約1/50）<br>③ 全血流量に占める割合：<strong>約 15%</strong>（心拍出量の約15%＝750ml/分、運動時も不変）<br>④ 酸素消費量：<strong>全身の約 20%</strong><br>⑤ 酸素なしで生きられる時間：<strong>わずか 3〜4分</strong>"]
+          ["問7", "脳幹はA〜Eのどれか（完答）", "C, D", "【講義レジュメ完全準拠（中枢神経系 脳 p.6）】脳幹は中脳(C)・橋(D)・延髄(G)から構成されます。A〜Eの選択肢枠内ではC（中脳）とD（橋）のみが該当します（B間脳は含めません）。"],
+          ["問8", "脳の重さ (  g)", "1,200 〜 1,500 g", "成人脳の重さは約1,200〜1,500g（体重の約2%）です。"]
         ]
       },
       {
@@ -1283,17 +1118,16 @@ const DATA = [
         examCap: "📷 原本テスト図（1ページ目右上：左大脳半球外側面の実物スキャン）",
         resumeImgs: [
           { src: "images/resume_g1_2_functional.webp", cap: "📖 講義レジュメ（中枢神経系 脳 p.26）：大脳皮質の機能局在（一次運動野4、一次感覚野3,1,2、一次聴覚野41,42、一次視覚野17、ブローカ44,45、ウェルニッケ22）" },
-          { src: "images/resume_g1_2_homunculus.webp", cap: "📖 講義レジュメ（中枢神経系 脳 p.22）：一次運動野・感覚野の身体支配領域（ホムンクルス：外側面＝顔面・上肢、内側面＝下肢）" }
+          { src: "images/resume_g1_2_homunculus.webp", cap: "📖 講義レジュメ（中枢神経系 脳 p.22）：一次運動野・感覚野の身体支配領域（ホムンクルス：外側面＝顔面・上肢、内側面＝下肢）" },
+          { src: "images/resume_g1_2_language.webp", cap: "📖 講義レジュメ（中枢神経系 脳 p.27）：言語中枢と優位半球（問9の根拠：言語中枢は左大脳半球に局在）" }
         ],
-        svg: SVG_LATERAL,
-        svgCap: "🎨 カラー解説図（ブロードマン野 ＆ ホムンクルス局在マップ）",
         notice: "<strong>【原本の位置関係の照合結果】</strong><br>・右端の点線枠は印刷上で掠れていますが後頭極の「F（一次視覚野）」です。<br>・BとCの「周囲の支配領域」は、ペンフィールドのホムンクルス（上から下肢→体幹→上肢→手・顔面）の高さに対応しています。",
         items: [
           ["問1", "図の機能中枢(何野)を答えなさい（*言語中枢に関しては、運動性か感覚性かも記載せよ）：A (  )", "運動性言語野（運動性言語中枢 ／ ブローカ野）", "【原本照合】前頭葉の下前頭回後部（三角部・弁蓋部：44, 45野）の四角枠を指しています。"],
           ["問2", "B ( ① ) ブロードマン野(数字)は ( ② )", "① 一次運動野（運動野） ／ ② 4（4野）", "【原本照合】中心溝の直前、中心前回の帯状領域を指しています。"],
-          ["問3", "Bの文字が書かれてる周囲は身体のどの領域を支配しているか？", "体幹・上肢（または 下肢・体幹）", "【原本照合】Bの文字は外側面の上方に位置しており、運動ホムンクルスの体幹・上肢領域に一致します。"],
+          ["問3", "Bの文字が書かれてる周囲は身体のどの領域を支配しているか？", "上肢", "【原本照合】一次運動野（中心前回）の外側面中上部は運動ホムンクルスの上肢領域を支配します。"],
           ["問4", "C ( ① ) ブロードマン野(数字)は ( ② )", "① 一次体性感覚野（体性感覚野） ／ ② 3, 1, 2（または 1, 2, 3）", "【原本照合】中心溝の直後、中心後回の帯状領域を指しています。"],
-          ["問5", "Cの文字が書かれてる周囲は身体のどの領域を支配しているか？", "上肢・手指（または 顔面）", "【原本照合】Cの文字は中心後回の中央部〜やや下寄りにあり、感覚ホムンクルスの手・手指・上肢領域に一致します。"],
+          ["問5", "Cの文字が書かれてる周囲は身体のどの領域を支配しているか？", "顔面（顔面部）", "【原本照合】一次体性感覚野（中心後回）の外側下部は感覚ホムンクルスの顔面領域を支配します。"],
           ["問6", "D (  )", "一次聴覚野（聴覚野）", "【原本照合】側頭葉の上側頭回（ヘッシェル回：41, 42野）を指しています。"],
           ["問7", "E (  )", "感覚性言語野（感覚性言語中枢 ／ ウェルニッケ野）", "【原本照合】上側頭回後部（22野）の楕円枠を指しています。言葉の意味理解を担います。"],
           ["問8", "F (  )", "一次視覚野（視覚野）", "【原本照合】後頭葉の後端極（17野）の点線枠です。網膜からの視覚入力を受けます。"],
@@ -1312,6 +1146,10 @@ const DATA = [
       {
         id: "g2_1",
         title: "2-1. 以下の問いに○×で答えよ（全21問完答）",
+        resumeImgs: [
+          { src: "images/resume_g2_basal_ganglia.webp", cap: "📖 講義レジュメ（中枢神経系 脳 p.31）：大脳基底核の構成（線条体＝尾状核＋被殻、レンズ核＝被殻＋淡蒼球）" },
+          { src: "images/resume_g2_cortex_summary.webp", cap: "📖 講義レジュメ（中枢神経系 脳 p.28）：大脳皮質機能局在と感覚中継（視床が感覚を中継して中心後回へ投射）" }
+        ],
         items: [
           ["○× 1", "運動中枢は前頭葉にある (  )", "○", "一次運動野（4野）は前頭葉の中心前回にあります。"],
           ["○× 2", "聴覚中枢は頭頂葉にある (  )", "×", "頭頂葉ではなく「側頭葉（上側頭回・41, 42野）」にあります。"],
@@ -1329,7 +1167,7 @@ const DATA = [
           ["○× 14", "尾状核はレンズ核を構成する (  )", "×", "レンズ核は「被殻 ＋ 淡蒼球」です（尾状核＋被殻＝線条体）。"],
           ["○× 15", "被殻はレンズ核を構成する (  )", "○", "被殻（外側）と淡蒼球（内側）でレンズ核を作ります。"],
           ["○× 16", "淡蒼球はレンズ核を構成する (  )", "○", "淡蒼球はレンズ核の内側部を構成します。"],
-          ["○× 17", "黒質は大脳基底核に含まれている (  )", "○（※解剖学の狭義では×）", "解剖学狭義（終脳核）では含まれませんが、機能的・臨床的（基底核ループ）には中脳黒質や視床下核も含めます。国試でも○扱いが一般的です。"],
+          ["○× 17", "黒質は大脳基底核に含まれている (  )", "×", "【解剖学各論・狭義】解剖学の定義では大脳基底核は終脳に由来する灰白質核（尾状核・被殻・淡蒼球・前障・扁桃体）を指すため、中脳に属する黒質は含まれません。"],
           ["○× 18", "尾状核は大脳基底核に含まれている (  )", "○", "尾状核は線条体の構成要素です。"],
           ["○× 19", "オリーブ核は大脳基底核に含まれている (  )", "×", "オリーブ核は「延髄」の核（小脳連絡核）です。"],
           ["○× 20", "大脳基底核は神経線維の密集した白質からなる (  )", "×", "白質ではなく、神経細胞体が集合した「灰白質」です。"],
@@ -1352,10 +1190,10 @@ const DATA = [
         examCap: "📷 原本テスト図（2ページ目上部：白質線維A〜Cの実物スキャン）",
         resumeImgs: [
           { src: "images/resume_g3_1_fibers.webp", cap: "📖 講義レジュメ（中枢神経系 脳 p.41）：大脳白質線維の種類（連合線維＝同側、交連線維＝反対側、投射線維＝異なる核）" },
+          { src: "images/resume_g3_1_association.webp", cap: "📖 講義レジュメ（中枢神経系 脳 p.42）：連合線維の代表例（上縦束・弓状束・下縦束・鈎状束）" },
+          { src: "images/resume_g3_1_commissural.webp", cap: "📖 講義レジュメ（中枢神経系 脳 p.43）：交連線維の代表例（脳梁吻・膝・幹・膨大部、前交連）" },
           { src: "images/resume_g3_1_projection.webp", cap: "📖 講義レジュメ（中枢神経系 脳 p.44）：代表的な投射線維（錐体路・内包・放線冠の全身伝導路）" }
         ],
-        svg: SVG_FIBERS,
-        svgCap: "🎨 カラー解説図（交連・連合・投射線維の走行方向比較）",
         notice: "<strong>【原本の位置関係の照合結果】</strong><br>・左側A：前頭断面で左右半球を結ぶ脳梁（交連線維）<br>・中央B：同一半球の前部と後部を結ぶアーチ状線維（連合線維）<br>・右側C：全身の人体図で上下を結ぶ伝導路（問題文に「Cは右の切れてるところ」とある投射線維）",
         items: [
           ["問1", "図のような大脳の線維を A( ① )線維、B( ② )線維、C( ③ )線維（Cは右の切れてるところ）と呼ぶ", "A：交連 ／ B：連合 ／ C：投射", "【原本照合】Aは左右半球を結ぶ交連線維、Bは同側半球内を結ぶ連合線維、Cは人体図へ上下に伸びる投射線維です。"],
@@ -1366,6 +1204,10 @@ const DATA = [
       {
         id: "g3_2",
         title: "3-2. 脳の発生と髄膜・硬膜",
+        resumeImgs: [
+          { src: "images/resume_g5_meninges.webp", cap: "📖 講義レジュメ（発生・髄膜 p.13）：脳と脊髄を覆う膜（硬膜・クモ膜・軟膜の3層構造）" },
+          { src: "images/resume_g1_1_divisions.webp", cap: "📖 講義レジュメ（中枢神経系 脳 p.6）：脳胞の分化（前脳胞→終脳・間脳、菱脳胞→後脳＝橋・小脳、髄脳＝延髄）" }
+        ],
         notice: "<strong>【原本の印字欠け復元】</strong><br>問8の選択肢「4. (印字欠け)脳」は、原本OCRおよび発生学体系から「4. 髄脳」と確定できます。小脳が発生するのは「2. 後脳」です。",
         items: [
           ["問4", "終脳、間脳、中脳、橋、延髄、小脳、脊髄の中で前脳胞から発生する脳はどれか？2つ書け", "終脳、 間脳", "前脳胞は5脳胞期に「終脳（大脳）」と「間脳」に分化します。"],
@@ -1395,19 +1237,17 @@ const DATA = [
           { src: "images/resume_g4_1_medial.webp", cap: "📖 講義レジュメ（中枢神経系 脳 p.17）：大脳内側面の溝と回（帯状溝・辺縁枝・中心溝・頭頂後頭溝・鳥距溝・帯状回・鉤）" },
           { src: "images/resume_g4_1_sulcus_hint.webp", cap: "📖 講義レジュメ（中枢神経系 脳 p.10）：中心溝の見つけ方（内側面で帯状溝・辺縁枝の直前にある溝が中心溝）" }
         ],
-        svg: SVG_SULCI_GYRI,
-        svgCap: "🎨 カラー解説図（脳溝・脳回の色分けと境界線）",
-        notice: "<strong>【原本の位置関係の精密照合結果】</strong><br>・<strong>②溝について</strong>：原本図を見ると、前頭葉上部の①回（上前頭回）の直下の溝に矢印が向いているため「上前頭溝」の可能性が高いです（中前頭回の下なら下前頭溝）。両論併記で解説しています。<br>・<strong>⑤の溝の選択肢（あ・い・う）</strong>：内側面図の上面で帯状溝辺縁枝「う」の直前の溝「い」が中心溝です（「あ」は傍中心溝）。<br>・<strong>掠れ文字の復元</strong>：プリント解答欄で掠れていた⑦角回、⑧中側頭回、⑪帯状回、⑫頭頂後頭溝、⑬海馬傍回をすべて完全復元しました。",
+        notice: "<strong>【原本の位置関係の照合結果】</strong><br>・<strong>②溝について</strong>：中前頭回と下前頭回を境する溝で「下前頭溝」です。<br>・<strong>⑤の溝の選択肢（あ・い・う）</strong>：内側面図の上面で帯状溝辺縁枝「う」の直前の溝「い」が中心溝です（「あ」は傍中心溝）。<br>・<strong>掠れ文字の復元</strong>：プリント解答欄で掠れていた⑦角回、⑧中側頭回、⑪帯状回、⑫頭頂後頭溝、⑬海馬傍回をすべて完全復元しました。",
         items: [
           ["①（①回）", "前頭葉上部の脳回", "上前頭回", "【原本照合】外側面上部〜内側面上縁を占める前頭葉最上部の脳回です。"],
-          ["②（②溝）", "中前頭回と上前頭回（または下前頭回）の間の溝", "上前頭溝（または 下前頭溝）", "【原本照合】①上前頭回の直下の溝を指しています。解剖学的には上前頭溝（中前頭回の下なら下前頭溝）です。両論併記が安全です。"],
+          ["②（②溝）", "中前頭回と下前頭回の間の溝", "下前頭溝", "【原本照合】中前頭回と下前頭回を境する「下前頭溝」です。"],
           ["③（③回）", "⑤溝（中心溝）の前方の脳回", "中心前回", "【原本照合】中心溝の前方に位置する一次運動野（4野）です。"],
           ["④（④回）", "⑤溝（中心溝）の後方の脳回", "中心後回", "【原本照合】中心溝の後方に位置する一次体性感覚野（3, 1, 2野）です。"],
           ["⑤（⑤溝）", "⑤( ① ) 別名( ② ) ／ ⑤の溝はあ、い、うのどれか( ③ )", "① 中心溝 ／ ② ローランド溝 ／ ③ い", "【原本照合】前頭葉と頭頂葉の境界溝です。内側面では「う（帯状溝辺縁枝）」の直前にある溝「い」が中心溝に相当します。"],
           ["⑥（⑥回）", "外側溝の後端を取り囲む脳回", "縁上回（えんじょうかい）", "【原本照合】シルビウス溝（外側溝）の終末部を馬蹄形に取り囲む脳回（40野）です。"],
           ["⑦（⑦回）", "上側頭溝の後端を取り囲む脳回（※解答欄番号掠れ）", "角回（かくかい）", "【原本照合】上側頭溝の終末部を取り囲む脳回（39野）です。失書・失算のゲルストマン症候群に関与します。"],
           ["⑧（⑧回）", "側頭葉外側面中段の脳回（※解答欄番号掠れ）", "中側頭回", "【原本照合】上側頭溝と下側頭溝の間に位置する脳回です。"],
-          ["⑨（⑨部）", "下前頭回後部の点線枠「⑨部」", "三角部・弁蓋部（運動性言語野 ／ ブローカ野）", "【原本照合】下前頭回後部のブローカ野（三角部45野、弁蓋部44野）の四角枠です。"],
+          ["⑨（⑨部）", "下前頭回後部の点線枠「⑨部」", "三角部", "【原本照合】下前頭回後部のブローカ野（運動性言語中枢）を構成する「三角部（45野）」です。"],
           ["⑩（⑩溝）", "⑩( ① ) 別名( ② ) ／ ⑩の奥にある大脳皮質部分をなんと呼ぶか( ③ )", "① 外側溝 ／ ② シルビウス溝 ／ ③ 島（島皮質 / insula）", "【原本照合】側頭葉を分ける太い溝です。溝の深部を広げると「島（島皮質）」が存在します。"],
           ["⑪（⑪回）", "脳梁を取り囲む内側面の脳回（※解答欄番号掠れ）", "帯状回（たいじょうかい）", "【原本照合】内側面で脳梁の背側を取り囲む辺縁系の脳回です。"],
           ["⑫（⑫溝）", "内側面の頭頂葉と後頭葉の境の溝（※解答欄番号掠れ）", "頭頂後頭溝", "【原本照合】内側面後部で頭頂葉（楔前部）と後頭葉（楔部）を分ける深い溝です。"],
@@ -1424,10 +1264,9 @@ const DATA = [
         examCap2: "📷 原本テスト図（3ページ目中段右：図2 前頭断面の実物スキャン）",
         resumeImgs: [
           { src: "images/resume_g4_2_horizontal.webp", cap: "📖 講義レジュメ（中枢神経系 脳 p.34）：図1 水平断面の大脳基底核（尾状核・被殻・淡蒼球・前障・視床）" },
-          { src: "images/resume_g4_2_coronal.webp", cap: "📖 講義レジュメ（中枢神経系 脳 p.35）：図2 前額断面の大脳基底核（前障・被殻・淡蒼球・尾状核・扁桃体・視床・視床下部）" }
+          { src: "images/resume_g4_2_coronal.webp", cap: "📖 講義レジュメ（中枢神経系 脳 p.35）：図2 前額断面の大脳基底核（前障・被殻・淡蒼球・尾状核・扁桃体・視床・視床下部）" },
+          { src: "images/resume_g4_2_detail.webp", cap: "📖 講義レジュメ（中枢神経系 脳 p.36）：基底核深部核の断面照合（レンズ核＝被殻＋淡蒼球、前障、視床）" }
         ],
-        svg: SVG_SECTIONS,
-        svgCap: "🎨 カラー解説図（図1水平断 ＆ 図2前頭断の深部灰白質核）",
         notice: "<strong>【原本の位置関係の照合結果】</strong><br>・図1（水平断）：Aは被殻(C)と淡蒼球(D)の点線枠「レンズ核」、Bは側脳室前角外側の「尾状核頭」、Eは「視床」です。<br>・図2（前頭断）：Aは最外包と外包に挟まれた「前障」、Bは「内包」、Cは「尾状核」、Dは「レンズ核」、Eは側頭葉内側の「扁桃体」です。<br>・辺縁系に分類されるのは図2のE（扁桃体）です。",
         items: [
           ["図1 A〜E", "図1（水平断）：A( ) B( ) C( ) D( ) E( )", "A：レンズ核 ／ B：尾状核(頭) ／ C：被殻 ／ D：淡蒼球 ／ E：視床", "【原本照合】水平断面：Aは外側全体の点線枠（レンズ核＝C被殻＋D淡蒼球）、Bは前角外側の尾状核頭、Eは視床です。"],
@@ -1447,6 +1286,11 @@ const DATA = [
       {
         id: "g5_1",
         title: "5-1. 線維の分類・疾患・発生",
+        resumeImgs: [
+          { src: "images/resume_g3_2_capsule.webp", cap: "📖 講義レジュメ（中枢神経系 脳 p.45）：内包と放線冠の投射線維走行図" },
+          { src: "images/resume_g3_2_tracts.webp", cap: "📖 講義レジュメ（中枢神経系 脳 p.46）：代表的な投射線維一覧（錐体路・内包・放線冠・脳弓）" },
+          { src: "images/resume_g2_basal_ganglia.webp", cap: "📖 講義レジュメ（中枢神経系 脳 p.31）：大脳基底核の構成と線条体障害（ハンチントン病）" }
+        ],
         notice: "<strong>【原本の手書きコメント再現】</strong><br>問3には原本に『答えの数は秘密(←2つです 急にめんどくさいことする)』と書かれています。前脳胞から発生するのは終脳と間脳の2つです。",
         items: [
           ["問1", "交連線維(交)、連合線維(連)、投射線維(投)のどれか：脳弓( ) 弓状束( ) 脳梁( ) 内包( ) 放線冠( ) 上縦束( ) 錐体路( )", "脳弓(投)・弓状束(連)・脳梁(交)・内包(投)・放線冠(投)・上縦束(連)・錐体路(投)", "【講義レジュメ完全準拠（スライド48-49）】<br>先生の講義スライド48〜49に『代表的な投射線維：錐体路、内包、放線冠、聴放線、視放線、<strong>脳弓</strong>』と明記されています！<br>・<strong>交連線維(交)</strong>：脳梁（スライド43）<br>・<strong>連合線維(連)</strong>：弓状束、上縦束（スライド42）<br>・<strong>投射線維(投)</strong>：脳弓、内包、放線冠、錐体路（スライド44〜49）"],
@@ -1466,6 +1310,11 @@ const DATA = [
       {
         id: "g6_1",
         title: "6-1. 神経管の発生異常・皮質血管分布の障害",
+        resumeImgs: [
+          { src: "images/resume_g6_1_defects.webp", cap: "📖 講義レジュメ（発生・髄膜 p.6）：神経管閉鎖不全（問1の根拠：頭側閉鎖不全＝無脳症、尾側＝二分脊椎）" },
+          { src: "images/resume_g6_1_vascular_deficits.webp", cap: "📖 講義レジュメ（動脈 p.19）：皮質動脈障害の症状一覧（問2の根拠：視覚・運動・感覚・言語・聴覚）" },
+          { src: "images/resume_g6_1_artery_territories.webp", cap: "📖 講義レジュメ（動脈 p.21）：前・中・後大脳動脈の栄養領域マップ（外側面・上肢・顔面＝中大脳A、内側面・下肢＝前大脳A、後頭葉・視覚＝後大脳A）" }
+        ],
         notice: "<strong>【原本の指示】</strong>問題文に「(実際の枠小さいので、動脈はA.で略してok)」とあります。解答欄には中大脳A.、前大脳A.、後大脳A.の略記または正式名称のいずれでも正解となります。",
         items: [
           ["問1", "神経管の頭部が閉じなかったことにより起こる発生異常はどれか [1.二分脊椎 2.パーキンソン病 3.グリオーマ 4.水頭症 5.無脳症]", "5. 無脳症（anencephaly）", "妊娠第4週頃に神経管の頭側（前神経孔）が閉鎖不全を起こすと無脳症となります（尾側閉鎖不全は二分脊椎）。"],
@@ -1486,8 +1335,6 @@ const DATA = [
           { src: "images/resume_g6_2_mca.webp", cap: "📖 講義レジュメ（脳に分布する動脈 p.10）：中大脳動脈の灌流領域（外側面大部分：顔面・上肢の運動・感覚野、ブローカ野、ウェルニッケ野）" },
           { src: "images/resume_g6_2_aca_pca.webp", cap: "📖 講義レジュメ（脳に分布する動脈 p.11）：前大脳動脈（内側面・下肢）＆ 後大脳動脈（後頭葉・視覚野）の灌流領域" }
         ],
-        svg: SVG_WILLIS,
-        svgCap: "🎨 カラー解説図（ウィリス動脈輪の構成血管 ＆ 中大脳動脈の位置関係）",
         notice: "<strong>【原本メモと授業での解釈】</strong><br>原本には『回答枠6こしかない わたしは脳底動脈は横の空白に書いて、それ以外を枠に書いてた 6こ書けてたらokですて言ってたような気がする』とメモがあります。<br>授業で「中大脳動脈が含まれる」と解説された可能性があるため、6枠目は【脳底動脈】だけでなく【中大脳動脈】の可能性も考慮しておきましょう。",
         items: [
           ["問3", "ウイリスの脳底動脈輪を構成する動脈を全て挙げよ（枠5つ＋1つで計6つ）", "① 前交通動脈 ② 前大脳動脈 ③ 内頸動脈 ④ 後交通動脈 ⑤ 後大脳動脈 （＋⑥ 脳底動脈 ／ または 中大脳動脈）", "【重要・授業対策】解剖学（国試基準）では輪の中に中大脳動脈は含めず「脳底動脈」を加えますが、講義や先生によっては【脳底動脈ではなく中大脳動脈を含めて6つ】と教えている可能性があります。テストではどちらの指定でも書けるように「脳底動脈」と「中大脳動脈」の両方を押さえておきましょう！"],
@@ -1792,11 +1639,9 @@ function render() {
           <div class="diag-container" id="diag_${g.id}">
             <div class="diag-header">
               <div class="diag-header-left">
-                <span class="diag-badge">📊 図解リファレンス</span>
                 <div class="view-switch">
                   ${g.examImg ? `<button class="switch-btn active" onclick="switchDiagView('${g.id}', 'exam', this)">📄 原本テスト図</button>` : ""}
                   ${g.resumeImgs ? `<button class="switch-btn ${!g.examImg ? 'active' : ''}" onclick="switchDiagView('${g.id}', 'resume', this)">📖 講義レジュメ図</button>` : ""}
-                  ${g.svg ? `<button class="switch-btn" onclick="switchDiagView('${g.id}', 'svg', this)">🎨 カラー解説図</button>` : ""}
                 </div>
               </div>
               <button class="pin-btn" onclick="togglePinDiag('${g.id}', this)" title="スクロール中も図を画面上部に固定します">
@@ -1839,24 +1684,7 @@ function render() {
                 </div>
               </div>
             ` : ""}
-
-            ${g.svg ? `
-              <div class="diag-view svg-view" id="view_svg_${g.id}">
-                <div class="svg-wrapper">${g.svg}</div>
-                <div class="diag-cap">${g.svgCap || ""}</div>
-              </div>
-            ` : ""}
           </div>
-        ` : (g.svg && !g.examImg && !g.resumeImgs) ? `
-          <details class="diag-toggle">
-            <summary class="diag-summary">
-              <span>🎨 【解説図】${g.svgCap || "図解を表示"}</span>
-              <span style="font-size:0.7rem; color:#dc2626; font-weight:700; margin-left:auto;">⚠️ 解答を含みます（タップで開閉）</span>
-            </summary>
-            <div class="diag-body">
-              <div class="svg-wrapper">${g.svg}</div>
-            </div>
-          </details>
         ` : ""}
 
         ${g.notice ? `
