@@ -1105,7 +1105,7 @@ body.blind .a-box:not(.show)::after {
     <div class="progress-card">
       <div class="prog-label">
         <span>習得状況</span>
-        <span id="progText">⭕ 0 / 86 (0%)</span>
+        <span id="progText">⭕ 0 / 77 (0%)</span>
       </div>
       <div class="prog-bar-bg">
         <div class="prog-bar-fill" id="progBar"></div>
@@ -1153,7 +1153,7 @@ body.blind .a-box:not(.show)::after {
 
 <script>
 /* ==========================================================
-   データ定義（全86問 ＆ 原本テスト図・講義レジュメ図完全照合版）
+   データ定義（全77問 ＆ 原本テスト図・講義レジュメ図完全照合版）
    ========================================================== */
 const DATA = [
   {
@@ -1435,9 +1435,9 @@ try {
 } catch(e) {}
 
 const SPECIAL_MODES = [
-  { id: "challenge", icon: "🎯", short: "全問チャレンジ", title: "🎯 全問チャレンジ（86問 実力腕試し）", desc: "大問1〜6の全86問を一気にテスト！タップで解答を開き、⭕覚えた・❌苦手をその場で記録できます。" },
+  { id: "challenge", icon: "🎯", short: "全問チャレンジ", title: "🎯 全問チャレンジ（全77問 実力腕試し）", desc: "大問1〜6の全77問を一気にテスト！タップで解答を開き、⭕覚えた・❌苦手をその場で記録できます。" },
   { id: "wrong", icon: "🔥", short: "苦手特訓", title: "🔥 苦手特訓（間違えた問題のみ再演習）", desc: "❌をつけた苦手問題だけを集中演習！解き直して覚えたら「⭕ 覚えた」に切り替えて克服しましょう。" },
-  { id: "all", icon: "📚", short: "全問一覧（解答付）", title: "📚 全問一括一覧（大問1〜6 完全網羅）", desc: "全86問と原本図・解説を辞書のように一括閲覧できます。" }
+  { id: "all", icon: "📚", short: "全問一覧（解答付）", title: "📚 全問一括一覧（大問1〜6 完全網羅）", desc: "全77問と原本図・解説を辞書のように一括閲覧できます。" }
 ];
 
 function getQuestionKey(secId, gId, it) {
@@ -1467,6 +1467,7 @@ function getStats() {
 }
 
 function init() {
+  const stats = getStats();
   const specialNavList = document.getElementById("specialNavList");
   const navList = document.getElementById("navList");
   const mTabs = document.getElementById("mTabs");
@@ -1484,7 +1485,7 @@ function init() {
       <span class="nav-num" style="background:transparent; font-size:1rem;">${m.icon}</span>
       <span>${m.short}</span>
       ${m.id === "wrong" ? '<span class="nav-badge-count wrong" id="wrongBadge">0問</span>' : ""}
-      ${m.id === "challenge" ? '<span class="nav-badge-count total">86問</span>' : ""}
+      ${m.id === "challenge" ? `<span class="nav-badge-count total">${stats.total}問</span>` : ""}
     `;
     btn.onclick = () => selectTab(m.id);
     specialNavList.appendChild(btn);
