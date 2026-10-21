@@ -188,14 +188,21 @@ body {
   position: sticky;
   top: 0;
   z-index: 80;
-  background: rgba(255, 255, 255, 0.9);
+  background: rgba(255, 255, 255, 0.92);
   backdrop-filter: blur(14px);
-  border-bottom: 1px solid rgba(226, 232, 240, 0.8);
+  border-bottom: 1px solid rgba(226, 232, 240, 0.85);
   padding: 10px 18px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   gap: 12px;
+}
+.header-top {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+  flex: 1;
 }
 .header-left {
   display: flex;
@@ -213,6 +220,9 @@ body {
   font-weight: 700;
   font-size: 0.82rem;
   cursor: pointer;
+  align-items: center;
+  gap: 4px;
+  flex-shrink: 0;
 }
 .header-title {
   font-size: 0.95rem;
@@ -228,27 +238,30 @@ body {
   gap: 8px;
   flex-shrink: 0;
 }
+.header-search {
+  flex-shrink: 0;
+}
 .search-input {
   background: #ffffff;
   border: 1px solid var(--border-subtle);
   border-radius: 99px;
-  padding: 5px 12px;
-  font-size: 0.78rem;
+  padding: 6px 14px;
+  font-size: 0.8rem;
   color: var(--text-main);
-  width: 160px;
+  width: 200px;
   transition: all 0.2s ease;
 }
 .search-input:focus {
   outline: none;
   border-color: var(--primary);
-  width: 220px;
+  width: 250px;
   box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.15);
 }
 .blind-btn {
   background: #ffffff;
   color: var(--primary-hover);
   border: 1.5px solid var(--primary);
-  padding: 5px 14px;
+  padding: 6px 14px;
   border-radius: 99px;
   font-size: 0.78rem;
   font-weight: 700;
@@ -256,7 +269,8 @@ body {
   transition: all 0.2s ease;
   display: inline-flex;
   align-items: center;
-  gap: 4px;
+  gap: 5px;
+  white-space: nowrap;
 }
 .blind-btn:hover {
   background: var(--primary-light);
@@ -568,29 +582,75 @@ body {
   padding: 2px 8px;
   border-radius: 4px;
 }
-.check-btn {
-  background: none;
-  border: 1px solid #cbd5e1;
+
+/* 設問行の評価ボタン（⭕覚えた / ❌苦手） */
+.status-buttons {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+}
+.eval-btn {
+  background: #ffffff;
+  border: 1.5px solid #cbd5e1;
   border-radius: 6px;
+  padding: 3px 8px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  transition: all 0.15s ease;
+  color: var(--text-muted);
+}
+.eval-btn:hover {
+  transform: translateY(-1px);
+}
+.eval-btn.btn-correct:hover, .eval-btn.btn-correct.active {
+  background: var(--success-light);
+  border-color: var(--success);
+  color: var(--success);
+}
+.eval-btn.btn-wrong:hover, .eval-btn.btn-wrong.active {
+  background: #fee2e2;
+  border-color: #ef4444;
+  color: #dc2626;
+}
+
+/* ナビバッジ・進捗統計・リセット */
+.nav-badge-count {
+  font-size: 0.68rem;
   padding: 2px 7px;
+  border-radius: 99px;
+  margin-left: auto;
+  font-weight: 800;
+}
+.nav-badge-count.wrong {
+  background: #fee2e2;
+  color: #dc2626;
+}
+.nav-badge-count.total {
+  background: #e0f2fe;
+  color: #0369a1;
+}
+
+.reset-btn {
+  background: none;
+  border: 1px dashed #cbd5e1;
+  border-radius: 6px;
+  padding: 4px 8px;
   font-size: 0.7rem;
   font-weight: 600;
   color: var(--text-muted);
   cursor: pointer;
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
+  width: 100%;
+  margin-top: 8px;
   transition: all 0.15s ease;
 }
-.check-btn:hover {
-  border-color: var(--success);
-  color: var(--success);
-}
-.check-btn.checked {
-  background: var(--success-light);
-  border-color: var(--success);
-  color: var(--success);
-  font-weight: 700;
+.reset-btn:hover {
+  border-color: #ef4444;
+  color: #ef4444;
+  background: #fff5f5;
 }
 
 .q-txt {
@@ -711,14 +771,66 @@ body.blind .a-box:not(.show)::after {
     top: 0;
     bottom: 0;
     transform: translateX(-100%);
+    z-index: 100;
   }
   .sidebar.open { transform: translateX(0); }
-  .menu-btn { display: inline-block; }
-  .m-tabs { display: flex; }
+  
+  .header {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 8px 12px;
+    gap: 8px;
+  }
+  .header-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    gap: 8px;
+  }
+  .header-left {
+    flex: 1;
+    min-width: 0;
+    gap: 8px;
+  }
+  .menu-btn {
+    display: inline-flex;
+    padding: 5px 8px;
+    font-size: 0.76rem;
+  }
+  .header-title {
+    font-size: 0.88rem;
+  }
+  .header-actions {
+    flex-shrink: 0;
+  }
+  .blind-btn {
+    padding: 5px 10px;
+    font-size: 0.74rem;
+  }
+  .header-search {
+    width: 100%;
+  }
+  .search-input {
+    width: 100% !important;
+    font-size: 0.82rem;
+    padding: 7px 14px;
+  }
+
+  .m-tabs {
+    display: flex;
+    -webkit-overflow-scrolling: touch;
+    padding: 6px 10px;
+    gap: 6px;
+  }
   .qa-row { grid-template-columns: 1fr; gap: 10px; }
-  .search-input { width: 120px; }
-  .search-input:focus { width: 160px; }
-  .content { padding: 14px 14px 60px; }
+  .content { padding: 12px 12px 60px; }
+}
+
+@media (max-width: 480px) {
+  .header-title {
+    font-size: 0.82rem;
+  }
 }
 
 @media print {
@@ -747,27 +859,45 @@ body.blind .a-box:not(.show)::after {
     
     <div class="progress-card">
       <div class="prog-label">
-        <span>習得チェック</span>
-        <span id="progText">0 / 0 (0%)</span>
+        <span>習得状況</span>
+        <span id="progText">⭕ 0 / 86 (0%)</span>
       </div>
       <div class="prog-bar-bg">
         <div class="prog-bar-fill" id="progBar"></div>
       </div>
+      <div style="display:flex; justify-content:space-between; font-size:0.7rem; font-weight:700; margin-top:6px;">
+        <span style="color:var(--success);" id="statCorrect">⭕ 覚えた: 0問</span>
+        <span style="color:#dc2626;" id="statWrong">❌ 苦手: 0問</span>
+      </div>
+      <button class="reset-btn" onclick="resetAllProgress()">🔄 チェック記録をリセット</button>
     </div>
 
-    <div class="nav-section-title">大問ジャンプ</div>
+    <div class="nav-section-title">特訓 ＆ チャレンジ</div>
+    <div class="nav-list" id="specialNavList"></div>
+
+    <div class="nav-section-title" style="margin-top:12px;">大問別マスター</div>
     <div class="nav-list" id="navList"></div>
   </aside>
 
   <div class="main">
     <header class="header">
-      <div class="header-left">
-        <button class="menu-btn" onclick="toggleMenu(true)">☰ メニュー</button>
-        <div class="header-title" id="headerTitle">大問1：脳の区分・機能局在</div>
+      <div class="header-top">
+        <div class="header-left">
+          <button class="menu-btn" onclick="toggleMenu(true)" title="大問メニューを開く">
+            <span>☰</span>
+            <span>メニュー</span>
+          </button>
+          <div class="header-title" id="headerTitle">大問1：脳の区分・機能局在</div>
+        </div>
+        <div class="header-actions">
+          <button class="blind-btn" id="blindBtn" onclick="toggleBlind()">
+            <span>👁️</span>
+            <span>答えを隠す</span>
+          </button>
+        </div>
       </div>
-      <div class="header-actions">
-        <input type="text" class="search-input" id="searchInput" placeholder="🔍 キーワード検索..." oninput="handleSearch(this.value)">
-        <button class="blind-btn" id="blindBtn" onclick="toggleBlind()">👁️ 答えを隠す</button>
+      <div class="header-search">
+        <input type="text" class="search-input" id="searchInput" placeholder="🔍 問題・用語・解答をリアルタイム検索..." oninput="handleSearch(this.value)">
       </div>
     </header>
 
@@ -955,7 +1085,7 @@ const DATA = [
       {
         id: "g1_1",
         title: "1-1. 脳の区分（正中矢状断）",
-        examImg: "images/exam_p1_sagittal.png",
+        examImg: "images/exam_p1_sagittal.webp",
         examCap: "📷 原本テスト図（1ページ目左上：正中矢状断の実物スキャン）",
         svg: SVG_SAGITTAL,
         svgCap: "🎨 カラー解説図（構造別の色分け・名称ガイド）",
@@ -968,13 +1098,13 @@ const DATA = [
           ["問5", "脳を6つに区分した呼び名：E (  ) ／ ※図のG (  )", "E：小脳 ／ ※G：延髄", "【原本照合】Eは橋・延髄の後背にある小脳、最下部Gは延髄を指しています。"],
           ["問6", "Fの太線で囲まれる部位は ( ① ) 葉と呼ばれ、( 新 or 古 ) 皮質と呼ばれる領域である。", "① 辺縁（大脳辺縁） ／ ② 古", "【原本照合】脳梁の周囲を囲む太線（帯状回・海馬傍回）です。系統発生的に古い「古皮質（原皮質・古皮質）」から成ります。"],
           ["問7", "脳幹はA〜Eのどれか（完答）", "B, C, D（※狭義はC, D ／ G延髄を含めるとB, C, D, G）", "広義の脳幹＝間脳(B)・中脳(C)・橋(D)・延髄(G)。狭義＝中脳(C)・橋(D)・延髄(G)。解答枠A〜E内ではB, C, Dが該当します。"],
-          ["問8", "脳の重さ (  g)", "約 1,300 〜 1,400 g", "成人男性で約1,350〜1,400g、女性で約1,200〜1,250g（体重の約2%）です。"]
+          ["問8", "脳の重さ (  g)", "約 1,350 〜 1,400 g（※成人男性 約1,400g ／ 女性 約1,250g ／ 約1,300〜1,400g）", "【講義レジュメ完全準拠（脳の基本）】<br>① 日本人の脳の重さの平均：<strong>約1,350〜1,400g</strong>（男性 約1,400g、女性 約1,250g）<br>② 体重に占める割合：<strong>約 2%</strong>（約1/50）<br>③ 全血流量に占める割合：<strong>約 15%</strong>（心拍出量の約15%＝750ml/分、運動時も不変）<br>④ 酸素消費量：<strong>全身の約 20%</strong><br>⑤ 酸素なしで生きられる時間：<strong>わずか 3〜4分</strong>"]
         ]
       },
       {
         id: "g1_2",
         title: "1-2. 大脳皮質の機能中枢（何野）",
-        examImg: "images/exam_p1_lateral.png",
+        examImg: "images/exam_p1_lateral.webp",
         examCap: "📷 原本テスト図（1ページ目右上：左大脳半球外側面の実物スキャン）",
         svg: SVG_LATERAL,
         svgCap: "🎨 カラー解説図（ブロードマン野 ＆ ホムンクルス局在マップ）",
@@ -1011,7 +1141,7 @@ const DATA = [
           ["○× 5", "前頭葉は言語表出に関与する (  )", "○", "前頭葉のブローカ野（運動性言語野）が発話・言語表出を司ります。"],
           ["○× 6", "頭頂葉は空間認知に関与する (  )", "○", "右頭頂葉（頭頂連合野）が空間認知に関与し、病変で半側空間無視が生じます。"],
           ["○× 7", "言語記憶は側頭葉で行われる (  )", "○", "側頭葉内側部（海馬・海馬傍回）や側頭連合野が記憶や言語理解を担います。"],
-          ["○× 8", "相貌識別は後頭葉で行われる (  )", "×（※後頭・側頭連合野として○の場合あり）", "顔（相貌）の認識は主に「側頭葉下面の紡錘状回」で行われます（障害で相貌失認）。"],
+          ["○× 8", "相貌識別は後頭葉で行われる (  )", "×", "【講義レジュメ完全準拠（スライド27・30）】後頭葉ではなく「側頭連合野（側頭葉）」で行われます。人の顔や表情の違いを識別する中枢であり、障害されると「相貌失認」が起こります。"],
           ["○× 9", "四肢運動の中枢は中心前回にある (  )", "○", "中心前回（一次運動野）に四肢の運動中枢があります。"],
           ["○× 10", "体性感覚中枢は中心後回にある (  )", "○", "中心後回（一次体性感覚野）が温痛覚・深部感覚などの感覚を受け取ります。"],
           ["○× 11", "大脳基底核は深部感覚中継核である (  )", "×", "感覚の中継核は間脳の「視床」です。"],
@@ -1039,7 +1169,7 @@ const DATA = [
       {
         id: "g3_1",
         title: "3-1. 大脳白質の神経線維",
-        examImg: "images/exam_p2_fibers.png",
+        examImg: "images/exam_p2_fibers.webp",
         examCap: "📷 原本テスト図（2ページ目上部：白質線維A〜Cの実物スキャン）",
         svg: SVG_FIBERS,
         svgCap: "🎨 カラー解説図（交連・連合・投射線維の走行方向比較）",
@@ -1075,7 +1205,7 @@ const DATA = [
       {
         id: "g4_1",
         title: "4-1. 大脳の溝と回（①〜⑭、あ・い・う）",
-        examImg: "images/exam_p3_sulci_gyri.png",
+        examImg: "images/exam_p3_sulci_gyri.webp",
         examCap: "📷 原本テスト図（3ページ目上部：外側面＆内側面の実物スキャン）",
         svg: SVG_SULCI_GYRI,
         svgCap: "🎨 カラー解説図（脳溝・脳回の色分けと境界線）",
@@ -1100,9 +1230,9 @@ const DATA = [
       {
         id: "g4_2",
         title: "4-2. 大脳水平断（図1）・前頭断（図2）の名称",
-        examImg: "images/exam_p3_horizontal.png",
+        examImg: "images/exam_p3_horizontal.webp",
         examCap: "📷 原本テスト図（3ページ目中段左：図1 水平断面の実物スキャン）",
-        examImg2: "images/exam_p3_coronal.png",
+        examImg2: "images/exam_p3_coronal.webp",
         examCap2: "📷 原本テスト図（3ページ目中段右：図2 前頭断面の実物スキャン）",
         svg: SVG_SECTIONS,
         svgCap: "🎨 カラー解説図（図1水平断 ＆ 図2前頭断の深部灰白質核）",
@@ -1127,7 +1257,7 @@ const DATA = [
         title: "5-1. 線維の分類・疾患・発生",
         notice: "<strong>【原本の手書きコメント再現】</strong><br>問3には原本に『答えの数は秘密(←2つです 急にめんどくさいことする)』と書かれています。前脳胞から発生するのは終脳と間脳の2つです。",
         items: [
-          ["問1", "交連線維(交)、連合線維(連)、投射線維(投)のどれか：脳弓( ) 弓状束( ) 脳梁( ) 内包( ) 放線冠( ) 上縦束( ) 錐体路( )", "脳弓(連※交/投も可)・弓状束(連)・脳梁(交)・内包(投)・放線冠(投)・上縦束(連)・錐体路(投)", "・交連線維：脳梁<br>・連合線維：弓状束、上縦束（脳弓は海馬と乳頭体を結ぶ辺縁系路で連合または投射・交連的性質）<br>・投射線維：内包、放線冠、錐体路"],
+          ["問1", "交連線維(交)、連合線維(連)、投射線維(投)のどれか：脳弓( ) 弓状束( ) 脳梁( ) 内包( ) 放線冠( ) 上縦束( ) 錐体路( )", "脳弓(投)・弓状束(連)・脳梁(交)・内包(投)・放線冠(投)・上縦束(連)・錐体路(投)", "【講義レジュメ完全準拠（スライド48-49）】<br>先生の講義スライド48〜49に『代表的な投射線維：錐体路、内包、放線冠、聴放線、視放線、<strong>脳弓</strong>』と明記されています！<br>・<strong>交連線維(交)</strong>：脳梁（スライド43）<br>・<strong>連合線維(連)</strong>：弓状束、上縦束（スライド42）<br>・<strong>投射線維(投)</strong>：脳弓、内包、放線冠、錐体路（スライド44〜49）"],
           ["問2", "大脳基底核の伝導路の変異により起こる疾患はどれか [1.クロイツフェルト・ヤコブ病 2.ミトコンドリア脳症 3.ハンチントン舞踏病 4.水頭症 5.アルツハイマー病]", "3. ハンチントン舞踏病", "線条体（尾状核・被殻）のGABA作動性神経細胞の脱落により、間接路が機能低下して舞踏運動が生じる遺伝性疾患です。"],
           ["問3", "前脳胞から発生するのはどれか（2つ） [1.中脳 2.橋 3.間脳 4.小脳 5.終脳]", "3. 間脳、 5. 終脳", "前脳胞からは終脳（大脳半球）と間脳（視床・視床下部）の2つが発生します。"]
         ]
@@ -1164,7 +1294,7 @@ const DATA = [
         notice: "<strong>【原本メモと授業での解釈】</strong><br>原本には『回答枠6こしかない わたしは脳底動脈は横の空白に書いて、それ以外を枠に書いてた 6こ書けてたらokですて言ってたような気がする』とメモがあります。<br>授業で「中大脳動脈が含まれる」と解説された可能性があるため、6枠目は【脳底動脈】だけでなく【中大脳動脈】の可能性も考慮しておきましょう。",
         items: [
           ["問3", "ウイリスの脳底動脈輪を構成する動脈を全て挙げよ（枠5つ＋1つで計6つ）", "① 前交通動脈 ② 前大脳動脈 ③ 内頸動脈 ④ 後交通動脈 ⑤ 後大脳動脈 （＋⑥ 脳底動脈 ／ または 中大脳動脈）", "【重要・授業対策】解剖学（国試基準）では輪の中に中大脳動脈は含めず「脳底動脈」を加えますが、講義や先生によっては【脳底動脈ではなく中大脳動脈を含めて6つ】と教えている可能性があります。テストではどちらの指定でも書けるように「脳底動脈」と「中大脳動脈」の両方を押さえておきましょう！"],
-          ["問4", "内頸動脈系(内) or 椎骨動脈系(椎)どちらか：前大脳A. / 中大脳A. / 後大脳A. / 前頭葉 / 後頭葉 / 視床 / 大脳基底核 / 小脳 / 頭頂葉 / 延髄", "前大脳A.(内)・中大脳A.(内)・後大脳A.(椎)・前頭葉(内)・後頭葉(椎)・視床(椎)・大脳基底核(内)・小脳(椎)・頭頂葉(内)・延髄(椎)", "・内頸動脈系（内）：前大脳A.、中大脳A.、前頭葉、頭頂葉、大脳基底核<br>・椎骨動脈系（椎）：後大脳A.、後頭葉、視床、小脳、延髄"]
+          ["問4", "内頸動脈系(内) or 椎骨動脈系(椎)どちらか：前大脳A. / 中大脳A. / 後大脳A. / 前頭葉 / 後頭葉 / 視床 / 大脳基底核 / 小脳 / 頭頂葉 / 延髄", "前大脳A.(内)・中大脳A.(内)・後大脳A.(椎)・前頭葉(内)・後頭葉(椎)・視床(椎)・大脳基底核(内)・小脳(椎)・頭頂葉(内)・延髄(椎)", "【講義レジュメ完全準拠（脳に分布する動脈 スライド3「重要」）】<br>・<strong>内頸動脈系（内）</strong>：前大脳動脈、中大脳動脈（栄養領域：前頭葉、頭頂葉、辺縁葉、大脳基底核）<br>・<strong>椎骨動脈系（椎）</strong>：後大脳動脈、脳底動脈（栄養領域：後頭葉、視床、小脳、中脳、橋、延髄）"]
         ]
       }
     ]
@@ -1173,14 +1303,85 @@ const DATA = [
 
 let currentTab = "tab1";
 let searchQuery = "";
-const checkedState = JSON.parse(localStorage.getItem("pt_anatomy_checked") || "{}");
+let quizState = {};
+try {
+  quizState = JSON.parse(localStorage.getItem("pt_anatomy_quiz_status") || "{}");
+} catch(e) { quizState = {}; }
+
+// 旧キーからの自動移行
+try {
+  const oldChecked = JSON.parse(localStorage.getItem("pt_anatomy_checked") || "{}");
+  Object.keys(oldChecked).forEach(k => {
+    if (!quizState[k] && oldChecked[k]) quizState[k] = "correct";
+  });
+} catch(e) {}
+
+const SPECIAL_MODES = [
+  { id: "challenge", icon: "🎯", short: "全問チャレンジ", title: "🎯 全問チャレンジ（86問 実力腕試し）", desc: "大問1〜6の全86問を一気にテスト！タップで解答を開き、⭕覚えた・❌苦手をその場で記録できます。" },
+  { id: "wrong", icon: "🔥", short: "苦手特訓", title: "🔥 苦手特訓（間違えた問題のみ再演習）", desc: "❌をつけた苦手問題だけを集中演習！解き直して覚えたら「⭕ 覚えた」に切り替えて克服しましょう。" },
+  { id: "all", icon: "📚", short: "全問一覧（解答付）", title: "📚 全問一括一覧（大問1〜6 完全網羅）", desc: "全86問と原本図・解説を辞書のように一括閲覧できます。" }
+];
+
+function getQuestionKey(secId, gId, it) {
+  // 一意キー（セクションID_グループID_問番号_問題文先頭15文字）
+  return `${secId}_${gId}_${it[0]}_${encodeURIComponent(it[1].substring(0, 15))}`;
+}
+
+function getStats() {
+  let total = 0;
+  let correctCount = 0;
+  let wrongCount = 0;
+
+  DATA.forEach(sec => {
+    sec.groups.forEach(g => {
+      g.items.forEach(it => {
+        total++;
+        const key = getQuestionKey(sec.id, g.id, it);
+        if (quizState[key] === "correct") correctCount++;
+        else if (quizState[key] === "wrong") wrongCount++;
+      });
+    });
+  });
+
+  const unanswered = total - (correctCount + wrongCount);
+  const pct = total === 0 ? 0 : Math.round((correctCount / total) * 100);
+  return { total, correctCount, wrongCount, unanswered, pct };
+}
 
 function init() {
+  const specialNavList = document.getElementById("specialNavList");
   const navList = document.getElementById("navList");
   const mTabs = document.getElementById("mTabs");
-  const allTabs = [...DATA, { id: "all", num: "全", short: "全問一括", title: "全ページ一括表示（大問1〜6 完全網羅）" }];
 
-  allTabs.forEach(d => {
+  specialNavList.innerHTML = "";
+  navList.innerHTML = "";
+  mTabs.innerHTML = "";
+
+  // 特別モードナビ
+  SPECIAL_MODES.forEach(m => {
+    const btn = document.createElement("button");
+    btn.className = "nav-btn" + (m.id === currentTab ? " active" : "");
+    btn.dataset.id = m.id;
+    btn.innerHTML = `
+      <span class="nav-num" style="background:transparent; font-size:1rem;">${m.icon}</span>
+      <span>${m.short}</span>
+      ${m.id === "wrong" ? '<span class="nav-badge-count wrong" id="wrongBadge">0問</span>' : ""}
+      ${m.id === "challenge" ? '<span class="nav-badge-count total">86問</span>' : ""}
+    `;
+    btn.onclick = () => selectTab(m.id);
+    specialNavList.appendChild(btn);
+
+    const pill = document.createElement("button");
+    pill.className = "pill" + (m.id === currentTab ? " active" : "");
+    pill.dataset.id = m.id;
+    pill.id = "pill_" + m.id;
+    pill.textContent = `${m.icon} ${m.short}`;
+    pill.onclick = () => selectTab(m.id);
+    mTabs.appendChild(pill);
+  });
+
+  // 大問別ナビ
+  DATA.forEach(d => {
     const btn = document.createElement("button");
     btn.className = "nav-btn" + (d.id === currentTab ? " active" : "");
     btn.dataset.id = d.id;
@@ -1206,133 +1407,282 @@ function selectTab(id) {
     el.classList.toggle("active", el.dataset.id === id);
   });
   toggleMenu(false);
+
+  // 全問チャレンジモードに入った時は、自動でブラインド（答え隠し）を推奨ONにする
+  if (id === "challenge" && !document.body.classList.contains("blind")) {
+    toggleBlind();
+  }
+
   render();
   window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+function updateProgress() {
+  const stats = getStats();
+  const progText = document.getElementById("progText");
+  const progBar = document.getElementById("progBar");
+  const statCorrect = document.getElementById("statCorrect");
+  const statWrong = document.getElementById("statWrong");
+  const wrongBadge = document.getElementById("wrongBadge");
+  const wrongPill = document.getElementById("pill_wrong");
+
+  if (progText) progText.textContent = `⭕ ${stats.correctCount} / ${stats.total} (${stats.pct}%)`;
+  if (progBar) progBar.style.width = stats.pct + "%";
+  if (statCorrect) statCorrect.textContent = `⭕ 覚えた: ${stats.correctCount}問`;
+  if (statWrong) statWrong.textContent = `❌ 苦手: ${stats.wrongCount}問`;
+
+  if (wrongBadge) {
+    wrongBadge.textContent = `${stats.wrongCount}問`;
+    wrongBadge.style.display = stats.wrongCount > 0 ? "inline-block" : "none";
+  }
+  if (wrongPill) {
+    wrongPill.textContent = stats.wrongCount > 0 ? `🔥 苦手特訓(${stats.wrongCount})` : `🔥 苦手特訓`;
+  }
+}
+
+function setQuestionStatus(key, status, event) {
+  if (event) event.stopPropagation();
+
+  if (quizState[key] === status) {
+    delete quizState[key];
+  } else {
+    quizState[key] = status;
+  }
+
+  localStorage.setItem("pt_anatomy_quiz_status", JSON.stringify(quizState));
+  updateProgress();
+
+  // 該当する行のボタンスタイルを即時更新
+  const row = document.getElementById("row_" + key);
+  if (row) {
+    const btnCorrect = row.querySelector(".btn-correct");
+    const btnWrong = row.querySelector(".btn-wrong");
+    const curr = quizState[key];
+    if (btnCorrect) btnCorrect.classList.toggle("active", curr === "correct");
+    if (btnWrong) btnWrong.classList.toggle("active", curr === "wrong");
+  }
+
+  // 苦手特訓モードで全問克服（0問）になった場合
+  if (currentTab === "wrong") {
+    const stats = getStats();
+    if (stats.wrongCount === 0) {
+      render();
+    }
+  }
+}
+
+function resetAllProgress() {
+  if (confirm("学習チェックの記録（⭕覚えた / ❌苦手）をすべてリセットしますか？\n※端末内の保存データが初期化されます。")) {
+    quizState = {};
+    localStorage.removeItem("pt_anatomy_quiz_status");
+    localStorage.removeItem("pt_anatomy_checked");
+    updateProgress();
+    render();
+  }
 }
 
 function render() {
   const content = document.getElementById("content");
   const headerTitle = document.getElementById("headerTitle");
-  const targets = currentTab === "all" ? DATA : DATA.filter(d => d.id === currentTab);
 
-  headerTitle.textContent = currentTab === "all" ? "全問一括表示（大問1〜大問6 完全網羅）" : targets[0].title;
+  let bannerTitle = "";
+  let bannerDesc = "";
+  let targets = [];
 
-  let html = "";
+  const specialMode = SPECIAL_MODES.find(m => m.id === currentTab);
+  if (specialMode) {
+    bannerTitle = specialMode.title;
+    bannerDesc = specialMode.desc;
+    targets = DATA;
+  } else {
+    const sec = DATA.find(d => d.id === currentTab) || DATA[0];
+    bannerTitle = sec.title;
+    bannerDesc = sec.desc;
+    targets = [sec];
+  }
+
+  headerTitle.textContent = bannerTitle;
+
+  // 苦手特訓モードで間違えた問題が0件の場合の専用表示
+  if (currentTab === "wrong") {
+    const stats = getStats();
+    if (stats.wrongCount === 0) {
+      content.innerHTML = `
+        <div class="banner">
+          <h2>${bannerTitle}</h2>
+          <p>${bannerDesc}</p>
+        </div>
+        <div style="background:var(--glass-strong); border:2px dashed var(--teal); border-radius:16px; padding:40px 20px; text-align:center; box-shadow:var(--card-shadow);">
+          <div style="font-size:3rem; margin-bottom:12px;">🎉✨</div>
+          <h3 style="font-size:1.3rem; font-weight:800; color:var(--text-main); margin-bottom:8px;">現在、苦手登録されている問題はありません！</h3>
+          <p style="font-size:0.9rem; color:var(--text-sub); max-width:480px; margin:0 auto 20px; line-height:1.6;">
+            各大問の演習や「🎯 全問チャレンジ」で問題を解き、間違えた問題や不安な問題に「❌ 苦手」ボタンを押すと、この特訓ルームに自動で集約されます。
+          </p>
+          <div style="display:flex; justify-content:center; gap:12px; flex-wrap:wrap;">
+            <button class="nav-btn" style="width:auto; background:var(--primary); color:#fff; padding:10px 20px; border-radius:99px;" onclick="selectTab('challenge')">
+              🎯 全問チャレンジに挑戦する
+            </button>
+            <button class="nav-btn" style="width:auto; background:#fff; border:1px solid #cbd5e1; color:var(--text-main); padding:10px 20px; border-radius:99px;" onclick="selectTab('tab1')">
+              📖 大問1から順番に解く
+            </button>
+          </div>
+        </div>
+      `;
+      return;
+    }
+  }
+
+  let html = `
+    <div class="banner">
+      <h2>${bannerTitle}</h2>
+      <p>${bannerDesc}</p>
+      ${currentTab === "challenge" ? `
+        <div style="margin-top:10px; display:inline-flex; align-items:center; gap:8px; background:rgba(2,132,199,0.1); padding:6px 12px; border-radius:8px; font-size:0.8rem; font-weight:700; color:var(--primary-dark);">
+          <span>💡 コツ：右上の「👁️ 答えを隠す」がONになっています。問題を考えてからタップして答え合わせをしよう！</span>
+        </div>
+      ` : ""}
+    </div>
+  `;
+
+  let renderedGroupCount = 0;
+
   targets.forEach(sec => {
     const filteredGroups = sec.groups.map(g => {
       const filteredItems = g.items.filter(it => {
-        if (!searchQuery) return true;
-        const q = searchQuery.toLowerCase();
-        return it[0].toLowerCase().includes(q) ||
-               it[1].toLowerCase().includes(q) ||
-               it[2].toLowerCase().includes(q) ||
-               it[3].toLowerCase().includes(q);
+        const key = getQuestionKey(sec.id, g.id, it);
+        
+        // 苦手特訓モードのフィルタ
+        if (currentTab === "wrong" && quizState[key] !== "wrong") {
+          return false;
+        }
+
+        // 検索クエリのフィルタ
+        if (searchQuery) {
+          const q = searchQuery.toLowerCase();
+          return it[0].toLowerCase().includes(q) ||
+                 it[1].toLowerCase().includes(q) ||
+                 it[2].toLowerCase().includes(q) ||
+                 it[3].toLowerCase().includes(q);
+        }
+
+        return true;
       });
-      return { ...g, filteredItems };
-    }).filter(g => g.filteredItems.length > 0 || (!searchQuery && (g.examImg || g.svg)));
+      return { ...g, filteredItems, secId: sec.id };
+    }).filter(g => g.filteredItems.length > 0 || (!searchQuery && currentTab !== "wrong" && (g.examImg || g.svg)));
 
     if (filteredGroups.length === 0) return;
 
-    html += `
-      <div class="banner">
-        <h2>${sec.title}</h2>
-        <p>${sec.desc}</p>
-      </div>
-      ${filteredGroups.map(g => `
-        <div class="group">
-          <div class="g-title">
-            <span>${g.title}</span>
-            <span class="g-count">${g.filteredItems.length}問</span>
-          </div>
+    renderedGroupCount++;
 
-          ${(g.examImg && g.svg) ? `
-            <div class="diag-container" id="diag_${g.id}">
-              <div class="diag-header">
-                <span class="diag-badge">📊 図解リファレンス</span>
-                <div class="view-switch">
-                  <button class="switch-btn active" onclick="switchDiagView('${g.id}', 'exam', this)">📄 原本テスト図</button>
-                  <button class="switch-btn" onclick="switchDiagView('${g.id}', 'svg', this)">🎨 カラー解説図</button>
-                </div>
-              </div>
+    // 全問チャレンジや全問一覧の場合、大問ごとの見出しを入れる
+    if (specialMode && targets.length > 1) {
+      html += `
+        <div style="font-size:1.1rem; font-weight:800; color:var(--primary-dark); margin:28px 0 12px; display:flex; align-items:center; gap:8px;">
+          <span style="background:var(--primary); color:#fff; width:26px; height:26px; border-radius:6px; display:inline-flex; align-items:center; justify-content:center; font-size:0.8rem;">${sec.num}</span>
+          <span>${sec.title}</span>
+        </div>
+      `;
+    }
 
-              <div class="diag-view exam-view active" id="view_exam_${g.id}">
-                <div class="exam-img-wrapper" onclick="openLightbox('${g.examImg}')">
-                  <img src="${g.examImg}" class="exam-img" alt="${g.examCap}">
-                  <span class="zoom-hint">🔍 クリックで全画面拡大</span>
-                </div>
-                <div class="diag-cap">${g.examCap}</div>
+    html += filteredGroups.map(g => `
+      <div class="group">
+        <div class="g-title">
+          <span>${g.title}</span>
+          <span class="g-count">${g.filteredItems.length}問</span>
+        </div>
 
-                ${g.examImg2 ? `
-                  <div style="margin-top: 14px;">
-                    <div class="exam-img-wrapper" onclick="openLightbox('${g.examImg2}')">
-                      <img src="${g.examImg2}" class="exam-img" alt="${g.examCap2}">
-                      <span class="zoom-hint">🔍 クリックで全画面拡大</span>
-                    </div>
-                    <div class="diag-cap">${g.examCap2}</div>
-                  </div>
-                ` : ""}
-              </div>
-
-              <div class="diag-view svg-view" id="view_svg_${g.id}">
-                <div class="svg-wrapper">${g.svg}</div>
-                <div class="diag-cap">${g.svgCap || ""}</div>
+        ${(g.examImg && g.svg) ? `
+          <div class="diag-container" id="diag_${g.id}">
+            <div class="diag-header">
+              <span class="diag-badge">📊 図解リファレンス</span>
+              <div class="view-switch">
+                <button class="switch-btn active" onclick="switchDiagView('${g.id}', 'exam', this)">📄 原本テスト図</button>
+                <button class="switch-btn" onclick="switchDiagView('${g.id}', 'svg', this)">🎨 カラー解説図</button>
               </div>
             </div>
-          ` : (g.svg && !g.examImg) ? `
-            <!-- 原本図がなく解答を含むSVG図解（大問6-2等）の折りたたみトグル -->
-            <details class="diag-toggle">
-              <summary class="diag-summary">
-                <span>🎨 【解説図】${g.svgCap || "図解を表示"}</span>
-                <span style="font-size:0.7rem; color:#dc2626; font-weight:700; margin-left:auto;">⚠️ 解答を含みます（タップで開閉）</span>
-              </summary>
-              <div class="diag-body">
-                <div class="svg-wrapper">${g.svg}</div>
+
+            <div class="diag-view exam-view active" id="view_exam_${g.id}">
+              <div class="exam-img-wrapper" onclick="openLightbox('${g.examImg}')">
+                <img src="${g.examImg}" class="exam-img" alt="${g.examCap}" loading="lazy" decoding="async">
+                <span class="zoom-hint">🔍 クリックで全画面拡大</span>
               </div>
-            </details>
-          ` : ""}
+              <div class="diag-cap">${g.examCap}</div>
 
-          ${g.notice ? `
-            <!-- 出題意図・手書きメモ・照合結果の折りたたみトグル（ネタバレ防止） -->
-            <details class="notice-toggle">
-              <summary class="notice-summary">
-                <span>💡 原本の出題メモ・照合ヒント</span>
-                <span style="font-size:0.7rem; color:#b45309; font-weight:700; margin-left:auto;">⚠️ 解答・ヒントを含みます（タップで表示）</span>
-              </summary>
-              <div class="notice-content">${g.notice}</div>
-            </details>
-          ` : ""}
+              ${g.examImg2 ? `
+                <div style="margin-top: 14px;">
+                  <div class="exam-img-wrapper" onclick="openLightbox('${g.examImg2}')">
+                    <img src="${g.examImg2}" class="exam-img" alt="${g.examCap2}" loading="lazy" decoding="async">
+                    <span class="zoom-hint">🔍 クリックで全画面拡大</span>
+                  </div>
+                  <div class="diag-cap">${g.examCap2}</div>
+                </div>
+              ` : ""}
+            </div>
 
-          ${g.filteredItems.map(it => {
-            const key = it[0] + "_" + it[1].substring(0, 15);
-            const isChecked = !!checkedState[key];
-            return `
-              <div class="qa-row">
-                <div class="q-box">
-                  <div class="q-header-line">
-                    <span class="q-tag">${it[0]}</span>
-                    <button class="check-btn ${isChecked ? "checked" : ""}" onclick="toggleCheck('${key}', this)">
-                      ${isChecked ? "✓ 覚えた" : "○ 未チェック"}
+            <div class="diag-view svg-view" id="view_svg_${g.id}">
+              <div class="svg-wrapper">${g.svg}</div>
+              <div class="diag-cap">${g.svgCap || ""}</div>
+            </div>
+          </div>
+        ` : (g.svg && !g.examImg) ? `
+          <details class="diag-toggle">
+            <summary class="diag-summary">
+              <span>🎨 【解説図】${g.svgCap || "図解を表示"}</span>
+              <span style="font-size:0.7rem; color:#dc2626; font-weight:700; margin-left:auto;">⚠️ 解答を含みます（タップで開閉）</span>
+            </summary>
+            <div class="diag-body">
+              <div class="svg-wrapper">${g.svg}</div>
+            </div>
+          </details>
+        ` : ""}
+
+        ${g.notice ? `
+          <details class="notice-toggle">
+            <summary class="notice-summary">
+              <span>💡 原本の出題メモ・照合ヒント</span>
+              <span style="font-size:0.7rem; color:#b45309; font-weight:700; margin-left:auto;">⚠️ 解答・ヒントを含みます（タップで表示）</span>
+            </summary>
+            <div class="notice-content">${g.notice}</div>
+          </details>
+        ` : ""}
+
+        ${g.filteredItems.map(it => {
+          const key = getQuestionKey(g.secId || sec.id, g.id, it);
+          const state = quizState[key];
+          const isCorrect = state === "correct";
+          const isWrong = state === "wrong";
+          return `
+            <div class="qa-row" id="row_${key}">
+              <div class="q-box">
+                <div class="q-header-line">
+                  <span class="q-tag">${it[0]}</span>
+                  <div class="status-buttons">
+                    <button class="eval-btn btn-correct ${isCorrect ? 'active' : ''}" onclick="setQuestionStatus('${key}', 'correct', event)">
+                      ⭕ 覚えた
+                    </button>
+                    <button class="eval-btn btn-wrong ${isWrong ? 'active' : ''}" onclick="setQuestionStatus('${key}', 'wrong', event)">
+                      ❌ 苦手
                     </button>
                   </div>
-                  <div class="q-txt">${it[1]}</div>
                 </div>
-                <div class="a-box" onclick="this.classList.toggle('show')">
-                  <div class="a-head">
-                    <span class="a-lbl">解答</span>
-                    <span class="a-val">${it[2]}</span>
-                  </div>
-                  <div class="a-exp">${it[3]}</div>
-                </div>
+                <div class="q-txt">${it[1]}</div>
               </div>
-            `;
-          }).join("")}
-        </div>
-      `).join("")}
-    `;
+              <div class="a-box" onclick="this.classList.toggle('show')">
+                <div class="a-head">
+                  <span class="a-lbl">解答</span>
+                  <span class="a-val">${it[2]}</span>
+                </div>
+                <div class="a-exp">${it[3]}</div>
+              </div>
+            </div>
+          `;
+        }).join("")}
+      </div>
+    `).join("");
   });
 
-  if (!html) {
-    html = `<div class="notice" style="text-align:center; padding: 30px;">一致する問題が見つかりませんでした。「${searchQuery}」</div>`;
+  if (renderedGroupCount === 0) {
+    html += `<div class="banner" style="text-align:center; padding: 40px;"><p style="font-size:1rem; color:var(--text-sub);">一致する問題が見つかりませんでした。「${searchQuery}」</p></div>`;
   }
 
   content.innerHTML = html;
@@ -1367,27 +1717,6 @@ function closeLightbox() {
   document.getElementById("lightbox").classList.remove("open");
 }
 
-function toggleCheck(key, btn) {
-  checkedState[key] = !checkedState[key];
-  if (!checkedState[key]) delete checkedState[key];
-  localStorage.setItem("pt_anatomy_checked", JSON.stringify(checkedState));
-  btn.classList.toggle("checked", !!checkedState[key]);
-  btn.textContent = checkedState[key] ? "✓ 覚えた" : "○ 未チェック";
-  updateProgress();
-}
-
-function updateProgress() {
-  let total = 0;
-  DATA.forEach(s => s.groups.forEach(g => total += g.items.length));
-  const checked = Object.keys(checkedState).length;
-  const pct = total === 0 ? 0 : Math.round((checked / total) * 100);
-
-  const progText = document.getElementById("progText");
-  const progBar = document.getElementById("progBar");
-  if (progText) progText.textContent = `${checked} / ${total} (${pct}%)`;
-  if (progBar) progBar.style.width = pct + "%";
-}
-
 function handleSearch(val) {
   searchQuery = val.trim();
   render();
@@ -1403,7 +1732,6 @@ function toggleBlind() {
   const btn = document.getElementById("blindBtn");
   document.querySelectorAll(".a-box.show").forEach(el => el.classList.remove("show"));
   
-  // ブラインドモードON時は、ヒントや解答図のトグルもすべて閉じる
   if (isBlind) {
     document.querySelectorAll(".notice-toggle, .diag-toggle").forEach(el => el.open = false);
   }
