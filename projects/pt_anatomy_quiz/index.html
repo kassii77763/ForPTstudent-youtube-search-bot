@@ -618,29 +618,6 @@ body {
   display: none !important;
 }
 
-/* 固定時スワイプ案内バッジ */
-.pinned-swipe-guide {
-  display: none;
-}
-.diag-container.is-pinned .pinned-swipe-guide {
-  display: inline-flex;
-  align-items: center;
-  gap: 3px;
-  font-size: 0.65rem;
-  font-weight: 800;
-  color: #0284c7;
-  background: #e0f2fe;
-  border: 1px solid #bae6fd;
-  padding: 1px 7px;
-  border-radius: 99px;
-  white-space: nowrap !important;
-  animation: pulseHint 2.4s infinite ease-in-out;
-}
-@keyframes pulseHint {
-  0%, 100% { opacity: 0.9; transform: scale(1); }
-  50% { opacity: 1; transform: scale(1.03); }
-}
-
 /* 各スライドの枚数バッジ */
 .slide-idx-badge {
   position: absolute;
@@ -1082,10 +1059,6 @@ body.blind .a-box:not(.show)::after {
     height: 24px;
     font-size: 0.85rem;
   }
-  .diag-container.is-pinned .pinned-swipe-guide {
-    font-size: 0.62rem;
-    padding: 1px 5px;
-  }
 }
 
 @media (max-width: 480px) {
@@ -1093,21 +1066,15 @@ body.blind .a-box:not(.show)::after {
     font-size: 0.82rem;
   }
   .diag-container.is-pinned {
-    padding: 3px 6px;
+    padding: 4px 8px;
   }
   .diag-container.is-pinned .switch-btn {
-    padding: 2px 5px;
-    font-size: 0.62rem;
-    letter-spacing: -0.2px;
-  }
-  .diag-container.is-pinned .pinned-swipe-guide {
-    font-size: 0.60rem;
-    padding: 1px 4px;
-    letter-spacing: -0.2px;
+    padding: 3px 8px;
+    font-size: 0.68rem;
   }
   .diag-container.is-pinned .pin-btn {
-    padding: 2px 6px;
-    font-size: 0.64rem;
+    padding: 3px 8px;
+    font-size: 0.68rem;
   }
 }
 
@@ -1750,11 +1717,6 @@ function render() {
                   ${g.examImg ? `<button class="switch-btn active" onclick="switchDiagView('${g.id}', 'exam', this)">📄 原本テスト図</button>` : ""}
                   ${g.resumeImgs ? `<button class="switch-btn ${!g.examImg ? 'active' : ''}" onclick="switchDiagView('${g.id}', 'resume', this)">📖 講義レジュメ図</button>` : ""}
                 </div>
-                ${(g.resumeImgs && g.resumeImgs.length > 1) ? `
-                  <span class="pinned-swipe-guide" title="左右にスワイプしてスライドを切り替えられます">
-                    <span>◀</span><span>スワイプ (${g.resumeImgs.length}枚)</span><span>▶</span>
-                  </span>
-                ` : ""}
               </div>
               <button class="pin-btn" onclick="togglePinDiag('${g.id}', this)" title="スクロール中も図を画面上部に固定します">
                 <span>📌</span><span>図を固定</span>
