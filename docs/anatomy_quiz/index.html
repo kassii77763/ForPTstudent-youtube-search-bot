@@ -509,26 +509,64 @@ body {
   box-shadow: 0 2px 8px rgba(2, 132, 199, 0.35);
 }
 
-/* 固定（Sticky）状態のスタイル */
+/* 固定（Sticky）状態の超コンパクト・ミニマルスタイル */
 .diag-container.is-pinned {
   position: sticky;
   top: 56px;
   z-index: 60;
   background: rgba(255, 255, 255, 0.98);
   backdrop-filter: blur(14px);
-  border: 2px solid var(--primary);
-  box-shadow: 0 10px 25px rgba(2, 132, 199, 0.18);
+  border: 1.5px solid var(--primary);
+  border-radius: 8px;
+  padding: 4px 8px;
+  margin-bottom: 10px;
+  box-shadow: 0 6px 20px rgba(2, 132, 199, 0.16);
   animation: pinDrop 0.2s ease-out;
 }
 @keyframes pinDrop {
   from { transform: translateY(-4px); opacity: 0.9; }
   to { transform: translateY(0); opacity: 1; }
 }
+
+/* 固定時は不要な装飾・文字を消して「図だけ」に絞り込む */
+.diag-container.is-pinned .diag-badge {
+  display: none !important; /* 「図解リファレンス」バッジを非表示 */
+}
+.diag-container.is-pinned .diag-cap {
+  display: none !important; /* 下部の長い原本キャプションを非表示 */
+}
+.diag-container.is-pinned .zoom-hint {
+  display: none !important; /* ズームヒントの黒帯を非表示 */
+}
+
+/* 固定時の極薄コントロールバー */
+.diag-container.is-pinned .diag-header {
+  margin-bottom: 2px;
+  padding-bottom: 2px;
+  border-bottom: none;
+  gap: 4px;
+}
+.diag-container.is-pinned .switch-btn {
+  padding: 2px 7px;
+  font-size: 0.68rem;
+}
+.diag-container.is-pinned .pin-btn {
+  padding: 2px 8px;
+  font-size: 0.68rem;
+  background: #fee2e2;
+  border-color: #ef4444;
+  color: #dc2626;
+  font-weight: 800;
+}
+.diag-container.is-pinned .pin-btn:hover {
+  background: #fecaca;
+}
+
 .diag-container.is-pinned .exam-img {
-  max-height: 220px;
+  max-height: 170px;
 }
 .diag-container.is-pinned .svg-wrapper svg {
-  max-height: 200px;
+  max-height: 150px;
 }
 .switch-btn {
   background: none;
@@ -878,15 +916,17 @@ body.blind .a-box:not(.show)::after {
   .content { padding: 12px 12px 60px; }
   
   .diag-container.is-pinned {
-    top: 86px; /* モバイル2段ヘッダーの直下 */
-    padding: 8px 10px;
-    margin-bottom: 12px;
+    top: 82px; /* モバイル2段ヘッダーの直下 */
+    padding: 3px 6px;
+    margin-bottom: 8px;
+    border-width: 1px;
+    border-radius: 6px;
   }
   .diag-container.is-pinned .exam-img {
-    max-height: 160px; /* スマホ画面で下の設問を遮らない最適サイズ */
+    max-height: 130px; /* スマホ画面で下の設問を遮らない最適スリムサイズ */
   }
   .diag-container.is-pinned .svg-wrapper svg {
-    max-height: 150px;
+    max-height: 120px;
   }
 }
 
@@ -1781,7 +1821,7 @@ function togglePinDiag(groupId, btn) {
   const isPinned = container.classList.toggle("is-pinned");
   btn.classList.toggle("pinned", isPinned);
   btn.innerHTML = isPinned 
-    ? `<span>📌</span><span>固定中（解除）</span>` 
+    ? `<span>✕</span><span>解除</span>` 
     : `<span>📌</span><span>図を固定</span>`;
 }
 
