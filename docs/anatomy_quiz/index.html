@@ -561,23 +561,100 @@ body {
 .diag-container.is-pinned .resume-img {
   max-height: 160px;
 }
+.diag-container.is-pinned .resume-carousel-wrapper {
+  position: relative;
+  width: 100%;
+}
+.diag-container.is-pinned .carousel-arrow {
+  display: flex;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: rgba(15, 23, 42, 0.7);
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  font-weight: 800;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  user-select: none;
+}
+.diag-container.is-pinned .carousel-arrow:hover {
+  background: rgba(15, 23, 42, 0.95);
+  transform: translateY(-50%) scale(1.08);
+}
+.diag-container.is-pinned .carousel-arrow.prev {
+  left: 4px;
+}
+.diag-container.is-pinned .carousel-arrow.next {
+  right: 4px;
+}
+.carousel-arrow {
+  display: none;
+}
+
 .diag-container.is-pinned .resume-grid {
   flex-direction: row;
   overflow-x: auto;
-  gap: 8px;
-  padding: 2px 0;
+  gap: 10px;
+  padding: 2px 28px 4px 6px; /* 右端に次の画像のチラ見え余白 */
   justify-content: flex-start;
   scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
 }
 .diag-container.is-pinned .resume-item {
-  flex: 0 0 auto;
+  flex: 0 0 84%; /* 84%幅で次の画像が16%チラ見えするPeek効果 */
+  max-width: 84%;
   scroll-snap-align: center;
 }
 .diag-container.is-pinned .resume-cap {
   display: none !important;
 }
-.diag-container.is-pinned .svg-wrapper svg {
-  max-height: 150px;
+
+/* 固定時スワイプ案内バッジ */
+.pinned-swipe-guide {
+  display: none;
+}
+.diag-container.is-pinned .pinned-swipe-guide {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  font-size: 0.65rem;
+  font-weight: 800;
+  color: #0284c7;
+  background: #e0f2fe;
+  border: 1px solid #bae6fd;
+  padding: 1px 7px;
+  border-radius: 99px;
+  white-space: nowrap !important;
+  animation: pulseHint 2.4s infinite ease-in-out;
+}
+@keyframes pulseHint {
+  0%, 100% { opacity: 0.9; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.03); }
+}
+
+/* 各スライドの枚数バッジ */
+.slide-idx-badge {
+  position: absolute;
+  top: 6px;
+  left: 6px;
+  background: rgba(15, 23, 42, 0.75);
+  color: #ffffff;
+  font-size: 0.65rem;
+  font-weight: 800;
+  padding: 2px 6px;
+  border-radius: 4px;
+  backdrop-filter: blur(4px);
+  z-index: 2;
+  pointer-events: none;
 }
 .switch-btn {
   background: none;
@@ -996,11 +1073,41 @@ body.blind .a-box:not(.show)::after {
     font-size: 0.67rem;
     padding: 3px 6px;
   }
+  .diag-container.is-pinned .resume-item {
+    flex: 0 0 85%;
+    max-width: 85%;
+  }
+  .diag-container.is-pinned .carousel-arrow {
+    width: 24px;
+    height: 24px;
+    font-size: 0.85rem;
+  }
+  .diag-container.is-pinned .pinned-swipe-guide {
+    font-size: 0.62rem;
+    padding: 1px 5px;
+  }
 }
 
 @media (max-width: 480px) {
   .header-title {
     font-size: 0.82rem;
+  }
+  .diag-container.is-pinned {
+    padding: 3px 6px;
+  }
+  .diag-container.is-pinned .switch-btn {
+    padding: 2px 5px;
+    font-size: 0.62rem;
+    letter-spacing: -0.2px;
+  }
+  .diag-container.is-pinned .pinned-swipe-guide {
+    font-size: 0.60rem;
+    padding: 1px 4px;
+    letter-spacing: -0.2px;
+  }
+  .diag-container.is-pinned .pin-btn {
+    padding: 2px 6px;
+    font-size: 0.64rem;
   }
 }
 
@@ -1643,6 +1750,11 @@ function render() {
                   ${g.examImg ? `<button class="switch-btn active" onclick="switchDiagView('${g.id}', 'exam', this)">📄 原本テスト図</button>` : ""}
                   ${g.resumeImgs ? `<button class="switch-btn ${!g.examImg ? 'active' : ''}" onclick="switchDiagView('${g.id}', 'resume', this)">📖 講義レジュメ図</button>` : ""}
                 </div>
+                ${(g.resumeImgs && g.resumeImgs.length > 1) ? `
+                  <span class="pinned-swipe-guide" title="左右にスワイプしてスライドを切り替えられます">
+                    <span>◀</span><span>スワイプ (${g.resumeImgs.length}枚)</span><span>▶</span>
+                  </span>
+                ` : ""}
               </div>
               <button class="pin-btn" onclick="togglePinDiag('${g.id}', this)" title="スクロール中も図を画面上部に固定します">
                 <span>📌</span><span>図を固定</span>
@@ -1671,16 +1783,23 @@ function render() {
 
             ${g.resumeImgs ? `
               <div class="diag-view resume-view ${!g.examImg ? 'active' : ''}" id="view_resume_${g.id}">
-                <div class="resume-grid">
-                  ${g.resumeImgs.map(r => `
-                    <div class="resume-item">
-                      <div class="resume-img-wrapper" onclick="openLightbox('${r.src}')">
-                        <img src="${r.src}" class="resume-img" alt="${r.cap}" loading="lazy" decoding="async">
-                        <span class="zoom-hint">🔍 クリックで全画面拡大</span>
+                <div class="resume-carousel-wrapper">
+                  ${g.resumeImgs.length > 1 ? `
+                    <button class="carousel-arrow prev" onclick="scrollCarousel('resume_grid_${g.id}', -1)" title="前のスライド">‹</button>
+                    <button class="carousel-arrow next" onclick="scrollCarousel('resume_grid_${g.id}', 1)" title="次のスライド">›</button>
+                  ` : ""}
+                  <div class="resume-grid" id="resume_grid_${g.id}">
+                    ${g.resumeImgs.map((r, idx) => `
+                      <div class="resume-item">
+                        <div class="resume-img-wrapper" onclick="openLightbox('${r.src}')">
+                          ${g.resumeImgs.length > 1 ? `<span class="slide-idx-badge">${idx + 1} / ${g.resumeImgs.length}</span>` : ""}
+                          <img src="${r.src}" class="resume-img" alt="${r.cap}" loading="lazy" decoding="async">
+                          <span class="zoom-hint">🔍 クリックで全画面拡大</span>
+                        </div>
+                        <div class="resume-cap">${r.cap}</div>
                       </div>
-                      <div class="resume-cap">${r.cap}</div>
-                    </div>
-                  `).join("")}
+                    `).join("")}
+                  </div>
                 </div>
               </div>
             ` : ""}
@@ -1771,6 +1890,14 @@ function togglePinDiag(groupId, btn) {
   btn.innerHTML = isPinned 
     ? `<span>✕</span><span>解除</span>` 
     : `<span>📌</span><span>図を固定</span>`;
+}
+
+function scrollCarousel(gridId, direction) {
+  const el = document.getElementById(gridId);
+  if (!el) return;
+  const item = el.querySelector(".resume-item");
+  const scrollAmount = item ? (item.offsetWidth + 10) : 220;
+  el.scrollBy({ left: direction * scrollAmount, behavior: "smooth" });
 }
 
 function openLightbox(imgSrc) {
