@@ -565,6 +565,24 @@ body {
 .diag-container.is-pinned .exam-img {
   max-height: 170px;
 }
+.diag-container.is-pinned .resume-img {
+  max-height: 160px;
+}
+.diag-container.is-pinned .resume-grid {
+  flex-direction: row;
+  overflow-x: auto;
+  gap: 8px;
+  padding: 2px 0;
+  justify-content: flex-start;
+  scroll-snap-type: x mandatory;
+}
+.diag-container.is-pinned .resume-item {
+  flex: 0 0 auto;
+  scroll-snap-align: center;
+}
+.diag-container.is-pinned .resume-cap {
+  display: none !important;
+}
 .diag-container.is-pinned .svg-wrapper svg {
   max-height: 150px;
 }
@@ -623,6 +641,53 @@ body {
   pointer-events: none;
   opacity: 0.8;
   transition: opacity 0.2s ease;
+}
+
+/* 講義レジュメ図（答えスライド）スタイル */
+.resume-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: center;
+}
+.resume-item {
+  width: 100%;
+  max-width: 680px;
+  text-align: center;
+}
+.resume-img-wrapper {
+  position: relative;
+  display: inline-block;
+  max-width: 100%;
+  cursor: zoom-in;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid #cbd5e1;
+  background: #ffffff;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+}
+.resume-img-wrapper:hover .zoom-hint {
+  opacity: 1;
+}
+.resume-img {
+  display: block;
+  max-width: 100%;
+  max-height: 480px;
+  height: auto;
+  margin: 0 auto;
+  border-radius: 6px;
+}
+.resume-cap {
+  font-size: 0.76rem;
+  color: var(--text-sub);
+  margin-top: 6px;
+  line-height: 1.4;
+  font-weight: 600;
+  text-align: center;
+  background: #f1f5f9;
+  padding: 4px 10px;
+  border-radius: 6px;
+  display: inline-block;
 }
 
 .svg-wrapper svg {
@@ -925,6 +990,9 @@ body.blind .a-box:not(.show)::after {
   .diag-container.is-pinned .exam-img {
     max-height: 130px; /* スマホ画面で下の設問を遮らない最適スリムサイズ */
   }
+  .diag-container.is-pinned .resume-img {
+    max-height: 120px;
+  }
   .diag-container.is-pinned .svg-wrapper svg {
     max-height: 120px;
   }
@@ -1190,6 +1258,10 @@ const DATA = [
         title: "1-1. 脳の区分（正中矢状断）",
         examImg: "images/exam_p1_sagittal.webp",
         examCap: "📷 原本テスト図（1ページ目左上：正中矢状断の実物スキャン）",
+        resumeImgs: [
+          { src: "images/resume_g1_1_sagittal.webp", cap: "📖 講義レジュメ（中枢神経系 脳 p.5）：正中矢状断の区分（終脳・間脳・中脳・橋・小脳・延髄の実物解剖図）" },
+          { src: "images/resume_g1_1_divisions.webp", cap: "📖 講義レジュメ（中枢神経系 脳 p.6）：大脳・脳幹・小脳の区分体系ダイアグラム" }
+        ],
         svg: SVG_SAGITTAL,
         svgCap: "🎨 カラー解説図（構造別の色分け・名称ガイド）",
         notice: "<strong>【原本の位置関係の照合結果】</strong><br>・設問は「A〜Eで矢印の示す、脳を6つに区分した呼び名」ですが、枠はA〜Eの5つのみで、最下部に「G（延髄）」が振られています。<br>・Fは太線で囲まれた帯状回領域（辺縁葉・古皮質）を指しています。",
@@ -1209,6 +1281,10 @@ const DATA = [
         title: "1-2. 大脳皮質の機能中枢（何野）",
         examImg: "images/exam_p1_lateral.webp",
         examCap: "📷 原本テスト図（1ページ目右上：左大脳半球外側面の実物スキャン）",
+        resumeImgs: [
+          { src: "images/resume_g1_2_functional.webp", cap: "📖 講義レジュメ（中枢神経系 脳 p.26）：大脳皮質の機能局在（一次運動野4、一次感覚野3,1,2、一次聴覚野41,42、一次視覚野17、ブローカ44,45、ウェルニッケ22）" },
+          { src: "images/resume_g1_2_homunculus.webp", cap: "📖 講義レジュメ（中枢神経系 脳 p.22）：一次運動野・感覚野の身体支配領域（ホムンクルス：外側面＝顔面・上肢、内側面＝下肢）" }
+        ],
         svg: SVG_LATERAL,
         svgCap: "🎨 カラー解説図（ブロードマン野 ＆ ホムンクルス局在マップ）",
         notice: "<strong>【原本の位置関係の照合結果】</strong><br>・右端の点線枠は印刷上で掠れていますが後頭極の「F（一次視覚野）」です。<br>・BとCの「周囲の支配領域」は、ペンフィールドのホムンクルス（上から下肢→体幹→上肢→手・顔面）の高さに対応しています。",
@@ -1274,6 +1350,10 @@ const DATA = [
         title: "3-1. 大脳白質の神経線維",
         examImg: "images/exam_p2_fibers.webp",
         examCap: "📷 原本テスト図（2ページ目上部：白質線維A〜Cの実物スキャン）",
+        resumeImgs: [
+          { src: "images/resume_g3_1_fibers.webp", cap: "📖 講義レジュメ（中枢神経系 脳 p.41）：大脳白質線維の種類（連合線維＝同側、交連線維＝反対側、投射線維＝異なる核）" },
+          { src: "images/resume_g3_1_projection.webp", cap: "📖 講義レジュメ（中枢神経系 脳 p.44）：代表的な投射線維（錐体路・内包・放線冠の全身伝導路）" }
+        ],
         svg: SVG_FIBERS,
         svgCap: "🎨 カラー解説図（交連・連合・投射線維の走行方向比較）",
         notice: "<strong>【原本の位置関係の照合結果】</strong><br>・左側A：前頭断面で左右半球を結ぶ脳梁（交連線維）<br>・中央B：同一半球の前部と後部を結ぶアーチ状線維（連合線維）<br>・右側C：全身の人体図で上下を結ぶ伝導路（問題文に「Cは右の切れてるところ」とある投射線維）",
@@ -1310,6 +1390,11 @@ const DATA = [
         title: "4-1. 大脳の溝と回（①〜⑭、あ・い・う）",
         examImg: "images/exam_p3_sulci_gyri.webp",
         examCap: "📷 原本テスト図（3ページ目上部：外側面＆内側面の実物スキャン）",
+        resumeImgs: [
+          { src: "images/resume_g4_1_lateral.webp", cap: "📖 講義レジュメ（中枢神経系 脳 p.16）：大脳外側面の溝と回（中心溝・外側溝・上前頭溝・下前頭溝・三角部・上側頭溝・縁上回・角回）" },
+          { src: "images/resume_g4_1_medial.webp", cap: "📖 講義レジュメ（中枢神経系 脳 p.17）：大脳内側面の溝と回（帯状溝・辺縁枝・中心溝・頭頂後頭溝・鳥距溝・帯状回・鉤）" },
+          { src: "images/resume_g4_1_sulcus_hint.webp", cap: "📖 講義レジュメ（中枢神経系 脳 p.10）：中心溝の見つけ方（内側面で帯状溝・辺縁枝の直前にある溝が中心溝）" }
+        ],
         svg: SVG_SULCI_GYRI,
         svgCap: "🎨 カラー解説図（脳溝・脳回の色分けと境界線）",
         notice: "<strong>【原本の位置関係の精密照合結果】</strong><br>・<strong>②溝について</strong>：原本図を見ると、前頭葉上部の①回（上前頭回）の直下の溝に矢印が向いているため「上前頭溝」の可能性が高いです（中前頭回の下なら下前頭溝）。両論併記で解説しています。<br>・<strong>⑤の溝の選択肢（あ・い・う）</strong>：内側面図の上面で帯状溝辺縁枝「う」の直前の溝「い」が中心溝です（「あ」は傍中心溝）。<br>・<strong>掠れ文字の復元</strong>：プリント解答欄で掠れていた⑦角回、⑧中側頭回、⑪帯状回、⑫頭頂後頭溝、⑬海馬傍回をすべて完全復元しました。",
@@ -1337,6 +1422,10 @@ const DATA = [
         examCap: "📷 原本テスト図（3ページ目中段左：図1 水平断面の実物スキャン）",
         examImg2: "images/exam_p3_coronal.webp",
         examCap2: "📷 原本テスト図（3ページ目中段右：図2 前頭断面の実物スキャン）",
+        resumeImgs: [
+          { src: "images/resume_g4_2_horizontal.webp", cap: "📖 講義レジュメ（中枢神経系 脳 p.34）：図1 水平断面の大脳基底核（尾状核・被殻・淡蒼球・前障・視床）" },
+          { src: "images/resume_g4_2_coronal.webp", cap: "📖 講義レジュメ（中枢神経系 脳 p.35）：図2 前額断面の大脳基底核（前障・被殻・淡蒼球・尾状核・扁桃体・視床・視床下部）" }
+        ],
         svg: SVG_SECTIONS,
         svgCap: "🎨 カラー解説図（図1水平断 ＆ 図2前頭断の深部灰白質核）",
         notice: "<strong>【原本の位置関係の照合結果】</strong><br>・図1（水平断）：Aは被殻(C)と淡蒼球(D)の点線枠「レンズ核」、Bは側脳室前角外側の「尾状核頭」、Eは「視床」です。<br>・図2（前頭断）：Aは最外包と外包に挟まれた「前障」、Bは「内包」、Cは「尾状核」、Dは「レンズ核」、Eは側頭葉内側の「扁桃体」です。<br>・辺縁系に分類されるのは図2のE（扁桃体）です。",
@@ -1392,6 +1481,11 @@ const DATA = [
       {
         id: "g6_2",
         title: "6-2. ウィリス動脈輪・内頸動脈系と椎骨動脈系",
+        resumeImgs: [
+          { src: "images/resume_g6_2_willis.webp", cap: "📖 講義レジュメ（脳に分布する動脈 p.3）：ウィリス動脈輪の構成血管 ＆ 内頸動脈系・椎骨動脈系の区分表（★超重要）" },
+          { src: "images/resume_g6_2_mca.webp", cap: "📖 講義レジュメ（脳に分布する動脈 p.10）：中大脳動脈の灌流領域（外側面大部分：顔面・上肢の運動・感覚野、ブローカ野、ウェルニッケ野）" },
+          { src: "images/resume_g6_2_aca_pca.webp", cap: "📖 講義レジュメ（脳に分布する動脈 p.11）：前大脳動脈（内側面・下肢）＆ 後大脳動脈（後頭葉・視覚野）の灌流領域" }
+        ],
         svg: SVG_WILLIS,
         svgCap: "🎨 カラー解説図（ウィリス動脈輪の構成血管 ＆ 中大脳動脈の位置関係）",
         notice: "<strong>【原本メモと授業での解釈】</strong><br>原本には『回答枠6こしかない わたしは脳底動脈は横の空白に書いて、それ以外を枠に書いてた 6こ書けてたらokですて言ってたような気がする』とメモがあります。<br>授業で「中大脳動脈が含まれる」と解説された可能性があるため、6枠目は【脳底動脈】だけでなく【中大脳動脈】の可能性も考慮しておきましょう。",
@@ -1671,7 +1765,7 @@ function render() {
         return true;
       });
       return { ...g, filteredItems, secId: sec.id };
-    }).filter(g => g.filteredItems.length > 0 || (!searchQuery && currentTab !== "wrong" && (g.examImg || g.svg)));
+    }).filter(g => g.filteredItems.length > 0 || (!searchQuery && currentTab !== "wrong" && (g.examImg || g.resumeImgs || g.svg)));
 
     if (filteredGroups.length === 0) return;
 
@@ -1694,14 +1788,15 @@ function render() {
           <span class="g-count">${g.filteredItems.length}問</span>
         </div>
 
-        ${(g.examImg && g.svg) ? `
+        ${(g.examImg || g.resumeImgs) ? `
           <div class="diag-container" id="diag_${g.id}">
             <div class="diag-header">
               <div class="diag-header-left">
                 <span class="diag-badge">📊 図解リファレンス</span>
                 <div class="view-switch">
-                  <button class="switch-btn active" onclick="switchDiagView('${g.id}', 'exam', this)">📄 原本テスト図</button>
-                  <button class="switch-btn" onclick="switchDiagView('${g.id}', 'svg', this)">🎨 カラー解説図</button>
+                  ${g.examImg ? `<button class="switch-btn active" onclick="switchDiagView('${g.id}', 'exam', this)">📄 原本テスト図</button>` : ""}
+                  ${g.resumeImgs ? `<button class="switch-btn ${!g.examImg ? 'active' : ''}" onclick="switchDiagView('${g.id}', 'resume', this)">📖 講義レジュメ図</button>` : ""}
+                  ${g.svg ? `<button class="switch-btn" onclick="switchDiagView('${g.id}', 'svg', this)">🎨 カラー解説図</button>` : ""}
                 </div>
               </div>
               <button class="pin-btn" onclick="togglePinDiag('${g.id}', this)" title="スクロール中も図を画面上部に固定します">
@@ -1709,30 +1804,50 @@ function render() {
               </button>
             </div>
 
-            <div class="diag-view exam-view active" id="view_exam_${g.id}">
-              <div class="exam-img-wrapper" onclick="openLightbox('${g.examImg}')">
-                <img src="${g.examImg}" class="exam-img" alt="${g.examCap}" loading="lazy" decoding="async">
-                <span class="zoom-hint">🔍 クリックで全画面拡大</span>
-              </div>
-              <div class="diag-cap">${g.examCap}</div>
-
-              ${g.examImg2 ? `
-                <div style="margin-top: 14px;">
-                  <div class="exam-img-wrapper" onclick="openLightbox('${g.examImg2}')">
-                    <img src="${g.examImg2}" class="exam-img" alt="${g.examCap2}" loading="lazy" decoding="async">
-                    <span class="zoom-hint">🔍 クリックで全画面拡大</span>
-                  </div>
-                  <div class="diag-cap">${g.examCap2}</div>
+            ${g.examImg ? `
+              <div class="diag-view exam-view active" id="view_exam_${g.id}">
+                <div class="exam-img-wrapper" onclick="openLightbox('${g.examImg}')">
+                  <img src="${g.examImg}" class="exam-img" alt="${g.examCap}" loading="lazy" decoding="async">
+                  <span class="zoom-hint">🔍 クリックで全画面拡大</span>
                 </div>
-              ` : ""}
-            </div>
+                <div class="diag-cap">${g.examCap}</div>
 
-            <div class="diag-view svg-view" id="view_svg_${g.id}">
-              <div class="svg-wrapper">${g.svg}</div>
-              <div class="diag-cap">${g.svgCap || ""}</div>
-            </div>
+                ${g.examImg2 ? `
+                  <div style="margin-top: 14px;">
+                    <div class="exam-img-wrapper" onclick="openLightbox('${g.examImg2}')">
+                      <img src="${g.examImg2}" class="exam-img" alt="${g.examCap2}" loading="lazy" decoding="async">
+                      <span class="zoom-hint">🔍 クリックで全画面拡大</span>
+                    </div>
+                    <div class="diag-cap">${g.examCap2}</div>
+                  </div>
+                ` : ""}
+              </div>
+            ` : ""}
+
+            ${g.resumeImgs ? `
+              <div class="diag-view resume-view ${!g.examImg ? 'active' : ''}" id="view_resume_${g.id}">
+                <div class="resume-grid">
+                  ${g.resumeImgs.map(r => `
+                    <div class="resume-item">
+                      <div class="resume-img-wrapper" onclick="openLightbox('${r.src}')">
+                        <img src="${r.src}" class="resume-img" alt="${r.cap}" loading="lazy" decoding="async">
+                        <span class="zoom-hint">🔍 クリックで全画面拡大</span>
+                      </div>
+                      <div class="resume-cap">${r.cap}</div>
+                    </div>
+                  `).join("")}
+                </div>
+              </div>
+            ` : ""}
+
+            ${g.svg ? `
+              <div class="diag-view svg-view" id="view_svg_${g.id}">
+                <div class="svg-wrapper">${g.svg}</div>
+                <div class="diag-cap">${g.svgCap || ""}</div>
+              </div>
+            ` : ""}
           </div>
-        ` : (g.svg && !g.examImg) ? `
+        ` : (g.svg && !g.examImg && !g.resumeImgs) ? `
           <details class="diag-toggle">
             <summary class="diag-summary">
               <span>🎨 【解説図】${g.svgCap || "図解を表示"}</span>
@@ -1802,16 +1917,21 @@ function switchDiagView(groupId, viewType, btn) {
   container.querySelectorAll(".switch-btn").forEach(b => b.classList.remove("active"));
   btn.classList.add("active");
 
-  const examView = document.getElementById("view_exam_" + groupId);
-  const svgView = document.getElementById("view_svg_" + groupId);
+  const views = {
+    exam: document.getElementById("view_exam_" + groupId),
+    resume: document.getElementById("view_resume_" + groupId),
+    svg: document.getElementById("view_svg_" + groupId)
+  };
 
-  if (viewType === "exam") {
-    if (examView) examView.classList.add("active");
-    if (svgView) svgView.classList.remove("active");
-  } else {
-    if (examView) examView.classList.remove("active");
-    if (svgView) svgView.classList.add("active");
-  }
+  Object.keys(views).forEach(type => {
+    if (views[type]) {
+      if (type === viewType) {
+        views[type].classList.add("active");
+      } else {
+        views[type].classList.remove("active");
+      }
+    }
+  });
 }
 
 function togglePinDiag(groupId, btn) {
