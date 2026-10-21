@@ -1,0 +1,1418 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>解剖学小テスト（脳・神経系）原本図照合 ＆ 解答・解説マスター</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+JP:wght@400;500;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg-gradient: linear-gradient(135deg, #e0f2fe 0%, #f0fdf4 50%, #f8fafc 100%);
+  --glass: rgba(255, 255, 255, 0.85);
+  --glass-strong: rgba(255, 255, 255, 0.95);
+  --primary: #0284c7;
+  --primary-hover: #0369a1;
+  --primary-light: #e0f2fe;
+  --teal: #0d9488;
+  --teal-light: #ccfbf1;
+  --indigo: #4f46e5;
+  --text-main: #0f172a;
+  --text-sub: #334155;
+  --text-muted: #64748b;
+  --border-subtle: #cbd5e1;
+  --ans-bg: #f0f9ff;
+  --ans-border: #bae6fd;
+  --ans-text: #0369a1;
+  --warn-bg: #fffbeb;
+  --warn-border: #fcd34d;
+  --warn-text: #92400e;
+  --success: #16a34a;
+  --success-light: #dcfce7;
+  --card-shadow: 0 4px 20px -2px rgba(2, 132, 199, 0.08), 0 2px 6px -1px rgba(0, 0, 0, 0.04);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'Inter', 'Noto Sans JP', -apple-system, BlinkMacSystemFont, sans-serif;
+  color: var(--text-main);
+  background: var(--bg-gradient);
+  background-attachment: fixed;
+  min-height: 100vh;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+.app { display: flex; min-height: 100vh; }
+
+/* サイドバー */
+.sidebar {
+  width: 250px;
+  background: var(--glass-strong);
+  backdrop-filter: blur(16px);
+  border-right: 1px solid rgba(226, 232, 240, 0.8);
+  padding: 18px 12px;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow-y: auto;
+  z-index: 100;
+  flex-shrink: 0;
+  transition: transform 0.25s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.brand {
+  padding: 4px 8px 14px;
+  border-bottom: 1px solid rgba(2, 132, 199, 0.15);
+  margin-bottom: 12px;
+}
+.brand-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--primary);
+  background: var(--primary-light);
+  padding: 3px 8px;
+  border-radius: 99px;
+  letter-spacing: 0.03em;
+}
+.brand h1 {
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: var(--text-main);
+  margin-top: 6px;
+  letter-spacing: -0.01em;
+}
+.brand-desc {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+
+/* 進捗サマリー */
+.progress-card {
+  background: #ffffff;
+  border: 1px solid var(--border-subtle);
+  border-radius: 10px;
+  padding: 10px;
+  margin-bottom: 12px;
+}
+.prog-label {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--text-sub);
+  margin-bottom: 4px;
+}
+.prog-bar-bg {
+  width: 100%;
+  height: 6px;
+  background: #e2e8f0;
+  border-radius: 99px;
+  overflow: hidden;
+}
+.prog-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--teal), var(--primary));
+  width: 0%;
+  transition: width 0.3s ease;
+}
+
+.nav-section-title {
+  font-size: 0.68rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-muted);
+  padding: 8px 10px 4px;
+}
+.nav-list { display: flex; flex-direction: column; gap: 3px; }
+.nav-btn {
+  width: 100%;
+  text-align: left;
+  background: none;
+  border: 1px solid transparent;
+  padding: 8px 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  color: var(--text-sub);
+  font-size: 0.82rem;
+  font-weight: 600;
+  transition: all 0.15s ease;
+}
+.nav-btn:hover {
+  background: rgba(2, 132, 199, 0.06);
+  color: var(--primary);
+}
+.nav-btn.active {
+  background: var(--primary-light);
+  border-color: rgba(2, 132, 199, 0.3);
+  color: var(--primary-hover);
+  font-weight: 700;
+}
+.nav-num {
+  min-width: 22px;
+  height: 22px;
+  border-radius: 6px;
+  background: rgba(2, 132, 199, 0.12);
+  color: var(--primary);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+.nav-btn.active .nav-num {
+  background: var(--primary);
+  color: #fff;
+}
+
+/* メインエリア */
+.main {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 80;
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid rgba(226, 232, 240, 0.8);
+  padding: 10px 18px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+}
+.menu-btn {
+  display: none;
+  background: var(--primary-light);
+  color: var(--primary-hover);
+  border: 1px solid rgba(2, 132, 199, 0.25);
+  border-radius: 8px;
+  padding: 6px 10px;
+  font-weight: 700;
+  font-size: 0.82rem;
+  cursor: pointer;
+}
+.header-title {
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: var(--text-main);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+.search-input {
+  background: #ffffff;
+  border: 1px solid var(--border-subtle);
+  border-radius: 99px;
+  padding: 5px 12px;
+  font-size: 0.78rem;
+  color: var(--text-main);
+  width: 160px;
+  transition: all 0.2s ease;
+}
+.search-input:focus {
+  outline: none;
+  border-color: var(--primary);
+  width: 220px;
+  box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.15);
+}
+.blind-btn {
+  background: #ffffff;
+  color: var(--primary-hover);
+  border: 1.5px solid var(--primary);
+  padding: 5px 14px;
+  border-radius: 99px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+.blind-btn:hover {
+  background: var(--primary-light);
+}
+.blind-btn.on {
+  background: var(--primary);
+  color: #fff;
+}
+
+/* モバイルタブ */
+.m-tabs {
+  display: none;
+  overflow-x: auto;
+  background: rgba(255, 255, 255, 0.75);
+  padding: 8px 12px;
+  gap: 6px;
+  border-bottom: 1px solid rgba(226, 232, 240, 0.8);
+  scrollbar-width: none;
+}
+.m-tabs::-webkit-scrollbar { display: none; }
+.pill {
+  white-space: nowrap;
+  padding: 5px 12px;
+  border-radius: 99px;
+  font-size: 0.76rem;
+  font-weight: 700;
+  border: 1px solid rgba(2, 132, 199, 0.2);
+  background: #fff;
+  color: var(--text-sub);
+  cursor: pointer;
+}
+.pill.active {
+  background: var(--primary);
+  color: #fff;
+  border-color: var(--primary);
+}
+
+/* メインコンテンツ */
+.content {
+  padding: 20px 24px 60px;
+  max-width: 1040px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.banner {
+  background: var(--glass-strong);
+  border-left: 5px solid var(--primary);
+  border-radius: 12px;
+  padding: 16px 20px;
+  margin-bottom: 20px;
+  box-shadow: var(--card-shadow);
+  border-top: 1px solid #fff;
+  border-right: 1px solid #fff;
+  border-bottom: 1px solid #fff;
+}
+.banner h2 {
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: var(--text-main);
+}
+.banner p {
+  font-size: 0.84rem;
+  color: var(--text-sub);
+  margin-top: 4px;
+}
+
+.group {
+  background: var(--glass);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  border-radius: 14px;
+  padding: 18px 20px;
+  margin-bottom: 22px;
+  box-shadow: var(--card-shadow);
+}
+.g-title {
+  font-size: 1.02rem;
+  font-weight: 800;
+  color: var(--primary-hover);
+  padding-bottom: 10px;
+  margin-bottom: 14px;
+  border-bottom: 2px solid rgba(2, 132, 199, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.g-count {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  font-weight: 600;
+  background: #f1f5f9;
+  padding: 2px 8px;
+  border-radius: 99px;
+}
+
+/* アコーディオン・トグル（ネタバレ防止） */
+.notice-toggle {
+  background: var(--warn-bg);
+  border: 1px solid var(--warn-border);
+  border-left: 4px solid #f59e0b;
+  border-radius: 8px;
+  margin-bottom: 14px;
+  overflow: hidden;
+  transition: all 0.2s ease;
+}
+.notice-summary {
+  padding: 8px 12px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--warn-text);
+  cursor: pointer;
+  user-select: none;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(254, 243, 199, 0.6);
+  transition: background 0.15s ease;
+}
+.notice-summary:hover {
+  background: rgba(254, 243, 199, 0.95);
+}
+.notice-summary::marker {
+  color: #d97706;
+}
+.notice-content {
+  padding: 10px 14px;
+  font-size: 0.8rem;
+  color: var(--text-sub);
+  line-height: 1.55;
+  border-top: 1px dashed rgba(245, 158, 11, 0.3);
+  background: #ffffff;
+}
+
+/* 単独SVG図解の折りたたみトグル（大問6-2等のネタバレ防止） */
+.diag-toggle {
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  border-radius: 10px;
+  margin-bottom: 16px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+}
+.diag-summary {
+  padding: 10px 14px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--primary-hover);
+  background: #f8fafc;
+  cursor: pointer;
+  user-select: none;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: background 0.15s ease;
+}
+.diag-summary:hover {
+  background: var(--primary-light);
+}
+.diag-summary::marker {
+  color: var(--primary);
+}
+.diag-toggle[open] .diag-summary {
+  border-bottom: 1px solid #e2e8f0;
+}
+.diag-body {
+  padding: 14px;
+  text-align: center;
+}
+
+/* ==========================================================
+   図解枠（原本画像 ＆ カラーSVG のデュアルビュー切替設計）
+   ========================================================== */
+.diag-container {
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  border-radius: 12px;
+  padding: 12px 14px;
+  margin-bottom: 16px;
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.04);
+}
+.diag-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #f1f5f9;
+  gap: 8px;
+}
+.diag-badge {
+  font-size: 0.72rem;
+  font-weight: 800;
+  color: var(--primary-hover);
+  background: var(--primary-light);
+  padding: 3px 8px;
+  border-radius: 6px;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+.view-switch {
+  display: inline-flex;
+  background: #f1f5f9;
+  padding: 3px;
+  border-radius: 8px;
+  gap: 2px;
+}
+.switch-btn {
+  background: none;
+  border: none;
+  font-size: 0.74rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  padding: 4px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+.switch-btn.active {
+  background: #ffffff;
+  color: var(--primary-hover);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.diag-view { display: none; text-align: center; }
+.diag-view.active { display: block; }
+
+.exam-img-wrapper {
+  position: relative;
+  display: inline-block;
+  max-width: 100%;
+  cursor: zoom-in;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid #e2e8f0;
+  background: #ffffff;
+}
+.exam-img-wrapper:hover .zoom-hint {
+  opacity: 1;
+}
+.exam-img {
+  display: block;
+  max-width: 100%;
+  max-height: 420px;
+  height: auto;
+  margin: 0 auto;
+  border-radius: 6px;
+  filter: contrast(105%);
+}
+.zoom-hint {
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+  background: rgba(15, 23, 42, 0.75);
+  color: #fff;
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 99px;
+  pointer-events: none;
+  opacity: 0.8;
+  transition: opacity 0.2s ease;
+}
+
+.svg-wrapper svg {
+  width: 100%;
+  max-width: 580px;
+  height: auto;
+  border-radius: 8px;
+  background: #f8fafc;
+  display: block;
+  margin: 0 auto;
+}
+.diag-cap {
+  font-size: 0.76rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  margin-top: 8px;
+  text-align: center;
+}
+
+/* 設問行 */
+.qa-row {
+  display: grid;
+  grid-template-columns: 1fr 1.25fr;
+  gap: 14px;
+  background: var(--glass-strong);
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  padding: 14px;
+  margin-bottom: 10px;
+  align-items: start;
+  transition: all 0.2s ease;
+}
+.qa-row:hover {
+  border-color: #cbd5e1;
+  box-shadow: 0 4px 12px rgba(2, 132, 199, 0.05);
+}
+
+.q-box { display: flex; flex-direction: column; gap: 4px; }
+.q-header-line { display: flex; align-items: center; justify-content: space-between; gap: 6px; }
+.q-tag {
+  display: inline-block;
+  font-size: 0.68rem;
+  font-weight: 800;
+  color: var(--primary);
+  background: var(--primary-light);
+  padding: 2px 8px;
+  border-radius: 4px;
+}
+.check-btn {
+  background: none;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  padding: 2px 7px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  transition: all 0.15s ease;
+}
+.check-btn:hover {
+  border-color: var(--success);
+  color: var(--success);
+}
+.check-btn.checked {
+  background: var(--success-light);
+  border-color: var(--success);
+  color: var(--success);
+  font-weight: 700;
+}
+
+.q-txt {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--text-main);
+  line-height: 1.5;
+}
+
+/* 解答ボックス */
+.a-box {
+  background: var(--ans-bg);
+  border: 1px solid var(--ans-border);
+  border-radius: 8px;
+  padding: 10px 12px;
+  position: relative;
+  min-height: 54px;
+}
+.a-head { display: flex; align-items: baseline; gap: 8px; }
+.a-lbl {
+  font-size: 0.68rem;
+  font-weight: 800;
+  background: var(--primary);
+  color: #fff;
+  padding: 2px 6px;
+  border-radius: 4px;
+  flex-shrink: 0;
+}
+.a-val {
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: var(--primary-hover);
+  word-break: break-word;
+}
+.a-exp {
+  font-size: 0.8rem;
+  color: var(--text-sub);
+  border-top: 1px dashed rgba(2, 132, 199, 0.25);
+  padding-top: 6px;
+  margin-top: 6px;
+  line-height: 1.5;
+}
+
+/* ブラインドモード（答えを隠す） */
+body.blind .a-box:not(.show) {
+  background: #e2e8f0;
+  border-color: #cbd5e1;
+  cursor: pointer;
+  user-select: none;
+}
+body.blind .a-box:not(.show) > * { opacity: 0; pointer-events: none; }
+body.blind .a-box:not(.show)::after {
+  content: "👆 タップして解答・解説を表示";
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--primary-hover);
+  letter-spacing: 0.02em;
+}
+
+/* ライトボックスモーダル（画像全画面拡大） */
+.lightbox {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.88);
+  backdrop-filter: blur(8px);
+  z-index: 1000;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  cursor: zoom-out;
+}
+.lightbox.open { display: flex; }
+.lightbox img {
+  max-width: 95vw;
+  max-height: 92vh;
+  object-fit: contain;
+  border-radius: 8px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+  background: #fff;
+}
+.lightbox-close {
+  position: absolute;
+  top: 16px;
+  right: 20px;
+  background: rgba(255,255,255,0.2);
+  color: #fff;
+  border: none;
+  font-size: 1.4rem;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.backdrop {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.4);
+  z-index: 90;
+}
+.backdrop.open { display: block; }
+
+/* レスポンシブ */
+@media (max-width: 820px) {
+  .sidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    transform: translateX(-100%);
+  }
+  .sidebar.open { transform: translateX(0); }
+  .menu-btn { display: inline-block; }
+  .m-tabs { display: flex; }
+  .qa-row { grid-template-columns: 1fr; gap: 10px; }
+  .search-input { width: 120px; }
+  .search-input:focus { width: 160px; }
+  .content { padding: 14px 14px 60px; }
+}
+
+@media print {
+  .sidebar, .header, .m-tabs, .check-btn, .blind-btn, .view-switch { display: none !important; }
+  body { background: #fff; color: #000; }
+  .qa-row { break-inside: avoid; border: 1px solid #ccc; margin-bottom: 8px; }
+  .a-box { background: #f9f9f9 !important; border: 1px solid #ccc !important; }
+  .a-box > * { opacity: 1 !important; }
+}
+</style>
+</head>
+<body>
+<div class="backdrop" id="backdrop" onclick="toggleMenu(false)"></div>
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+  <button class="lightbox-close">✕</button>
+  <img id="lightboxImg" src="" alt="拡大図">
+</div>
+
+<div class="app">
+  <aside class="sidebar" id="sidebar">
+    <div class="brand">
+      <span class="brand-badge">🩺 PT ANATOMY MASTER</span>
+      <h1>解剖学小テスト</h1>
+      <div class="brand-desc">原本図照合 ＆ 完全網羅マスター</div>
+    </div>
+    
+    <div class="progress-card">
+      <div class="prog-label">
+        <span>習得チェック</span>
+        <span id="progText">0 / 0 (0%)</span>
+      </div>
+      <div class="prog-bar-bg">
+        <div class="prog-bar-fill" id="progBar"></div>
+      </div>
+    </div>
+
+    <div class="nav-section-title">大問ジャンプ</div>
+    <div class="nav-list" id="navList"></div>
+  </aside>
+
+  <div class="main">
+    <header class="header">
+      <div class="header-left">
+        <button class="menu-btn" onclick="toggleMenu(true)">☰ メニュー</button>
+        <div class="header-title" id="headerTitle">大問1：脳の区分・機能局在</div>
+      </div>
+      <div class="header-actions">
+        <input type="text" class="search-input" id="searchInput" placeholder="🔍 キーワード検索..." oninput="handleSearch(this.value)">
+        <button class="blind-btn" id="blindBtn" onclick="toggleBlind()">👁️ 答えを隠す</button>
+      </div>
+    </header>
+
+    <nav class="m-tabs" id="mTabs"></nav>
+    <main class="content" id="content"></main>
+  </div>
+</div>
+
+<script>
+/* ==========================================================
+   カラーSVG解剖図（比較・解説用）
+   ========================================================== */
+const SVG_SAGITTAL = `
+<svg viewBox="0 0 520 280" xmlns="http://www.w3.org/2000/svg">
+  <path d="M50,170 C30,90 110,25 260,25 C410,25 480,90 465,170 C450,200 400,190 350,175 C260,155 150,195 50,170 Z" fill="#e0f2fe" stroke="#0284c7" stroke-width="2.5"/>
+  <path d="M110,160 C95,100 170,65 290,70 C350,73 380,105 360,145 C325,120 200,110 160,160 Z" fill="#bae6fd" stroke="#0369a1" stroke-width="4"/>
+  <path d="M180,115 C210,100 280,100 310,120 C290,125 220,120 180,115 Z" fill="#ffffff" stroke="#0284c7" stroke-width="1.5"/>
+  <ellipse cx="260" cy="145" rx="35" ry="20" fill="#fef3c7" stroke="#d97706" stroke-width="2"/>
+  <rect x="246" y="165" width="38" height="25" rx="5" fill="#fde68a" stroke="#d97706" stroke-width="2"/>
+  <ellipse cx="268" cy="210" rx="28" ry="18" fill="#fed7aa" stroke="#ea580c" stroke-width="2"/>
+  <path d="M260,228 L290,226 L298,265 L268,267 Z" fill="#ffedd5" stroke="#ea580c" stroke-width="2"/>
+  <ellipse cx="375" cy="205" rx="60" ry="40" fill="#ccfbf1" stroke="#0d9488" stroke-width="2.5"/>
+  <text x="245" y="55" font-weight="800" font-size="16" fill="#0369a1">A（大脳/終脳）</text>
+  <text x="250" y="151" font-weight="800" font-size="14" fill="#92400e">B（間脳）</text>
+  <text x="256" y="182" font-weight="800" font-size="14" fill="#92400e">C（中脳）</text>
+  <text x="260" y="215" font-weight="800" font-size="14" fill="#9a3412">D（橋）</text>
+  <text x="365" y="210" font-weight="800" font-size="16" fill="#0f766e">E（小脳）</text>
+  <text x="272" y="254" font-weight="800" font-size="14" fill="#9a3412">G（延髄）</text>
+  <line x1="335" y1="95" x2="410" y2="45" stroke="#0369a1" stroke-width="2"/>
+  <text x="415" y="45" font-weight="800" font-size="14" fill="#0369a1">F（辺縁葉）</text>
+</svg>`;
+
+const SVG_LATERAL = `
+<svg viewBox="0 0 540 280" xmlns="http://www.w3.org/2000/svg">
+  <path d="M45,160 C30,80 120,25 280,25 C420,25 500,90 495,170 C490,210 400,210 340,210 C240,225 170,225 155,190 C90,190 55,180 45,160 Z" fill="#f8fafc" stroke="#0284c7" stroke-width="2.5"/>
+  <path d="M270,27 C255,80 235,130 220,170" fill="none" stroke="#0f172a" stroke-width="3"/>
+  <path d="M155,185 C225,168 300,158 355,145" fill="none" stroke="#0f172a" stroke-width="3"/>
+  <path d="M232,32 C218,80 200,128 190,172 L220,170 C235,130 255,80 270,27 Z" fill="#bae6fd" stroke="#0284c7" stroke-dasharray="3,2"/>
+  <path d="M270,27 C255,80 235,130 220,170 L255,165 C272,126 290,80 305,32 Z" fill="#99f6e4" stroke="#0d9488" stroke-dasharray="3,2"/>
+  <polygon points="100,150 145,120 172,170 108,175" fill="#fde68a" stroke="#d97706" stroke-dasharray="3,2"/>
+  <ellipse cx="245" cy="182" rx="26" ry="12" fill="#fed7aa" stroke="#ea580c" stroke-dasharray="3,2"/>
+  <ellipse cx="325" cy="170" rx="38" ry="16" fill="#fecdd3" stroke="#e11d48" stroke-dasharray="3,2"/>
+  <path d="M495,140 C470,145 470,190 495,195 Z" fill="#ddd6fe" stroke="#7c3aed" stroke-dasharray="3,2"/>
+  <text x="122" y="156" font-weight="800" font-size="16" fill="#b45309">A (ブローカ野)</text>
+  <text x="228" y="80" font-weight="800" font-size="16" fill="#0369a1">B (4野:体幹/上肢)</text>
+  <text x="250" y="125" font-weight="800" font-size="16" fill="#0f766e">C (3,1,2野:手指/顔)</text>
+  <text x="238" y="188" font-weight="800" font-size="14" fill="#c2410c">D (聴覚野)</text>
+  <text x="315" y="176" font-weight="800" font-size="16" fill="#be123c">E (ウェルニッケ野)</text>
+  <text x="475" y="172" font-weight="800" font-size="16" fill="#6d28d9">F (視覚野)</text>
+</svg>`;
+
+const SVG_FIBERS = `
+<svg viewBox="0 0 520 220" xmlns="http://www.w3.org/2000/svg">
+  <rect x="10" y="10" width="155" height="195" rx="10" fill="#f0f9ff" stroke="#bae6fd" stroke-width="1.5"/>
+  <rect x="180" y="10" width="155" height="195" rx="10" fill="#f0fdf4" stroke="#bbf7d0" stroke-width="1.5"/>
+  <rect x="350" y="10" width="160" height="195" rx="10" fill="#fdf4ff" stroke="#f5d0fe" stroke-width="1.5"/>
+  <text x="88" y="36" text-anchor="middle" font-weight="800" font-size="15" fill="#0369a1">A：交連線維</text>
+  <ellipse cx="45" cy="135" rx="20" ry="30" fill="#e0f2fe" stroke="#0284c7"/>
+  <ellipse cx="130" cy="135" rx="20" ry="30" fill="#e0f2fe" stroke="#0284c7"/>
+  <path d="M45,110 C60,70 115,70 130,110" fill="none" stroke="#0284c7" stroke-width="4"/>
+  <text x="88" y="145" text-anchor="middle" font-size="12" font-weight="700" fill="#0369a1">左右半球を連絡</text>
+  <text x="88" y="175" text-anchor="middle" font-size="11" font-weight="600" fill="#475569">例：脳梁、前交連</text>
+  <text x="258" y="36" text-anchor="middle" font-weight="800" font-size="15" fill="#15803d">B：連合線維</text>
+  <ellipse cx="258" cy="135" rx="55" ry="32" fill="#dcfce7" stroke="#16a34a"/>
+  <path d="M210,135 C210,75 305,75 305,135" fill="none" stroke="#16a34a" stroke-width="4"/>
+  <text x="258" y="140" text-anchor="middle" font-size="12" font-weight="700" fill="#15803d">同側半球内を連絡</text>
+  <text x="258" y="175" text-anchor="middle" font-size="11" font-weight="600" fill="#475569">例：弓状束、上縦束</text>
+  <text x="430" y="36" text-anchor="middle" font-weight="800" font-size="15" fill="#a21caf">C：投射線維</text>
+  <path d="M380,80 L430,130 L430,185 M480,80 L430,130" fill="none" stroke="#c026d3" stroke-width="4"/>
+  <text x="430" y="115" text-anchor="middle" font-size="12" font-weight="700" fill="#a21caf">上下（皮質⇔脳幹/脊髄）</text>
+  <text x="430" y="195" text-anchor="middle" font-size="11" font-weight="600" fill="#475569">例：内包、放線冠、錐体路</text>
+</svg>`;
+
+const SVG_WILLIS = `
+<svg viewBox="0 0 520 250" xmlns="http://www.w3.org/2000/svg">
+  <rect x="10" y="10" width="500" height="230" rx="10" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5"/>
+  <text x="20" y="32" font-size="14" font-weight="800" fill="#0369a1">ウィリス動脈輪（Willis Circle）の構成</text>
+  <line x1="230" y1="70" x2="270" y2="70" stroke="#dc2626" stroke-width="4"/>
+  <text x="250" y="60" text-anchor="middle" font-size="11" font-weight="800" fill="#dc2626">① 前交通動脈</text>
+  <line x1="200" y1="100" x2="230" y2="70" stroke="#dc2626" stroke-width="4"/>
+  <line x1="300" y1="100" x2="270" y2="70" stroke="#dc2626" stroke-width="4"/>
+  <text x="175" y="78" font-size="11" font-weight="800" fill="#dc2626">② 前大脳動脈</text>
+  <circle cx="200" cy="100" r="7" fill="#2563eb"/>
+  <circle cx="300" cy="100" r="7" fill="#2563eb"/>
+  <text x="135" y="105" font-size="11" font-weight="800" fill="#2563eb">③ 内頸動脈</text>
+  <text x="315" y="105" font-size="11" font-weight="800" fill="#2563eb">③ 内頸動脈</text>
+  <line x1="200" y1="100" x2="140" y2="90" stroke="#94a3b8" stroke-width="3" stroke-dasharray="3,2"/>
+  <line x1="300" y1="100" x2="360" y2="90" stroke="#94a3b8" stroke-width="3" stroke-dasharray="3,2"/>
+  <text x="105" y="80" font-size="10" font-weight="700" fill="#64748b">中大脳A. (※輪外)</text>
+  <line x1="200" y1="100" x2="225" y2="150" stroke="#ea580c" stroke-width="4"/>
+  <line x1="300" y1="100" x2="275" y2="150" stroke="#ea580c" stroke-width="4"/>
+  <text x="150" y="140" font-size="11" font-weight="800" fill="#ea580c">④ 後交通動脈</text>
+  <line x1="225" y1="150" x2="250" y2="160" stroke="#ea580c" stroke-width="4"/>
+  <line x1="275" y1="150" x2="250" y2="160" stroke="#ea580c" stroke-width="4"/>
+  <text x="295" y="152" font-size="11" font-weight="800" fill="#ea580c">⑤ 後大脳動脈</text>
+  <line x1="250" y1="160" x2="250" y2="215" stroke="#059669" stroke-width="5"/>
+  <text x="250" y="235" text-anchor="middle" font-size="11" font-weight="800" fill="#059669">（⑥ 脳底動脈）</text>
+  <text x="360" y="220" font-size="10" font-weight="700" fill="#dc2626">※中大脳動脈は輪に含まれない！</text>
+</svg>`;
+
+const SVG_SULCI_GYRI = `
+<svg viewBox="0 0 540 330" xmlns="http://www.w3.org/2000/svg">
+  <g transform="translate(10, 10)">
+    <rect x="0" y="0" width="520" height="150" rx="8" fill="#f8fafc" stroke="#cbd5e1"/>
+    <text x="15" y="20" font-size="12" font-weight="800" fill="#0369a1">【外側面】①〜⑩の脳回・脳溝</text>
+    <path d="M40,110 C30,55 90,25 210,25 C310,25 380,55 375,100 C370,125 310,125 270,125 C190,135 130,135 120,115 C70,115 50,115 40,110 Z" fill="#ffffff" stroke="#64748b" stroke-width="1.8"/>
+    <path d="M200,27 C190,55 175,85 165,108" fill="none" stroke="#dc2626" stroke-width="2.5"/>
+    <text x="180" y="23" font-size="11" font-weight="800" fill="#dc2626">⑤溝（中心溝）</text>
+    <path d="M120,55 C150,53 180,55 190,57" fill="none" stroke="#2563eb" stroke-width="1.8"/>
+    <text x="135" y="50" font-size="11" font-weight="800" fill="#2563eb">②溝</text>
+    <path d="M120,110 C165,100 220,95 260,88" fill="none" stroke="#9333ea" stroke-width="2.5"/>
+    <text x="210" y="112" font-size="11" font-weight="800" fill="#9333ea">⑩溝（外側溝）</text>
+    <text x="135" y="40" font-size="11" font-weight="800" fill="#0369a1">①回（上前頭回）</text>
+    <text x="155" y="78" font-size="11" font-weight="800" fill="#0369a1">③回（中心前回）</text>
+    <text x="195" y="78" font-size="11" font-weight="800" fill="#0d9488">④回（中心後回）</text>
+    <text x="250" y="80" font-size="11" font-weight="800" fill="#d97706">⑥回（縁上回）</text>
+    <text x="290" y="95" font-size="11" font-weight="800" fill="#d97706">⑦回（角回）</text>
+    <text x="210" y="130" font-size="11" font-weight="800" fill="#475569">⑧回（中側頭回）</text>
+    <text x="90" y="95" font-size="11" font-weight="800" fill="#ea580c">⑨部（三角部/弁蓋部）</text>
+  </g>
+  <g transform="translate(10, 168)">
+    <rect x="0" y="0" width="520" height="150" rx="8" fill="#f8fafc" stroke="#cbd5e1"/>
+    <text x="15" y="20" font-size="12" font-weight="800" fill="#0d9488">【内側面】⑪〜⑭の脳回・脳溝 ＆ あ・い・う</text>
+    <path d="M40,110 C30,60 85,25 200,25 C310,25 365,60 355,110 C345,130 300,125 260,118 C190,105 110,130 40,110 Z" fill="#ffffff" stroke="#64748b" stroke-width="1.8"/>
+    <path d="M110,95 C130,70 190,70 230,85 C210,95 150,95 110,95 Z" fill="#e2e8f0" stroke="#94a3b8"/>
+    <path d="M90,80 C130,55 210,55 240,65 L255,40" fill="none" stroke="#0284c7" stroke-width="2"/>
+    <text x="195" y="20" font-size="11" font-weight="800" fill="#475569">あ ↓</text>
+    <text x="225" y="20" font-size="11" font-weight="800" fill="#dc2626">い ↓（⑤中心溝）</text>
+    <text x="255" y="20" font-size="11" font-weight="800" fill="#475569">う ↓</text>
+    <text x="145" y="66" font-size="11" font-weight="800" fill="#0369a1">⑪回（帯状回）</text>
+    <text x="280" y="70" font-size="11" font-weight="800" fill="#0284c7">⑫溝（頭頂後頭溝）</text>
+    <text x="150" y="112" font-size="11" font-weight="800" fill="#0d9488">⑬回（海馬傍回）</text>
+    <text x="300" y="105" font-size="11" font-weight="800" fill="#7c3aed">⑭溝（鳥距溝）</text>
+  </g>
+</svg>`;
+
+const SVG_SECTIONS = `
+<svg viewBox="0 0 540 260" xmlns="http://www.w3.org/2000/svg">
+  <g transform="translate(10, 10)">
+    <rect x="0" y="0" width="250" height="235" rx="10" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5"/>
+    <text x="12" y="24" font-weight="800" font-size="14" fill="#0369a1">図1：大脳水平断（A〜E）</text>
+    <path d="M40,120 C35,50 90,35 125,35 C160,35 215,50 210,120 C205,185 155,215 125,215 C95,215 45,185 40,120 Z" fill="#f8fafc" stroke="#64748b" stroke-width="1.8"/>
+    <path d="M115,70 Q125,85 115,100 M135,70 Q125,85 135,100" fill="none" stroke="#0284c7" stroke-width="2"/>
+    <ellipse cx="108" cy="85" rx="8" ry="12" fill="#fde68a" stroke="#d97706" stroke-width="1.5"/>
+    <ellipse cx="142" cy="85" rx="8" ry="12" fill="#fde68a" stroke="#d97706" stroke-width="1.5"/>
+    <ellipse cx="112" cy="140" rx="14" ry="22" fill="#fed7aa" stroke="#ea580c" stroke-width="1.5"/>
+    <ellipse cx="138" cy="140" rx="14" ry="22" fill="#fed7aa" stroke="#ea580c" stroke-width="1.5"/>
+    <path d="M75,95 Q90,90 95,115 Q85,135 75,120 Z" fill="#ccfbf1" stroke="#0d9488" stroke-width="2" stroke-dasharray="3,2"/>
+    <path d="M175,95 Q160,90 155,115 Q165,135 175,120 Z" fill="#ccfbf1" stroke="#0d9488" stroke-width="2" stroke-dasharray="3,2"/>
+    <text x="60" y="85" font-weight="800" font-size="12" fill="#0f766e">A:レンズ核</text>
+    <text x="65" y="105" font-weight="700" font-size="10" fill="#0f766e">(C被殻+D淡蒼球)</text>
+    <text x="75" y="70" font-weight="800" font-size="11" fill="#b45309">B:尾状核</text>
+    <text x="80" y="168" font-weight="800" font-size="12" fill="#c2410c">E:視床</text>
+  </g>
+  <g transform="translate(275, 10)">
+    <rect x="0" y="0" width="255" height="235" rx="10" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5"/>
+    <text x="12" y="24" font-weight="800" font-size="14" fill="#0d9488">図2：大脳前頭断（A〜E）</text>
+    <path d="M30,140 C20,60 80,35 125,35 C170,35 230,60 220,140 C210,190 180,210 125,210 C70,210 40,190 30,140 Z" fill="#f8fafc" stroke="#64748b" stroke-width="1.8"/>
+    <path d="M85,75 Q125,65 165,75" fill="none" stroke="#64748b" stroke-width="4"/>
+    <ellipse cx="100" cy="88" rx="8" ry="6" fill="#fde68a" stroke="#d97706"/>
+    <path d="M110,88 L125,135" fill="none" stroke="#2563eb" stroke-width="3"/>
+    <polygon points="75,100 105,105 90,135" fill="#ccfbf1" stroke="#0d9488" stroke-width="1.5"/>
+    <line x1="65" y1="98" x2="60" y2="135" stroke="#7c3aed" stroke-width="2.5"/>
+    <circle cx="85" cy="180" r="10" fill="#fecdd3" stroke="#e11d48" stroke-width="2"/>
+    <text x="32" y="95" font-weight="800" font-size="11" fill="#6d28d9">A:前障</text>
+    <text x="130" y="105" font-weight="800" font-size="11" fill="#1d4ed8">B:内包</text>
+    <text x="88" y="70" font-weight="800" font-size="11" fill="#b45309">C:尾状核</text>
+    <text x="50" y="152" font-weight="800" font-size="11" fill="#0f766e">D:レンズ核</text>
+    <text x="105" y="185" font-weight="800" font-size="12" fill="#be123c">★ E:扁桃体</text>
+  </g>
+</svg>`;
+
+
+/* ==========================================================
+   データ定義（全86問 ＆ 原本画像・カラーSVG完全照合版）
+   ========================================================== */
+const DATA = [
+  {
+    id: "tab1",
+    num: "1",
+    short: "大問1：区分・局在",
+    title: "大問1：脳の区分・機能局在（1ページ目・前半）",
+    desc: "原本プリント1ページ目：正中矢状断による脳の区分（A〜G）と、左大脳半球外側面の機能中枢に関する問題です。",
+    groups: [
+      {
+        id: "g1_1",
+        title: "1-1. 脳の区分（正中矢状断）",
+        examImg: "images/exam_p1_sagittal.png",
+        examCap: "📷 原本テスト図（1ページ目左上：正中矢状断の実物スキャン）",
+        svg: SVG_SAGITTAL,
+        svgCap: "🎨 カラー解説図（構造別の色分け・名称ガイド）",
+        notice: "<strong>【原本の位置関係の照合結果】</strong><br>・設問は「A〜Eで矢印の示す、脳を6つに区分した呼び名」ですが、枠はA〜Eの5つのみで、最下部に「G（延髄）」が振られています。<br>・Fは太線で囲まれた帯状回領域（辺縁葉・古皮質）を指しています。",
+        items: [
+          ["問1", "A〜Eで矢印の示す、脳を6つに区分した呼び名：A (  )", "大脳（または 終脳）", "【原本照合】最上部の大きな半球全体を指しています。発生学的には前脳胞から分化した終脳です。"],
+          ["問2", "脳を6つに区分した呼び名：B (  )", "間脳", "【原本照合】大脳半球に包まれた中央の楕円形領域（視床・視床下部）を指しています。"],
+          ["問3", "脳を6つに区分した呼び名：C (  )", "中脳", "【原本照合】間脳の直下、大脳脚・四丘体の領域を指しています。"],
+          ["問4", "脳を6つに区分した呼び名：D (  )", "橋（きょう）", "【原本照合】前方に丸く膨らむ橋領域を指しています。中小脳脚で小脳と繋がります。"],
+          ["問5", "脳を6つに区分した呼び名：E (  ) ／ ※図のG (  )", "E：小脳 ／ ※G：延髄", "【原本照合】Eは橋・延髄の後背にある小脳、最下部Gは延髄を指しています。"],
+          ["問6", "Fの太線で囲まれる部位は ( ① ) 葉と呼ばれ、( 新 or 古 ) 皮質と呼ばれる領域である。", "① 辺縁（大脳辺縁） ／ ② 古", "【原本照合】脳梁の周囲を囲む太線（帯状回・海馬傍回）です。系統発生的に古い「古皮質（原皮質・古皮質）」から成ります。"],
+          ["問7", "脳幹はA〜Eのどれか（完答）", "B, C, D（※狭義はC, D ／ G延髄を含めるとB, C, D, G）", "広義の脳幹＝間脳(B)・中脳(C)・橋(D)・延髄(G)。狭義＝中脳(C)・橋(D)・延髄(G)。解答枠A〜E内ではB, C, Dが該当します。"],
+          ["問8", "脳の重さ (  g)", "約 1,300 〜 1,400 g", "成人男性で約1,350〜1,400g、女性で約1,200〜1,250g（体重の約2%）です。"]
+        ]
+      },
+      {
+        id: "g1_2",
+        title: "1-2. 大脳皮質の機能中枢（何野）",
+        examImg: "images/exam_p1_lateral.png",
+        examCap: "📷 原本テスト図（1ページ目右上：左大脳半球外側面の実物スキャン）",
+        svg: SVG_LATERAL,
+        svgCap: "🎨 カラー解説図（ブロードマン野 ＆ ホムンクルス局在マップ）",
+        notice: "<strong>【原本の位置関係の照合結果】</strong><br>・右端の点線枠は印刷上で掠れていますが後頭極の「F（一次視覚野）」です。<br>・BとCの「周囲の支配領域」は、ペンフィールドのホムンクルス（上から下肢→体幹→上肢→手・顔面）の高さに対応しています。",
+        items: [
+          ["問1", "図の機能中枢(何野)を答えなさい（*言語中枢に関しては、運動性か感覚性かも記載せよ）：A (  )", "運動性言語野（運動性言語中枢 ／ ブローカ野）", "【原本照合】前頭葉の下前頭回後部（三角部・弁蓋部：44, 45野）の四角枠を指しています。"],
+          ["問2", "B ( ① ) ブロードマン野(数字)は ( ② )", "① 一次運動野（運動野） ／ ② 4（4野）", "【原本照合】中心溝の直前、中心前回の帯状領域を指しています。"],
+          ["問3", "Bの文字が書かれてる周囲は身体のどの領域を支配しているか？", "体幹・上肢（または 下肢・体幹）", "【原本照合】Bの文字は外側面の上方に位置しており、運動ホムンクルスの体幹・上肢領域に一致します。"],
+          ["問4", "C ( ① ) ブロードマン野(数字)は ( ② )", "① 一次体性感覚野（体性感覚野） ／ ② 3, 1, 2（または 1, 2, 3）", "【原本照合】中心溝の直後、中心後回の帯状領域を指しています。"],
+          ["問5", "Cの文字が書かれてる周囲は身体のどの領域を支配しているか？", "上肢・手指（または 顔面）", "【原本照合】Cの文字は中心後回の中央部〜やや下寄りにあり、感覚ホムンクルスの手・手指・上肢領域に一致します。"],
+          ["問6", "D (  )", "一次聴覚野（聴覚野）", "【原本照合】側頭葉の上側頭回（ヘッシェル回：41, 42野）を指しています。"],
+          ["問7", "E (  )", "感覚性言語野（感覚性言語中枢 ／ ウェルニッケ野）", "【原本照合】上側頭回後部（22野）の楕円枠を指しています。言葉の意味理解を担います。"],
+          ["問8", "F (  )", "一次視覚野（視覚野）", "【原本照合】後頭葉の後端極（17野）の点線枠です。網膜からの視覚入力を受けます。"],
+          ["問9", "言語中枢は左右半球どちらに優位に存在するか？", "左（左半球 ／ 左大脳半球）", "右利き・左利きの大部分において言語中枢は左大脳半球（優位半球）に局在します。"]
+        ]
+      }
+    ]
+  },
+  {
+    id: "tab2",
+    num: "2",
+    short: "大問2：○×問題",
+    title: "大問2：皮質・基底核の正誤問題（1ページ目・後半）",
+    desc: "原本プリント1ページ目下部：「以下の問いに○×で答えよ」全21問の完全解答・解説です。",
+    groups: [
+      {
+        id: "g2_1",
+        title: "2-1. 以下の問いに○×で答えよ（全21問完答）",
+        items: [
+          ["○× 1", "運動中枢は前頭葉にある (  )", "○", "一次運動野（4野）は前頭葉の中心前回にあります。"],
+          ["○× 2", "聴覚中枢は頭頂葉にある (  )", "×", "頭頂葉ではなく「側頭葉（上側頭回・41, 42野）」にあります。"],
+          ["○× 3", "角回は視覚中枢である (  )", "×", "視覚中枢は後頭葉（17野）。角回（39野）は頭頂葉で文字・言語の統合に関与します。"],
+          ["○× 4", "体性感覚は後頭葉にある (  )", "×", "後頭葉ではなく「頭頂葉（中心後回・3, 1, 2野）」にあります。"],
+          ["○× 5", "前頭葉は言語表出に関与する (  )", "○", "前頭葉のブローカ野（運動性言語野）が発話・言語表出を司ります。"],
+          ["○× 6", "頭頂葉は空間認知に関与する (  )", "○", "右頭頂葉（頭頂連合野）が空間認知に関与し、病変で半側空間無視が生じます。"],
+          ["○× 7", "言語記憶は側頭葉で行われる (  )", "○", "側頭葉内側部（海馬・海馬傍回）や側頭連合野が記憶や言語理解を担います。"],
+          ["○× 8", "相貌識別は後頭葉で行われる (  )", "×（※後頭・側頭連合野として○の場合あり）", "顔（相貌）の認識は主に「側頭葉下面の紡錘状回」で行われます（障害で相貌失認）。"],
+          ["○× 9", "四肢運動の中枢は中心前回にある (  )", "○", "中心前回（一次運動野）に四肢の運動中枢があります。"],
+          ["○× 10", "体性感覚中枢は中心後回にある (  )", "○", "中心後回（一次体性感覚野）が温痛覚・深部感覚などの感覚を受け取ります。"],
+          ["○× 11", "大脳基底核は深部感覚中継核である (  )", "×", "感覚の中継核は間脳の「視床」です。"],
+          ["○× 12", "嗅球は大脳基底核に属する (  )", "×", "嗅球は嗅覚系（大脳辺縁系・古皮質）に属します。"],
+          ["○× 13", "視床は大脳基底核に属する (  )", "×", "視床は「間脳」に属します。"],
+          ["○× 14", "尾状核はレンズ核を構成する (  )", "×", "レンズ核は「被殻 ＋ 淡蒼球」です（尾状核＋被殻＝線条体）。"],
+          ["○× 15", "被殻はレンズ核を構成する (  )", "○", "被殻（外側）と淡蒼球（内側）でレンズ核を作ります。"],
+          ["○× 16", "淡蒼球はレンズ核を構成する (  )", "○", "淡蒼球はレンズ核の内側部を構成します。"],
+          ["○× 17", "黒質は大脳基底核に含まれている (  )", "○（※解剖学の狭義では×）", "解剖学狭義（終脳核）では含まれませんが、機能的・臨床的（基底核ループ）には中脳黒質や視床下核も含めます。国試でも○扱いが一般的です。"],
+          ["○× 18", "尾状核は大脳基底核に含まれている (  )", "○", "尾状核は線条体の構成要素です。"],
+          ["○× 19", "オリーブ核は大脳基底核に含まれている (  )", "×", "オリーブ核は「延髄」の核（小脳連絡核）です。"],
+          ["○× 20", "大脳基底核は神経線維の密集した白質からなる (  )", "×", "白質ではなく、神経細胞体が集合した「灰白質」です。"],
+          ["○× 21", "尾状核と被殻を合わせて線条体という (  )", "○", "尾状核と被殻を合わせて線条体（新線条体）と呼びます。"]
+        ]
+      }
+    ]
+  },
+  {
+    id: "tab3",
+    num: "3",
+    short: "大問3：線維・発生",
+    title: "大問3：白質線維・脳の発生と髄膜（2ページ目）",
+    desc: "原本プリント2ページ目：大脳白質線維の分類（交連・連合・投射）、脳胞の分化、髄膜3層、硬膜中隔の問題です。",
+    groups: [
+      {
+        id: "g3_1",
+        title: "3-1. 大脳白質の神経線維",
+        examImg: "images/exam_p2_fibers.png",
+        examCap: "📷 原本テスト図（2ページ目上部：白質線維A〜Cの実物スキャン）",
+        svg: SVG_FIBERS,
+        svgCap: "🎨 カラー解説図（交連・連合・投射線維の走行方向比較）",
+        notice: "<strong>【原本の位置関係の照合結果】</strong><br>・左側A：前頭断面で左右半球を結ぶ脳梁（交連線維）<br>・中央B：同一半球の前部と後部を結ぶアーチ状線維（連合線維）<br>・右側C：全身の人体図で上下を結ぶ伝導路（問題文に「Cは右の切れてるところ」とある投射線維）",
+        items: [
+          ["問1", "図のような大脳の線維を A( ① )線維、B( ② )線維、C( ③ )線維（Cは右の切れてるところ）と呼ぶ", "A：交連 ／ B：連合 ／ C：投射", "【原本照合】Aは左右半球を結ぶ交連線維、Bは同側半球内を結ぶ連合線維、Cは人体図へ上下に伸びる投射線維です。"],
+          ["問2", "左右の大脳皮質を繋ぐのはどれか。2つ選べ [1.交連線維 2.脳弓 3.錐体路 4.内包 5.脳梁]", "1. 交連線維、 5. 脳梁", "左右半球を繋ぐ線維の総称が「1. 交連線維」で、その最大の構造物が「5. 脳梁」です。"],
+          ["問3", "投射線維はどれか。2つ選べ [1.上縦束 2.前交連 3.弓状束 4.内包 5.放線冠]", "4. 内包、 5. 放線冠", "皮質から大脳深部へ扇状に集まる放線冠と、視床・尾状核とレンズ核の間を通る内包が投射線維です（※1, 3は連合、2は交連）。"]
+        ]
+      },
+      {
+        id: "g3_2",
+        title: "3-2. 脳の発生と髄膜・硬膜",
+        notice: "<strong>【原本の印字欠け復元】</strong><br>問8の選択肢「4. (印字欠け)脳」は、原本OCRおよび発生学体系から「4. 髄脳」と確定できます。小脳が発生するのは「2. 後脳」です。",
+        items: [
+          ["問4", "終脳、間脳、中脳、橋、延髄、小脳、脊髄の中で前脳胞から発生する脳はどれか？2つ書け", "終脳、 間脳", "前脳胞は5脳胞期に「終脳（大脳）」と「間脳」に分化します。"],
+          ["問5", "後脳から発生する脳はどれか？2つ書け", "橋、 小脳", "菱脳胞は後脳（腹側＝橋、背側＝小脳）と髄脳（延髄）に分化します。"],
+          ["問6", "脳の髄膜を表層深部の順で名称を書け（左から表層、真ん中、深層で書く）", "硬膜 → クモ膜（くも膜） → 軟膜", "頭蓋骨側から「硬膜」→「クモ膜（クモ膜下腔に髄液）」→「軟膜（脳表面に密着）」の3層構造です。"],
+          ["問7", "以下の部位に位置する脳硬膜の名称：左右の大脳半球の間( ① ) ／ 大脳と小脳の間( ② )", "① 大脳鎌（だいのうかま） ／ ② 小脳テント", "大脳縦裂に入り込むのが「大脳鎌」、大脳後頭葉と小脳の間を水平に仕切るのが「小脳テント」です。"],
+          ["問8", "小脳が発生するのはどれか [1.前脳胞 2.後脳 3.終板 4.髄脳 5.中脳胞]", "2. 後脳", "後脳（metencephalon）の背側部（菱脳唇）から小脳が発生します。"],
+          ["問9", "末梢神経の原基はどれか [1.間脳 2.神経堤 3.翼板 4.神経管 5.脊索]", "2. 神経堤（神経冠 / neural crest）", "神経管の閉鎖時に遊走する神経堤から末梢神経系（神経節、シュワン細胞等）が発生します（※神経管からは脳・脊髄が発生）。"]
+        ]
+      }
+    ]
+  },
+  {
+    id: "tab4",
+    num: "4",
+    short: "大問4：溝と回・断面",
+    title: "大問4：大脳の溝と回・断面図（3ページ目・前半）",
+    desc: "原本プリント3ページ目：大脳外側面・内側面の溝と回（①〜⑭、あ・い・う）、水平断（図1）・前頭断（図2）の完全同定問題です。",
+    groups: [
+      {
+        id: "g4_1",
+        title: "4-1. 大脳の溝と回（①〜⑭、あ・い・う）",
+        examImg: "images/exam_p3_sulci_gyri.png",
+        examCap: "📷 原本テスト図（3ページ目上部：外側面＆内側面の実物スキャン）",
+        svg: SVG_SULCI_GYRI,
+        svgCap: "🎨 カラー解説図（脳溝・脳回の色分けと境界線）",
+        notice: "<strong>【原本の位置関係の精密照合結果】</strong><br>・<strong>②溝について</strong>：原本図を見ると、前頭葉上部の①回（上前頭回）の直下の溝に矢印が向いているため「上前頭溝」の可能性が高いです（中前頭回の下なら下前頭溝）。両論併記で解説しています。<br>・<strong>⑤の溝の選択肢（あ・い・う）</strong>：内側面図の上面で帯状溝辺縁枝「う」の直前の溝「い」が中心溝です（「あ」は傍中心溝）。<br>・<strong>掠れ文字の復元</strong>：プリント解答欄で掠れていた⑦角回、⑧中側頭回、⑪帯状回、⑫頭頂後頭溝、⑬海馬傍回をすべて完全復元しました。",
+        items: [
+          ["①（①回）", "前頭葉上部の脳回", "上前頭回", "【原本照合】外側面上部〜内側面上縁を占める前頭葉最上部の脳回です。"],
+          ["②（②溝）", "中前頭回と上前頭回（または下前頭回）の間の溝", "上前頭溝（または 下前頭溝）", "【原本照合】①上前頭回の直下の溝を指しています。解剖学的には上前頭溝（中前頭回の下なら下前頭溝）です。両論併記が安全です。"],
+          ["③（③回）", "⑤溝（中心溝）の前方の脳回", "中心前回", "【原本照合】中心溝の前方に位置する一次運動野（4野）です。"],
+          ["④（④回）", "⑤溝（中心溝）の後方の脳回", "中心後回", "【原本照合】中心溝の後方に位置する一次体性感覚野（3, 1, 2野）です。"],
+          ["⑤（⑤溝）", "⑤( ① ) 別名( ② ) ／ ⑤の溝はあ、い、うのどれか( ③ )", "① 中心溝 ／ ② ローランド溝 ／ ③ い", "【原本照合】前頭葉と頭頂葉の境界溝です。内側面では「う（帯状溝辺縁枝）」の直前にある溝「い」が中心溝に相当します。"],
+          ["⑥（⑥回）", "外側溝の後端を取り囲む脳回", "縁上回（えんじょうかい）", "【原本照合】シルビウス溝（外側溝）の終末部を馬蹄形に取り囲む脳回（40野）です。"],
+          ["⑦（⑦回）", "上側頭溝の後端を取り囲む脳回（※解答欄番号掠れ）", "角回（かくかい）", "【原本照合】上側頭溝の終末部を取り囲む脳回（39野）です。失書・失算のゲルストマン症候群に関与します。"],
+          ["⑧（⑧回）", "側頭葉外側面中段の脳回（※解答欄番号掠れ）", "中側頭回", "【原本照合】上側頭溝と下側頭溝の間に位置する脳回です。"],
+          ["⑨（⑨部）", "下前頭回後部の点線枠「⑨部」", "三角部・弁蓋部（運動性言語野 ／ ブローカ野）", "【原本照合】下前頭回後部のブローカ野（三角部45野、弁蓋部44野）の四角枠です。"],
+          ["⑩（⑩溝）", "⑩( ① ) 別名( ② ) ／ ⑩の奥にある大脳皮質部分をなんと呼ぶか( ③ )", "① 外側溝 ／ ② シルビウス溝 ／ ③ 島（島皮質 / insula）", "【原本照合】側頭葉を分ける太い溝です。溝の深部を広げると「島（島皮質）」が存在します。"],
+          ["⑪（⑪回）", "脳梁を取り囲む内側面の脳回（※解答欄番号掠れ）", "帯状回（たいじょうかい）", "【原本照合】内側面で脳梁の背側を取り囲む辺縁系の脳回です。"],
+          ["⑫（⑫溝）", "内側面の頭頂葉と後頭葉の境の溝（※解答欄番号掠れ）", "頭頂後頭溝", "【原本照合】内側面後部で頭頂葉（楔前部）と後頭葉（楔部）を分ける深い溝です。"],
+          ["⑬（⑬回）", "側頭葉内側面下部の脳回（※図で影と重なっている箇所）", "海馬傍回（かいばぼうかい）", "【原本照合】側頭葉内側面下面で海馬を包む脳回です。記憶に関わります。"],
+          ["⑭（⑭溝）", "後頭葉内側面の溝", "鳥距溝（ちょうきょこう）", "【原本照合】後頭葉内側面を前後に走り、周囲に一次視覚野（17野）が存在します。"]
+        ]
+      },
+      {
+        id: "g4_2",
+        title: "4-2. 大脳水平断（図1）・前頭断（図2）の名称",
+        examImg: "images/exam_p3_horizontal.png",
+        examCap: "📷 原本テスト図（3ページ目中段左：図1 水平断面の実物スキャン）",
+        examImg2: "images/exam_p3_coronal.png",
+        examCap2: "📷 原本テスト図（3ページ目中段右：図2 前頭断面の実物スキャン）",
+        svg: SVG_SECTIONS,
+        svgCap: "🎨 カラー解説図（図1水平断 ＆ 図2前頭断の深部灰白質核）",
+        notice: "<strong>【原本の位置関係の照合結果】</strong><br>・図1（水平断）：Aは被殻(C)と淡蒼球(D)の点線枠「レンズ核」、Bは側脳室前角外側の「尾状核頭」、Eは「視床」です。<br>・図2（前頭断）：Aは最外包と外包に挟まれた「前障」、Bは「内包」、Cは「尾状核」、Dは「レンズ核」、Eは側頭葉内側の「扁桃体」です。<br>・辺縁系に分類されるのは図2のE（扁桃体）です。",
+        items: [
+          ["図1 A〜E", "図1（水平断）：A( ) B( ) C( ) D( ) E( )", "A：レンズ核 ／ B：尾状核(頭) ／ C：被殻 ／ D：淡蒼球 ／ E：視床", "【原本照合】水平断面：Aは外側全体の点線枠（レンズ核＝C被殻＋D淡蒼球）、Bは前角外側の尾状核頭、Eは視床です。"],
+          ["図2 A〜E", "図2（前頭断）：A( ) B( ) C( ) D( ) E( )", "A：前障 ／ B：内包 ／ C：尾状核 ／ D：レンズ核 ／ E：扁桃体(扁桃核)", "【原本照合】前頭断面（冠状断）：Aは外側の薄い灰白質板の前障、Bは内包、Cは尾状核、Dはレンズ核、Eは側頭葉前部内側の扁桃体です。"],
+          ["関連問題", "図2のA〜Eの中で辺縁系に分類されるのはどれか？", "E（扁桃体 ／ 扁桃核）", "【原本照合】扁桃体は情動や恐怖反応を司り、大脳辺縁系に分類されます。"]
+        ]
+      }
+    ]
+  },
+  {
+    id: "tab5",
+    num: "5",
+    short: "大問5：線維分類・疾患",
+    title: "大問5：線維の分類・基底核疾患・発生（3ページ目・後半）",
+    desc: "原本プリント3ページ目下部：白質線維の分類（交連・連合・投射）、大脳基底核疾患、前脳胞からの発生問題です。",
+    groups: [
+      {
+        id: "g5_1",
+        title: "5-1. 線維の分類・疾患・発生",
+        notice: "<strong>【原本の手書きコメント再現】</strong><br>問3には原本に『答えの数は秘密(←2つです 急にめんどくさいことする)』と書かれています。前脳胞から発生するのは終脳と間脳の2つです。",
+        items: [
+          ["問1", "交連線維(交)、連合線維(連)、投射線維(投)のどれか：脳弓( ) 弓状束( ) 脳梁( ) 内包( ) 放線冠( ) 上縦束( ) 錐体路( )", "脳弓(連※交/投も可)・弓状束(連)・脳梁(交)・内包(投)・放線冠(投)・上縦束(連)・錐体路(投)", "・交連線維：脳梁<br>・連合線維：弓状束、上縦束（脳弓は海馬と乳頭体を結ぶ辺縁系路で連合または投射・交連的性質）<br>・投射線維：内包、放線冠、錐体路"],
+          ["問2", "大脳基底核の伝導路の変異により起こる疾患はどれか [1.クロイツフェルト・ヤコブ病 2.ミトコンドリア脳症 3.ハンチントン舞踏病 4.水頭症 5.アルツハイマー病]", "3. ハンチントン舞踏病", "線条体（尾状核・被殻）のGABA作動性神経細胞の脱落により、間接路が機能低下して舞踏運動が生じる遺伝性疾患です。"],
+          ["問3", "前脳胞から発生するのはどれか（2つ） [1.中脳 2.橋 3.間脳 4.小脳 5.終脳]", "3. 間脳、 5. 終脳", "前脳胞からは終脳（大脳半球）と間脳（視床・視床下部）の2つが発生します。"]
+        ]
+      }
+    ]
+  },
+  {
+    id: "tab6",
+    num: "6",
+    short: "大問6：血管支配",
+    title: "大問6：発生異常・脳血管支配（4ページ目）",
+    desc: "原本プリント4ページ目：神経管閉鎖不全、前・中・後大脳動脈の灌流領域、ウィリス動脈輪、内頸・椎骨動脈系の問題です。",
+    groups: [
+      {
+        id: "g6_1",
+        title: "6-1. 神経管の発生異常・皮質血管分布の障害",
+        notice: "<strong>【原本の指示】</strong>問題文に「(実際の枠小さいので、動脈はA.で略してok)」とあります。解答欄には中大脳A.、前大脳A.、後大脳A.の略記または正式名称のいずれでも正解となります。",
+        items: [
+          ["問1", "神経管の頭部が閉じなかったことにより起こる発生異常はどれか [1.二分脊椎 2.パーキンソン病 3.グリオーマ 4.水頭症 5.無脳症]", "5. 無脳症（anencephaly）", "妊娠第4週頃に神経管の頭側（前神経孔）が閉鎖不全を起こすと無脳症となります（尾側閉鎖不全は二分脊椎）。"],
+          ["問2-1", "大脳皮質に限定した何動脈の障害か：○視覚障害 (  )", "後大脳A.（後大脳動脈）", "後頭葉内側面〜鳥距溝周囲の一次視覚野（17野）を栄養するため。"],
+          ["問2-2", "○上肢運動障害 (  )", "中大脳A.（中大脳動脈）", "中心前回外側面（上肢領域のホムンクルス）を栄養するため。"],
+          ["問2-3", "○下肢知覚障害 (  )", "前大脳A.（前大脳動脈）", "中心後回内側面〜上縁（下肢領域のホムンクルス）を栄養するため。"],
+          ["問2-4", "○運動性言語障害 (  )", "中大脳A.（中大脳動脈）", "前頭葉外側面の下前頭回後部にあるブローカ野（44, 45野）を栄養するため。"],
+          ["問2-5", "○聴覚障害 (  )", "中大脳A.（中大脳動脈）", "側頭葉外側面の上側頭回にある一次聴覚野（41, 42野）を栄養するため。"],
+          ["問2-6", "○顔面運動障害 (  )", "中大脳A.（中大脳動脈）", "中心前回外側下部（顔面領域のホムンクルス）を栄養するため。"],
+          ["問2-7", "○上肢知覚障害 (  )", "中大脳A.（中大脳動脈）", "中心後回外側面（上肢領域のホムンクルス）を栄養するため。"]
+        ]
+      },
+      {
+        id: "g6_2",
+        title: "6-2. ウィリス動脈輪・内頸動脈系と椎骨動脈系",
+        svg: SVG_WILLIS,
+        svgCap: "🎨 カラー解説図（ウィリス動脈輪の構成血管 ＆ 中大脳動脈の位置関係）",
+        notice: "<strong>【原本メモと授業での解釈】</strong><br>原本には『回答枠6こしかない わたしは脳底動脈は横の空白に書いて、それ以外を枠に書いてた 6こ書けてたらokですて言ってたような気がする』とメモがあります。<br>授業で「中大脳動脈が含まれる」と解説された可能性があるため、6枠目は【脳底動脈】だけでなく【中大脳動脈】の可能性も考慮しておきましょう。",
+        items: [
+          ["問3", "ウイリスの脳底動脈輪を構成する動脈を全て挙げよ（枠5つ＋1つで計6つ）", "① 前交通動脈 ② 前大脳動脈 ③ 内頸動脈 ④ 後交通動脈 ⑤ 後大脳動脈 （＋⑥ 脳底動脈 ／ または 中大脳動脈）", "【重要・授業対策】解剖学（国試基準）では輪の中に中大脳動脈は含めず「脳底動脈」を加えますが、講義や先生によっては【脳底動脈ではなく中大脳動脈を含めて6つ】と教えている可能性があります。テストではどちらの指定でも書けるように「脳底動脈」と「中大脳動脈」の両方を押さえておきましょう！"],
+          ["問4", "内頸動脈系(内) or 椎骨動脈系(椎)どちらか：前大脳A. / 中大脳A. / 後大脳A. / 前頭葉 / 後頭葉 / 視床 / 大脳基底核 / 小脳 / 頭頂葉 / 延髄", "前大脳A.(内)・中大脳A.(内)・後大脳A.(椎)・前頭葉(内)・後頭葉(椎)・視床(椎)・大脳基底核(内)・小脳(椎)・頭頂葉(内)・延髄(椎)", "・内頸動脈系（内）：前大脳A.、中大脳A.、前頭葉、頭頂葉、大脳基底核<br>・椎骨動脈系（椎）：後大脳A.、後頭葉、視床、小脳、延髄"]
+        ]
+      }
+    ]
+  }
+];
+
+let currentTab = "tab1";
+let searchQuery = "";
+const checkedState = JSON.parse(localStorage.getItem("pt_anatomy_checked") || "{}");
+
+function init() {
+  const navList = document.getElementById("navList");
+  const mTabs = document.getElementById("mTabs");
+  const allTabs = [...DATA, { id: "all", num: "全", short: "全問一括", title: "全ページ一括表示（大問1〜6 完全網羅）" }];
+
+  allTabs.forEach(d => {
+    const btn = document.createElement("button");
+    btn.className = "nav-btn" + (d.id === currentTab ? " active" : "");
+    btn.dataset.id = d.id;
+    btn.innerHTML = `<span class="nav-num">${d.num}</span><span>${d.short}</span>`;
+    btn.onclick = () => selectTab(d.id);
+    navList.appendChild(btn);
+
+    const pill = document.createElement("button");
+    pill.className = "pill" + (d.id === currentTab ? " active" : "");
+    pill.dataset.id = d.id;
+    pill.textContent = d.short;
+    pill.onclick = () => selectTab(d.id);
+    mTabs.appendChild(pill);
+  });
+
+  updateProgress();
+  render();
+}
+
+function selectTab(id) {
+  currentTab = id;
+  document.querySelectorAll(".nav-btn, .pill").forEach(el => {
+    el.classList.toggle("active", el.dataset.id === id);
+  });
+  toggleMenu(false);
+  render();
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+function render() {
+  const content = document.getElementById("content");
+  const headerTitle = document.getElementById("headerTitle");
+  const targets = currentTab === "all" ? DATA : DATA.filter(d => d.id === currentTab);
+
+  headerTitle.textContent = currentTab === "all" ? "全問一括表示（大問1〜大問6 完全網羅）" : targets[0].title;
+
+  let html = "";
+  targets.forEach(sec => {
+    const filteredGroups = sec.groups.map(g => {
+      const filteredItems = g.items.filter(it => {
+        if (!searchQuery) return true;
+        const q = searchQuery.toLowerCase();
+        return it[0].toLowerCase().includes(q) ||
+               it[1].toLowerCase().includes(q) ||
+               it[2].toLowerCase().includes(q) ||
+               it[3].toLowerCase().includes(q);
+      });
+      return { ...g, filteredItems };
+    }).filter(g => g.filteredItems.length > 0 || (!searchQuery && (g.examImg || g.svg)));
+
+    if (filteredGroups.length === 0) return;
+
+    html += `
+      <div class="banner">
+        <h2>${sec.title}</h2>
+        <p>${sec.desc}</p>
+      </div>
+      ${filteredGroups.map(g => `
+        <div class="group">
+          <div class="g-title">
+            <span>${g.title}</span>
+            <span class="g-count">${g.filteredItems.length}問</span>
+          </div>
+
+          ${(g.examImg && g.svg) ? `
+            <div class="diag-container" id="diag_${g.id}">
+              <div class="diag-header">
+                <span class="diag-badge">📊 図解リファレンス</span>
+                <div class="view-switch">
+                  <button class="switch-btn active" onclick="switchDiagView('${g.id}', 'exam', this)">📄 原本テスト図</button>
+                  <button class="switch-btn" onclick="switchDiagView('${g.id}', 'svg', this)">🎨 カラー解説図</button>
+                </div>
+              </div>
+
+              <div class="diag-view exam-view active" id="view_exam_${g.id}">
+                <div class="exam-img-wrapper" onclick="openLightbox('${g.examImg}')">
+                  <img src="${g.examImg}" class="exam-img" alt="${g.examCap}">
+                  <span class="zoom-hint">🔍 クリックで全画面拡大</span>
+                </div>
+                <div class="diag-cap">${g.examCap}</div>
+
+                ${g.examImg2 ? `
+                  <div style="margin-top: 14px;">
+                    <div class="exam-img-wrapper" onclick="openLightbox('${g.examImg2}')">
+                      <img src="${g.examImg2}" class="exam-img" alt="${g.examCap2}">
+                      <span class="zoom-hint">🔍 クリックで全画面拡大</span>
+                    </div>
+                    <div class="diag-cap">${g.examCap2}</div>
+                  </div>
+                ` : ""}
+              </div>
+
+              <div class="diag-view svg-view" id="view_svg_${g.id}">
+                <div class="svg-wrapper">${g.svg}</div>
+                <div class="diag-cap">${g.svgCap || ""}</div>
+              </div>
+            </div>
+          ` : (g.svg && !g.examImg) ? `
+            <!-- 原本図がなく解答を含むSVG図解（大問6-2等）の折りたたみトグル -->
+            <details class="diag-toggle">
+              <summary class="diag-summary">
+                <span>🎨 【解説図】${g.svgCap || "図解を表示"}</span>
+                <span style="font-size:0.7rem; color:#dc2626; font-weight:700; margin-left:auto;">⚠️ 解答を含みます（タップで開閉）</span>
+              </summary>
+              <div class="diag-body">
+                <div class="svg-wrapper">${g.svg}</div>
+              </div>
+            </details>
+          ` : ""}
+
+          ${g.notice ? `
+            <!-- 出題意図・手書きメモ・照合結果の折りたたみトグル（ネタバレ防止） -->
+            <details class="notice-toggle">
+              <summary class="notice-summary">
+                <span>💡 原本の出題メモ・照合ヒント</span>
+                <span style="font-size:0.7rem; color:#b45309; font-weight:700; margin-left:auto;">⚠️ 解答・ヒントを含みます（タップで表示）</span>
+              </summary>
+              <div class="notice-content">${g.notice}</div>
+            </details>
+          ` : ""}
+
+          ${g.filteredItems.map(it => {
+            const key = it[0] + "_" + it[1].substring(0, 15);
+            const isChecked = !!checkedState[key];
+            return `
+              <div class="qa-row">
+                <div class="q-box">
+                  <div class="q-header-line">
+                    <span class="q-tag">${it[0]}</span>
+                    <button class="check-btn ${isChecked ? "checked" : ""}" onclick="toggleCheck('${key}', this)">
+                      ${isChecked ? "✓ 覚えた" : "○ 未チェック"}
+                    </button>
+                  </div>
+                  <div class="q-txt">${it[1]}</div>
+                </div>
+                <div class="a-box" onclick="this.classList.toggle('show')">
+                  <div class="a-head">
+                    <span class="a-lbl">解答</span>
+                    <span class="a-val">${it[2]}</span>
+                  </div>
+                  <div class="a-exp">${it[3]}</div>
+                </div>
+              </div>
+            `;
+          }).join("")}
+        </div>
+      `).join("")}
+    `;
+  });
+
+  if (!html) {
+    html = `<div class="notice" style="text-align:center; padding: 30px;">一致する問題が見つかりませんでした。「${searchQuery}」</div>`;
+  }
+
+  content.innerHTML = html;
+}
+
+function switchDiagView(groupId, viewType, btn) {
+  const container = document.getElementById("diag_" + groupId);
+  if (!container) return;
+  container.querySelectorAll(".switch-btn").forEach(b => b.classList.remove("active"));
+  btn.classList.add("active");
+
+  const examView = document.getElementById("view_exam_" + groupId);
+  const svgView = document.getElementById("view_svg_" + groupId);
+
+  if (viewType === "exam") {
+    if (examView) examView.classList.add("active");
+    if (svgView) svgView.classList.remove("active");
+  } else {
+    if (examView) examView.classList.remove("active");
+    if (svgView) svgView.classList.add("active");
+  }
+}
+
+function openLightbox(imgSrc) {
+  const lightbox = document.getElementById("lightbox");
+  const img = document.getElementById("lightboxImg");
+  img.src = imgSrc;
+  lightbox.classList.add("open");
+}
+
+function closeLightbox() {
+  document.getElementById("lightbox").classList.remove("open");
+}
+
+function toggleCheck(key, btn) {
+  checkedState[key] = !checkedState[key];
+  if (!checkedState[key]) delete checkedState[key];
+  localStorage.setItem("pt_anatomy_checked", JSON.stringify(checkedState));
+  btn.classList.toggle("checked", !!checkedState[key]);
+  btn.textContent = checkedState[key] ? "✓ 覚えた" : "○ 未チェック";
+  updateProgress();
+}
+
+function updateProgress() {
+  let total = 0;
+  DATA.forEach(s => s.groups.forEach(g => total += g.items.length));
+  const checked = Object.keys(checkedState).length;
+  const pct = total === 0 ? 0 : Math.round((checked / total) * 100);
+
+  const progText = document.getElementById("progText");
+  const progBar = document.getElementById("progBar");
+  if (progText) progText.textContent = `${checked} / ${total} (${pct}%)`;
+  if (progBar) progBar.style.width = pct + "%";
+}
+
+function handleSearch(val) {
+  searchQuery = val.trim();
+  render();
+}
+
+function toggleMenu(open) {
+  document.getElementById("sidebar").classList.toggle("open", open);
+  document.getElementById("backdrop").classList.toggle("open", open);
+}
+
+function toggleBlind() {
+  const isBlind = document.body.classList.toggle("blind");
+  const btn = document.getElementById("blindBtn");
+  document.querySelectorAll(".a-box.show").forEach(el => el.classList.remove("show"));
+  
+  // ブラインドモードON時は、ヒントや解答図のトグルもすべて閉じる
+  if (isBlind) {
+    document.querySelectorAll(".notice-toggle, .diag-toggle").forEach(el => el.open = false);
+  }
+
+  btn.classList.toggle("on", isBlind);
+  btn.textContent = isBlind ? "👁️ 解答を表示" : "👁️ 答えを隠す";
+}
+
+init();
+</script>
+</body>
+</html>
