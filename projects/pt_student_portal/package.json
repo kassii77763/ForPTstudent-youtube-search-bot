@@ -1,0 +1,16 @@
+{
+  "name": "pt-student-portal",
+  "version": "1.0.0",
+  "description": "とあるPT学生の学習帖 - 神動画キュレーション × 国試直結クイズハブ",
+  "scripts": {
+    "start": "node serve.js",
+    "deploy": "npx wrangler pages deploy . --project-name pt-student-portal"
+  },
+  "keywords": [
+    "pt",
+    "physical-therapy",
+    "cloudflare-pages"
+  ],
+  "author": "カシマ",
+  "license": "MIT"
+}

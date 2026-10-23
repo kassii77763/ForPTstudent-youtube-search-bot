@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>プロジェクト統括ダッシュボード | とあるPT学生の学習帖</title>
+  <meta name="description" content="PT学生の学習帖 プロジェクト統括・キュレーション登録・マルチチャネル配信・分析ダッシュボード">
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Noto+Sans+JP:wght@300;400;500;600;700&family=Shippori+Mincho:wght@500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="dashboard.css">
+</head>
+<body class="theme-dark">
+  <div class="dashboard-shell">
+    
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar">
+      <div class="brand-zone">
+        <div class="brand-badge">PT PORTAL ADMIN</div>
+        <h1 class="brand-title">プロジェクト統括盤</h1>
+        <p class="brand-sub">とあるPT学生の学習帖</p>
+      </div>
+
+      <nav class="nav-menu">
+        <button class="nav-item active" data-tab="roadmap">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+          <span>マイルストーン & ルーティン</span>
+        </button>
+        <button class="nav-item" data-tab="curation">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>
+          <span>神動画キュレーション管理</span>
+        </button>
+        <button class="nav-item" data-tab="quiz">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+          <span>クイズ汎用化スタジオ</span>
+        </button>
+        <button class="nav-item" data-tab="multichannel">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+          <span>マルチチャネル原稿生成</span>
+        </button>
+        <button class="nav-item" data-tab="funnel">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+          <span>Web戦略 & AARRR分析</span>
+        </button>
+        <button class="nav-item" data-tab="ai-studio">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <span>AIプロンプトトリガー</span>
+        </button>
+        <button class="nav-item" data-tab="community">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          <span>要望 & お悩みキュー</span>
+        </button>
+        <button class="nav-item" data-tab="infrastructure">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="8" rx="2" ry="2"/><rect x="2" y="14" width="20" height="8" rx="2" ry="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/></svg>
+          <span>インフラ・データ同期</span>
+        </button>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="cost-badge">
+          <span class="pulse-dot"></span>
+          <span>月額維持費: <strong>¥0 / 永続</strong></span>
+        </div>
+        <a href="/" target="_blank" class="portal-link-btn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          <span>ポータル本編を開く</span>
+        </a>
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="main-content">
+      
+      <!-- Top Bar -->
+      <header class="top-header">
+        <div class="header-left">
+          <span class="workspace-chip">PROJECT: PT-STUDENT-PORTAL</span>
+          <span class="operator-badge">カシマさん専用管制盤</span>
+        </div>
+        <div class="header-right">
+          <button id="themeToggleBtn" class="theme-toggle" title="テーマ切り替え">
+            <span class="theme-icon">◐</span>
+            <span class="theme-label">ダーク / ウォーム</span>
+          </button>
+          <button id="exportAllBtn" class="btn btn-secondary btn-sm">全データ保存 (JSON)</button>
+          <button id="importDataBtn" class="btn btn-primary btn-sm">データ復元</button>
+          <input type="file" id="importFileInput" accept=".json" style="display:none;">
+        </div>
+      </header>
+
+      <!-- TAB 1: ROADMAP & ROUTINE -->
+      <section id="tab-roadmap" class="tab-pane active">
+        <div class="pane-header">
+          <div>
+            <h2 class="pane-title">18ヶ月ロードマップ ＆ 週間ルーティン</h2>
+            <p class="pane-desc">夜間部PT学生生活と並行して確実に積み上げる、無理のない持続的リリースサイクル</p>
+          </div>
+          <div class="stats-pills">
+            <div class="stat-pill"><span class="lbl">進行中フェーズ:</span> <strong class="val">Phase 1</strong></div>
+            <div class="stat-pill"><span class="lbl">今週完了率:</span> <strong class="val" id="weeklyProgressRate">80%</strong></div>
+          </div>
+        </div>
+
+        <!-- 4-Phase Roadmap Grid -->
+        <div class="phase-grid">
+          <div class="phase-card current">
+            <div class="phase-badge">Phase 1 (1〜3ヶ月)</div>
+            <h3 class="phase-name">ポータル公開 & LINE Bot連携</h3>
+            <p class="phase-goal">YouTube神動画キュレーションハブを完成させ、LINE検索Bot（TypeSafe AI搭載）との連携導線を確立。</p>
+            <div class="phase-progress-bar"><div class="fill" style="width: 85%;"></div></div>
+            <div class="phase-status">進行中・仕上げ段階 (85%)</div>
+          </div>
+
+          <div class="phase-card">
+            <div class="phase-badge">Phase 2 (4〜6ヶ月)</div>
+            <h3 class="phase-name">クイズ汎用化 & note/SNS展開</h3>
+            <p class="phase-goal">定期試験・国試の汎用4択クイズの蓄積と、note（夜間部生の泥臭い学習法）・カルーセル配信を開始。</p>
+            <div class="phase-progress-bar"><div class="fill" style="width: 25%;"></div></div>
+            <div class="phase-status">準備中 (25%)</div>
+          </div>
+
+          <div class="phase-card">
+            <div class="phase-badge">Phase 3 (7〜12ヶ月)</div>
+            <h3 class="phase-name">解剖生理・運動学 全単元網羅</h3>
+            <p class="phase-goal">基礎医学の重要単元すべてに神動画＋要約＋クイズを網羅し、PT学生必須のリファレンスとして認知定着。</p>
+            <div class="phase-progress-bar"><div class="fill" style="width: 5%;"></div></div>
+            <div class="phase-status">未着手 (5%)</div>
+          </div>
+
+          <div class="phase-card">
+            <div class="phase-badge">Phase 4 (13〜18ヶ月)</div>
+            <h3 class="phase-name">国試対策マスターハブ & コミュニティ</h3>
+            <p class="phase-goal">過去問データベース・BBS・限定特製レジュメ展開。後輩PT学生へ持続的に資産を継承する仕組みの完成。</p>
+            <div class="phase-progress-bar"><div class="fill" style="width: 0%;"></div></div>
+            <div class="phase-status">構想段階 (0%)</div>
+          </div>
+        </div>
+
+        <!-- Weekly Task Checklist & KPI -->
+        <div class="split-layout">
+          <div class="card weekly-tasks-card">
+            <div class="card-header">
+              <h3 class="card-title">今週のタスク・ルーティン（夜間部PT生サイクル）</h3>
+              <button id="addWeeklyTaskBtn" class="btn btn-subtle btn-xs">+ タスク追加</button>
+            </div>
+            <div class="routine-meta-tip">
+              💡 <strong>黄金リズム:</strong> 「平日夜: 授業中にピン留め → 週末午前: 神動画選定＆クイズ汎用化 → 日曜夜: note/SNS自動生成」
+            </div>
+            <ul class="task-list" id="weeklyTaskList">
+              <!-- Rendered by JS -->
+            </ul>
+          </div>
+
+          <div class="card kpi-overview-card">
+            <div class="card-header">
+              <h3 class="card-title">コアKPIモニター（月次進捗）</h3>
+              <span class="refresh-indicator">リアルタイム計測</span>
+            </div>
+            <div class="kpi-grid">
+              <div class="kpi-box">
+                <span class="kpi-label">LINE Bot 友だち数</span>
+                <div class="kpi-value-wrap">
+                  <span class="kpi-val" id="kpiLineUsers">42</span>
+                  <span class="kpi-unit">名</span>
+                </div>
+                <div class="kpi-target">目標: 100名 (42%)</div>
+              </div>
+
+              <div class="kpi-box">
+                <span class="kpi-label">ポータル月間PV</span>
+                <div class="kpi-value-wrap">
+                  <span class="kpi-val" id="kpiMonthlyPv">1,280</span>
+                  <span class="kpi-unit">PV</span>
+                </div>
+                <div class="kpi-target">目標: 3,000PV (42.6%)</div>
+              </div>
+
+              <div class="kpi-box">
+                <span class="kpi-label">登録済み神動画数</span>
+                <div class="kpi-value-wrap">
+                  <span class="kpi-val" id="kpiVideoCount">11</span>
+                  <span class="kpi-unit">本</span>
+                </div>
+                <div class="kpi-target">目標: 50本 (22%)</div>
+              </div>
+
+              <div class="kpi-box">
+                <span class="kpi-label">インデックス済み総動画</span>
+                <div class="kpi-value-wrap">
+                  <span class="kpi-val">3,851</span>
+                  <span class="kpi-unit">件</span>
+                </div>
+                <div class="kpi-target">スプレッドシート連携済み</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- TAB 2: CURATION REGISTRATION & MANAGEMENT -->
+      <section id="tab-curation" class="tab-pane">
+        <div class="pane-header">
+          <div>
+            <h2 class="pane-title">単元 × YouTube神動画 キュレーション管理</h2>
+            <p class="pane-desc">夜間部PT学生目線で本当に役立つ神動画を単元別に整理し、ポータルへ即時反映します。</p>
+          </div>
+          <button id="openNewCurationModalBtn" class="btn btn-primary">+ 新規神動画を追加</button>
+        </div>
+
+        <!-- Filter & Search Bar -->
+        <div class="filter-toolbar">
+          <div class="filter-group">
+            <label>分野:</label>
+            <select id="curationFieldFilter" class="select-ctrl">
+              <option value="all">すべて表示</option>
+              <option value="anatomy">解剖学 (Anatomy)</option>
+              <option value="physiology">生理学 (Physiology)</option>
+              <option value="kinesiology">運動学 (Kinesiology)</option>
+              <option value="pathology">病理・臨床医学</option>
+            </select>
+          </div>
+          <div class="filter-group">
+            <label>講師・チャンネル:</label>
+            <select id="curationTeacherFilter" class="select-ctrl">
+              <option value="all">全チャンネル</option>
+              <option value="ゴロー先生">ゴロー先生</option>
+              <option value="かずひろ先生">カラダ研究所 / かずひろ先生</option>
+              <option value="西島ゼミ">西島ゼミ</option>
+              <option value="ネコかん">ネコかん</option>
+            </select>
+          </div>
+          <div class="search-group">
+            <input type="text" id="curationSearchInput" class="search-input" placeholder="単元名・キーワードで検索...">
+          </div>
+          <button id="exportToPortalDataBtn" class="btn btn-secondary">ポータル用app.js形式で出力</button>
+        </div>
+
+        <!-- Curation Cards Table / Grid -->
+        <div class="curation-list-grid" id="curationContainer">
+          <!-- Rendered by JS -->
+        </div>
+      </section>
+
+      <!-- TAB 3: QUIZ GENERALIZER -->
+      <section id="tab-quiz" class="tab-pane">
+        <div class="pane-header">
+          <div>
+            <h2 class="pane-title">クイズ汎用化スタジオ（ノーマライゼーション）</h2>
+            <p class="pane-desc">学校ごとの内輪レジュメや定期試験の問題を、全国のPT学生が解ける「国家試験基準の良問」へ正規化します。</p>
+          </div>
+          <button id="newQuizBtn" class="btn btn-primary">+ 汎用クイズを新規作成</button>
+        </div>
+
+        <div class="quiz-studio-layout">
+          <!-- Editor Column -->
+          <div class="card quiz-editor-card">
+            <h3 class="card-title">クイズ正規化エディタ</h3>
+            <div class="form-row">
+              <div class="form-field flex-2">
+                <label>対象単元 / 分野</label>
+                <input type="text" id="quizUnitInput" class="input-ctrl" placeholder="例: 生理学 - 活動電位と膜透過性">
+              </div>
+              <div class="form-field flex-1">
+                <label>難易度レベル</label>
+                <select id="quizDifficultySelect" class="select-ctrl">
+                  <option value="standard">国試基礎 (必修)</option>
+                  <option value="intermediate">定期試験・標準</option>
+                  <option value="advanced">応用・臨床実習</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-field">
+              <label>問題文 (学校固有の表現を排した客観的設問)</label>
+              <textarea id="quizQuestionInput" class="textarea-ctrl" rows="3" placeholder="例: 神経線維の興奮伝導に関する記述で、正しいものを1つ選べ。"></textarea>
+            </div>
+
+            <div class="quiz-choices-wrap">
+              <label>選択肢 (4択)</label>
+              <div class="choice-row">
+                <span class="choice-num">1</span>
+                <input type="text" id="choice1" class="input-ctrl" placeholder="選択肢 1">
+                <input type="radio" name="correctChoice" value="1" title="正解に指定">
+              </div>
+              <div class="choice-row">
+                <span class="choice-num">2</span>
+                <input type="text" id="choice2" class="input-ctrl" placeholder="選択肢 2">
+                <input type="radio" name="correctChoice" value="2" checked title="正解に指定">
+              </div>
+              <div class="choice-row">
+                <span class="choice-num">3</span>
+                <input type="text" id="choice3" class="input-ctrl" placeholder="選択肢 3">
+                <input type="radio" name="correctChoice" value="3" title="正解に指定">
+              </div>
+              <div class="choice-row">
+                <span class="choice-num">4</span>
+                <input type="text" id="choice4" class="input-ctrl" placeholder="選択肢 4">
+                <input type="radio" name="correctChoice" value="4" title="正解に指定">
+              </div>
+            </div>
+
+            <div class="form-field">
+              <label>詳細解説 & 覚え方のコツ（ゴロ合わせ・落とし穴）</label>
+              <textarea id="quizExplanationInput" class="textarea-ctrl" rows="4" placeholder="なぜ正解なのか、他の選択肢はどこが誤りかを端的に解説..."></textarea>
+            </div>
+
+            <div class="form-field">
+              <label>紐付けるYouTube神動画URL</label>
+              <input type="text" id="quizVideoUrlInput" class="input-ctrl" placeholder="https://www.youtube.com/watch?v=...">
+            </div>
+
+            <div class="editor-actions">
+              <button id="saveQuizBtn" class="btn btn-primary">クイズを登録 / 更新</button>
+              <button id="clearQuizFormBtn" class="btn btn-subtle">クリア</button>
+            </div>
+          </div>
+
+          <!-- Preview & List Column -->
+          <div class="card quiz-list-card">
+            <div class="card-header">
+              <h3 class="card-title">登録済み汎用クイズ一覧</h3>
+              <span class="badge" id="quizCountBadge">0問</span>
+            </div>
+            <div class="quiz-cards-container" id="quizListContainer">
+              <!-- Rendered by JS -->
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- TAB 4: MULTI-CHANNEL GENERATOR -->
+      <section id="tab-multichannel" class="tab-pane">
+        <div class="pane-header">
+          <div>
+            <h2 class="pane-title">マルチチャネル原稿生成 ＆ 媒体別プレビュー</h2>
+            <p class="pane-desc">「1つの単元キュレーションから3媒体（Web記事・note・SNSカルーセル）を一発生成」</p>
+          </div>
+        </div>
+
+        <div class="channel-generator-box">
+          <div class="generator-source-bar">
+            <label>生成元の単元を選択:</label>
+            <select id="genSourceSelect" class="select-ctrl select-lg">
+              <!-- Populated dynamically -->
+            </select>
+            <button id="generateAllChannelsBtn" class="btn btn-primary">マルチチャネル原稿を一括生成 ⚡</button>
+          </div>
+
+          <!-- 3-Tab Output Preview -->
+          <div class="multi-channel-tabs-container">
+            <div class="channel-subtabs">
+              <button class="channel-subtab active" data-channel="web">
+                <span class="ch-badge ch-web">WEB</span>
+                <span>Webポータル詳細記事 (Markdown)</span>
+              </button>
+              <button class="channel-subtab" data-channel="note">
+                <span class="ch-badge ch-note">note</span>
+                <span>note連載用エッセイ風解説</span>
+              </button>
+              <button class="channel-subtab" data-channel="sns">
+                <span class="ch-badge ch-sns">SNS</span>
+                <span>Instagram / TikTokカルーセル ＆ Xスレッド</span>
+              </button>
+            </div>
+
+            <div class="channel-tab-content">
+              <!-- Web Output -->
+              <div id="output-web" class="channel-pane active">
+                <div class="output-actions">
+                  <span class="output-hint">そのまま静的HTMLやブログ記事として貼り付け可能</span>
+                  <button class="btn btn-secondary btn-sm copy-btn" data-target="webText">原稿をコピー</button>
+                </div>
+                <textarea id="webText" class="output-textarea" readonly></textarea>
+              </div>
+
+              <!-- note Output -->
+              <div id="output-note" class="channel-pane">
+                <div class="output-actions">
+                  <span class="output-hint">夜間部PT学生のリアルな実感＋神動画リンク＋応援メッセージ構成</span>
+                  <button class="btn btn-secondary btn-sm copy-btn" data-target="noteText">原稿をコピー</button>
+                </div>
+                <textarea id="noteText" class="output-textarea" readonly></textarea>
+              </div>
+
+              <!-- SNS Output -->
+              <div id="output-sns" class="channel-pane">
+                <div class="output-actions">
+                  <span class="output-hint">1枚目（強フック）→ 2〜4枚目（図解要点）→ 5枚目（LINE/Webへ誘導）</span>
+                  <button class="btn btn-secondary btn-sm copy-btn" data-target="snsText">原稿をコピー</button>
+                </div>
+                <textarea id="snsText" class="output-textarea" readonly></textarea>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- TAB 5: WEB FUNNEL & AARRR -->
+      <section id="tab-funnel" class="tab-pane">
+        <div class="pane-header">
+          <div>
+            <h2 class="pane-title">Web戦略 ＆ AARRRファネル分析</h2>
+            <p class="pane-desc">「昼働き夜学ぶPT学生」がどのようにサイトを訪れ、LINE Botで学習を習慣化するかの導線設計</p>
+          </div>
+        </div>
+
+        <div class="funnel-container">
+          <div class="funnel-stage stage-a1">
+            <div class="stage-header">
+              <span class="stage-tag">Acquisition (獲得)</span>
+              <h3>流入経路（オーガニック / SNS / 口コミ）</h3>
+            </div>
+            <div class="stage-body">
+              <p>「生理学 覚えられない」「筋 起始停止 ゴロ」でのSEO検索、X/noteでの勉強記録発信、専門学校の同級生からの紹介。</p>
+              <div class="stage-metric">月間流入: <strong>約1,280 Visits</strong></div>
+            </div>
+          </div>
+
+          <div class="funnel-stage stage-a2">
+            <div class="stage-header">
+              <span class="stage-tag">Activation (初回活性化)</span>
+              <h3>「神動画ハブ」でのアハ体験</h3>
+            </div>
+            <div class="stage-body">
+              <p>無駄なノートまとめをやめ、ゴロー先生や西島ゼミの動画を一瞬で探して再生。「教科書より10倍速い」を体験。</p>
+              <div class="stage-metric">平均滞在時間: <strong>4分25秒 / 回</strong></div>
+            </div>
+          </div>
+
+          <div class="funnel-stage stage-r1">
+            <div class="stage-header">
+              <span class="stage-tag">Retention (継続利用)</span>
+              <h3>LINE Bot 友達追加 ＆ 検索日常化</h3>
+            </div>
+            <div class="stage-body">
+              <p>「通学電車やベッドの中で単元名を送れば即動画が返ってくる」Botを登録。試験前の日常ツールへ昇格。</p>
+              <div class="stage-metric">LINE登録率: <strong>18.4% (高定着)</strong></div>
+            </div>
+          </div>
+
+          <div class="funnel-stage stage-r2">
+            <div class="stage-header">
+              <span class="stage-tag">Referral (推奨・紹介)</span>
+              <h3>夜間部同期・PT学生コミュニティでの口コミ</h3>
+            </div>
+            <div class="stage-body">
+              <p>「このサイトとLINE Botヤバいよ」とクラスのグループLINEやTwitterで自然伝播。熱狂的な同級生アンバサダー化。</p>
+              <div class="stage-metric">口コミ流入比率: <strong>約22%</strong></div>
+            </div>
+          </div>
+
+          <div class="funnel-stage stage-rev">
+            <div class="stage-header">
+              <span class="stage-tag">Revenue (価値・マネタイズ)</span>
+              <h3>持続可能な運営と特製教材・有料note</h3>
+            </div>
+            <div class="stage-body">
+              <p>基本機能は完全無料（社会貢献）。深掘り国試直前レジュメや、暗記シートPDFを数百円〜の応援価格で提供。</p>
+              <div class="stage-metric">月間想定: <strong>サーバー代・維持費を余裕で自活</strong></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- TAB 6: AI TRIGGER STUDIO -->
+      <section id="tab-ai-studio" class="tab-pane">
+        <div class="pane-header">
+          <div>
+            <h2 class="pane-title">AIプロンプトトリガー ＆ 自動化パイプライン</h2>
+            <p class="pane-desc">GeminiやTypeSafe AIにそのまま渡して高品質な成果物を生み出す、実証済みの専用プロンプト集</p>
+          </div>
+        </div>
+
+        <div class="ai-studio-toolbar">
+          <div class="ai-unit-selector-bar">
+            <label>生成対象の単元:</label>
+            <select id="aiGlobalUnitSelect" class="select-ctrl select-lg">
+              <!-- Dynamically populated from curations -->
+            </select>
+            <span class="ai-status-indicator" id="aiGlobalStatus">🛰️ Google Antigravity 自律実行キュー連携中</span>
+          </div>
+        </div>
+
+        <div class="prompt-cards-grid">
+          <!-- CARD 1: NOTE -->
+          <div class="prompt-card" data-task-type="note">
+            <div class="prompt-header">
+              <span class="prompt-badge">note記事作成</span>
+              <span class="ai-exec-badge badge-idle">待機中</span>
+              <h3>「夜間部PT生のリアル講義ログ」生成</h3>
+            </div>
+            <p class="prompt-desc">難解な単元を、現役夜間部生が電車の中でスマホメモに書いたような共感性の高い語り口調に変換し、Antigravityが自律保存します。</p>
+            <div class="prompt-box">
+              <code>以下の単元「{{unit_name}}」について、昼働き夜学ぶ夜間部PT学生の語り口調でnote記事を書いてください。教科書の丸写しを禁止し、「なぜここが国試で狙われるのか」「どの神動画で一発理解できたか」を軸にしてください。</code>
+            </div>
+            <div class="ai-card-actions">
+              <input type="text" class="input-ctrl input-sm ai-custom-instruction" placeholder="追加指示 (例: 1年次中間テストでの反省を入れて)">
+              <div class="ai-btn-row">
+                <button class="btn btn-secondary btn-sm copy-prompt-btn">プロンプトをコピー</button>
+                <button class="btn btn-primary btn-sm ai-generate-save-btn" data-task-type="note">🚀 Antigravityに指示を投入</button>
+              </div>
+            </div>
+            <div class="ai-result-preview" style="display:none;">
+              <div class="preview-header">
+                <span class="saved-path-label"></span>
+                <button class="btn btn-subtle btn-xs close-preview-btn">閉じる</button>
+              </div>
+              <textarea class="preview-textarea" readonly rows="5"></textarea>
+            </div>
+          </div>
+
+          <!-- CARD 2: SNS CAROUSEL -->
+          <div class="prompt-card" data-task-type="sns_carousel">
+            <div class="prompt-header">
+              <span class="prompt-badge">Instagram / TikTok</span>
+              <span class="ai-exec-badge badge-idle">待機中</span>
+              <h3>「スライド5枚でわかる解剖生理」台本生成</h3>
+            </div>
+            <p class="prompt-desc">1枚目で強烈に引きつけ、5枚目でLINE Botまたはポータルへのアクションを促すカルーセル台本をAntigravityが自動設計。</p>
+            <div class="prompt-box">
+              <code>単元「{{unit_name}}」の要点を、Instagram/TikTokカルーセルスライド5枚の台本にしてください。1枚目: 衝撃的なフック、2〜4枚目: 結論＋暗記のツボ（文字数各80字以内）、5枚目: LINE Bot検索への誘導。</code>
+            </div>
+            <div class="ai-card-actions">
+              <input type="text" class="input-ctrl input-sm ai-custom-instruction" placeholder="追加指示 (例: スライド4枚目は語呂合わせを強調)">
+              <div class="ai-btn-row">
+                <button class="btn btn-secondary btn-sm copy-prompt-btn">プロンプトをコピー</button>
+                <button class="btn btn-primary btn-sm ai-generate-save-btn" data-task-type="sns_carousel">🚀 Antigravityに指示を投入</button>
+              </div>
+            </div>
+            <div class="ai-result-preview" style="display:none;">
+              <div class="preview-header">
+                <span class="saved-path-label"></span>
+                <button class="btn btn-subtle btn-xs close-preview-btn">閉じる</button>
+              </div>
+              <textarea class="preview-textarea" readonly rows="5"></textarea>
+            </div>
+          </div>
+
+          <!-- CARD 3: QUIZ SYNTHESIS -->
+          <div class="prompt-card" data-task-type="quiz">
+            <div class="prompt-header">
+              <span class="prompt-badge">クイズ合成</span>
+              <span class="ai-exec-badge badge-idle">待機中</span>
+              <h3>「学校レジュメ → 国試基準4択クイズ」昇華</h3>
+            </div>
+            <p class="prompt-desc">授業プリントの穴埋めや断片的なメモを、理学療法士国家試験の出題形式に則った4択クイズに再構成して保存します。</p>
+            <div class="prompt-box">
+              <code>以下の学習メモから、理学療法士国家試験の午前/午後共通問題レベルの4択クイズを1問作成してください。誤りの選択肢3つにも明確な解説をつけ、正解の理由と臨床での意義を明記してください。</code>
+            </div>
+            <div class="ai-card-actions">
+              <input type="text" class="input-ctrl input-sm ai-custom-instruction" placeholder="追加指示 (例: 誤答選択肢に頻出ひっかけを入れて)">
+              <div class="ai-btn-row">
+                <button class="btn btn-secondary btn-sm copy-prompt-btn">プロンプトをコピー</button>
+                <button class="btn btn-primary btn-sm ai-generate-save-btn" data-task-type="quiz">🚀 Antigravityに指示を投入</button>
+              </div>
+            </div>
+            <div class="ai-result-preview" style="display:none;">
+              <div class="preview-header">
+                <span class="saved-path-label"></span>
+                <button class="btn btn-subtle btn-xs close-preview-btn">閉じる</button>
+              </div>
+              <textarea class="preview-textarea" readonly rows="5"></textarea>
+            </div>
+          </div>
+
+          <!-- CARD 4: METAPHOR -->
+          <div class="prompt-card" data-task-type="metaphor">
+            <div class="prompt-header">
+              <span class="prompt-badge">超平易な比喩化</span>
+              <span class="ai-exec-badge badge-idle">待機中</span>
+              <h3>「難解メカニズムの日常比喩分解」生成</h3>
+            </div>
+            <p class="prompt-desc">神経伝達物質や腎臓の濃縮機構など、文字だけでは想像できない概念を日常生活の例え話に変換してMarkdown保存。</p>
+            <div class="prompt-box">
+              <code>「{{topic}}」の生化学・生理学的メカニズムを、中学生でも情景が浮かぶ日常のたとえ話（駅の改札、郵便配達、水道の蛇口等）に置き換えて3ステップで説明してください。</code>
+            </div>
+            <div class="ai-card-actions">
+              <input type="text" class="input-ctrl input-sm ai-custom-instruction" placeholder="追加指示 (例: 駅の改札または自動販売機に例えて)">
+              <div class="ai-btn-row">
+                <button class="btn btn-secondary btn-sm copy-prompt-btn">プロンプトをコピー</button>
+                <button class="btn btn-primary btn-sm ai-generate-save-btn" data-task-type="metaphor">🚀 Antigravityに指示を投入</button>
+              </div>
+            </div>
+            <div class="ai-result-preview" style="display:none;">
+              <div class="preview-header">
+                <span class="saved-path-label"></span>
+                <button class="btn btn-subtle btn-xs close-preview-btn">閉じる</button>
+              </div>
+              <textarea class="preview-textarea" readonly rows="5"></textarea>
+            </div>
+          </div>
+        </div>
+
+        <!-- ANTIGRAVITY TASK QUEUE LIVE MONITOR -->
+        <div class="agy-queue-monitor-card" style="margin-top:24px; background:var(--bg-card); border:1px solid var(--border-color); border-radius:12px; padding:20px;">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px;">
+            <div style="display:flex; align-items:center; gap:10px;">
+              <span style="font-size:18px;">🛰️</span>
+              <h3 style="font-size:15px; font-weight:700; margin:0; color:var(--text-primary);">Google Antigravity 自律タスク実行キュー</h3>
+              <span id="agyQueueCountBadge" class="badge" style="background:var(--accent-gold-soft); color:var(--accent-gold); font-size:11px;">0件</span>
+            </div>
+            <button id="refreshAgyQueueBtn" class="btn btn-subtle btn-xs">キュー更新 🔄</button>
+          </div>
+          <div id="agyQueueList" style="display:flex; flex-direction:column; gap:8px;">
+            <div style="font-size:12px; color:var(--text-muted); padding:10px; text-align:center;">
+              待機中のタスクはありません。「Antigravity に指示を投入」を押すとここに予約されます。
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- TAB 7: COMMUNITY & REQUEST QUEUE -->
+      <section id="tab-community" class="tab-pane">
+        <div class="pane-header">
+          <div>
+            <h2 class="pane-title">お悩み相談 ＆ リクエスト管理キュー</h2>
+            <p class="pane-desc">LINE友だちやWeb閲覧者から届く「この動画を探してほしい」「この単元がわからない」の声</p>
+          </div>
+          <button id="addRequestBtn" class="btn btn-secondary">+ 手動でリクエストを追加</button>
+        </div>
+
+        <div class="request-queue-container">
+          <table class="queue-table">
+            <thead>
+              <tr>
+                <th>受付日</th>
+                <th>ステータス</th>
+                <th>単元 / 相談内容</th>
+                <th>希望チャンネル</th>
+                <th>アクション</th>
+              </tr>
+            </thead>
+            <tbody id="requestQueueBody">
+              <!-- Rendered by JS -->
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- TAB 8: INFRASTRUCTURE & DATA SYNC -->
+      <section id="tab-infrastructure" class="tab-pane">
+        <div class="pane-header">
+          <div>
+            <h2 class="pane-title">コストゼロ・インフラ監視 ＆ 静的データ同期</h2>
+            <p class="pane-desc">月額サーバー費0円を維持しながら、全データを安全にバックアップ・同期する管制ユニット</p>
+          </div>
+        </div>
+
+        <div class="infra-grid">
+          <div class="card infra-status-card">
+            <h3 class="card-title">インフラストラクチャ稼働状況</h3>
+            <ul class="infra-list">
+              <li class="infra-item">
+                <span class="infra-name">Webホスティング (GitHub / Cloudflare Pages)</span>
+                <span class="infra-val cost-free">稼働中 (¥0/月)</span>
+              </li>
+              <li class="infra-item">
+                <span class="infra-name">LINE Messaging API (公式アカウント フリープラン)</span>
+                <span class="infra-val cost-free">無料枠内 (¥0/月)</span>
+              </li>
+              <li class="infra-item">
+                <span class="infra-name">Google Apps Script (GAS) ＆ Sheets データベース</span>
+                <span class="infra-val cost-free">3,851件インデックス (¥0/月)</span>
+              </li>
+              <li class="infra-item">
+                <span class="infra-name">ローカル開発サーバー (Node.js serve.js)</span>
+                <span class="infra-val">Port 3800 稼働中</span>
+              </li>
+            </ul>
+          </div>
+
+          <div class="card sync-data-card">
+            <h3 class="card-title">ポータル本編（app.js）用コード出力</h3>
+            <p class="card-desc">ダッシュボードで追加・編集したキュレーションデータをコピーし、<code>projects/pt_student_portal/app.js</code> の <code>CURATION_DATA</code> に貼り付けられます。</p>
+            <div class="code-preview-wrap">
+              <pre><code id="exportJsCodeBlock">// 準備完了時に自動生成されます</code></pre>
+            </div>
+            <div class="sync-actions">
+              <button id="copyJsCodeBtn" class="btn btn-primary">コードをクリップボードにコピー</button>
+              <button id="downloadJsonBtn" class="btn btn-secondary">JSONとして保存</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- Modal for New Curation Item -->
+  <div id="curationModal" class="modal-backdrop">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h3 id="modalTitle">新規神動画キュレーション登録</h3>
+        <button id="closeModalBtn" class="modal-close">&times;</button>
+      </div>
+      <div class="modal-body">
+        <form id="curationForm">
+          <input type="hidden" id="editItemIndex" value="-1">
+          <div class="form-row">
+            <div class="form-field flex-1">
+              <label>分野 (Category)</label>
+              <select id="modalCategory" class="select-ctrl" required>
+                <option value="anatomy">解剖学 (Anatomy)</option>
+                <option value="physiology">生理学 (Physiology)</option>
+                <option value="kinesiology">運動学 (Kinesiology)</option>
+                <option value="pathology">病理・臨床医学</option>
+              </select>
+            </div>
+            <div class="form-field flex-1">
+              <label>推奨度 (Stars)</label>
+              <select id="modalRating" class="select-ctrl">
+                <option value="5">★★★★★ (最重要)</option>
+                <option value="4">★★★★☆ (重要)</option>
+                <option value="3">★★★☆☆ (標準)</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-field">
+            <label>単元・テーマ名</label>
+            <input type="text" id="modalUnit" class="input-ctrl" placeholder="例: 脳幹の解剖と脳神経出入り" required>
+          </div>
+
+          <div class="form-row">
+            <div class="form-field flex-1">
+              <label>講師 / チャンネル名</label>
+              <input type="text" id="modalTeacher" class="input-ctrl" placeholder="例: ゴロー先生" required>
+            </div>
+            <div class="form-field flex-1">
+              <label>動画時間 (目安)</label>
+              <input type="text" id="modalDuration" class="input-ctrl" placeholder="例: 12分30秒">
+            </div>
+          </div>
+
+          <div class="form-field">
+            <label>動画タイトル</label>
+            <input type="text" id="modalTitleInput" class="input-ctrl" placeholder="YouTube動画のタイトル" required>
+          </div>
+
+          <div class="form-field">
+            <label>YouTube URL または 動画ID</label>
+            <input type="text" id="modalUrl" class="input-ctrl" placeholder="例: https://www.youtube.com/watch?v=... または 動画ID" required>
+          </div>
+
+          <div class="form-field">
+            <label>動画の神ポイント・解説（夜間部生の推薦コメント）</label>
+            <textarea id="modalSummary" class="textarea-ctrl" rows="3" placeholder="なぜこの動画が神なのか、どの試験・実習に効くかを端的に入力"></textarea>
+          </div>
+
+          <div class="form-field">
+            <label>タグ (カンマ区切り)</label>
+            <input type="text" id="modalTags" class="input-ctrl" placeholder="例: 中脳, 橋, 延髄, 脳神経12対, 国試必修">
+          </div>
+
+          <div class="modal-footer">
+            <button type="button" id="cancelModalBtn" class="btn btn-subtle">キャンセル</button>
+            <button type="submit" class="btn btn-primary">保存する</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script src="dashboard.js"></script>
+</body>
+</html>
