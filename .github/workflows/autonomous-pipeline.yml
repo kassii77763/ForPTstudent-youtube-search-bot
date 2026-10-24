@@ -1,0 +1,58 @@
+name: Autonomous Patrol & Content Factory Pipeline
+
+on:
+  schedule:
+    # 毎週日曜 深夜3時 (JST = 土曜 18:00 UTC)
+    - cron: '0 18 * * 6'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  patrol-and-generate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Run School Patrol Harness (Official URL Check)
+        run: |
+          node projects/pt_student_portal/harness/sub-agents/01-school-patrol-harness.js
+
+      - name: Run Extended Unit Sommelier & Quiz Harness
+        run: |
+          node projects/pt_student_portal/harness/sub-agents/02-unit-sommelier-harness.js
+
+      - name: Run Programmatic Dictionary Harness
+        run: |
+          node projects/pt_student_portal/harness/sub-agents/03-programmatic-dict-harness.js
+
+      - name: Run Multi-Media Factory (Note, Canva CSV, SNS)
+        run: |
+          node projects/pt_student_portal/harness/sub-agents/04-multi-media-factory.js
+
+      - name: Run Community Safety & Threads Harness
+        run: |
+          node projects/pt_student_portal/harness/sub-agents/05-community-safety-harness.js
+
+      - name: Run Full Meta-Harness Audit
+        run: |
+          node projects/pt_student_portal/harness/meta-harness.js
+
+      - name: Commit & Push Verified Data Updates
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+          git add projects/pt_student_portal/data/
+          if git diff --staged --quiet; then
+            echo "No data changes detected. Pipeline completed without diff."
+          else
+            git commit -m 'chore(auto): autonomous patrol and content data sync [skip ci]'
+            git push
+          fi

@@ -27,3 +27,21 @@ output/
 thumbnails/
 thumbs/
 test-video/
+
+.env.local
+
+# 独立リポジトリ化プロジェクト
+projects/pt_student_portal/
+
+gas_project/
+
+# パスワードハブ（ローカル完全隔離・Git送信禁止）
+projects/password_security_hub/
+projects/kashima_password_extension/
+
+# 独立リポジトリ化プロジェクト
+projects/workspace_health_monitor/
+
+# 独立リポジトリ化プロジェクト
+projects/icf_natural_mapper/
+projects/icf_realtime_mapper/
